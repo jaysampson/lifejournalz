@@ -36,8 +36,8 @@ const ResetPassword = () => {
               <p>Please enter email address to reset your password</p>
             </div>
             <form action="" method='POST' onSubmit={handleSubmit}>
-              <input placeholder='********'
-                type={"password"}
+              <input placeholder='example@gmail.com'
+                type={"text"}
                 required
                 value={password}
                 className="password"

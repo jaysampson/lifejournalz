@@ -82,7 +82,7 @@ const Login = () => {
         <div className="container">
           <div className="logo">
             <img src={Logo} alt="" />
-            <p>Life <span>Journals</span></p>
+            <p>Life <span>Journalz</span></p>
           </div>
           <div className="sigin_con">
             <div className="signin_content">

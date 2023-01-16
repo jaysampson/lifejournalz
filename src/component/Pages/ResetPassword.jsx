@@ -48,39 +48,41 @@ const ResetPassword = () => {
 
 
       <div className="reset_pass" style={{ backgroundImage: `url(${cloud})` }}>
-        <div className="container">
-          <div className="logo">
-            <img src={Logo} alt="" />
-            <p>Life <span>Journals</span></p>
-          </div>
-          <div className="login_con">
-            <div className="login_content">
-              <div className="title">
-                <Link to='/signin' className='link'><img src={Cancel} alt="X" /></Link>
-              </div>
-              <div className="text_title">
-                <p>Reset your password</p>
-              </div>
-              <div className="form_info">
-                <p>Please enter email address to reset your password</p>
-              </div>
-              <form action="" method='POST' onSubmit={handleSubmit}>
-                <input placeholder='example@gmail.com'
-                  type={"text"}
-                  required
-                  value={email}
-                  className="email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <div className="resetp_btn">
-                  <button>Reset Password</button>
+        <div className="main">
+          <div className="container">
+            <div className="logo">
+              <img src={Logo} alt="" />
+              <p>Life <span>Journalz</span></p>
+            </div>
+            <div className="login_con">
+              <div className="login_content">
+                <div className="title">
+                  <Link to='/signin' className='link'><img src={Cancel} alt="X" /></Link>
                 </div>
-              </form>
+                <div className="text_title">
+                  <p>Reset your password</p>
+                </div>
+                <div className="form_info">
+                  <p>Please enter email address to reset your password</p>
+                </div>
+                <form action="" method='POST' onSubmit={handleSubmit}>
+                  <input placeholder='example@gmail.com'
+                    type={"text"}
+                    required
+                    value={email}
+                    className="email"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                  <div className="resetp_btn">
+                    <button>Reset Password</button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="brown_bgc">
-          <img src={brown} alt="" />
+          <div className="brown_bgc">
+            <img src={brown} alt="" />
+          </div>
         </div>
       </div>
     </>

@@ -88,7 +88,7 @@ const SignUp = () => {
         <div className="container">
           <div className="logo">
             <img src={Logo} alt="" />
-            <p>Life <span>Journals</span></p>
+            <p>Life <span>Journalz</span></p>
           </div>
           <div className="sigup_con">
             <div className="signup_content">

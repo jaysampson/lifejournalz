@@ -76,6 +76,8 @@ const Login = () => {
           </form>
         </div>
       </div>
+
+
       <div className="sigin" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="container">
           <div className="logo">

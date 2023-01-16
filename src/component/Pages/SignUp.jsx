@@ -84,11 +84,12 @@ const SignUp = () => {
         </div>
       </div>
 
+
       <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="container">
           <div className="logo">
             <img src={Logo} alt="" />
-            <p>Life <span>Journalz</span></p>
+            <p>Life<span>Journalz</span></p>
           </div>
           <div className="sigup_con">
             <div className="signup_content">

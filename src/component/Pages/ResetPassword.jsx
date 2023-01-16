@@ -20,7 +20,7 @@ const ResetPassword = () => {
   console.log(values);
   return (
     <>
-      {/* <div className='login' style={{ backgroundImage: `url(${cloud})` }}>
+      <div className='login' style={{ backgroundImage: `url(${cloud})` }}>
         <div className="login_con">
           <div className="login_content">
             <div className="title">
@@ -40,11 +40,14 @@ const ResetPassword = () => {
                 className="email"
                 onChange={(e) => setEmail(e.target.value)}
               />
+              <div className="resetp_btn">
+                <button>Reset Password</button>
+              </div>
               <div className="line"></div>
             </form>
           </div>
         </div>
-      </div> */}
+      </div>
 
 
       <div className="reset_pass" style={{ backgroundImage: `url(${cloud})` }}>
@@ -52,7 +55,7 @@ const ResetPassword = () => {
           <div className="container">
             <div className="logo">
               <img src={Logo} alt="" />
-              <p>Life <span>Journalz</span></p>
+              <p>Life<span>Journalz</span></p>
             </div>
             <div className="login_con">
               <div className="login_content">

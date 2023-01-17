@@ -9,14 +9,16 @@ import Logo from '../../Images/Logo.png';
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [Apassword, setAPassword] = useState("");
+  const [Bpassword, setBPassword] = useState("");
   const [name, setName] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(password.email.name);
+    console.log(Apassword.Bpassword.email.name);
   };
   const values = {
-    password: password,
+    Apassword: Apassword,
+    Bpassword: Bpassword,
     email: email,
     name: name,
   };
@@ -56,8 +58,8 @@ const SignUp = () => {
             <input type="password"
               required
               placeholder='********'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={Apassword}
+              onChange={(e) => setAPassword(e.target.value)}
             />
             <p>
               <label htmlFor="password">Confirm Password</label>
@@ -65,9 +67,9 @@ const SignUp = () => {
             <input type="password"
               required
               placeholder='********'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+              value={Bpassword}
+              onChange={(e) => setBPassword(e.target.value)}
+            />  
             <div className="signup_button">
               <button>Sign Up</button>
             </div>
@@ -122,8 +124,8 @@ const SignUp = () => {
                 <input type="password"
                   required
                   placeholder='********'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={Apassword}
+                  onChange={(e) => setAPassword(e.target.value)}
                 />
                 <p>
                   <label htmlFor="password">Confirm Password</label>
@@ -131,8 +133,8 @@ const SignUp = () => {
                 <input type="password"
                   required
                   placeholder='********'
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={Bpassword}
+                  onChange={(e) => setBPassword(e.target.value)}
                 />
                 <div className="signup_button">
                   <button>Sign Up</button>

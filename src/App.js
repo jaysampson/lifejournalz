@@ -1,5 +1,5 @@
 import Login from './component/Pages/Login';
-import '../src/App.scss';
+import './App.scss';
 import SignUp from './component/Pages/SignUp';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResetPassword from './component/Pages/ResetPassword';

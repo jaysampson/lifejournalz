@@ -83,9 +83,6 @@ const ResetPassword = () => {
               </div>
             </div>
           </div>
-          <div className="brown_bgc">
-            <img src={brown} alt="" />
-          </div>
         </div>
       </div>
     </>

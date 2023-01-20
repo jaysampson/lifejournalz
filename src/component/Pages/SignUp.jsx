@@ -69,7 +69,7 @@ const SignUp = () => {
               placeholder='********'
               value={Bpassword}
               onChange={(e) => setBPassword(e.target.value)}
-            />  
+            />
             <div className="signup_button">
               <button>Sign Up</button>
             </div>
@@ -151,9 +151,6 @@ const SignUp = () => {
               </form>
             </div>
           </div>
-        </div>
-        <div className="brown_bgc">
-          <img src={brown} alt="" />
         </div>
       </div>
     </>

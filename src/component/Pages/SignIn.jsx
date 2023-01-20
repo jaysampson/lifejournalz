@@ -1,5 +1,5 @@
 import { useState, React } from 'react'
-import '../../styles/Login.scss'
+import '../../styles/SignIn.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
 import { Link } from 'react-router-dom';
@@ -133,9 +133,6 @@ const Login = () => {
               </form>
             </div>
           </div>
-        </div>
-        <div className="brown_bgc">
-          <img src={brown} alt="" />
         </div>
       </div>
     </>

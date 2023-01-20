@@ -195,20 +195,6 @@ button:hover {
         background-size: cover;
         background-position: center;
 
-        .brown_bgc {
-            width: 40%;
-            height: 848px;
-            float: right;
-            margin-top: -848px;
-            overflow: hidden;
-
-
-            img {
-                height: 100%;
-                width: 100%;
-            }
-        }
-
         .container {
             display: flex;
             align-items: center;
@@ -245,7 +231,7 @@ button:hover {
                 background: #FFFDF4;
                 width: 50%;
                 height: Hug (607px);
-                margin-top: 100px;
+                margin-top: 50px;
                 margin-bottom: 50px;
                 border-radius: 20px;
 

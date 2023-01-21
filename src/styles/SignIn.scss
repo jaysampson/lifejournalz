@@ -10,24 +10,33 @@ button:hover {
 }
 
 .signin_con {
-    @media screen and(min-width:848px) {
+    @media screen and(min-width:1000px) {
         display: none;
     }
 }
 
 .signin {
-    @media screen and(min-width:848px) {
-        display: none;
+    @media screen and(min-width:1000px) {
+        display: none ;
     }
 }
 
 .signin {
     background-image: url('/cloud.png');
-    height: 168px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signin_con {
     background: #FFFDF4;
+    @media screen and (min-width:425px) {
+        width: 425px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        border-radius: 20px;
+    }
+    margin-top: 168px;
 
     .signin_content {
         margin-left: 32px;
@@ -188,7 +197,7 @@ button:hover {
 }
 
 
-@media screen and(min-width:848px) {
+@media screen and(min-width:1000px) {
     .sigin {
         display: block;
         height: 100%;
@@ -229,33 +238,34 @@ button:hover {
 
             .sigin_con {
                 background: #FFFDF4;
-                width: 50%;
+                width: 500px;
                 height: Hug (607px);
                 margin-top: 50px;
                 margin-bottom: 50px;
                 border-radius: 20px;
 
-                @media screen and(min-width:933px) {
-                    width: 537px;
-                }
+
+                // @media screen and(min-width:933px) {
+                //     width: 500px;
+                // }
 
                 .signin_content {
                     margin-left: 80px;
 
-                    @media screen and(min-width:933px) {
-                        margin-left: 113px;
-                    }
+                    // @media screen and(min-width:933px) {
+                    //     margin-left: 113px;
+                    // }
 
                     .title {
                         display: flex;
-                        gap: 160px;
+                        gap: 220px;
                         align-items: center;
                         padding-top: 34px;
                         margin-bottom: 24px;
 
-                        @media screen and(min-width:933px) {
-                            gap: 200px;
-                        }
+                        // @media screen and(min-width:933px) {
+                        //     gap: 200px;
+                        // }
 
                         p {
                             font-size: 28px;
@@ -271,9 +281,9 @@ button:hover {
                     form {
                         margin-right: 80px;
 
-                        @media screen and(min-width:933px) {
-                            margin-right: 113px;
-                        }
+                        // @media screen and(min-width:933px) {
+                        //     margin-right: 113px;
+                        // }
 
                         p {
                             margin-bottom: 8px;

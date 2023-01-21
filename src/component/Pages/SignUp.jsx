@@ -26,63 +26,63 @@ const SignUp = () => {
   return (
     <>
       <div className='sign_up'>
-      </div>
-      <div className="signup_con">
-        <div className="signup_content">
-          <div className="title">
-            <p>Sign Up</p>
-            <img src={Cancel} alt="X" />
-          </div>
-          <form action="" method='POST' onSubmit={handleSubmit}>
-            <p>
-              <label htmlFor="name">Name</label>
-            </p>
-            <input type="text"
-              required
-              placeholder='Peter Gray'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <p>
-              <label htmlFor="email">Email</label>
-            </p>
-            <input type="email"
-              required
-              placeholder='example@gmail.com'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <p>
-              <label htmlFor="password">Password</label>
-            </p>
-            <input type="password"
-              required
-              placeholder='********'
-              value={Apassword}
-              onChange={(e) => setAPassword(e.target.value)}
-            />
-            <p>
-              <label htmlFor="password">Confirm Password</label>
-            </p>
-            <input type="password"
-              required
-              placeholder='********'
-              value={Bpassword}
-              onChange={(e) => setBPassword(e.target.value)}
-            />
-            <div className="signup_button">
-              <button>Sign Up</button>
+        <div className="signup_con">
+          <div className="signup_content">
+            <div className="title">
+              <p>Sign Up</p>
+              <img src={Cancel} alt="X" />
             </div>
-            <img src={Or} alt="Or" />
-            <div className="usegoogle">
-              <button>Continue with google</button>
-            </div>
-            <div className="options">
-              <div className="no_account">
-                <p>Already have an account? <Link to="/signin" className='link'><span>Sign In</span></Link></p>
+            <form action="" method='POST' onSubmit={handleSubmit}>
+              <p>
+                <label htmlFor="name">Name</label>
+              </p>
+              <input type="text"
+                required
+                placeholder='Peter Gray'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+              <p>
+                <label htmlFor="email">Email</label>
+              </p>
+              <input type="email"
+                required
+                placeholder='example@gmail.com'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+              <p>
+                <label htmlFor="password">Password</label>
+              </p>
+              <input type="password"
+                required
+                placeholder='********'
+                value={Apassword}
+                onChange={(e) => setAPassword(e.target.value)}
+              />
+              <p>
+                <label htmlFor="password">Confirm Password</label>
+              </p>
+              <input type="password"
+                required
+                placeholder='********'
+                value={Bpassword}
+                onChange={(e) => setBPassword(e.target.value)}
+              />
+              <div className="signup_button">
+                <button>Sign Up</button>
               </div>
-            </div>
-          </form>
+              <img src={Or} alt="Or" />
+              <div className="usegoogle">
+                <button>Continue with google</button>
+              </div>
+              <div className="options">
+                <div className="no_account">
+                  <p>Already have an account? <Link to="/signin" className='link'><span>Sign In</span></Link></p>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
 

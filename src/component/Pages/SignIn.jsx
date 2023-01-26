@@ -1,5 +1,5 @@
 import { useState, React } from 'react'
-import '../../styles/Signup.scss'
+import '../../styles/SignIn.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
 import { Link } from 'react-router-dom';
@@ -7,41 +7,32 @@ import brown from '../../brown.png';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
 
-const SignUp = () => {
+const Login = () => {
   const [email, setEmail] = useState("");
-  const [Apassword, setAPassword] = useState("");
-  const [Bpassword, setBPassword] = useState("");
-  const [name, setName] = useState("");
+  const [password, setPassword] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Apassword.Bpassword.email.name);
+    console.log(password.email);
   };
   const values = {
-    Apassword: Apassword,
-    Bpassword: Bpassword,
+    password: password,
     email: email,
-    name: name,
   };
   console.log(values);
+  const [passwordType, setPasswordType] = useState(false)
+  function togglePassword() {
+    setPasswordType(!passwordType)
+  }
   return (
     <>
-      <div className='sign_up'>
-        <div className="signup_con">
-          <div className="signup_content">
+      <div className='signin'>
+        <div className="signin_con">
+          <div className="signin_content">
             <div className="title">
-              <p>Sign Up</p>
+              <p>Sign In</p>
               <img src={Cancel} alt="X" />
             </div>
             <form action="" method='POST' onSubmit={handleSubmit}>
-              <p>
-                <label htmlFor="name">Name</label>
-              </p>
-              <input type="text"
-                required
-                placeholder='Peter Gray'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
               <p>
                 <label htmlFor="email">Email</label>
               </p>
@@ -54,23 +45,20 @@ const SignUp = () => {
               <p>
                 <label htmlFor="password">Password</label>
               </p>
-              <input type="password"
+              <input type={passwordType ? "text" : "password"}
                 required
                 placeholder='********'
-                value={Apassword}
-                onChange={(e) => setAPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <p>
-                <label htmlFor="password">Confirm Password</label>
-              </p>
-              <input type="password"
-                required
-                placeholder='********'
-                value={Bpassword}
-                onChange={(e) => setBPassword(e.target.value)}
-              />
-              <div className="signup_button">
-                <button>Sign Up</button>
+              <div className="check_box">
+                <input type="checkbox" name="checkbox" onClick={togglePassword} id="checkbox" />
+                <label for="checkbox" className="checkbox">
+                  Show Password
+                </label>
+              </div>
+              <div className="signin_button">
+                <button>Sign In</button>
               </div>
               <img src={Or} alt="Or" />
               <div className="usegoogle">
@@ -78,8 +66,11 @@ const SignUp = () => {
               </div>
               <div className="options">
                 <div className="no_account">
-                  <p>Already have an account? <Link to="/signin" className='link'><span>Sign In</span></Link></p>
+                  <p>Don't have an account? <Link to="/signup" className='link'><span>Sign Up</span></Link></p>
                 </div>
+              </div>
+              <div className="forgot_p">
+                <Link to='/reset' className='link'><p>Forgot Password?</p></Link>
               </div>
             </form>
           </div>
@@ -87,28 +78,19 @@ const SignUp = () => {
       </div>
 
 
-      <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>
+      <div className="sigin" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="container">
           <div className="logo">
             <img src={Logo} alt="" />
             <p>Life<span>Journalz</span></p>
           </div>
-          <div className="sigup_con">
-            <div className="signup_content">
+          <div className="sigin_con">
+            <div className="signin_content">
               <div className="title">
-                <p>Sign Up</p>
+                <p>Sign In</p>
                 <img src={Cancel} alt="X" />
               </div>
               <form action="" method='POST' onSubmit={handleSubmit}>
-                <p>
-                  <label htmlFor="name">Name</label>
-                </p>
-                <input type="text"
-                  required
-                  placeholder='Peter Gray'
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
                 <p>
                   <label htmlFor="email">Email</label>
                 </p>
@@ -121,23 +103,20 @@ const SignUp = () => {
                 <p>
                   <label htmlFor="password">Password</label>
                 </p>
-                <input type="password"
+                <input type={passwordType ? "text" : "password"}
                   required
                   placeholder='********'
-                  value={Apassword}
-                  onChange={(e) => setAPassword(e.target.value)}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                 />
-                <p>
-                  <label htmlFor="password">Confirm Password</label>
-                </p>
-                <input type="password"
-                  required
-                  placeholder='********'
-                  value={Bpassword}
-                  onChange={(e) => setBPassword(e.target.value)}
-                />
-                <div className="signup_button">
-                  <button>Sign Up</button>
+                <div className="check_box">
+                  <input type="checkbox" name="checkbox" onClick={togglePassword} id="checkbox" />
+                  <label for="checkbox" className="checkbox">
+                    Show Password
+                  </label>
+                </div>
+                <div className="signin_button">
+                  <button>Sign In</button>
                 </div>
                 <img src={Or} alt="Or" />
                 <div className="usegoogle">
@@ -145,8 +124,11 @@ const SignUp = () => {
                 </div>
                 <div className="options">
                   <div className="no_account">
-                    <p>Already have an account? <Link to="/signin" className='link'><span>Sign In</span></Link></p>
+                    <p>Don't have an account? <Link to="/signup" className='link'><span>Sign Up</span></Link></p>
                   </div>
+                </div>
+                <div className="forgot_p">
+                  <Link to='/reset' className='link'><p>Forgot Password?</p></Link>
                 </div>
               </form>
             </div>
@@ -157,4 +139,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp
+export default Login

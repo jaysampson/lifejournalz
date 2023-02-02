@@ -12,9 +12,15 @@ const SignUp = () => {
   const [Apassword, setAPassword] = useState("");
   const [Bpassword, setBPassword] = useState("");
   const [name, setName] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Apassword.Bpassword.email.name);
+    if (Apassword !== Bpassword) {
+      setErrorMessage("Passwords do not match");
+    } else {
+      console.log(Apassword, Bpassword, email, name);
+      setErrorMessage("");
+    }
   };
   const values = {
     Apassword: Apassword,
@@ -69,8 +75,11 @@ const SignUp = () => {
                 value={Bpassword}
                 onChange={(e) => setBPassword(e.target.value)}
               />
+              {errorMessage && (
+                <div className="error-message" style={{ color: 'red', display: 'block', marginTop: '-24px', marginBottom: '24px' }}>{errorMessage}</div>
+              )}
               <div className="signup_button">
-                <button>Sign Up</button>
+                <button onSubmit={handleSubmit}>Sign Up</button>
               </div>
               <img src={Or} alt="Or" />
               <div className="usegoogle">
@@ -136,8 +145,11 @@ const SignUp = () => {
                   value={Bpassword}
                   onChange={(e) => setBPassword(e.target.value)}
                 />
+                {errorMessage && (
+                  <div className="error-message" style={{ color: 'red', display: 'block', marginTop: '-24px', marginBottom: '24px' }}>{errorMessage}</div>
+                )}
                 <div className="signup_button">
-                  <button>Sign Up</button>
+                  <button onSubmit={handleSubmit}>Sign Up</button>
                 </div>
                 <img src={Or} alt="Or" />
                 <div className="usegoogle">

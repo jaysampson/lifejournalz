@@ -17,7 +17,7 @@ button:hover {
 
 .signin {
     @media screen and(min-width:1000px) {
-        display: none ;
+        display: none;
     }
 }
 
@@ -30,12 +30,14 @@ button:hover {
 
 .signin_con {
     background: #FFFDF4;
+
     @media screen and (min-width:426px) {
         width: 425px;
         margin-top: 20px;
         margin-bottom: 20px;
         border-radius: 20px;
     }
+
     margin-top: 168px;
 
     .signin_content {
@@ -52,7 +54,7 @@ button:hover {
             p {
                 font-size: 28px;
                 font-weight: 700;
-                color: #1E130C;
+                color: #6F0847;
             }
 
             img {
@@ -63,6 +65,7 @@ button:hover {
         form {
             p {
                 margin-bottom: 8px;
+                color: #6F0847;
 
                 label {
                     font-size: 12px;
@@ -74,7 +77,7 @@ button:hover {
                 width: 100%;
                 height: 48px;
                 background: #FFFFFF;
-                border: 1px solid #605046;
+                border: 1px solid #6F0847;
                 box-shadow: 0px 4px 8px rgba(230, 230, 230, 0.3);
                 border-radius: 4px;
                 flex: none;
@@ -97,7 +100,7 @@ button:hover {
 
                 .checkbox {
                     font-size: 14px;
-                    color: #1E130C;
+                    color: #6F0847;
                     margin-left: 5px;
                 }
             }
@@ -110,8 +113,8 @@ button:hover {
                 button {
                     padding: 16px 48px;
                     width: 100%;
-                    background: linear-gradient(90deg, #1E130C 0%, #9A8478 100%);
-                    box-shadow: 0px 4px 8px rgba(37, 16, 48, 0.1);
+                    background: linear-gradient(90deg, #AA076B 0%, #61045F 100%);
+                    box-shadow: 0px 4px 8px rgba(57, 130, 240, 0.1);
                     border-radius: 4px;
                     flex: none;
                     order: 1;
@@ -166,7 +169,7 @@ button:hover {
                             text-decoration: none;
 
                             span {
-                                color: #605046;
+                                color: #6F0847;
                             }
                         }
 
@@ -185,7 +188,7 @@ button:hover {
                     text-align: right;
                     font-weight: 500;
                     font-size: 12px;
-                    color: #1E130C;
+                    color: #6F0847;
                 }
             }
         }
@@ -229,7 +232,7 @@ button:hover {
                     font-size: 36px;
 
                     span {
-                        color: #1E130C;
+                        color: white;
                         font-family: 'Inter', sans-serif;
                         font-size: 36px;
                     }
@@ -270,7 +273,7 @@ button:hover {
                         p {
                             font-size: 28px;
                             font-weight: 700;
-                            color: #1E130C;
+                            color: #6F0847;
                         }
 
                         img {
@@ -287,6 +290,7 @@ button:hover {
 
                         p {
                             margin-bottom: 8px;
+                            color: #6F0847;
 
                             label {
                                 font-size: 12px;
@@ -298,8 +302,8 @@ button:hover {
                             width: 100%;
                             height: 48px;
                             background: #FFFFFF;
-                            border: 1px solid #605046;
-                            box-shadow: 0px 4px 8px rgba(230, 230, 230, 0.3);
+                            border: 1px solid #6F0847;
+                            box-shadow: 0px 4px 8px rgba(57, 130, 240, 0.1);
                             border-radius: 4px;
                             flex: none;
                             order: 1;
@@ -321,7 +325,7 @@ button:hover {
 
                             .checkbox {
                                 font-size: 14px;
-                                color: #1E130C;
+                                color: #6F0847;
                                 margin-left: 5px;
                             }
                         }
@@ -334,8 +338,8 @@ button:hover {
                             button {
                                 padding: 16px 48px;
                                 width: 100%;
-                                background: linear-gradient(90deg, #1E130C 0%, #9A8478 100%);
-                                box-shadow: 0px 4px 8px rgba(37, 16, 48, 0.1);
+                                background: linear-gradient(90deg, #AA076B 0%, #61045F 100%);
+                                box-shadow: 0px 4px 8px rgba(57, 130, 240, 0.1);
                                 border-radius: 4px;
                                 flex: none;
                                 order: 1;
@@ -362,7 +366,7 @@ button:hover {
                             button {
                                 width: 100%;
                                 height: 48px;
-                                border: 2px solid #605046;
+                                border: 2px solid #6F0847;
                                 filter: drop-shadow(0px 4px 8px rgba(57, 130, 240, 0.1));
                                 border-radius: 4px;
                                 flex: none;
@@ -389,7 +393,7 @@ button:hover {
                                         text-decoration: none;
 
                                         span {
-                                            color: #605046;
+                                            color: #6F0847;
                                         }
                                     }
 
@@ -408,7 +412,7 @@ button:hover {
                                 text-align: center;
                                 font-weight: 500;
                                 font-size: 12px;
-                                color: #1E130C;
+                                color: #6F0847;
                             }
                         }
                     }

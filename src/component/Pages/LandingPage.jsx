@@ -80,13 +80,13 @@ const LandingPage = () => {
 
             <ul className="navbar-nav d-none d-sm-none d-md-flex ms-auto px-3">
               <li className="nav-item px-2">
-                <Link to="#signup" className="nav-link">
+                <Link to="/signin" className="nav-link">
                   Login
                 </Link>
               </li>
               <li className="nav-item">
                 <Link
-                  to="#signup"
+                  to="/signup"
                   className="nav-link btn btn rounded px-4"
                   style={{
                     background:
@@ -111,7 +111,7 @@ const LandingPage = () => {
           backgroundSize: "cover",
         }}
       >
-        <div className="container">
+        <div className="container" style={{ marginTop: "60px" }}>
           <div className="d-sm-flex align-items-center justify-content-between text-start">
             <div>
               <h6 className="hr-lines d-none d-md-block">
@@ -156,7 +156,7 @@ const LandingPage = () => {
             <div className="col-md p-5">
               <Link to="#"
                 className="btn btn-light mt-3"
-                style={{backgroundColor: "#ecd4c6"}}
+                style={{ backgroundColor: "#ecd4c6" }}
               >
                 About us
               </Link>
@@ -169,7 +169,7 @@ const LandingPage = () => {
               </p>
               <Link to="#"
                 className="btn btn-light mt-3 text-white px-5 py-2"
-                style={{background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)"}}
+                style={{ background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)" }}
               >
                 Learn more <i className="bi bi-chevron-right"></i>
               </Link>
@@ -178,225 +178,225 @@ const LandingPage = () => {
         </div>
       </section>
       {/* <!-- about section end   --> */}
-       <section id="features" className="" style={{backgroundColor: "#fffdf4"}}>
-      <div className="container p-5">
-        <div id="hiworks" className="text-center">
-          <div id="hiworks_2" className="mt-3">
-            <button
-              type="button"
-              className="btn btn btn-sm"
-              style={{backgroundColor: "#ecd4c6"}}
-            >
-              How it works
-            </button>
-            <div className="mt-5">
-              <h2 className="text-start text-md-center">Why Life Journalz?</h2>
-              <p className="mt-4 text-start text-md-center">
+      <section id="features" className="" style={{ backgroundColor: "#fffdf4" }}>
+        <div className="container p-5">
+          <div id="hiworks" className="text-center">
+            <div id="hiworks_2" className="mt-3">
+              <button
+                type="button"
+                className="btn btn btn-sm"
+                style={{ backgroundColor: "#ecd4c6" }}
+              >
+                How it works
+              </button>
+              <div className="mt-5">
+                <h2 className="text-start text-md-center">Why Life Journalz?</h2>
+                <p className="mt-4 text-start text-md-center">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                  enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                  nisi ut aliquip ex ea commodo consequat.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="row align-items-center justify-content-between">
+            <div className="col-md p-5">
+              <h2>Save Your Special Events on The Cloud Storage</h2>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+                consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
+                consequuntur ratione hic repellendus, aut distinctio magni ut
+                dignissimos vel placeat culpa!
+              </p>
+              <Link to="#"
+                className="btn btn-light mt-3 text-white px-5 py-2"
+                style={{ background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)" }}>
+                Get Started <i className="bi bi-chevron-right"></i>
+              </Link>
+            </div>
+
+            <div id="works_image_1" className="d-none d-md-flex col-md col-xm-12 p-5">
+              <img src="/image/image 5.png" className="img-fluid" alt="" />
+              <img
+                id="cloud_1"
+                className="img-fluid"
+                src="/image/image 6.png"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div className="row align-items-center justify-content-between">
+            <div id="works_image1" className="col-md col-xm-12 p-5 d-none d-md-flex">
+              <img src="/image/image 8.png" className="img-fluid" alt="" />
+              <img
+                id="cloud1"
+                className="img-fluid"
+                src="/image/image 4.png"
+                alt=""
+              />
+            </div>
+            <div className="col-md p-5">
+              <h2>Protect your data with Cloud Security</h2>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+                consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
+                consequuntur ratione hic repellendus, aut distinctio magni ut
+                dignissimos vel placeat culpa!
+              </p>
+              <Link to="#"
+                className="btn btn-light mt-3 text-white px-5 py-2"
+                style={{ background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)" }}
+              >
+                Get Started <i className="bi bi-chevron-right"></i>
+              </Link>
+            </div>
+          </div>
+
+          <div className="row align-items-center justify-content-between">
+            <div className="col-md p-5">
+              <h2>All Solutions To your Storage Problems</h2>
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
+                consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
+                consequuntur ratione hic repellendus, aut distinctio magni ut
+                dignissimos vel placeat culpa!
+              </p>
+              <Link to="#"
+                className="btn btn-light mt-3 text-white px-5 py-2"
+                style={{ background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)" }}
+              >
+                Get Started <i className="bi bi-chevron-right"></i>
+              </Link>
+            </div>
+            <div id="works_image_2" className="col-md col-xm-12 p-5 d-none d-md-flex">
+              <img src="/image/image 1.png" className="img-fluid" alt="" />
+              <img
+                id="cloud_2"
+                className="img-fluid"
+                src="/image/image 7.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      {/* <!-- how it works sec end --> */}
+      {/* <!-- About us section --> */}
+      <section id="learn" className="text-sm-start col-xs-12">
+        <div className="container p-5">
+          <div className="row align-items-center justify-content-between">
+            <div className="col-md">
+              <img src="/image/Books hero.png" className="img-fluid" alt="" />
+            </div>
+            <div className="col-md p-5">
+              <Link to="#"
+                className="btn btn-light mt-3"
+                style={{ backgroundColor: "#ecd4c6" }}
+              >
+                About us
+              </Link>
+              <h2 className="mt-4 fw-bold">
+                We do the best to keep your journal safe and organised
+              </h2>
+              <p className="mt-3">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat.
               </p>
             </div>
           </div>
         </div>
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2>Save Your Special Events on The Cloud Storage</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
-              consequuntur ratione hic repellendus, aut distinctio magni ut
-              dignissimos vel placeat culpa!
-            </p>
-            <Link to="#"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)"}}>
-              Get Started <i className="bi bi-chevron-right"></i>
-            </Link>
-          </div>
+      </section>
 
-          <div id="works_image_1" className="d-none d-md-flex col-md col-xm-12 p-5">
-            <img src="/image/image 5.png" className="img-fluid" alt="" />
-            <img
-              id="cloud_1"
-              className="img-fluid"
-              src="/image/image 6.png"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div className="row align-items-center justify-content-between">
-          <div id="works_image1" className="col-md col-xm-12 p-5 d-none d-md-flex">
-            <img src="/image/image 8.png" className="img-fluid" alt="" />
-            <img
-              id="cloud1"
-              className="img-fluid"
-              src="/image/image 4.png"
-              alt=""
-            />
-          </div>
-          <div className="col-md p-5">
-            <h2>Protect your data with Cloud Security</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
-              consequuntur ratione hic repellendus, aut distinctio magni ut
-              dignissimos vel placeat culpa!
-            </p>
-            <Link to="#"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)"}}
-            >
-              Get Started <i className="bi bi-chevron-right"></i>
-            </Link>
-          </div>
-        </div>
-
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2>All Solutions To your Storage Problems</h2>
-            <p>
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Beatae
-              consectetur rem consequuntur laborum. Harum fuga fugiat sint. Est
-              consequuntur ratione hic repellendus, aut distinctio magni ut
-              dignissimos vel placeat culpa!
-            </p>
-            <Link to="#"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)"}}
-            >
-              Get Started <i className="bi bi-chevron-right"></i>
-            </Link>
-          </div>
-          <div id="works_image_2" className="col-md col-xm-12 p-5 d-none d-md-flex">
-            <img src="/image/image 1.png" className="img-fluid" alt="" />
-            <img
-              id="cloud_2"
-              className="img-fluid"
-              src="/image/image 7.png"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* <!-- how it works sec end --> */}
-     {/* <!-- About us section --> */}
-    <section id="learn" className="text-sm-start col-xs-12">
-      <div className="container p-5">
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md">
-            <img src="/image/Books hero.png" className="img-fluid" alt="" />
-          </div>
-          <div className="col-md p-5">
-            <Link to="#"
-              className="btn btn-light mt-3"
-              style={{backgroundColor: "#ecd4c6"}}
-            >
-              About us
-            </Link>
-            <h2 className="mt-4 fw-bold">
-              We do the best to keep your journal safe and organised
-            </h2>
-            <p className="mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-     {/* <!-- FAQ --> */}
-    <section
-      id="learn"
-      className="text-sm-start col-xs-12"
-      style={{backgroundColor: "#f4f1e9"}}
-    >
-      <div className="container p-5">
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2 className="mt-4 fw-bold">Frequently Asked Questions</h2>
-            <p className="mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <div className="col-md"></div>
-        </div>
-      </div>
-    </section>
-
-    {/* <!-- footer --> */}
-    <footer className="position-relative">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <div className="col-md-12 col-lg-6 mb-4 mb-md-0 text-center">
-              <img className="img-fluid" src="/image/logo.png" alt="" />
-              <Link to="#" className="navbar-brand" style={{color: "#1e130c"}}
-                >Life <span className="logo_text">Journalz</span>
-              </Link>
+      {/* <!-- FAQ --> */}
+      <section
+        id="learn"
+        className="text-sm-start col-xs-12"
+        style={{ backgroundColor: "#f4f1e9" }}
+      >
+        <div className="container p-5">
+          <div className="row align-items-center justify-content-between">
+            <div className="col-md p-5">
+              <h2 className="mt-4 fw-bold">Frequently Asked Questions</h2>
+              <p className="mt-3">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat.
+              </p>
             </div>
-            {/* <!-- <h3>Life Journalz</h3> --> */}
+            <div className="col-md"></div>
           </div>
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text-">Developer</h5>
-            <ul className="list-unstyled">
+        </div>
+      </section>
+
+      {/* <!-- footer --> */}
+      <footer className="position-relative">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-3 col-lg-3 mb-4 mb-md-0">
+              <div className="col-md-12 col-lg-6 mb-4 mb-md-0 text-center">
+                <img className="img-fluid" src="/image/logo.png" alt="" />
+                <Link to="#" className="navbar-brand" style={{ color: "#1e130c" }}
+                >Life <span className="logo_text">Journalz</span>
+                </Link>
+              </div>
+              {/* <!-- <h3>Life Journalz</h3> --> */}
+            </div>
+            <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
+              <h5 className="text-">Developer</h5>
+              <ul className="list-unstyled">
+                <li>
+                  <Link to="#" className="text-reset">Documentation</Link>
+                </li>
+              </ul>
+            </div>
+
+            <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
+              <h5 className="text-">Resources</h5>
+              <ul className="list-unstyled">
+                <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
+                <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
+                <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
+                <li><Link to="#" className="text-reset">FAQ</Link></li>
+              </ul>
+            </div>
+
+            <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
+              <h5 className="text">Company</h5>
+              <ul className="list-unstyled">
+                <li><Link to="#" className="text-reset">About</Link></li>
+                <li><Link to="#" className="text-reset">Privacy Policy</Link></li>
+                <li><Link to="#" className="text-reset">Terms and Conditions</Link></li>
+                <li><Link to="#" className="text-reset">Lorem Ipsum</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <Link to="#" className="position-absolute bottom-0 end-0 p-5 footer-link">
+            <i className="bi bi-arrow-up-circle h1"></i>
+          </Link>
+        </div>
+        <div className="">
+          {/* <!-- <hr id="leg" className="" style="color: #ACADAE;  height: 3px; "> --> */}
+          <div>
+            <ul className="list-unstyled d-flex justify-content-center">
+              <p className="" style={{ color: "#f4f1e9" }}>
+                &copy; 2023 | All Rights Reserved
+              </p>
+              <li><Link to="#" className="footer-link">Terms of Service</Link></li>
               <li>
-                <Link to="#" className="text-reset">Documentation</Link>
+                <Link to="#" className="footer-link">General Terms and Conditions</Link>
               </li>
-            </ul>
-          </div>
-
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text-">Resources</h5>
-            <ul className="list-unstyled">
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">FAQ</Link></li>
-            </ul>
-          </div>
-
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text">Company</h5>
-            <ul className="list-unstyled">
-              <li><Link to="#" className="text-reset">About</Link></li>
-              <li><Link to="#" className="text-reset">Privacy Policy</Link></li>
-              <li><Link to="#" className="text-reset">Terms and Conditions</Link></li>
-              <li><Link to="#" className="text-reset">Lorem Ipsum</Link></li>
+              <li><Link to="#" className="footer-link">Privacy Policy</Link></li>
+              <li><Link to="#" className="footer-link">Cookie Policy</Link></li>
             </ul>
           </div>
         </div>
-
-        <Link to="#" className="position-absolute bottom-0 end-0 p-5 footer-link">
-          <i className="bi bi-arrow-up-circle h1"></i>
-        </Link>
-      </div>
-      <div className="">
-        {/* <!-- <hr id="leg" className="" style="color: #ACADAE;  height: 3px; "> --> */}
-        <div>
-          <ul className="list-unstyled d-flex justify-content-center">
-            <p className="" style={{color: "#f4f1e9"}}>
-              &copy; 2023 | All Rights Reserved
-            </p>
-            <li><Link to="#" className="footer-link">Terms of Service</Link></li>
-            <li>
-              <Link to="#" className="footer-link">General Terms and Conditions</Link>
-            </li>
-            <li><Link to="#" className="footer-link">Privacy Policy</Link></li>
-            <li><Link to="#" className="footer-link">Cookie Policy</Link></li>
-          </ul>
-        </div>
-      </div>
-    </footer>
+      </footer>
 
     </>
   );

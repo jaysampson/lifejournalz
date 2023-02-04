@@ -1,11 +1,10 @@
-import { useState, React } from 'react'
+import { useEffect, useState, React } from 'react'
 import '../../styles/Signup.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
 import { Link } from 'react-router-dom';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
-import { useEffect } from 'react';
 import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
@@ -14,6 +13,7 @@ const SignUp = () => {
   const [Bpassword, setBPassword] = useState("");
   const [name, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [user, setUser] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Apassword !== Bpassword) {
@@ -34,7 +34,14 @@ const SignUp = () => {
     console.log("Encoded JWT ID token : " + response.credential);
     var userObject = jwt_decode(response.credential);
     console.log(userObject);
+    setUser(userObject);
+    document.getElementById("signInDiv2").hidden = true;
   }
+
+  // function handleSignout(event) {
+  //   setUser({});
+  //   document.getElementById("signInDiv2").hidden = false;
+  // }
 
   useEffect(() => {
     /*global google*/
@@ -44,14 +51,17 @@ const SignUp = () => {
     });
 
     google.accounts.id.renderButton(
-    document.getElementById("signInDiv"),
+      document.getElementById("signInDiv"),
       { theme: "outline", size: "large" }
     );
     google.accounts.id.renderButton(
-    document.getElementById("signInDiv2"),
+      document.getElementById("signInDiv2"),
       { theme: "outline", size: "large" }
     );
+    google.accounts.id.prompt();
   }, []);
+  // if we have no user : signin button
+  // if we have a user: show the logout button
   return (
     <>
       <div className='sign_up'>
@@ -176,8 +186,16 @@ const SignUp = () => {
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv2">
-                  <button>Continue with google</button>
                 </div>
+                {/* { Object.keys(user).length != 0 &&
+                  <button onClick={(e) => handleSignout(e)}>Signout</button>
+                } */}
+                {/* {user &&
+                  <div>
+                    <img src={user.picture}></img>
+                    <h3>{user.name}</h3>
+                  </div>
+                } */}
                 <div className="options">
                   <div className="no_account">
                     <p>Already have an account? <Link to="/signin" className='link'><span>Sign In</span></Link></p>

@@ -3,9 +3,10 @@ import '../../styles/Signup.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
 import { Link } from 'react-router-dom';
-import brown from '../../brown.png';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
+import { useEffect } from 'react';
+import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -29,6 +30,28 @@ const SignUp = () => {
     name: name,
   };
   console.log(values);
+  function handleCallbackResponse(response) {
+    console.log("Encoded JWT ID token : " + response.credential);
+    var userObject = jwt_decode(response.credential);
+    console.log(userObject);
+  }
+
+  useEffect(() => {
+    /*global google*/
+    google.accounts.id.initialize({
+      client_id: "283492219989-ajhk5sef2f4ifvuf4d0bl75473ov77d8.apps.googleusercontent.com",
+      callback: handleCallbackResponse
+    });
+
+    google.accounts.id.renderButton(
+    document.getElementById("signInDiv"),
+      { theme: "outline", size: "large" }
+    );
+    google.accounts.id.renderButton(
+    document.getElementById("signInDiv2"),
+      { theme: "outline", size: "large" }
+    );
+  }, []);
   return (
     <>
       <div className='sign_up'>
@@ -82,7 +105,7 @@ const SignUp = () => {
                 <button onSubmit={handleSubmit}>Sign Up</button>
               </div>
               <img src={Or} alt="Or" />
-              <div className="usegoogle">
+              <div id="signInDiv">
                 <button>Continue with google</button>
               </div>
               <div className="options">
@@ -152,7 +175,7 @@ const SignUp = () => {
                   <button onSubmit={handleSubmit}>Sign Up</button>
                 </div>
                 <img src={Or} alt="Or" />
-                <div className="usegoogle">
+                <div id="signInDiv2">
                   <button>Continue with google</button>
                 </div>
                 <div className="options">

@@ -67,7 +67,7 @@ const LandingPage = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="#"> className="dropdown-item" FAQ</Link>
+                    <Link to="#"className="dropdown-item">FAQ</Link>
                   </li>
                   <li>
                     <Link to="#" className="dropdown-item">

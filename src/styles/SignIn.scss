@@ -40,12 +40,12 @@ button:hover {
 
 .sigin_con {
     background: #FFFDF4;
+    margin-bottom: 20px;
+    border-radius: 20px;
 
     @media screen and (min-width:426px) {
         width: 425px;
         margin-top: 20px;
-        margin-bottom: 20px;
-        border-radius: 20px;
     }
 
     margin-top: 168px;

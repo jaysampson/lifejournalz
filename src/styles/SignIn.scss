@@ -9,26 +9,36 @@ button:hover {
     cursor: pointer;
 }
 
-.signin_con {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .signin_con {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.signin {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .signin {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.signin {
+.sigin {
     background-image: url('/cloud.png');
     display: flex;
     align-items: center;
     justify-content: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .logo {
+            display: none;
+        }
+    }
 }
 
-.signin_con {
+.sigin_con {
     background: #FFFDF4;
 
     @media screen and (min-width:426px) {
@@ -133,10 +143,11 @@ button:hover {
                 height: 16px;
             }
 
-            .usegoogle {
+            #signInDiv {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 24px;
 
                 button {
                     padding: 16px 48px;
@@ -195,9 +206,9 @@ button:hover {
     }
 }
 
-.sigin {
-    display: none;
-}
+// .sigin {
+//     display: none;
+// }
 
 
 @media screen and(min-width:1000px) {
@@ -253,7 +264,7 @@ button:hover {
                 // }
 
                 .signin_content {
-                    margin-left: 80px;
+                    margin-left: 113px;
 
                     // @media screen and(min-width:933px) {
                     //     margin-left: 113px;
@@ -261,7 +272,7 @@ button:hover {
 
                     .title {
                         display: flex;
-                        gap: 220px;
+                        gap: 100px;
                         align-items: center;
                         padding-top: 34px;
                         margin-bottom: 24px;
@@ -282,7 +293,7 @@ button:hover {
                     }
 
                     form {
-                        margin-right: 80px;
+                        margin-right: 56.5px;
 
                         // @media screen and(min-width:933px) {
                         //     margin-right: 113px;
@@ -358,7 +369,7 @@ button:hover {
                             height: 16px;
                         }
 
-                        .usegoogle {
+                        #signInDiv {
                             display: flex;
                             justify-content: center;
                             align-items: center;

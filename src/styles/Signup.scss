@@ -9,30 +9,40 @@ button:hover {
     cursor: pointer;
 }
 
-.signup_con {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .signup_con {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.sign_up {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .sign_up {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.sign_up {
+.signup {
     background-image: url('/cloud.png');
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .logo {
+            display: none;
+        }
+    }
 }
 
-.signup_con {
+.sigup_con {
     background: #FFFDF4;
 
     @media screen and (min-width:426px) {
-        width: 425px;
+        width: 100%;
         margin-top: 20px;
         margin-bottom: 20px;
         border-radius: 20px;
@@ -163,9 +173,9 @@ button:hover {
     }
 }
 
-.signup {
-    display: none;
-}
+// .signup {
+//     display: none;
+// }
 
 
 @media screen and(min-width:1000px) {
@@ -175,18 +185,18 @@ button:hover {
         background-size: cover;
         background-position: center;
 
-        .brown_bgc {
-            width: 40%;
-            height: 960px;
-            float: right;
-            margin-top: -963px;
+        // .brown_bgc {
+        //     width: 40%;
+        //     height: 960px;
+        //     float: right;
+        //     margin-top: -963px;
 
 
-            img {
-                height: 100%;
-                width: 100%;
-            }
-        }
+        //     img {
+        //         height: 100%;
+        //         width: 100%;
+        //     }
+        // }
 
         .container {
             display: flex;
@@ -222,26 +232,28 @@ button:hover {
 
             .sigup_con {
                 background: #FFFDF4;
-                width: 50%;
+                width: 537px;
                 height: Hug (607px);
                 margin-top: 100px;
                 margin-bottom: 50px;
                 border-radius: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                @media screen and(min-width:933px) {
-                    width: 537px;
-                }
+                // @media screen and(min-width:933px) {
+                //     width: 537px;
+                // }
 
                 .signup_content {
-                    margin-left: 80px;
-
-                    @media screen and(min-width:933px) {
-                        margin-left: 113px;
-                    }
+                    margin-left: 113px;
+                    // @media screen and(min-width:933px) {
+                    //     margin-left: 113px;
+                    // }
 
                     .title {
                         display: flex;
-                        gap: 220px;
+                        gap: 100px;
                         align-items: center;
                         padding-top: 34px;
                         margin-bottom: 24px;
@@ -263,7 +275,7 @@ button:hover {
                     }
 
                     form {
-                        margin-right: 113px;
+                        margin-right: 56.5px;
 
                         // @media screen and(min-width:933px) {
                         //     margin-right: 113px;
@@ -323,7 +335,7 @@ button:hover {
                             height: 16px;
                         }
 
-                        #signInDiv2 {
+                        #signInDiv {
                             display: flex;
                             justify-content: center;
                             align-items: center;

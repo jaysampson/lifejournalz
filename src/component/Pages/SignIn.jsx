@@ -67,7 +67,7 @@ const Login = () => {
             <div className="signin_content">
               <div className="title">
                 <p>Sign In</p>
-                <img src={Cancel} alt="X" />
+                <Link to = "/"><img src={Cancel} alt="X" /></Link>
               </div>
               <form action="" method='POST' onSubmit={handleSubmit}>
                 <p>

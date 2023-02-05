@@ -71,7 +71,7 @@ const SignUp = () => {
             <div className="signup_content">
               <div className="title">
                 <p>Sign Up</p>
-                <img src={Cancel} alt="X" />
+                <Link to="/"><img src={Cancel} alt="X" /></Link>
               </div>
               <form action="" method='POST' onSubmit={handleSubmit}>
                 <p>

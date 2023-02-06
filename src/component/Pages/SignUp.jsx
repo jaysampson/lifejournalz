@@ -16,7 +16,9 @@ const SignUp = () => {
   const [user, setUser] = useState({});
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (Apassword !== Bpassword) {
+    if (Apassword.length < 7 && Bpassword.length < 7) {
+      setErrorMessage("Password should have at least 7 characters");
+    } else if (Apassword !== Bpassword) {
       setErrorMessage("Passwords do not match");
     } else {
       console.log(Apassword, Bpassword, email, name);
@@ -46,7 +48,7 @@ const SignUp = () => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: "283492219989-ajhk5sef2f4ifvuf4d0bl75473ov77d8.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_CLIENT_ID,
       callback: handleCallbackResponse
     });
 

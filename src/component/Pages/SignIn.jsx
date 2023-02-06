@@ -12,6 +12,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({});
+  const [passwordType, setPasswordType] = useState(false)
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(password.email);
@@ -21,7 +22,6 @@ const Login = () => {
     email: email,
   };
   console.log(values);
-  const [passwordType, setPasswordType] = useState(false)
   function togglePassword() {
     setPasswordType(!passwordType)
   }
@@ -41,7 +41,7 @@ const Login = () => {
   useEffect(() => {
     /*global google*/
     google.accounts.id.initialize({
-      client_id: "283492219989-ajhk5sef2f4ifvuf4d0bl75473ov77d8.apps.googleusercontent.com",
+      client_id: process.env.REACT_APP_CLIENT_ID,
       callback: handleCallbackResponse
     });
 
@@ -67,7 +67,7 @@ const Login = () => {
             <div className="signin_content">
               <div className="title">
                 <p>Sign In</p>
-                <Link to = "/"><img src={Cancel} alt="X" /></Link>
+                <Link to="/"><img src={Cancel} alt="X" /></Link>
               </div>
               <form action="" method='POST' onSubmit={handleSubmit}>
                 <p>

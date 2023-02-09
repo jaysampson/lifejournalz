@@ -4,12 +4,27 @@ import SignUp from './component/Pages/SignUp';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ResetPassword from './component/Pages/ResetPassword';
 import LandingPage from './component/Pages/LandingPage';
+import Pricing from './component/Pages/Pricing';
+import About from './component/Pages/About';
+import Terms from './component/Pages/Terms';
+import PrivacyPolicy from './component/PrivacyPolicy';
+import { useState } from 'react';
+import Sidebar from './component/Pages/Sidebar';
+import ContactUs from './component/Pages/ContactUs';
+
 function App() {
+  const [navVisible, showBar] = useState(false);
   return (
     <div className="App">
       <Routes>
         <Route path='/' element={<LandingPage />} />
-        <Route path='/signin' element={<Login />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/terms' element={<Terms />} />
+        <Route path='/privacy' element={<PrivacyPolicy />} />
+        <Route path='/pricing' element={<Pricing />} />
+        <Route path='/contactus' element={<ContactUs />} />
+        <Route path='/sidebar' element={<Sidebar />} />
+        <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/reset' element={<ResetPassword />} />
       </Routes>

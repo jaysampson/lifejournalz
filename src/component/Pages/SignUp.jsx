@@ -42,7 +42,7 @@ const SignUp = () => {
 
   // function handleSignout(event) {
   //   setUser({});
-  //   document.getElementById("signInDiv2").hidden = false;
+  //   document.getElementById("signInDiv").hidden = false;
   // }
 
   useEffect(() => {

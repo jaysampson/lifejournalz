@@ -35,7 +35,7 @@ const Login = () => {
 
   // function handleSignout(event) {
   //   setUser({});
-  //   document.getElementById("signInDiv2").hidden = false;
+  //   document.getElementById("signInDiv").hidden = false;
   // }
 
   useEffect(() => {
@@ -47,10 +47,6 @@ const Login = () => {
 
     google.accounts.id.renderButton(
       document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    );
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv2"),
       { theme: "outline", size: "large" }
     );
     google.accounts.id.prompt();

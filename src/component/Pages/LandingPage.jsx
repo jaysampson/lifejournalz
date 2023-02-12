@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { FaAngleLeft, FaAngleRight, FaPuzzlePiece, FaLock, } from 'react-icons/fa';
+import { FaAngleRight, FaPuzzlePiece, FaLock, } from 'react-icons/fa';
 import { BsChatLeftFill } from "react-icons/bs";
 
 const LandingPage = () => {
@@ -323,10 +323,13 @@ const LandingPage = () => {
 
        {/* <!-- image cards  --> */}
   <div className="container px-4 py-5" id="custom-cards">
-    <h2 className="pb-5 text-center">Over 1000+ people trust us</h2>
+    <div className="text-center">
+    <h2 className="pb-5 ">Over 1000+ people trust us</h2>
     <p className="mt-2 text-start text-md-center">Life Journalz provides all the tools you need to make a high-quality journal, 
     including a place to keep track of the stories and activities you cover.</p>
 
+    </div>
+    
     <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
       <div className="col">
         <div className="card card-cover overflow-hidden text-white  rounded-5 shadow-lg"   style= {{backgroundImage: "url('/image/BG.png')", backgroundPosition:"center center", backgroundSize:"cover", backgroundRepeat:"no-repeat", height:"400px", }}>

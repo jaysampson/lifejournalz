@@ -20,36 +20,6 @@ const ResetPassword = () => {
   console.log(values);
   return (
     <>
-      <div className='reset' style={{ backgroundImage: `url(${cloud})` }}>
-        <div className="reset_con">
-          <div className="reset_content">
-            <div className="title">
-              <Link to='/signin' className='link'><img src={Cancel} alt="X" /></Link>
-            </div>
-            <div className="text_title">
-              <p>Reset your password</p>
-            </div>
-            <div className="form_info">
-              <p>Please enter email address to reset your password</p>
-            </div>
-            <form action="" method='POST' onSubmit={handleSubmit}>
-              <input placeholder='example@gmail.com'
-                type={"text"}
-                required
-                value={email}
-                className="email"
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <div className="resetp_btn">
-                <button>Reset Password</button>
-              </div>
-              <div className="line"></div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-
       <div className="reset_pass" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="main">
           <div className="container">

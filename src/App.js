@@ -8,12 +8,10 @@ import Pricing from './component/Pages/Pricing';
 import About from './component/Pages/About';
 import Terms from './component/Pages/Terms';
 import PrivacyPolicy from './component/PrivacyPolicy';
-import { useState } from 'react';
 import Sidebar from './component/Pages/Sidebar';
 import ContactUs from './component/Pages/ContactUs';
 
 function App() {
-  const [navVisible, showBar] = useState(false);
   return (
     <div className="App">
       <Routes>

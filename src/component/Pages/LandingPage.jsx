@@ -394,9 +394,6 @@ const LandingPage = () => {
  
 
 
-   
-    
-
     {/* <!-- Footer --> */}
     <footer  className="text-center text-lg-start  text-muted">
         <section className="">

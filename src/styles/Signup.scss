@@ -9,33 +9,47 @@ button:hover {
     cursor: pointer;
 }
 
-.signup_con {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .signup_con {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.sign_up {
-    @media screen and(min-width:1000px) {
-        display: none;
-    }
-}
+// .sign_up {
+//     @media screen and(min-width:1000px) {
+//         display: none;
+//     }
+// }
 
-.sign_up {
+.signup {
     background-image: url('/cloud.png');
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .logo {
+            display: none;
+        }
+    }
 }
 
-.signup_con {
+.sigup_con {
     background: #FFFDF4;
+    margin-bottom: 20px;
+    border-radius: 20px;
+
     @media screen and (min-width:426px) {
-        width: 425px;
+        width: 537px;
         margin-top: 20px;
         margin-bottom: 20px;
         border-radius: 20px;
     }
+
     margin-top: 168px;
 
     .signup_content {
@@ -52,7 +66,7 @@ button:hover {
             p {
                 font-size: 28px;
                 font-weight: 700;
-                color: #1E130C;
+                color: #6F0847;
             }
 
             img {
@@ -63,6 +77,7 @@ button:hover {
         form {
             p {
                 margin-bottom: 8px;
+                color: #6F0847;
 
                 label {
                     font-size: 12px;
@@ -74,7 +89,7 @@ button:hover {
                 width: 100%;
                 height: 48px;
                 background: #FFFFFF;
-                border: 1px solid #605046;
+                border: 1px solid #6F0847;
                 box-shadow: 0px 4px 8px rgba(230, 230, 230, 0.3);
                 border-radius: 4px;
                 flex: none;
@@ -94,8 +109,8 @@ button:hover {
                 button {
                     padding: 16px 48px;
                     width: 100%;
-                    background: linear-gradient(90deg, #1E130C 0%, #9A8478 100%);
-                    box-shadow: 0px 4px 8px rgba(37, 16, 48, 0.1);
+                    background: linear-gradient(90deg, #AA076B 0%, #61045F 100%);
+                    box-shadow: 0px 4px 8px rgba(57, 130, 240, 0.1);
                     border-radius: 4px;
                     flex: none;
                     order: 1;
@@ -113,15 +128,16 @@ button:hover {
                 margin-bottom: 24px;
             }
 
-            .usegoogle {
+            #signInDiv {
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                margin-bottom: 24px;
 
                 button {
                     width: 100%;
                     height: 48px;
-                    border: 2px solid #605046;
+                    border: 2px solid #6F0847;
                     filter: drop-shadow(0px 4px 8px rgba(57, 130, 240, 0.1));
                     border-radius: 4px;
                     flex: none;
@@ -148,7 +164,7 @@ button:hover {
                             text-decoration: none;
 
                             span {
-                                color: #605046;
+                                color: #6F0847;
                             }
                         }
 
@@ -159,9 +175,9 @@ button:hover {
     }
 }
 
-.signup {
-    display: none;
-}
+// .signup {
+//     display: none;
+// }
 
 
 @media screen and(min-width:1000px) {
@@ -171,18 +187,18 @@ button:hover {
         background-size: cover;
         background-position: center;
 
-        .brown_bgc {
-            width: 40%;
-            height: 960px;
-            float: right;
-            margin-top: -963px;
+        // .brown_bgc {
+        //     width: 40%;
+        //     height: 960px;
+        //     float: right;
+        //     margin-top: -963px;
 
 
-            img {
-                height: 100%;
-                width: 100%;
-            }
-        }
+        //     img {
+        //         height: 100%;
+        //         width: 100%;
+        //     }
+        // }
 
         .container {
             display: flex;
@@ -209,7 +225,7 @@ button:hover {
                     font-size: 36px;
 
                     span {
-                        color: #1E130C;
+                        color: white;
                         font-family: 'Inter', sans-serif;
                         font-size: 36px;
                     }
@@ -218,26 +234,28 @@ button:hover {
 
             .sigup_con {
                 background: #FFFDF4;
-                width: 50%;
+                width: 537px;
                 height: Hug (607px);
                 margin-top: 100px;
                 margin-bottom: 50px;
                 border-radius: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-                @media screen and(min-width:933px) {
-                    width: 537px;
-                }
+                // @media screen and(min-width:933px) {
+                //     width: 537px;
+                // }
 
                 .signup_content {
-                    margin-left: 80px;
-
-                    @media screen and(min-width:933px) {
-                        margin-left: 113px;
-                    }
+                    margin-left: 113px;
+                    // @media screen and(min-width:933px) {
+                    //     margin-left: 113px;
+                    // }
 
                     .title {
                         display: flex;
-                        gap: 220px;
+                        gap: 100px;
                         align-items: center;
                         padding-top: 34px;
                         margin-bottom: 24px;
@@ -249,16 +267,17 @@ button:hover {
                         p {
                             font-size: 28px;
                             font-weight: 700;
-                            color: #1E130C;
+                            color: #6F0847;
                         }
 
                         img {
                             margin-left: 31px;
+                            color: #6F0847;
                         }
                     }
 
                     form {
-                        margin-right: 113px;
+                        margin-right: 56.5px;
 
                         // @media screen and(min-width:933px) {
                         //     margin-right: 113px;
@@ -266,6 +285,7 @@ button:hover {
 
                         p {
                             margin-bottom: 8px;
+                            color: #6F0847;
 
                             label {
                                 font-size: 12px;
@@ -277,7 +297,7 @@ button:hover {
                             width: 100%;
                             height: 48px;
                             background: #FFFFFF;
-                            border: 1px solid #605046;
+                            border: 1px solid #6F0847;
                             box-shadow: 0px 4px 8px rgba(230, 230, 230, 0.3);
                             border-radius: 4px;
                             flex: none;
@@ -297,8 +317,8 @@ button:hover {
                             button {
                                 padding: 16px 48px;
                                 width: 100%;
-                                background: linear-gradient(90deg, #1E130C 0%, #9A8478 100%);
-                                box-shadow: 0px 4px 8px rgba(37, 16, 48, 0.1);
+                                background: linear-gradient(90deg, #AA076B 0%, #61045F 100%);
+                                box-shadow: 0px 4px 8px rgba(57, 130, 240, 0.1);
                                 border-radius: 4px;
                                 flex: none;
                                 order: 1;
@@ -317,15 +337,16 @@ button:hover {
                             height: 16px;
                         }
 
-                        .usegoogle {
+                        #signInDiv {
                             display: flex;
                             justify-content: center;
                             align-items: center;
+                            width: 100%;
+                            margin-bottom: 24px;
 
                             button {
-                                width: 100%;
                                 height: 48px;
-                                border: 2px solid #605046;
+                                border: 2px solid #6F0847;
                                 filter: drop-shadow(0px 4px 8px rgba(57, 130, 240, 0.1));
                                 border-radius: 4px;
                                 flex: none;
@@ -352,7 +373,7 @@ button:hover {
                                         text-decoration: none;
 
                                         span {
-                                            color: #605046;
+                                            color: #6F0847;
                                         }
                                     }
 

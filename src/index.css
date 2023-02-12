@@ -40,7 +40,6 @@ code {
  body::before{
     display: block;
     content: '';
-    height:60px;
     overflow: hidden;
 }
 #nav_logo{

@@ -10,6 +10,7 @@ import Terms from './component/Pages/Terms';
 import PrivacyPolicy from './component/PrivacyPolicy';
 import Sidebar from './component/Pages/Sidebar';
 import ContactUs from './component/Pages/ContactUs';
+import Dashboard from './component/Pages/Dashboard';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path='/signin' element={<SignIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/reset' element={<ResetPassword />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </div>
   )

@@ -24,6 +24,15 @@ const Dashboard = () => {
     return (
         <div>
             <>
+                <div className="nav-images-M">
+                    <div className='prof-pic'>
+                        {/* <img src={user.picture}></img> */}
+                    </div>
+                    <div className="notify">
+                        <div className="count">7</div>
+                        <img src={bell} alt="" />
+                    </div>
+                </div>
                 <div className="dash-nav">
                     <div className="search">
                         <input type="text" placeholder='Search in Categories' className='nav-search' />
@@ -96,9 +105,9 @@ const Dashboard = () => {
                             </div>
                             <div className="premium">
                                 <div className="premium-content">
-                                    <p>
+                                    <span className='go'>
                                         GO PREMUIM
-                                    </p>
+                                    </span> <br />
                                     <span>
                                         Explore unlimited usage of the journalz with membership
                                     </span>
@@ -117,31 +126,6 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="dash-contents">
-                        {/* <h1>Hey David - <span>Welcome to your dashboard</span></h1>
-                        <div className="contents">
-                            <div className="all">
-                                <div className="all-title">
-                                    <h2>All Journals</h2>
-                                    <button><img src={save} alt="" /><p>save to files</p></button>
-                                </div>
-                                <div className="journalz-border-wrap">
-                                    <div className="journalz">
-                                        <div className="journalz-main">
-                                            <div className="sort">
-                                                <select className='select'>
-                                                    <option value="" disabled selected hidden>Sort by</option>
-                                                    <option value="Alphabet">Alphabet</option>
-                                                    <option value="Recent">Recent</option>
-                                                </select>
-                                            </div>
-                                            <div className="books">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button>New <img src={add} alt="" /></button>
-                            </div>
-                        </div> */}
                         {activeComponent === 'Component1' ? <Home /> : null}
                         {activeComponent === 'Component2' ? <Categories /> : null}
                         {activeComponent === 'Component3' ? <Favourite /> : null}

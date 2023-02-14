@@ -1,7 +1,7 @@
 import SignIn from './component/Pages/SignIn';
 import './App.scss';
 import SignUp from './component/Pages/SignUp';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import ResetPassword from './component/Pages/ResetPassword';
 import LandingPage from './component/Pages/LandingPage';
 import Pricing from './component/Pages/Pricing';

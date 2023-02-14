@@ -7,7 +7,7 @@ import plus from "../../Images/plus.png";
 import { useState } from 'react';
 import { Home } from './DashPages/Home';
 import { Categories } from './DashPages/Categories';
-import {Pricing} from './DashPages/Pricing';
+import { Pricing } from './DashPages/Pricing';
 import { Favourite } from './DashPages/Favourite';
 import { Shared } from './DashPages/Shared';
 import { Recent } from './DashPages/Recent';
@@ -38,7 +38,9 @@ const Dashboard = () => {
                             <img src={bell} alt="" />
                             <div className="count">7</div>
                         </div>
-                        <div className='prof-pic'></div>
+                        <div className='prof-pic'>
+                            {/* <img src={user.picture}></img> */}
+                        </div>
                     </div>
                 </div>
                 <div className="dash-container">
@@ -144,10 +146,10 @@ const Dashboard = () => {
                         {activeComponent === 'Component2' ? <Categories /> : null}
                         {activeComponent === 'Component3' ? <Favourite /> : null}
                         {activeComponent === 'Component4' ? <Shared /> : null}
-                        {activeComponent === 'Component5' ? < Recent/> : null}
-                        {activeComponent === 'Component6' ? < Storage/> : null}
-                        {activeComponent === 'Component7' ? < Pricing/> : null}
-                        {activeComponent === 'Component8' ? < Terms/> : null}
+                        {activeComponent === 'Component5' ? < Recent /> : null}
+                        {activeComponent === 'Component6' ? < Storage /> : null}
+                        {activeComponent === 'Component7' ? < Pricing /> : null}
+                        {activeComponent === 'Component8' ? < Terms /> : null}
                     </div>
                 </div>
             </>

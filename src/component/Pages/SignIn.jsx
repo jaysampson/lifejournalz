@@ -2,7 +2,7 @@ import { useEffect, useState, React } from 'react'
 import '../../styles/SignIn.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
 import jwt_decode from "jwt-decode";
@@ -16,12 +16,17 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(password.email);
+    navigate('/dashboard');
+
   };
   const values = {
     password: password,
     email: email,
   };
   console.log(values);
+
+  const navigate = useNavigate();
+
   function togglePassword() {
     setPasswordType(!passwordType)
   }
@@ -30,7 +35,8 @@ const Login = () => {
     var userObject = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
+    navigate('/dashboard');
   }
 
   // function handleSignout(event) {
@@ -91,11 +97,12 @@ const Login = () => {
                   </label>
                 </div>
                 <div className="signin_button">
-                  <button onSubmit={handleSubmit}>Sign In</button>
+                  <button type='submit'>Sign In</button>
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv">
                 </div>
+                {Object.keys(user).length != 0 && navigate('/dashboard')}
                 <div className="options">
                   <div className="no_account">
                     <p>Don't have an account? <Link to="/signup" className='link'><span>Sign Up</span></Link></p>

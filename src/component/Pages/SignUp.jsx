@@ -2,7 +2,7 @@ import { useEffect, useState, React } from 'react'
 import '../../styles/Signup.scss'
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
 import jwt_decode from "jwt-decode";
@@ -23,6 +23,7 @@ const SignUp = () => {
     } else {
       console.log(Apassword, Bpassword, email, name);
       setErrorMessage("");
+      navigate('/dashboard');
     }
   };
   const values = {
@@ -32,18 +33,23 @@ const SignUp = () => {
     name: name,
   };
   console.log(values);
+
+  const navigate = useNavigate();
+
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID token : " + response.credential);
     var userObject = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
-    document.getElementById("signInDiv").hidden = true;
+    // document.getElementById("signInDiv").hidden = true;
+    navigate('/dashboard');
   }
 
-  // function handleSignout(event) {
-  //   setUser({});
-  //   document.getElementById("signInDiv").hidden = false;
-  // }
+  function handleSignout(event) {
+    setUser({});
+    // document.getElementById("signInDiv").hidden = false;
+    navigate('/signin')
+  }
 
   useEffect(() => {
     /*global google*/
@@ -62,7 +68,6 @@ const SignUp = () => {
   // if we have a user: show the logout button
   return (
     <>
-
       <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="container">
           <div className="logo">
@@ -121,9 +126,9 @@ const SignUp = () => {
                 <img src={Or} alt="Or" />
                 <div id="signInDiv">
                 </div>
-                {/* { Object.keys(user).length != 0 &&
-                  <button onClick={(e) => handleSignout(e)}>Signout</button>
-                } */}
+                {Object.keys(user).length != 0 && navigate('/dashboard')
+                  // <button onClick={(e) => handleSignout(e)}>Signout</button>
+                }
                 {/* {user &&
                   <div>
                     <img src={user.picture}></img>

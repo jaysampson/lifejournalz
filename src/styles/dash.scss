@@ -15,7 +15,7 @@
 
     @media screen and(max-width:766px) {
         display: block;
-        height: 100px;
+        padding: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -170,6 +170,10 @@
         display: flex;
         justify-content: center;
         direction: rtl;
+
+        @media screen and(max-width:766px) {
+            display: none;
+        }
 
         .sidebar-contents {
             width: 230.08px;
@@ -346,6 +350,7 @@
                     justify-content: space-between;
                     margin-left: 20px;
                     margin-right: 20px;
+                    gap: 10px;
 
                     span {
                         font-weight: 500;
@@ -362,9 +367,17 @@
                         background: white;
                         color: black;
 
-                        p {
+                        @media screen and(max-width:320px) {
+                            width: 60%;
+                        }
+
+                        span {
                             font-weight: 700;
                             font-size: 11px;
+
+                            @media screen and(max-width:320px) {
+                                width: 50%;
+                            }
                         }
 
                     }
@@ -438,6 +451,10 @@
                     margin-bottom: 20px;
                     float: right;
                     margin-right: 20px;
+
+                    @media screen and(max-width:766px) {
+                        width: 45%;
+                    }
                 }
             }
         }
@@ -490,4 +507,53 @@
         margin-left: 73px;
     }
 
+}
+
+@media screen and(max-width:766px) {
+    h1 {
+        visibility: hidden;
+        position: relative;
+        flex-direction: column;
+        align-items: unset !important;
+
+        span {
+            visibility: visible;
+        }
+    }
+
+    h1:after {
+        position: absolute;
+        visibility: visible;
+        content: "Hey David,";
+        font-weight: 500;
+    }
+}
+
+.downbar-contents{
+    display: none;
+}
+@media screen and(max-width:766px) {
+    .downbar-contents {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 10px;
+
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            width: 570px;
+            padding: 10px;
+            background-color: rgb(201, 197, 197);
+            border-radius: 20px;
+            margin-left: 20px;
+            margin-right: 20px;
+
+            .icon2-d {
+                color: #AA076B;
+            }
+        }
+    }
 }

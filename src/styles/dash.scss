@@ -20,7 +20,12 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        border-bottom: 1px solid gray;
+        border-bottom: 1px rgb(214, 210, 210) solid;
+        background-color: #fff;
+        position: sticky;
+        top: 0px;
+        z-index: 1;
+
 
         .notify {
             display: flex;
@@ -59,8 +64,17 @@
     justify-content: space-around;
     gap: 30px;
     border-bottom: 1px rgb(214, 210, 210) solid;
+    position: sticky;
+    top: 0px;
+    background-color: #fff;
+    z-index: 1;
 
     @media screen and(max-width:766px) {
+        position: sticky;
+        top: 50px;
+        background-color: #fff;
+        z-index: 1;
+
         .search {
             margin-left: 0px !important;
 
@@ -529,9 +543,10 @@
     }
 }
 
-.downbar-contents{
+.downbar-contents {
     display: none;
 }
+
 @media screen and(max-width:766px) {
     .downbar-contents {
         display: flex;
@@ -539,6 +554,9 @@
         align-items: center;
         width: 100%;
         padding: 10px;
+        position: sticky;
+        bottom: 0px;
+        z-index: 1;
 
         .content {
             display: flex;

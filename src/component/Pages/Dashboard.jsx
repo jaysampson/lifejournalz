@@ -116,7 +116,7 @@ const Dashboard = () => {
                                 </div>
                             </div>
                             <div className="log-set">
-                                <div className='icon' onClick={() => { setActiveComponent('Component8') }}>
+                                <div className='icon' onClick={() => { setActiveComponent('Component10'); toggleMenu(10) }}>
                                     <FontAwesomeIcon icon={faGear} />
                                     <span>Settings</span>
                                 </div>

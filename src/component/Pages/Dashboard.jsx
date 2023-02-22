@@ -16,11 +16,37 @@ import { Terms } from './DashPages/Terms';
 import { Calender } from './DashPages/Calender';
 import { Setting } from './DashPages/Setting';
 
-const MenuItem = ({ icon, label, isSelected, onClick }) => {
+const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
     return (
         <div className={isSelected ? 'icon2' : 'icon'} onClick={onClick}>
             <FontAwesomeIcon icon={icon} />
             <span>{label}</span>
+            {num && (
+                <span style={{
+                    height: "20px",
+                    width: "30px",
+                    borderRadius: "10px",
+                    backgroundColor: "gray",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    color: "#fff",
+                    marginLeft: "79px",
+                }}>{num}</span>
+            )}
+            {update && (
+                <span style={{
+                    height: "20px",
+                    width: "40px",
+                    borderRadius: "10px",
+                    backgroundColor: "#c3e4d9",
+                    display: "flex",
+                    color: "#10B982",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    marginLeft: "73px"
+                }}>{update}</span>
+            )}
         </div>
     );
 };
@@ -63,6 +89,7 @@ const Menu = ({ activeComponent, setActiveComponent, selected, setSelected }) =>
             <MenuItem
                 icon={faArrowUpFromBracket}
                 label="Shared"
+                num="24"
                 isSelected={selected === 3}
                 onClick={() => {
                     toggleMenu(3);
@@ -73,6 +100,7 @@ const Menu = ({ activeComponent, setActiveComponent, selected, setSelected }) =>
                 icon={faClock}
                 label="Recently added"
                 isSelected={selected === 4}
+                num="59"
                 onClick={() => {
                     toggleMenu(4);
                     setActiveComponent('Component5');
@@ -90,6 +118,7 @@ const Menu = ({ activeComponent, setActiveComponent, selected, setSelected }) =>
             <MenuItem
                 icon={faTag}
                 label="Pricing"
+                update="new"
                 isSelected={selected === 6}
                 onClick={() => {
                     toggleMenu(6);
@@ -154,8 +183,23 @@ const Dashboard = () => {
                 </div>
                 {isMenuOpen && (
                     <div className="burg-con">
-                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{ marginLeft: "90%" }} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc" />
+                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{ marginLeft: "90%", marginBottom: "40px" }} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc" />
+                        <div className="profile">
+                            <p>Profile</p>
+                            <div className="profile-con" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                                <div className="prof-pic">
+                                    {/* <img src={} alt="" /> */}
+                                </div>
+                                <div className="prof-det">
+                                    <span style={{ color: "black" }}>user.name</span>
+                                    <span style={{ color: "GrayText" }}>user.email</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button><img src={plus} alt="" /> <span>Create New Journal</span></button>
+                        <p>Menu</p>
                         <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} activeComponent={activeComponent} setActiveComponent={setActiveComponent} selected={selected} setSelected={setSelected} />
+                        <p style={{ display: "flex", alignItems: "center", justifyContent: 'center', textAlign: "center", color: "black", gap: "4px", marginBottom: "30px", marginTop: "30px" }}><FontAwesomeIcon icon={faArrowRightFromBracket} /> <span>Logout</span></p>
                     </div>
                 )}
                 <div className="dash-nav">

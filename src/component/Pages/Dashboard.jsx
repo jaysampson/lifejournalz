@@ -118,7 +118,7 @@ const Menu = ({ activeComponent, setActiveComponent, selected, setSelected }) =>
             <MenuItem
                 icon={faTag}
                 label="Pricing"
-                update="new"
+                update="New"
                 isSelected={selected === 6}
                 onClick={() => {
                     toggleMenu(6);
@@ -183,7 +183,7 @@ const Dashboard = () => {
                 </div>
                 {isMenuOpen && (
                     <div className="burg-con">
-                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{ marginLeft: "90%", marginBottom: "40px" }} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc" />
+                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{ marginLeft: "90%", marginBottom: "40px", position: "sticky", top: "0px", zIndex: "6" }} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc" />
                         <div className="profile">
                             <p>Profile</p>
                             <div className="profile-con" style={{ display: "flex", alignItems: "center", gap: "8px" }}>

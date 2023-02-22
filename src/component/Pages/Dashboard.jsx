@@ -25,31 +25,86 @@ const MenuItem = ({ icon, label, isSelected, onClick }) => {
     );
 };
 
-const Menu = ({ selectedItem, setSelectedItem }) => {
-    const items = [
-        { id: 'dashboard', icon: faHouse, label: 'Dashboard' },
-        { id: 'categories', icon: faList, label: 'Categories' },
-        { id: 'favourites', icon: faStar, label: 'Favourites' },
-        { id: 'shared', icon: faArrowUpFromBracket, label: 'Shared', count: 24 },
-        { id: 'recent', icon: faClock, label: 'Recently added', count: 59 },
-        { id: 'storage', icon: faFolderMinus, label: 'Storage' },
-        { id: 'pricing', icon: faTag, label: 'Pricing', isNew: true },
-        { id: 'terms', icon: faBriefcase, label: 'Terms of Service' },
-    ];
+const Menu = ({ activeComponent, setActiveComponent, selected, setSelected }) => {
+    const toggleMenu = (index) => {
+        setSelected(index);
+    };
 
     return (
         <div className="menu">
-            {items.map((item, index) => (
-                <MenuItem
-                    key={item.id}
-                    icon={item.icon}
-                    label={item.label}
-                    isSelected={selectedItem === index}
-                    onClick={() => {
-                        setSelectedItem(index);
-                    }}
-                />
-            ))}
+
+            <MenuItem
+                icon={faHouse}
+                label="Dashboard"
+                isSelected={selected === 0}
+                onClick={() => {
+                    toggleMenu(0);
+                    setActiveComponent('Component1');
+                }}
+            />
+            <MenuItem
+                icon={faList}
+                label="Categories"
+                isSelected={selected === 1}
+                onClick={() => {
+                    toggleMenu(1);
+                    setActiveComponent('Component2');
+                }}
+            />
+            <MenuItem
+                icon={faStar}
+                label="Favourites"
+                isSelected={selected === 2}
+                onClick={() => {
+                    toggleMenu(2);
+                    setActiveComponent('Component3');
+                }}
+            />
+            <MenuItem
+                icon={faArrowUpFromBracket}
+                label="Shared"
+                isSelected={selected === 3}
+                onClick={() => {
+                    toggleMenu(3);
+                    setActiveComponent('Component4');
+                }}
+            />
+            <MenuItem
+                icon={faClock}
+                label="Recently added"
+                isSelected={selected === 4}
+                onClick={() => {
+                    toggleMenu(4);
+                    setActiveComponent('Component5');
+                }}
+            />
+            <MenuItem
+                icon={faFolderMinus}
+                label=" Storage"
+                isSelected={selected === 5}
+                onClick={() => {
+                    toggleMenu(5);
+                    setActiveComponent('Component6');
+                }}
+            />
+            <MenuItem
+                icon={faTag}
+                label="Pricing"
+                isSelected={selected === 6}
+                onClick={() => {
+                    toggleMenu(6);
+                    setActiveComponent('Component7');
+                }}
+            />
+            <MenuItem
+                icon={faBriefcase}
+                label="Terms Service"
+                isSelected={selected === 7}
+                onClick={() => {
+                    toggleMenu(7);
+                    setActiveComponent('Component8');
+                }}
+            />
         </div>
     );
 };
@@ -58,7 +113,25 @@ const Dashboard = () => {
     const [selected, setSelected] = useState(0)
     const toggleMenu = (index) => {
         setSelected(index)
-    }
+        if (index === 0) {
+            setActiveComponent('Component1');
+        } else if (index === 1) {
+            setActiveComponent('Component2');
+        } else if (index === 2) {
+            setActiveComponent('Component3');
+        } else if (index === 3) {
+            setActiveComponent('Component4');
+        } else if (index === 4) {
+            setActiveComponent('Component5');
+        } else if (index === 5) {
+            setActiveComponent('Component6');
+        } else if (index === 6) {
+            setActiveComponent('Component7');
+        } else if (index === 7) {
+            setActiveComponent('Component8');
+        }
+    };
+
 
     const [selectedItem, setSelectedItem] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,8 +154,8 @@ const Dashboard = () => {
                 </div>
                 {isMenuOpen && (
                     <div className="burg-con">
-                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{marginLeft:"90%"}} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc"/>
-                        <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} />
+                        <FontAwesomeIcon icon={faXmark} size={'2x'} style={{ marginLeft: "90%" }} onClick={() => setIsMenuOpen(!isMenuOpen)} className="canc" />
+                        <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} activeComponent={activeComponent} setActiveComponent={setActiveComponent} selected={selected} setSelected={setSelected} />
                     </div>
                 )}
                 <div className="dash-nav">

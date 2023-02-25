@@ -19,7 +19,7 @@
 
     @media screen and(max-width:766px) {
         display: block;
-        padding: 10px;
+        height: 7vh;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -34,9 +34,9 @@
         }
 
         .prof-pic {
-            margin-left: 30px;
-            height: 36px;
-            width: 36px;
+            margin-left: 1.8rem;
+            height: 2.25rem;
+            width: 2.25rem;
             border-radius: 50%;
             border: 1px gray dashed;
         }
@@ -49,7 +49,7 @@
     @media screen and(max-width:766px) {
         flex-direction: column;
         display: block;
-        padding: 15px;
+        padding: 0.9374rem;
         box-shadow: 0px 5px 20px 2px black;
         position: fixed;
         top: 0px;
@@ -77,12 +77,12 @@
             .icon {
                 display: flex;
                 align-items: center;
-                padding: 17.5px;
+                padding: 1rem;
                 cursor: pointer;
 
                 span {
-                    margin-left: 10px;
-                    font-size: 14px;
+                    margin-left: 0.6rem;
+                    font-size: 0.8rem;
                     font-weight: 500;
                     color: rgba(111, 8, 71, 1);
                 }
@@ -91,13 +91,13 @@
             .icon2 {
                 display: flex;
                 align-items: center;
-                padding: 10px;
+                padding: 0.6rem;
                 background-color: rgba(111, 8, 71, 1);
                 cursor: pointer;
                 color: white;
 
                 span {
-                    margin-left: 10px;
+                    margin-left: 0.6rem;
                     font-size: 14px;
                     font-weight: 500;
                 }
@@ -120,15 +120,15 @@
             border-radius: 4px;
             width: 100%;
             color: white;
-            height: 44px;
-            margin-bottom: 53px;
-            margin-top: 53px;
+            height: 2.75rem;
+            margin-bottom: 3.3rem;
+            margin-top: 3.3rem;
         }
     }
 }
 
 .dash-nav {
-    height: 40px;
+    height: 6.5vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -142,7 +142,7 @@
 
     @media screen and(max-width:766px) {
         position: sticky;
-        top: 56px;
+        top: 3.5rem;
         background-color: #fff;
         z-index: 1;
 
@@ -172,15 +172,15 @@
         width: 50%;
 
         .nav-search {
-            width: 412px;
-            height: 25px;
+            width: 25rem;
+            height: 1.5rem;
             border-radius: 5px;
             border: 1px solid black;
             font-size: 12px;
         }
 
         .cat {
-            height: 25px;
+            height: 1.5rem;
             border-radius: 5px;
             border: 1px solid black;
             font-size: 12px;
@@ -189,8 +189,8 @@
         button {
             color: white;
             background-color: rgba(111, 8, 71, 1);
-            height: 25px;
-            width: 77px;
+            height: 1.5rem;
+            width: 4.8rem;
             border: none;
             border-radius: 5px;
             font-size: 12px;
@@ -207,11 +207,11 @@
             display: flex;
 
             .count {
-                height: 15px;
-                width: 15px;
+                height: 0.9rem;
+                width: 0.9rem;
                 background: #4B0B47;
                 border-radius: 50%;
-                margin-left: -10px;
+                margin-left: -0.6rem;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -222,8 +222,8 @@
         }
 
         .prof-pic {
-            height: 30px;
-            width: 30px;
+            height: 1.8rem;
+            width: 1.8rem;
             border-radius: 50%;
             border: 1px gray dashed;
         }
@@ -233,7 +233,10 @@
 .dash-container {
     display: flex;
     justify-content: center;
-    height: 100%;
+    height: 93.5vh;
+    @media screen and(max-width:766px) {
+        height: 79vh;
+    }
 
     // .side-bar::-webkit-scrollbar {
     //     width: 11px;
@@ -252,8 +255,8 @@
 
     .side-bar {
         background-color: white;
-        height: 100%;
-        width: 250px;
+        height: 93.5vh;
+        width: 15rem;
         border-right: 1px rgb(214, 210, 210) solid;
         display: flex;
         justify-content: center;
@@ -264,14 +267,14 @@
         }
 
         .sidebar-contents {
-            width: 180.08px;
+            width: 11rem;
 
             .content:hover {
                 cursor: pointer;
             }
 
             .content {
-                margin-top: 20px;
+                margin-top: 1.2rem;
 
                 .icon {
                     font-weight: 500;
@@ -287,41 +290,41 @@
                     }
 
                     .num {
-                        height: 20px;
-                        width: 30px;
+                        height: 1.2rem;
+                        width: 1.8rem;
                         border-radius: 10px;
                         background-color: gray;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         color: #fff;
-                        margin-left: 19px;
+                        margin-left: 1rem;
                         font-size: 12px;
                     }
 
                     .num-2 {
-                        height: 20px;
-                        width: 30px;
+                        height: 1.2rem;
+                        width: 1.8rem;
                         border-radius: 10px;
                         background-color: gray;
                         display: flex;
                         align-items: center;
                         justify-content: center;
                         color: #fff;
-                        margin-left: 15px;
+                        margin-left: 13px;
                         font-weight: 12px;
                     }
 
                     .new {
-                        height: 20px;
-                        width: 40px;
+                        height: 1.2rem;
+                        width: 2.5rem;
                         border-radius: 10px;
                         background-color: #c3e4d9;
                         display: flex;
                         color: #10B982;
                         align-items: center;
                         justify-content: center;
-                        margin-left: 23px;
+                        margin-left: 1.4rem;
                         font-size: 12px;
                     }
                 }
@@ -330,7 +333,7 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 25px;
+                    margin-top: 1.5rem;
                     background: linear-gradient(90deg, #AA076B 0%, #61045F 100%);
                     width: 100%;
                     border: none;
@@ -348,7 +351,7 @@
 
             .premium {
                 width: 100%;
-                height: 80px;
+                height: 5rem;
                 border-radius: 10px;
                 border: gray 1px solid;
                 text-align: center;
@@ -366,7 +369,7 @@
                         font-size: 12px;
                     }
 
-                    span {
+                    p {
                         font-weight: 500;
                         font-size: 10px;
                         color: #C58FB0;
@@ -403,12 +406,12 @@
 
     .dash-contents {
         background-color: #FAFAFB;
-        height: 100%;
+        height: 93.5vh;
         width: 100%;
         // overflow-y: scroll;
 
         @media screen and(max-width:766px) {
-            height: 100%;
+            height: 79vh;
         }
 
         h1 {
@@ -453,10 +456,6 @@
                     margin-right: 20px;
                     gap: 10px;
 
-                    span {
-                        font-weight: 500;
-                    }
-
                     button {
                         display: flex;
                         align-items: center;
@@ -464,7 +463,7 @@
                         gap: 9px;
                         width: 125px;
                         position: relative;
-                        // top: 18px;
+                        top: 10px;
                         margin-top: 0px !important;
                         height: 34px;
                         border: 1px rgb(214, 210, 210) solid;
@@ -488,10 +487,10 @@
                 }
 
                 h2 {
-                    // margin-top: 25.5px;
                     color: black;
                     font-weight: bold;
                     font-size: 24px;
+                    margin-bottom: 0rem !important;
                 }
 
                 .journalz-border-wrap {
@@ -519,11 +518,15 @@
                     justify-content: center;
                     align-items: center;
 
+                    @media screen and(max-width:766px) {
+                        height: 438px;
+                    }
+
                     .journalz-main {
                         width: 100%;
 
                         .sort {
-                            // margin-top: 45px;
+                            font-size: 12px;
 
                             .select {
                                 border: 1px gray solid;
@@ -537,6 +540,10 @@
 
                         .books {
                             height: 280px;
+
+                            @media screen and(max-width:766px) {
+                                height: 418px;
+                            }
                         }
                     }
 
@@ -598,7 +605,7 @@
         align-items: center;
         justify-content: center;
         color: #fff;
-        margin-left: 15px;
+        margin-left: 13px;
     }
 
     .new {
@@ -645,11 +652,10 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        padding: 10px;
+        height: 7.5vh;
+        background-color: "none";
         position: sticky;
         bottom: 0px;
-        z-index: 1;
-        background-color: "none";
 
         .content {
             display: flex;

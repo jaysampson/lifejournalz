@@ -277,9 +277,9 @@ const Dashboard = () => {
                                     <span className='go'>
                                         GO PREMUIM
                                     </span> <br />
-                                    <span>
+                                    <p>
                                         Explore unlimited usage of the journalz with membership
-                                    </span>
+                                    </p>
                                 </div>
                             </div>
                             <div className="log-set">

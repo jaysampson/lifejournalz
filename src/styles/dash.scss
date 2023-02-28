@@ -679,8 +679,8 @@
         justify-content: center;
         align-items: center;
         background-color: "none";
-        position: sticky;
-        bottom: 0px;
+        position: fixed;
+        bottom: 10px;
         width: 100%;
 
         .content {

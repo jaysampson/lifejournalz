@@ -25,31 +25,29 @@ export const Home = () => {
                                     </select>
                                 </div>
                                 <div className="books">
-                                    <div className="book-list" style={{overflowY:"scroll"}}>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-<p>hello</p>
-                                    </div>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
+                                    <p>hello</p>
                                 </div>
                             </div>
                         </div>

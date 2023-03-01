@@ -295,7 +295,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="dash-contents">
-                        {activeComponent === 'Component1' ? <Home /> : null}
+                        {activeComponent === 'Component1' ? <Home/> : null}
                         {activeComponent === 'Component2' ? <Categories /> : null}
                         {activeComponent === 'Component3' ? <Favourite /> : null}
                         {activeComponent === 'Component4' ? <Shared /> : null}

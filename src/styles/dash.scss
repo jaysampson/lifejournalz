@@ -726,3 +726,24 @@
         }
     }
 }
+
+.active-tab {
+    color: black;
+    border-bottom: #6F0847 solid;
+}
+
+.journal-title {
+    width: 318px;
+
+    @media screen and(max-width:766px) {
+        width: 100% !important;
+    }
+}
+
+.title-count {
+
+    // margin-right: 0px !important;
+    @media screen and(max-width:766px) {
+        margin-right: 0px !important;
+    }
+}

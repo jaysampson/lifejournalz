@@ -2,7 +2,9 @@ import React from 'react'
 import save from "../../../Images/save.png";
 import add from "../../../Images/add.png";
 import "../../../styles/dash.scss";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import bookicon from "../../../Images/bookicon.png"
 
 export const Home = () => {
     return (
@@ -25,29 +27,36 @@ export const Home = () => {
                                     </select>
                                 </div>
                                 <div className="books">
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
-                                    <p>hello</p>
+                                    <div className="books-list">
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                        <div className='books-con'>
+                                            <div style={{ display: "flex", gap: "10px", alignItems: "center" }}><img src={bookicon} alt="" /> Journal.title</div>
+                                            <p style={{ display: "flex", gap: "30%", alignItems: "center" }}>11/12/2022<FontAwesomeIcon icon={faEllipsisV} color={"gray"} /> <input type="checkbox" style={{}} /></p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -2,7 +2,7 @@ import React from 'react'
 import "../../styles/dash.scss";
 import bell from "../../Images/bell.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpFromBracket, faBriefcase, faClock, faFolderMinus, faHouse, faStar, faTag, faList, faGear, faArrowRightFromBracket, faHeart, faCalendar, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpFromBracket, faBriefcase, faClock, faFolderMinus, faHouse, faStar, faTag, faList, faGear, faArrowRightFromBracket, faHeart, faCalendar, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
 import plus from "../../Images/plus.png";
 import { useState } from 'react';
 import { Home } from './DashPages/Home';
@@ -15,6 +15,13 @@ import { Storage } from './DashPages/Storage';
 import { Terms } from './DashPages/Terms';
 import { Calender } from './DashPages/Calender';
 import { Setting } from './DashPages/Setting';
+import { Button, Modal } from 'react-bootstrap';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import addpic from "../../Images/addpic.png";
+import { InputGroup, FormControl, DropdownButton, Dropdown } from "react-bootstrap";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
     return (
@@ -160,12 +167,35 @@ const Dashboard = () => {
             setActiveComponent('Component8');
         }
     };
+    const [showModal, setShowModal] = useState(false);
 
+    const handleModal = () => {
+        setShowModal(!showModal);
+    };
+    const handleTabClick = (tabName) => {
+        setActiveTab(tabName);
+    };
 
+    const [title, setTitle] = useState('');
+    const handleTitleChange = (event) => {
+        if (event.target.value.length <= 30) {
+            setTitle(event.target.value);
+        }
+    };
+
+    const [activeTab, setActiveTab] = useState("Event");
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [text, setText] = useState('');
     const [selectedItem, setSelectedItem] = useState(0);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const [activeComponent, setActiveComponent] = useState('Component1');
+
+    const [selectedOption, setSelectedOption] = useState("Categories");
+
+    const handleOptionSelect = (option) => {
+        setSelectedOption(option);
+    }
     return (
         <div>
             <>
@@ -196,7 +226,78 @@ const Dashboard = () => {
                                 </div>
                             </div>
                         </div>
-                        <button><img src={plus} alt="" /> <span>Create New Journal</span></button>
+                        <Button onClick={handleModal}><button><img src={plus} alt="" /> <span>Create New Journal</span></button></Button>
+                        <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>New Journal</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <h5>Title</h5>
+                                <input
+                                    className='journal-title'
+                                    type="text"
+                                    name=""
+                                    id=""
+                                    placeholder="Title of new journal"
+                                    style={{ border: "1px solid gray", borderRadius: "5px", height: "40px" }}
+                                    value={title}
+                                    onChange={handleTitleChange}
+                                />
+                                <div className='title-count' style={{ float: "right", marginRight: "32%" }}>{title.length}/30</div>
+                                <div className="headers" style={{ display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "50px", cursor: "pointer" }}>
+                                    <p className={activeTab === "Event" ? "active-tab" : ""}
+                                        onClick={() => handleTabClick("Event")} style={{ padding: "5px 30px 5px 40px", marginBottom: "10px" }}>Event</p>
+                                </div>
+                                <div>
+                                    {activeTab === "Event" &&
+                                        <div>
+                                            <div style={{ marginBottom: "10px" }}>
+                                                <h5 style={{ marginBottom: "10px" }}>Description</h5>
+                                                <ReactQuill
+                                                    value={text}
+                                                    onChange={setText}
+                                                    modules={{
+                                                        toolbar: [
+                                                            [{ 'header': [1, 2, false] }],
+                                                            ['bold', 'italic', 'underline'],
+                                                            [{ 'color': [] }, { 'background': [] }],
+                                                            [{ 'align': [] }]
+                                                        ]
+                                                    }}
+                                                />
+                                            </div>
+                                            <div style={{ marginBottom: "15px" }}>
+                                                <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
+                                                <div style={{ height: "fit-content", width: "fit-content", padding: "5px", border: "1px gray solid", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+                                                    <img src={addpic} alt="" style={{ height: "33%", width: "33%" }} />
+                                                    <p style={{ marginBottom: "10px" }}>(upload png,svg,gif)</p>
+                                                    <button style={{ display: "flex", justifyContent: "center", gap: "10px", borderRadius: "5px", alignItems: "center", padding: "5px 0px 5px 0px", width: "90%", background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", color: "white" }}>Upload <FontAwesomeIcon icon={faArrowUpFromBracket} /></button>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h5>Date</h5>
+                                                <DatePicker
+                                                    selected={selectedDate}
+                                                    onChange={date => setSelectedDate(date)}
+                                                    dateFormat="dd/MM/yyyy"
+                                                    placeholderText='Select Date Publish'
+                                                    className="my-datepicker"
+                                                />
+                                            </div>
+                                            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
+                                                <input type="checkbox" />
+                                                <p style={{ marginBottom: "0px" }}>Add to favourites</p>
+                                            </div>
+                                        </div>}
+                                </div>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="secondary" onClick={handleModal}>
+                                    Close
+                                </Button>
+                                <Button variant='primary' style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}><FontAwesomeIcon icon={faCheck} />Create Journal</Button>
+                            </Modal.Footer>
+                        </Modal>
                         <p>Menu</p>
                         <Menu selectedItem={selectedItem} setSelectedItem={setSelectedItem} activeComponent={activeComponent} setActiveComponent={setActiveComponent} selected={selected} setSelected={setSelected} />
                         <p style={{ display: "flex", alignItems: "center", justifyContent: 'center', textAlign: "center", color: "black", gap: "4px", marginBottom: "30px", marginTop: "30px" }}><FontAwesomeIcon icon={faArrowRightFromBracket} /> <span>Logout</span></p>
@@ -204,9 +305,30 @@ const Dashboard = () => {
                 )}
                 <div className="dash-nav">
                     <div className="search">
-                        <input type="text" placeholder='Search in Categories' className='nav-search' />
+                        <input type="text" placeholder='Search in categories' className='nav-search' />
+                        <InputGroup className="input-search">
+                            <DropdownButton
+                                variant="outline-secondary"
+                                title={selectedOption}
+                                id="input-group-dropdown-1"
+                            >
+                                <Dropdown.Item active={selectedOption === "Categories"} onClick={() => handleOptionSelect("Categories")}>
+                                    Categories
+                                </Dropdown.Item>
+                                <Dropdown.Item active={selectedOption === "Personal"} onClick={() => handleOptionSelect("Personal")}>
+                                    Personal
+                                </Dropdown.Item>
+                                <Dropdown.Item active={selectedOption === "Family"} onClick={() => handleOptionSelect("Family")}>
+                                    Family
+                                </Dropdown.Item>
+                            </DropdownButton>
+                            <FormControl placeholder="Search in categories" style={{ height: "25px" }} />
+                        </InputGroup>
                         <select className='cat' placeholder='All categories'>
-                            <option value="" disabled selected hidden>All Categories</option>
+                            <option value="" >All Categories</option>
+                            <option value="" >Personal</option>
+                            <option value="" >Family</option>
+                            <option value="" >Category</option>
                         </select>
                         <button>Search</button>
                     </div>
@@ -270,7 +392,78 @@ const Dashboard = () => {
                                     <FontAwesomeIcon icon={faBriefcase} />
                                     <span>Terms of Service</span>
                                 </div>
-                                <button> <img src={plus} alt="" /> <span>Create New Journal</span></button>
+                                <Button onClick={handleModal} style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "40px", width: "100%", gap: "10px" }}><img src={plus} alt="" /><span style={{ marginBottom: "0px" }}>Create New Journal</span></Button>
+                                <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>New Journal</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <h5>Title</h5>
+                                        <input
+                                            className='journal-title'
+                                            type="text"
+                                            name=""
+                                            id=""
+                                            placeholder="Title of new journal"
+                                            style={{ border: "1px solid gray", borderRadius: "5px", height: "40px" }}
+                                            value={title}
+                                            onChange={handleTitleChange}
+                                        />
+                                        <div className='title-count' style={{ float: "right", marginRight: "32%" }}>{title.length}/30</div>
+                                        <div className="headers" style={{ display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "50px", cursor: "pointer" }}>
+                                            <p className={activeTab === "Event" ? "active-tab" : ""}
+                                                onClick={() => handleTabClick("Event")} style={{ padding: "5px 30px 5px 40px", marginBottom: "10px" }}>Event</p>
+                                        </div>
+                                        <div>
+                                            {activeTab === "Event" &&
+                                                <div>
+                                                    <div style={{ marginBottom: "10px" }}>
+                                                        <h5 style={{ marginBottom: "10px" }}>Description</h5>
+                                                        <ReactQuill
+                                                            value={text}
+                                                            onChange={setText}
+                                                            modules={{
+                                                                toolbar: [
+                                                                    [{ 'header': [1, 2, false] }],
+                                                                    ['bold', 'italic', 'underline'],
+                                                                    [{ 'color': [] }, { 'background': [] }],
+                                                                    [{ 'align': [] }]
+                                                                ]
+                                                            }}
+                                                        />
+                                                    </div>
+                                                    <div style={{ marginBottom: "15px" }}>
+                                                        <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
+                                                        <div style={{ height: "fit-content", width: "fit-content", padding: "5px", border: "1px gray solid", display: "flex", justifyContent: "center", alignItems: "center", flexDirection: "column" }}>
+                                                            <img src={addpic} alt="" style={{ height: "33%", width: "33%" }} />
+                                                            <p style={{ marginBottom: "10px" }}>(upload png,svg,gif)</p>
+                                                            <button style={{ display: "flex", justifyContent: "center", gap: "10px", borderRadius: "5px", alignItems: "center", padding: "5px 0px 5px 0px", width: "90%", background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", color: "white" }}>Upload <FontAwesomeIcon icon={faArrowUpFromBracket} /></button>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <h5>Date</h5>
+                                                        <DatePicker
+                                                            selected={selectedDate}
+                                                            onChange={date => setSelectedDate(date)}
+                                                            dateFormat="dd/MM/yyyy"
+                                                            placeholderText='Select Date Publish'
+                                                            className="my-datepicker"
+                                                        />
+                                                    </div>
+                                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
+                                                        <input type="checkbox" />
+                                                        <p style={{ marginBottom: "0px" }}>Add to favourites</p>
+                                                    </div>
+                                                </div>}
+                                        </div>
+                                    </Modal.Body>
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={handleModal}>
+                                            Close
+                                        </Button>
+                                        <Button variant='primary' style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}><FontAwesomeIcon icon={faCheck} />Create Journal</Button>
+                                    </Modal.Footer>
+                                </Modal>
                             </div>
                             <div className="premium">
                                 <div className="premium-content">
@@ -295,7 +488,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                     <div className="dash-contents">
-                        {activeComponent === 'Component1' ? <Home/> : null}
+                        {activeComponent === 'Component1' ? <Home /> : null}
                         {activeComponent === 'Component2' ? <Categories /> : null}
                         {activeComponent === 'Component3' ? <Favourite /> : null}
                         {activeComponent === 'Component4' ? <Shared /> : null}

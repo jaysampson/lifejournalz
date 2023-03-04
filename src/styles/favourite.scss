@@ -1,0 +1,54 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: 0px;
+}
+
+.favourite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.fav-con {
+    width: 90%;
+    margin-top: 30px;
+
+    h2 {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    p {
+        text-align: center;
+        margin-bottom: 0px;
+    }
+
+    .fav-main {
+        margin-top: 20px;
+        height: 400px;
+        border-radius: 10px;
+        border: 2px rgb(85, 0, 85) solid;
+        overflow-y: scroll;
+
+        .fav-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .fav-journalz {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 95%;
+
+                p {
+                    color: gray;
+                    margin-top: 15%;
+                }
+            }
+        }
+    }
+}

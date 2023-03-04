@@ -1,25 +1,36 @@
 import React from 'react'
 import save from "../../../Images/save.png";
 import add from "../../../Images/add.png";
-import "../../../styles/dash.scss";
+import "../../../styles/home.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUpFromBracket, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpFromBracket, faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import bookicon from "../../../Images/bookicon.png"
 import { Button, Modal } from 'react-bootstrap';
 import { useState } from 'react';
-import NavLink from 'react-bootstrap';
-import { Calender } from './Calender';
 import addpic from "../../../Images/addpic.png"
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // import the styles
 
 export const Home = (props) => {
     const [showModal, setShowModal] = useState(false);
     const [activeTab, setActiveTab] = useState("Event");
+    const [selectedDate, setSelectedDate] = useState(null);
+    const [text, setText] = useState('');
     const handleModal = () => {
         setShowModal(!showModal);
     };
 
     const handleTabClick = (tabName) => {
         setActiveTab(tabName);
+    };
+
+    const [title, setTitle] = useState('');
+    const handleTitleChange = (event) => {
+        if (event.target.value.length <= 30) {
+            setTitle(event.target.value);
+        }
     };
 
     return (
@@ -83,32 +94,39 @@ export const Home = (props) => {
                         <Modal.Title>New Journal</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <h5>
-                            Title
-                        </h5>
-                        <input className='journal-title' type="text" name="" id="" placeholder='Title of new Journal' style={{ border: "1px solid gray", borderRadius: "5px", height: "40px" }} />
-                        <div className='title-count' style={{ float: "right", marginRight: "32%" }}>0/30</div>
+                        <h5>Title</h5>
+                        <input
+                            className='journal-title'
+                            type="text"
+                            name=""
+                            id=""
+                            placeholder="Title of new journal"
+                            style={{ border: "1px solid gray", borderRadius: "5px", height: "40px" }}
+                            value={title}
+                            onChange={handleTitleChange}
+                        />
+                        <div className='title-count' style={{ float: "right", marginRight: "32%" }}>{title.length}/30</div>
                         <div className="headers" style={{ display: "flex", alignItems: "center", justifyContent: "space-around", marginTop: "50px", cursor: "pointer" }}>
                             <p className={activeTab === "Event" ? "active-tab" : ""}
-                                onClick={() => handleTabClick("Event")} style={{ padding: "5px 30px 5px 40px", marginBottom: "0px" }}>Event</p>
-                            <p className={activeTab === "Calendar" ? "active-tab" : ""}
-                                onClick={() => handleTabClick("Calendar")} style={{ padding: "5px 30px 5px 40px", marginBottom: "0px" }}>Calendar</p>
+                                onClick={() => handleTabClick("Event")} style={{ padding: "5px 30px 5px 40px", marginBottom: "10px" }}>Event</p>
                         </div>
                         <div>
                             {activeTab === "Event" &&
                                 <div>
-                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "30px" }}>
-                                        <p style={{ marginBottom: "0px" }}>Color</p>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "purple" }}></div>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "blue" }}></div>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "green" }}></div>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "orange" }}></div>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "red" }}></div>
-                                        <div style={{ height: "20px", width: "20px", borderRadius: "50%", border: "1px solid black", background: "yellow" }}></div>
-                                    </div>
                                     <div style={{ marginBottom: "10px" }}>
                                         <h5 style={{ marginBottom: "10px" }}>Description</h5>
-                                        <textarea name="" id="" cols="30" rows="5" style={{ width: "100%", border: "1px solid gray" }} placeholder={"Details about event"}></textarea>
+                                        <ReactQuill
+                                            value={text}
+                                            onChange={setText}
+                                            modules={{
+                                                toolbar: [
+                                                    [{ 'header': [1, 2, false] }],
+                                                    ['bold', 'italic', 'underline'],
+                                                    [{ 'color': [] }, { 'background': [] }],
+                                                    [{ 'align': [] }]
+                                                ]
+                                            }}
+                                        />
                                     </div>
                                     <div style={{ marginBottom: "15px" }}>
                                         <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
@@ -119,22 +137,27 @@ export const Home = (props) => {
                                         </div>
                                     </div>
                                     <div>
-                                        <h5>Date & Time</h5>
-                                        <input type="datetime-local" style={{ height: "40px", width: "100%", border: "1px gray solid", borderRadius: "5px", marginBottom: "10px" }} />
+                                        <h5>Date</h5>
+                                        <DatePicker
+                                            selected={selectedDate}
+                                            onChange={date => setSelectedDate(date)}
+                                            dateFormat="dd/MM/yyyy"
+                                            placeholderText='Select Date Publish'
+                                            className="my-datepicker"
+                                        />
                                     </div>
-                                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                                    <div style={{ display: "flex", alignItems: "center", gap: "10px", marginTop: "10px" }}>
                                         <input type="checkbox" />
                                         <p style={{ marginBottom: "0px" }}>Add to favourites</p>
                                     </div>
                                 </div>}
-                            {activeTab === "Calendar" && <Calender />}
                         </div>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleModal}>
                             Close
                         </Button>
-                        <Button variant='primary' style={{ backgroundColor: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)" }}>Create Journal</Button>
+                        <Button variant='primary' style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "10px" }}><FontAwesomeIcon icon={faCheck} />Create Journal</Button>
                     </Modal.Footer>
                 </Modal>
             </div>

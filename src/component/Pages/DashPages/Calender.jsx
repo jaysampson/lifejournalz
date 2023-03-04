@@ -7,12 +7,16 @@ export const Calender = () => {
   const [date, setDate] = useState(new Date());
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop:"10px" }}>
-      <Calendar
-        value={date}
-        onChange={(date) => setDate(date)}
-        calendarType="US"
-      />
-    </div>
+    <>
+      <h2 style={{textAlign:"center", marginTop:"20px"}}>Calendar</h2>
+      <p style={{textAlign:"center", fontSize:"14px"}}>Select a date</p>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", paddingTop: "10px" }}>
+        <Calendar
+          value={date}
+          onChange={(date) => setDate(date)}
+          calendarType="US"
+        />
+      </div>
+    </>
   )
 }

@@ -33,7 +33,6 @@ export const Home = (props) => {
         }
     };
     const [desc, setDesc] = useState("");
-    let Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImJvc2VAZ21haWwuY29tIiwiaWQiOiI2M2ZkYjlkOWMyZmNlODdlMjJlOGUwMjMiLCJpYXQiOjE2Nzc1NzI1OTF9.WWI2nVMpfpsoqcHuHkQQzdIi36tzkskeXRHoHft5mF8"
     let url = "https://lifejournalzz.onrender.com/api/v1/journal/create-journal";
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
@@ -49,7 +48,6 @@ export const Home = (props) => {
                 headers: {
                     Accept: "Application/json",
                     "content-type": "application/json",
-                    Authorization: `Bearer ${Token}`,
                 },
                 body: JSON.stringify(data),
             })

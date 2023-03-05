@@ -34,6 +34,7 @@ export const Home = (props) => {
     };
     const [desc, setDesc] = useState("");
     let Token = process.env.REACT_APP_TOKEN_ID;
+    let url = "https://lifejournalzz.onrender.com/api/v1/journal/create-journal";
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();

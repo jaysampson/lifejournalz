@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpFromBracket, faCheck, faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import bookicon from "../../../Images/bookicon.png"
 import { Button, Modal } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import addpic from "../../../Images/addpic.png"
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -33,7 +33,7 @@ export const Home = (props) => {
         }
     };
     const [desc, setDesc] = useState("");
-    let url = "https://lifejournalzz.onrender.com/api/v1/journal/create-journal";
+    let Token = process.env.REACT_APP_TOKEN_ID;
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -46,8 +46,9 @@ export const Home = (props) => {
             const response = await fetch(url, {
                 method: "POST",
                 headers: {
-                    Accept: "Application/json",
+                    "Accept": "Application/json",
                     "content-type": "application/json",
+                    "Authorization": `Bearer ${Token}`,
                 },
                 body: JSON.stringify(data),
             })
@@ -74,6 +75,34 @@ export const Home = (props) => {
     useEffect(() => {
         fetchData()
     }, [])
+
+    // create a reference to the file input
+    const fileInputRef = useRef(null);
+
+    // function to handle when the upload button is clicked
+    const handleUploadClick = () => {
+        // open the file input
+        fileInputRef.current.click();
+    };
+
+    // function to handle when a file is selected
+    const handleFileSelect = (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = (e) => {
+            const quill = quillRef.current.getEditor();
+
+            // insert the image into the Quill editor using the insertEmbed method
+            quill.insertEmbed(quill.getSelection().index, "image", e.target.result);
+        };
+    };
+
+    // create a reference to the Quill editor
+    const quillRef = useRef(null);
 
     return (
         <div>
@@ -166,6 +195,7 @@ export const Home = (props) => {
                                         <div style={{ marginBottom: "10px" }}>
                                             <h5 style={{ marginBottom: "10px" }}>Description</h5>
                                             <ReactQuill
+                                                ref={quillRef}
                                                 value={desc}
                                                 onChange={(e) => setDesc(e.target.value)}
                                                 modules={{
@@ -192,17 +222,26 @@ export const Home = (props) => {
                                             }}>
                                                 <img src={addpic} alt="" style={{ height: "33%", width: "33%" }} />
                                                 <p style={{ marginBottom: "10px" }}>(upload png,svg,gif)</p>
-                                                <button style={{
-                                                    display: "flex",
-                                                    justifyContent: "center",
-                                                    gap: "10px",
-                                                    borderRadius: "5px",
-                                                    alignItems: "center",
-                                                    padding: "5px 0px 5px 0px",
-                                                    width: "90%",
-                                                    background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                                                    color: "white"
-                                                }}>Upload <FontAwesomeIcon icon={faArrowUpFromBracket} /></button>
+                                                <button
+                                                    onClick={handleUploadClick}
+                                                    style={{
+                                                        display: "flex",
+                                                        justifyContent: "center",
+                                                        gap: "10px",
+                                                        borderRadius: "5px",
+                                                        alignItems: "center",
+                                                        padding: "10px 5px 5px 10px",
+                                                        width: "100%",
+                                                        background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+                                                        color: "white"
+                                                    }}>Upload <FontAwesomeIcon icon={faArrowUpFromBracket} /></button>
+                                                {/* create a hidden file input that is triggered when the upload button is clicked */}
+                                                <input
+                                                    type="file"
+                                                    ref={fileInputRef}
+                                                    style={{ display: "none" }}
+                                                    onChange={handleFileSelect}
+                                                />
                                             </div>
                                         </div>
                                         <div>

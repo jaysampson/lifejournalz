@@ -35,6 +35,7 @@ export const Home = (props) => {
     const [desc, setDesc] = useState("");
     let Token = process.env.REACT_APP_TOKEN_ID;
     let url = "https://lifejournalzz.onrender.com/api/v1/journal/create-journal";
+    let getUrls = "https://lifejournalzz.onrender.com/api/v1/journal/get-all-journals"
     let navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,7 +67,7 @@ export const Home = (props) => {
 
     const [posts, setPosts] = useState([])
     const fetchData = async () => {
-        const responses = await fetch(url)
+        const responses = await fetch(getUrls)
         const datares = await responses.json();
         console.log(datares);
         setPosts(datares);

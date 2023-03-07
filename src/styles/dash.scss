@@ -57,7 +57,7 @@
         right: 0;
         width: 70%;
         height: 100%;
-        overflow-y: scroll;
+        overflow: auto;
         background-color: white;
         z-index: 3;
         box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
@@ -414,7 +414,7 @@
         background-color: #FAFAFB;
         height: 93.5vh;
         width: 100%;
-        overflow: scroll auto;
+        overflow: auto;
         overflow-x: hidden;
 
         @media screen and (max-width:766px) {

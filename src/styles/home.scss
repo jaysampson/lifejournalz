@@ -130,7 +130,7 @@
 
                 .books {
                     height: 17.5rem;
-                    overflow-y: scroll;
+                    overflow: auto;
                     // padding: 10px;
                     direction: rtl;
                     width: 100%;

@@ -342,7 +342,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dash-container">
+                <div className="dash-container d-">
                     <div className="side-bar">
                         <div className="sidebar-contents">
                             <div className="content">

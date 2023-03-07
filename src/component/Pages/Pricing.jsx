@@ -9,7 +9,8 @@ const Pricing = () => {
     <>
     <nav
         className="navbar navbar-expand-lg text-dark py-3 fixed-top"
-        style={{ backgroundColor: "#fffdf4" }} >
+        style={{ backgroundColor: "#FCFBFB" }}
+      >
         <div className="container">
           <Link to="*" id="nav_logo" className="navbar-brand">
             <img src="image/logo.png" alt="Logo" title="Logo" />
@@ -42,18 +43,19 @@ const Pricing = () => {
                   Home
                 </Link>
               </li>
+             
               <li className="nav-item">
                 <Link to="/about" className="nav-link">
                  About
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
+                <Link to="/dashboard" className="nav-link">
                   How it works
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="pricing.html" className="nav-link">
+                <Link to="/pricing" className="nav-link">
                   Pricing
                 </Link>
               </li>
@@ -74,11 +76,12 @@ const Pricing = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/privacy" className="dropdown-item">
-                     Privacy</Link>
+                    <Link to="/faq" className="dropdown-item">
+                     Privacy
+                     </Link>
                   </li>
                   <li>
-                    <Link to="contactus" className="dropdown-item">
+                    <Link to="/contactus" className="dropdown-item">
                       Contact Us
                     </Link>
                   </li>
@@ -86,7 +89,7 @@ const Pricing = () => {
               </li>
             </ul>
 
-            <ul className="navbar-nav d-none d-sm-none d-md-flex ms-auto px-3">
+            <ul className="navbar-nav d-flex d-sm-flex d-md-flex ms-auto px-3">
               <li className="nav-item px-2">
                 <Link to="/signin" className="nav-link">
                   Login
@@ -99,6 +102,7 @@ const Pricing = () => {
                   style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
                    boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)",
                     borderRadius:"4px"}}
+
                 >
                   Sign Up
                 </Link>

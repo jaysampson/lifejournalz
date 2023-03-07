@@ -76,7 +76,7 @@ const About = () => {
                      Privacy</Link>
                   </li>
                   <li>
-                    <Link to="/conactus" className="dropdown-item">
+                    <Link to="/contactus" className="dropdown-item">
                       Contact Us
                     </Link>
                   </li>
@@ -84,7 +84,7 @@ const About = () => {
               </li>
             </ul>
 
-            <ul className="navbar-nav d-none d-sm-none d-md-flex ms-auto px-3">
+            <ul className="navbar-nav d-flex d-sm-flex  d-md-flex ms-auto px-3">
               <li className="nav-item px-2">
                 <Link to="/signin" className="nav-link">
                   Login

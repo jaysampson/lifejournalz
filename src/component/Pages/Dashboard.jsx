@@ -1,8 +1,7 @@
 import React from 'react'
 import "../../styles/dash.scss";
-import bell from "../../Images/bell.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowUpFromBracket, faBriefcase, faClock, faFolderMinus, faHouse, faStar, faTag, faList, faGear, faArrowRightFromBracket, faHeart, faCalendar, faXmark, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faArrowUpFromBracket, faBriefcase, faClock, faFolderMinus, faHouse, faStar, faTag, faList, faGear, faArrowRightFromBracket, faHeart, faCalendar, faXmark, faCheck, faBell } from '@fortawesome/free-solid-svg-icons';
 import plus from "../../Images/plus.png";
 import { useState } from 'react';
 import { Home } from './DashPages/Home';
@@ -335,7 +334,7 @@ const Dashboard = () => {
 
                     <div className="nav-images">
                         <div className="notify">
-                            <img src={bell} alt="" />
+                            <FontAwesomeIcon icon={faBell} style={{ color: "#4B0B47", height: '20px' }} />
                             <div className="count">7</div>
                         </div>
                         <div className='prof-pic'>

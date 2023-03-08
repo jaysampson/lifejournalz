@@ -4,6 +4,18 @@
     box-sizing: 0px;
 }
 
+.pric-page {
+    padding: 8px 0px 0px 0px;
+
+    .pric {
+        h4 {
+            @media screen and (max-width:768px) {
+                text-align: center;
+            }
+        }
+    }
+}
+
 section {
     @media screen and (max-width:768px) {
         display: flex;
@@ -46,7 +58,8 @@ section {
                 align-items: center;
                 gap: 5px;
             }
-            p{
+
+            p {
                 color: black;
             }
 
@@ -93,9 +106,4 @@ section {
 
 li {
     text-align: center;
-}
-
-h4{
-    margin-bottom: -5px;
-    margin-top: 15px;
 }

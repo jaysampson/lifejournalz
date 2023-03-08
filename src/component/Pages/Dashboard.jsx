@@ -21,6 +21,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import addpic from "../../Images/addpic.png";
 import { InputGroup, FormControl, DropdownButton, Dropdown } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
     return (
@@ -195,6 +196,7 @@ const Dashboard = () => {
     const handleOptionSelect = (option) => {
         setSelectedOption(option);
     }
+
     return (
         <div>
             <>
@@ -342,7 +344,7 @@ const Dashboard = () => {
                         </div>
                     </div>
                 </div>
-                <div className="dash-container d-">
+                <div className="dash-container">
                     <div className="side-bar">
                         <div className="sidebar-contents">
                             <div className="content">
@@ -486,6 +488,7 @@ const Dashboard = () => {
                             </div>
                         </div>
                     </div>
+
                     <div className="dash-contents">
                         {activeComponent === 'Component1' ? <Home /> : null}
                         {activeComponent === 'Component2' ? <Categories /> : null}

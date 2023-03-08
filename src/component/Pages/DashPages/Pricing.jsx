@@ -51,7 +51,7 @@ export const Pricing = () => {
 
                   <ul className="deal">
                     <li> <img src={Check} alt="" />3GB of Storage</li>
-                    <li><img src={Check} alt="" />Limited usage (All features <br /> not fully supported).</li>
+                    <p style={{marginBottom:"0px"}}><img src={Check} alt="" />Limited usage (All features <br /> not fully supported).</p>
                     <li><img src={Check} alt="" />5GB of Storage </li>
                     <li><img src={Check} alt="" />Unlimited usage</li>
                     <li><img src={Check} alt="" />24/7 Customer support</li>

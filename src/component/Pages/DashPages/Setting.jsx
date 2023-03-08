@@ -8,10 +8,10 @@ export const Setting = () => {
     <div>
       <div className="setting-con">
         <div className="setting-body">
-          <h3>Settings</h3>
+          <h4>Settings</h4>
           <div className="setting-content">
             <main>
-              <h4>Premium Membership</h4>
+              <h5>Premium Membership</h5>
               <span>Upgrade for more features</span>
             </main>
           </div>
@@ -30,14 +30,14 @@ export const Setting = () => {
               <div className="con-main">
                 <div className="con">
                   <FontAwesomeIcon icon={faLock} />
-                  <span>Profile</span>
+                  <span>Password</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
               </div>
               <div className="con-main">
                 <div className="con">
                   <FontAwesomeIcon icon={faBell} />
-                  <span>Profile</span>
+                  <span>Notification</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
               </div>
@@ -49,14 +49,14 @@ export const Setting = () => {
               <div className="con-main">
                 <div className="con">
                   <FontAwesomeIcon icon={faStar} />
-                  <span>Profile</span>
+                  <span>Rate & Review</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
               </div>
               <div className="con-main">
                 <div className="con">
                   <FontAwesomeIcon icon={faQuestionCircle} />
-                  <span>Profile</span>
+                  <span>Help</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
               </div>

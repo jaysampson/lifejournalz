@@ -25,7 +25,7 @@ export const Pricing = () => {
                   <div className="price-header text-center">
                     <FontAwesomeIcon icon={faSmile} size={'2x'} style={{ color: "#61045F", borderRadius: "50%", marginTop: "20px" }} />
                     <h5 className="title">FREE</h5>
-                    <h6 id="sub-title" className=" pt-3 "> Easily save your journlaz and photos to your allocated storage.</h6>
+                    <h6 id="sub-title" className=" pt-3 "> Easily save your journalz and photos to your allocated storage.</h6>
                   </div>
 
                   <ul className="deal">

@@ -11,7 +11,6 @@ import { Favourite } from './DashPages/Favourite';
 import { Shared } from './DashPages/Shared';
 import { Recent } from './DashPages/Recent';
 import { Storage } from './DashPages/Storage';
-import { Terms } from './DashPages/Terms';
 import { Calender } from './DashPages/Calender';
 import { Setting } from './DashPages/Setting';
 import { Button, Modal } from 'react-bootstrap';
@@ -21,7 +20,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import addpic from "../../Images/addpic.png";
 import { InputGroup, FormControl, DropdownButton, Dropdown } from "react-bootstrap";
-import { useHistory } from 'react-router-dom';
+import { DTerms } from './DashPages/DTerms';
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
     return (
@@ -497,7 +496,7 @@ const Dashboard = () => {
                         {activeComponent === 'Component5' ? < Recent /> : null}
                         {activeComponent === 'Component6' ? < Storage /> : null}
                         {activeComponent === 'Component7' ? < Pricing /> : null}
-                        {activeComponent === 'Component8' ? < Terms /> : null}
+                        {activeComponent === 'Component8' ? <DTerms /> : null}
                         {activeComponent === 'Component9' ? < Calender /> : null}
                         {activeComponent === 'Component10' ? < Setting /> : null}
                     </div>

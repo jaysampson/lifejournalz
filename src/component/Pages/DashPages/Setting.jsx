@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../../styles/Setting.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faArrowRight, faArrowRightFromBracket, faBell, faLock, faPerson, faQuestionCircle, faStar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowRightFromBracket, faBell, faLock, faQuestionCircle, faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export const Setting = () => {
   return (

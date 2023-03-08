@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../../styles/Setting.scss";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faArrowRight, faArrowRightFromBracket, faBell, faLock, faPerson, faQuestionCircle, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faAngleRight, faArrowRight, faArrowRightFromBracket, faBell, faLock, faPerson, faQuestionCircle, faStar, faUser } from '@fortawesome/free-solid-svg-icons';
 
 export const Setting = () => {
   return (
@@ -22,7 +22,7 @@ export const Setting = () => {
               </h5>
               <div className="con-main">
                 <div className="con">
-                  <FontAwesomeIcon icon={faPerson}  />
+                  <FontAwesomeIcon icon={faUser} />
                   <span>Profile</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
@@ -36,7 +36,7 @@ export const Setting = () => {
               </div>
               <div className="con-main">
                 <div className="con">
-                  <FontAwesomeIcon icon={faBell}  />
+                  <FontAwesomeIcon icon={faBell} />
                   <span>Profile</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
@@ -55,7 +55,7 @@ export const Setting = () => {
               </div>
               <div className="con-main">
                 <div className="con">
-                  <FontAwesomeIcon icon={faQuestionCircle}/>
+                  <FontAwesomeIcon icon={faQuestionCircle} />
                   <span>Profile</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />

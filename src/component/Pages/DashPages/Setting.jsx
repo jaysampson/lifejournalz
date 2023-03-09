@@ -37,7 +37,7 @@ export const Setting = () => {
               <div className="con-main">
                 <div className="con">
                   <FontAwesomeIcon icon={faBell} />
-                  <span>Notification</span>
+                  <span>Notifications</span>
                 </div>
                 <FontAwesomeIcon icon={faAngleRight} />
               </div>

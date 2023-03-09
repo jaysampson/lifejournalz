@@ -48,9 +48,8 @@ export const Pricing = () => {
                   </div>
 
                   <ul className="deal">
-                    <li> <img src={Check} alt="" />3GB of Storage</li>
+                    <li> <img src={Check} alt="" />5GB of Storage</li>
                     <p style={{ marginBottom: "0px" }}><img src={Check} alt="" />Limited usage (All features <br /> not fully supported).</p>
-                    <li><img src={Check} alt="" />5GB of Storage </li>
                     <li><img src={Check} alt="" />Unlimited usage</li>
                     <li><img src={Check} alt="" />24/7 Customer support</li>
                     <h4 id="money" className="">NGN289.00/mo</h4>

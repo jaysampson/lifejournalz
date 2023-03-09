@@ -48,7 +48,7 @@ section {
 
         .deal {
             margin-left: -30px;
-            margin-top: 20px;
+            margin-top: 10px;
             transition: all 0.3s ease 0s;
 
             li {
@@ -57,6 +57,11 @@ section {
                 display: flex;
                 align-items: center;
                 gap: 5px;
+            }
+
+            #money{
+                margin-top: 20px;
+                margin-bottom: 0px;
             }
 
             p {

@@ -9,30 +9,45 @@ import jwt_decode from "jwt-decode";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
-  const [Apassword, setAPassword] = useState("");
+  const [password, setAPassword] = useState("");
   const [Bpassword, setBPassword] = useState("");
-  const [name, setName] = useState("");
+  const [username, setName] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState({});
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (Apassword.length < 7 && Bpassword.length < 7) {
+    if (password.length < 7 && Bpassword.length < 7) {
       setErrorMessage("Password should have at least 7 characters");
-    } else if (Apassword !== Bpassword) {
+    } else if (password !== Bpassword) {
       setErrorMessage("Passwords do not match");
     } else {
-      console.log(Apassword, Bpassword, email, name);
+      console.log(password, email, username);
       setErrorMessage("");
+    }
+    try {
+      const response = await fetch("https://lifejournalzz.onrender.com/api/v1/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password }),
+      });
+      const jsonData = await response.json();
+      console.log(jsonData); // You can log the response from the server
       navigate('/dashboard');
+    } catch (error) {
+      console.error(error);
     }
   };
   const values = {
-    Apassword: Apassword,
+    password: password,
     Bpassword: Bpassword,
     email: email,
-    name: name,
+    username: username,
   };
   console.log(values);
+
+
 
   const navigate = useNavigate();
 
@@ -87,7 +102,7 @@ const SignUp = () => {
                 <input type="text"
                   required
                   placeholder='Peter Gray'
-                  value={name}
+                  value={username}
                   onChange={(e) => setName(e.target.value)}
                 />
                 <p>
@@ -105,7 +120,7 @@ const SignUp = () => {
                 <input type="password"
                   required
                   placeholder='********'
-                  value={Apassword}
+                  value={password}
                   onChange={(e) => setAPassword(e.target.value)}
                 />
                 <p>

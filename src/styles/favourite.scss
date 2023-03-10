@@ -31,7 +31,7 @@
         height: 400px;
         border-radius: 10px;
         border: 2px rgb(85, 0, 85) solid;
-        overflow-y: scroll;
+        overflow: auto;
 
         .fav-container {
             display: flex;

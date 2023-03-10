@@ -31,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+<<<<<<< HEAD
         <Route path="/" element={<LandingPage />} />
         <Route path="/about" element={<About />} />
         <Route path="/terms" element={<Terms />} />
@@ -49,6 +50,19 @@ function App() {
             </RequiredAuth>
           }
         />
+=======
+        <Route path='/' element={<LandingPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/terms' element={<Terms />} />
+        <Route path='/privacy' element={<PrivacyPolicy />} />
+        <Route path='/pricing' element={<Pricing />} />
+        <Route path='/contactus' element={<ContactUs />} />
+        <Route path='/sidebar' element={<Sidebar />} />
+        <Route path='/signin' element={<SignIn />} />
+        <Route path='/signup' element={<SignUp />} />
+        <Route path='/reset' element={<ResetPassword />} />
+        <Route path='/dashboard/*' element={<Dashboard />} />
+>>>>>>> 9d95a12e5c989b570f3a90261bbdc95dc3dfc14a
       </Routes>
     </div>
   );

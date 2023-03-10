@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import "../../styles/dash.scss";
-import bell from "../../Images/bell.png";
+// import bell from "../../Images/bell.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpFromBracket,
@@ -27,7 +27,7 @@ import { Favourite } from "./DashPages/Favourite";
 import { Shared } from "./DashPages/Shared";
 import { Recent } from "./DashPages/Recent";
 import { Storage } from "./DashPages/Storage";
-import { Terms } from "./DashPages/Terms";
+import { DTerms } from "./DashPages/DTerms";
 import { Calender } from "./DashPages/Calender";
 import { Setting } from "./DashPages/Setting";
 import { Button, Modal } from "react-bootstrap";
@@ -570,7 +570,7 @@ const Dashboard = () => {
 
           <div className="nav-images">
             <div className="notify">
-              <img src={bell} alt="" />
+              {/* <img src={bell} alt="" /> */}
               <div className="count">7</div>
             </div>
             <div className="prof-pic">
@@ -905,7 +905,7 @@ const Dashboard = () => {
             {activeComponent === "Component5" ? <Recent /> : null}
             {activeComponent === "Component6" ? <Storage /> : null}
             {activeComponent === "Component7" ? <Pricing /> : null}
-            {activeComponent === "Component8" ? <Terms /> : null}
+            {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}
             {activeComponent === "Component10" ? <Setting /> : null}
           </div>

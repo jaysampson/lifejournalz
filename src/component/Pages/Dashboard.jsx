@@ -43,7 +43,11 @@ import {
   Dropdown,
 } from "react-bootstrap";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { createJournal, getAllJournalsData, uploadImage } from "../../redux/journalSlice/journalFirebaseApi";
+import {
+  createJournal,
+  getAllJournalsData,
+  uploadImage,
+} from "../../redux/journalSlice/journalFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, storage } from "../../config/firebase";
 
@@ -224,10 +228,10 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("Event");
   const [selectedDate, setSelectedDate] = useState(null);
   const [text, setText] = useState("");
-  const [isFavourites, setIsFavourites] = useState(false)
-  const [file,setFile] = useState("")
-  const [uploaded, setuploaded] = useState("")
-  const [percentage, setPercentage] = useState(null)
+  const [isFavourites, setIsFavourites] = useState(false);
+  const [file, setFile] = useState("");
+  const [uploaded, setuploaded] = useState("");
+  const [percentage, setPercentage] = useState(null);
   const [selectedItem, setSelectedItem] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -245,14 +249,21 @@ const Dashboard = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log({ text, title, selectedDate, isFavourites, file:uploaded, userid: user.uid }, "submitdasboard");
-
-    createJournal({ text, title, selectedDate,isFavourites, file:uploaded, userid: user.uid }, dispatch);
+    createJournal(
+      {
+        text,
+        title,
+        selectedDate,
+        isFavourites,
+        file: uploaded,
+        userid: user.uid,
+      },
+      dispatch
+    );
   };
 
-  useEffect(()=>{
-
-     const uploadImage = () => {
+  useEffect(() => {
+    const uploadImage = () => {
       const name = new Date().getTime() + file.name;
       const storageRef = ref(storage, name);
 
@@ -263,7 +274,7 @@ const Dashboard = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          setPercentage(progress)
+          setPercentage(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -288,14 +299,11 @@ const Dashboard = () => {
       );
     };
     file && uploadImage();
-  },[file])
-  
-  useEffect(()=>{
-    getAllJournalsData(dispatch)
-  },[])
+  }, [file]);
 
-
-
+  useEffect(() => {
+    getAllJournalsData(dispatch);
+  }, []);
 
   return (
     <div>

@@ -39,6 +39,8 @@ export const createJournal = async (
     });
     console.log(docRef, "docRef");
     dispatch(createJournalInfoSuccess(docRef));
+    window.location.reload();
+
   } catch (error) {
     dispatch(createJournalInfoFail(error));
     console.log(error);

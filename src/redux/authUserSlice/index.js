@@ -4,14 +4,16 @@ export const authUserSlice = createSlice({
   name: "authUser",
   initialState: {
     usersInfo: {
-      usersInfoData:{},
+      usersInfoData: {},
       usersInfoIsLoading: false,
       usersInfoError: null,
       isLoggedIn: false,
     },
-    // getUsersInfo
-
-    // getUser: "",
+    getUsersInfo: {
+      getUsersInfoData: [],
+      getUsersInfoLoading: false,
+      getUsersInfoError: null,
+    },
   },
   reducers: {
     //login
@@ -21,7 +23,7 @@ export const authUserSlice = createSlice({
     authUserSuccess: (state, action) => {
       state.usersInfo.usersInfoIsLoading = false;
       state.usersInfo.usersInfoData = action.payload;
-      state.usersInfo.isLoggedIn =true
+      state.usersInfo.isLoggedIn = true;
       state.usersInfo.usersInfoError = null;
     },
     authUserFail: (state, action) => {
@@ -42,10 +44,19 @@ export const authUserSlice = createSlice({
       state.usersInfo.usersInfoError = action.payload;
       state.usersInfo.usersInfoIsLoading = false;
     },
-    // get user
-    // getUserDetails: (state, action) => {
-    //   state.getUser = action.payload;
-    // },
+    // get users
+    getUsersStart: (state) => {
+      state.getUsersInfo.getUsersInfoIsLoading = true;
+    },
+    getUsersSuccess: (state, action) => {
+      state.getUsersInfo.getUsersInfoIsLoading = false;
+      state.getUsersInfo.getUsersInfoData = action.payload;
+      state.getUsersInfo.getUsersInfoError = null;
+    },
+    getUsersFail: (state, action) => {
+      state.getUsersInfo.getUsersInfoError = action.payload;
+      state.getUsersInfo.getUsersInfoIsLoading = false;
+    },
   },
 });
 
@@ -56,6 +67,8 @@ export const {
   registerUserStart,
   registerUserSuccess,
   registerUserFail,
-  getUserDetails,
+  getUsersStart,
+  getUsersSuccess,
+  getUsersFail,
 } = authUserSlice.actions;
 export default authUserSlice.reducer;

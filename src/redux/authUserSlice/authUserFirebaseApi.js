@@ -2,7 +2,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 import { auth, db } from "../../config/firebase";
 import {
   authUserStart,
@@ -11,6 +11,9 @@ import {
   registerUserStart,
   registerUserSuccess,
   registerUserFail,
+  getUsersStart,
+  getUsersSuccess,
+  getUsersFail,
   //   getUserDetails,
 } from "./index";
 
@@ -23,7 +26,7 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
 
     console.log(res, "userAuth");
     dispatch(authUserSuccess(res));
-    // window.location.reload();
+    window.location.reload();
   } catch (error) {
     // dispatch(authUserFail(error));
     console.log(error);
@@ -31,7 +34,7 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
 };
 
 export const registerUser = async ({ email, password, displayName }, dispatch) => {
-  console.log(email, password, displayName, "createuser");
+  // console.log(email, password, displayName, "createuser");
   dispatch(registerUserStart());
   try {
     const result = await createUserWithEmailAndPassword(
@@ -44,10 +47,30 @@ export const registerUser = async ({ email, password, displayName }, dispatch) =
       displayName,
       timeStamp: serverTimestamp(),
     });
-    console.log(res, "register");
+    // console.log(res, "register");
     dispatch(registerUserSuccess(res));
+    window.location.reload();
   } catch (error) {
     dispatch(registerUserFail(error));
+    console.log(error);
+  }
+};
+
+
+export const getAllUserInfo = async (dispatch) => {
+  dispatch(getUsersStart());
+  const getUsersRef = collection(db, "users");
+  try {
+    const data = await getDocs(getUsersRef);
+    const filterData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    // console.log(filterData, "filterData")
+    dispatch(getUsersSuccess(filterData));
+
+  } catch (error) {
+    dispatch(getUsersFail(error));
     console.log(error);
   }
 };

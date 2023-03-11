@@ -16,26 +16,35 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import the styles
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllJournalsData } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
+import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
+import { auth } from "../../../config/firebase";
 
 export const Home = (props) => {
   const dispatch = useDispatch();
+  const authUser = auth.currentUser;
 
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("Event");
   const [selectedDate, setSelectedDate] = useState(null);
 
-  const { 
+  const {
+    getUsersInfo: { getUsersInfoData },
+  } = useSelector((state) => state.authUser);
+
+  const {
     getAllJournal: {
       getAllJournalData,
       getAllJournalLoading,
       getAllJournalError,
-    },} = useSelector((state) => state.journalInfo);
+    },
+  } = useSelector((state) => state.journalInfo);
+  
 
-    console.log(getAllJournalData, "getAllJournal")
+  // find a user details
+  const findUser = getUsersInfoData?.find((user) => user.id === authUser?.uid);
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -51,51 +60,12 @@ export const Home = (props) => {
       setTitle(event.target.value);
     }
   };
-  const [desc, setDesc] = useState("");
-  let Token = process.env.REACT_APP_TOKEN_ID;
-  let url = "https://lifejournalzz.onrender.com/api/v1/journal/create-journal";
-  let navigate = useNavigate();
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = {
-      title: title,
-      desc: desc,
-    };
-    console.log(data);
-    try {
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          Accept: "Application/json",
-          "content-type": "application/json",
-          Authorization: `Bearer ${Token}`,
-        },
-        body: JSON.stringify(data),
-      });
-      if (response.ok) {
-        navigate("/signin");
-      } else {
-        throw new Error("Failed to create journal");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const [posts, setPosts] = useState([]);
-  const fetchData = async () => {
-    const responses = await fetch(url);
-    const datares = await responses.json();
-    console.log(datares);
-    setPosts(datares);
-    console.log(posts);
-  };
 
   useEffect(() => {
-    fetchData();
+    // fetchData();
     getAllJournalsData(dispatch);
+    getAllUserInfo(dispatch);
   }, []);
-  
 
   // create a reference to the file input
   const fileInputRef = useRef(null);
@@ -127,9 +97,14 @@ export const Home = (props) => {
 
   return (
     <div>
-      <h1>
-        Hey David - <span>Welcome to your dashboard</span>
-      </h1>
+      {!findUser ? (
+        <h1>Loading...</h1>
+      ) : (
+        <h1>
+          Hey {findUser?.displayName} - <span>Welcome to your dashboard</span>
+        </h1>
+      )}
+
       <div className="contents">
         <div className="all">
           <div className="all-title">
@@ -153,46 +128,51 @@ export const Home = (props) => {
                 </div>
                 <div className="books">
                   <div className="books-list">
-                    {getAllJournalData.map((item) => {
-                      return (
-                        <>
-                          <div className="books-con" key={item.id}>
-                            <div
-                              style={{
-                                display: "flex",
-                                gap: "10px",
-                                alignItems: "center",
-                              }}
-                            >
-                              <img
-                                src={item.file}
-                                alt=""
-                                width="50"
-                                height="50"
-                              />
-                              <p>{item.title}</p>
-                            </div>
-                            <p>{item.text.replace(/<[^>]+>/g, '')}</p>
-                            <p
-                              style={{
-                                display: "flex",
-                                // gap: "30%",
-                                alignItems: "center",
-                              }}
-                            >
+                    {getAllJournalLoading ? (
+                      <h1>Loading...</h1>
+                    ) : getAllJournalError ? (
+                      <h1>Something went wrong</h1>
+                    ) : getAllJournalData.length <= 0 ? (
+                      <h1>You dont have any Journal, create one!</h1>
+                    ) : (
+                      <>
+                        {getAllJournalData.length > 0 && getAllJournalData.map((item) => {
+                          return (
+                            <>
+                              <div className="books-con" key={item.id}>
+                                <div
+                                  style={{
+                                    display: "flex",
+                                    gap: "10px",
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  <img
+                                    src={item.file}
+                                    alt=""
+                                    width="50"
+                                    height="50"
+                                  />
+                                  <p>{item.title}</p>
+                                </div>
+                                <p>{item.text.replace(/<[^>]+>/g, "")}</p>
+                                <p
+                                  style={{
+                                    display: "flex",
 
-                              { moment( item?.selectedDate?.seconds).format("MMM Do YY")}
-                              {/* 11/12/2022 */}
-                              {/* <FontAwesomeIcon
-                                icon={faEllipsisV}
-                                color={"gray"}
-                              />
-                              <input type="checkbox" style={{}} /> */}
-                            </p>
-                          </div>
-                        </>
-                      );
-                    })}
+                                    alignItems: "center",
+                                  }}
+                                >
+                                  {moment(item?.selectedDate?.seconds).format(
+                                    "MMM Do YY"
+                                  )}
+                                </p>
+                              </div>
+                            </>
+                          );
+                        })}
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -204,7 +184,7 @@ export const Home = (props) => {
           </Button>
         </div>
         <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
-          <form onSubmit={handleSubmit}>
+          <form>
             <Modal.Header closeButton>
               <Modal.Title>New Journal</Modal.Title>
             </Modal.Header>
@@ -261,8 +241,8 @@ export const Home = (props) => {
                       <h5 style={{ marginBottom: "10px" }}>Description234</h5>
                       <ReactQuill
                         ref={quillRef}
-                        value={desc}
-                        onChange={(e) => setDesc(e.target.value)}
+                        // value={desc}
+                        // onChange={(e) => setDesc(e.target.value)}
                         modules={{
                           toolbar: [
                             [{ header: [1, 2, false] }],

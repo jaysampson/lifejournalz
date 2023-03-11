@@ -1,34 +1,51 @@
-import { useEffect, useState, React } from 'react'
-import '../../styles/SignIn.scss'
+import { useEffect, useState, React } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import "../../styles/SignIn.scss";
 import Cancel from "../../Images/Cancel.png";
 import Or from "../../Images/Or.png";
-import { Link, useNavigate } from 'react-router-dom';
-import cloud from '../../cloud.png';
-import Logo from '../../Images/Logo.png';
+import { Link, useNavigate } from "react-router-dom";
+import cloud from "../../cloud.png";
+import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
-
+import { auth } from "../../config/firebase";
+import { authUsersLogin } from "../../redux/authUserSlice/authUserFirebaseApi";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [user, setUser] = useState({});
-  const [passwordType, setPasswordType] = useState(false)
+  const [passwordType, setPasswordType] = useState(false);
+  const {
+    usersInfo: {
+      usersInfoData,
+      usersInfoIsLoading,
+      usersInfoError,
+      isLoggedIn,
+    },
+  } = useSelector((state) => state.authUser);
+
+  console.log({usersInfoData,isLoggedIn}, "login");
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(password.email);
-    navigate('/dashboard');
-
+    authUsersLogin({ email, password }, dispatch);
+    if (usersInfoData) {
+      navigate("/dashboard");
+    } else {
+      return;
+    }
   };
-  const values = {
-    password: password,
-    email: email,
-  };
-  console.log(values);
-
-  const navigate = useNavigate();
+  // const values = {
+  //   password: password,
+  //   email: email,
+  // };
+  // console.log(values);
 
   function togglePassword() {
-    setPasswordType(!passwordType)
+    setPasswordType(!passwordType);
   }
   function handleCallbackResponse(response) {
     console.log("Encoded JWT ID token : " + response.credential);
@@ -36,7 +53,7 @@ const Login = () => {
     console.log(userObject);
     setUser(userObject);
     // document.getElementById("signInDiv").hidden = true;
-    navigate('/dashboard');
+    navigate("/dashboard");
   }
 
   // function handleSignout(event) {
@@ -44,72 +61,91 @@ const Login = () => {
   //   document.getElementById("signInDiv").hidden = false;
   // }
 
-  useEffect(() => {
-    /*global google*/
-    google.accounts.id.initialize({
-      client_id: process.env.REACT_APP_CLIENT_ID,
-      callback: handleCallbackResponse
-    });
+  // useEffect(() => {
+  //   /*global google*/
+  //   google.accounts.id.initialize({
+  //     client_id: process.env.REACT_APP_CLIENT_ID,
+  //     callback: handleCallbackResponse,
+  //   });
 
-    google.accounts.id.renderButton(
-      document.getElementById("signInDiv"),
-      { theme: "outline", size: "large" }
-    );
-    google.accounts.id.prompt();
-  }, []);
+  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
+  //     theme: "outline",
+  //     size: "large",
+  //   });
+  //   google.accounts.id.prompt();
+  // }, []);
   return (
     <>
       <div className="sigin" style={{ backgroundImage: `url(${cloud})` }}>
         <div className="container">
           <div className="logo">
             <img src={Logo} alt="" />
-            <p>Life<span>Journalz</span></p>
+            <p>
+              Life<span>Journalz</span>
+            </p>
           </div>
           <div className="sigin_con">
             <div className="signin_content">
               <div className="title">
                 <p>Sign In</p>
-                <Link to="/"><img src={Cancel} alt="X" /></Link>
+                <Link to="/">
+                  <img src={Cancel} alt="X" />
+                </Link>
               </div>
-              <form action="" method='POST' onSubmit={handleSubmit}>
+              <form action="" method="POST" onSubmit={handleSubmit}>
                 <p>
                   <label htmlFor="email">Email</label>
                 </p>
-                <input type="email"
+                <input
+                  type="email"
                   required
-                  placeholder='example@gmail.com'
+                  placeholder="example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
                 <p>
                   <label htmlFor="password">Password</label>
                 </p>
-                <input type={passwordType ? "text" : "password"}
+                <input
+                  type={passwordType ? "text" : "password"}
                   required
-                  placeholder='********'
+                  placeholder="********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <div className="check_box">
-                  <input type="checkbox" name="checkbox" onClick={togglePassword} id="checkbox" />
+                  <input
+                    type="checkbox"
+                    name="checkbox"
+                    onClick={togglePassword}
+                    id="checkbox"
+                  />
                   <label for="checkbox" className="checkbox">
                     Show Password
                   </label>
                 </div>
                 <div className="signin_button">
-                  <button type='submit'>Sign In</button>
+                  <button disabled={usersInfoIsLoading} type="submit">
+                    Sign In
+                  </button>
                 </div>
                 <img src={Or} alt="Or" />
-                <div id="signInDiv">
-                </div>
-                {Object.keys(user).length != 0 && navigate('/dashboard')}
+                <div id="signInDiv"></div>
+                {/* {Object.keys(user).length != 0 && navigate('/dashboard')} */}
                 <div className="options">
                   <div className="no_account">
-                    <p>Don't have an account? <Link to="/signup" className='link'><span>Sign Up</span></Link></p>
+                    <p>
+                      Don't have an account?{" "}
+                      <Link to="/signup" className="link">
+                        <span>Sign Up</span>
+                      </Link>
+                    </p>
                   </div>
                 </div>
                 <div className="forgot_p">
-                  <Link to='/reset' className='link'><p>Forgot Password?</p></Link>
+                  <Link to="/reset" className="link">
+                    <p>Forgot Password?</p>
+                  </Link>
                 </div>
               </form>
             </div>
@@ -117,7 +153,7 @@ const Login = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

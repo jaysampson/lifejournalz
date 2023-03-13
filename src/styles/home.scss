@@ -108,6 +108,7 @@
                     .select {
                         border: 1px gray solid;
                         height: 1.8rem;
+                        margin-bottom: 6px;
                         width: 5.6rem;
                         border-radius: 5px;
                     }
@@ -146,10 +147,16 @@
                         .books-con {
                             display: flex;
                             align-items: center;
-                            gap: 300px;
+                            justify-content: space-between;
                             margin: 0px 10px 0px 10px;
                             direction: ltr;
                             padding: 10px 5px 10px 5px;
+                            border-bottom: 1px solid #61045F;
+                            border-top: 1px solid #61045F;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
 
                             p {
                                 margin-bottom: 0rem !important;
@@ -158,6 +165,12 @@
 
                                 input {
                                     border-radius: 50%;
+                                }
+                            }
+
+                            .desc {
+                                @media screen and (max-width:425px) {
+                                    display: none;
                                 }
                             }
                         }

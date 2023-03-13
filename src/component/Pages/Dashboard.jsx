@@ -795,7 +795,7 @@ const Dashboard = () => {
                                 <p style={{ marginBottom: "10px" }}>
                                   (upload png,svg,gif)
                                 </p>
-                                <div
+                                {/* <div
                                   style={{
                                     display: "flex",
                                     justifyContent: "center",
@@ -810,17 +810,47 @@ const Dashboard = () => {
                                     color: "white",
                                   }}
                                 >
-                                  <input
-                                    type="file"
-                                    // style={{ display: "none" }}
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                  />
                                   Upload
                                   <FontAwesomeIcon
                                     icon={faArrowUpFromBracket}
                                   />
-                                </div>
+                                </div> */}
+                                <input
+                                  style={{
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    position: "relative",
+                                    gap: "10px",
+                                    borderRadius: "5px",
+                                    alignItems: "center",
+                                    padding: "5px 0px 5px 0px",
+                                    width: "fit-content",
+                                    background:
+                                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+                                    color: "white",
+                                    textAlign: "center"
+                                  }}
+                                  type="file"
+                                  onChange={(e) => setFile(e.target.files[0])}
+                                />
                               </div>
+                            </div>
+                            <div>
+                              <h5>Choose Category</h5>
+                              <select
+                                placeholder="Choose Category"
+                                style={{
+                                  width: "100%",
+                                  height: "35px",
+                                  border: "1px solid black",
+                                  borderRadius: "5px",
+                                  marginBottom: "15px"
+                                }}>
+                                <option value="allCategories">All Categories</option>
+                                <option value="Personal">Personal</option>
+                                <option value="Family">Family</option>
+                                <option value="Vacation">Vacation</option>
+                              </select>
                             </div>
                             <div>
                               <h5>Date</h5>

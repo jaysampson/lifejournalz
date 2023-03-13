@@ -248,7 +248,6 @@ const Dashboard = () => {
   console.log(user, "user");
   const handleSubmit = (e) => {
     e.preventDefault();
-
     createJournal(
       {
         text,

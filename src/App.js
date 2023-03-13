@@ -12,6 +12,7 @@ import Sidebar from "./component/Pages/Sidebar";
 import ContactUs from "./component/Pages/ContactUs";
 import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
+import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 
 function App() {
   //useSelector
@@ -22,7 +23,7 @@ function App() {
 
   const auth = localStorage.getItem("jwt");
 
-  const currentUser = auth; 
+  const currentUser = auth;
 
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/signin" />;
@@ -49,6 +50,7 @@ function App() {
             </RequiredAuth>
           }
         />
+        <Route path="/dashboard/:id" element={<SingleJournal />} />
       </Routes>
     </div>
   );

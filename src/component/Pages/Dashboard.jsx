@@ -220,7 +220,7 @@ const Dashboard = () => {
 
   const [title, setTitle] = useState("");
   const handleTitleChange = (event) => {
-    if (event.target.value.length <= 30) {
+    if (event.target.value.length <= 20) {
       setTitle(event.target.value);
     }
   };
@@ -374,7 +374,7 @@ const Dashboard = () => {
                   className="title-count"
                   style={{ float: "right", marginRight: "32%" }}
                 >
-                  {title.length}/30
+                  {title.length}/20
                 </div>
                 <div
                   className="headers"
@@ -723,7 +723,7 @@ const Dashboard = () => {
                         className="title-count"
                         style={{ float: "right", marginRight: "32%" }}
                       >
-                        {title.length}/30
+                        {title.length}/20
                       </div>
                       <div
                         className="headers"

@@ -21,6 +21,8 @@ import { getAllJournalsData } from "../../../redux/journalSlice/journalFirebaseA
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
+import { Link } from "react-router-dom";
+import giph from "../../../Images/giphy.gif";
 
 
 export const Home = (props) => {
@@ -48,7 +50,7 @@ export const Home = (props) => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  console.log(findUser,filterUserJournal, "3030")
+  console.log(findUser, filterUserJournal, "3030")
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -133,7 +135,15 @@ export const Home = (props) => {
                 <div className="books">
                   <div className="books-list">
                     {getAllJournalLoading ? (
-                      <h1>Loading...</h1>
+                      <img
+                        style={{
+                          width: "fit-content",
+                          height: "fit-content",
+                          position: "relative",
+                          bottom: "33%",
+                          left: "15%"
+                        }}
+                        src={giph} alt="" />
                     ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
                     ) : filterUserJournal.length <= 0 ? (
@@ -144,40 +154,55 @@ export const Home = (props) => {
                           filterUserJournal.map((item) => {
                             return (
                               <>
-                                <div className="books-con" key={item.id}>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      gap: "10px",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img
-                                      src={
-                                        item.file
-                                          ? item.file
-                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                      }
-                                      alt=""
-                                      width="50"
-                                      height="50"
-                                    />
-                                    <p>{item.title}</p>
-                                  </div>
-                                  <p>{item.text.replace(/<[^>]+>/g, "")}</p>
-                                  <p
-                                    style={{
-                                      display: "flex",
-
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    {/* {moment(item?.timeStamp).format(
+                                <Link
+                                  to={`/dashboard/${item.id}`}
+                                  style={{
+                                    textDecoration: "none"
+                                  }}>
+                                  <div className="books-con" key={item.id}>
+                                    <div
+                                      style={{
+                                        display: "flex",
+                                        gap: "10px",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      <img
+                                        style={{
+                                          borderRadius: "5px"
+                                        }}
+                                        src={
+                                          item.file
+                                            ? item.file
+                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                        }
+                                        alt=""
+                                        width="50"
+                                        height="50"
+                                      />
+                                      <p
+                                        style=
+                                        {{
+                                          display: "inline-block",
+                                          verticalAlign: "middle",
+                                          whiteSpace: "nowrap",
+                                        }}
+                                      >{item.title}</p>
+                                    </div>
+                                    <p>{item.text.replace(/<[^>]+>/g, "").slice(0, 30) + "..."}</p>
+                                    <p
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      {/* {moment(item?.timeStamp).format(
                                       "MMM Do"
                                     )} */}
-                                    {item?.timeStamp}
-                                  </p>
-                                </div>
+                                      {item?.timeStamp}
+                                    </p>
+                                  </div>
+                                </Link>
                               </>
                             );
                           })}

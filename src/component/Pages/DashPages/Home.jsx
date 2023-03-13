@@ -45,6 +45,10 @@ export const Home = (props) => {
 
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user.id === authUser?.uid);
+  const filterUserJournal = getAllJournalData.filter(
+    (d) => d.userid === authUser?.uid
+  );
+  console.log(findUser,filterUserJournal, "3030")
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -131,60 +135,52 @@ export const Home = (props) => {
                     {getAllJournalLoading ? (
                       <h1>Loading...</h1>
                     ) : getAllJournalError ? (
-                      <h1 style={{ textAlign: "center" }}>Something went wrong</h1>
-                    ) : getAllJournalData.length <= 0 ? (
+                      <h1>Something went wrong</h1>
+                    ) : filterUserJournal.length <= 0 ? (
                       <h1>You dont have any Journal, create one!</h1>
                     ) : (
                       <>
-                        {getAllJournalData.length > 0 && getAllJournalData.map((item) => {
-                          return (
-                            <>
-                              <div className="books-con" key={item.id}>
-                                <div
-                                  style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    justifyContent: "center",
-                                    gap: "10px"
-                                  }}
-                                >
-                                  <img
-                                    src={item.file}
-                                    alt=""
-                                    width="50"
-                                    height="50"
-                                  />
+                        {filterUserJournal.length > 0 &&
+                          filterUserJournal.map((item) => {
+                            return (
+                              <>
+                                <div className="books-con" key={item.id}>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      gap: "10px",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img
+                                      src={
+                                        item.file
+                                          ? item.file
+                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                      }
+                                      alt=""
+                                      width="50"
+                                      height="50"
+                                    />
+                                    <p>{item.title}</p>
+                                  </div>
+                                  <p>{item.text.replace(/<[^>]+>/g, "")}</p>
                                   <p
                                     style={{
-                                      whiteSpace: "nowrap",
-                                      display: "inline-block",
-                                      verticalAlign: "middle"
-                                    }}>
-                                    {item.title}
+                                      display: "flex",
+
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    {/* {moment(item?.timeStamp).format(
+                                      "MMM Do"
+                                    )} */}
+                                    {item?.timeStamp}
                                   </p>
                                 </div>
-                                <p
-                                  className="desc"
-                                  style={{
-                                    whiteSpace: "nowrap",
-                                    display: "inline-block",
-                                    verticalAlign: "middle",
-                                  }}>{item.text.replace(/<[^>]+>/g, "")}</p>
-                                <p
-                                  style={{
-                                    whiteSpace: "nowrap",
-                                    display: "inline-block",
-                                    verticalAlign: "middle"
-                                  }}
-                                >
-                                  {moment(item?.selectedDate?.seconds).format(
-                                    "Do ddd YYYY"
-                                  )}
-                                </p>
-                              </div>
-                            </>
-                          );
-                        })}
+                              </>
+                            );
+                          })}
                       </>
                     )}
                   </div>

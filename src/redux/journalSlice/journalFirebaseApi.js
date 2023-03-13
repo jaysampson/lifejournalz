@@ -11,6 +11,7 @@ import {
   getDoc,
   getDocs,
 } from "firebase/firestore";
+import moment, { updateLocale } from "moment";
 
 import { auth, db, storage } from "../../config/firebase";
 import {
@@ -36,6 +37,7 @@ export const createJournal = async (
       file,
       isFavourites,
       userid,
+      timeStamp: moment(serverTimestamp()).format("MMM Do YY"),
     });
     console.log(docRef, "docRef");
     dispatch(createJournalInfoSuccess(docRef));

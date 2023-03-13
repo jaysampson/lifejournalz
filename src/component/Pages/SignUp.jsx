@@ -19,21 +19,21 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [user, setUser] = useState({});
 
-   const {
-     usersInfo: {
-       usersInfoData,
-       usersInfoIsLoading,
-       usersInfoError,
-       isLoggedIn,
-     },
-   } = useSelector((state) => state.authUser);
+  const {
+    usersInfo: {
+      usersInfoData,
+      usersInfoIsLoading,
+      usersInfoError,
+      isLoggedIn,
+    },
+  } = useSelector((state) => state.authUser);
 
-   console.log({
-     usersInfoData,
-     usersInfoIsLoading,
-     usersInfoError,
-     isLoggedIn,
-   }, "register");
+  console.log({
+    usersInfoData,
+    usersInfoIsLoading,
+    usersInfoError,
+    isLoggedIn,
+  }, "register");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,6 +49,7 @@ const SignUp = () => {
     //   setErrorMessage("");
     //   navigate('/dashboard');
     // }
+    navigate('dashboard');
   };
   // const values = {
   //   Apassword: Apassword,

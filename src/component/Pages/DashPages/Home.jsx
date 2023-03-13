@@ -22,6 +22,7 @@ import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
 
+
 export const Home = (props) => {
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
@@ -41,7 +42,6 @@ export const Home = (props) => {
       getAllJournalError,
     },
   } = useSelector((state) => state.journalInfo);
-  
 
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user.id === authUser?.uid);
@@ -188,174 +188,7 @@ export const Home = (props) => {
               </div>
             </div>
           </div>
-          <Button onClick={handleModal}>
-            New
-            <img src={add} alt="" />
-          </Button>
         </div>
-        <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
-          <form>
-            <Modal.Header closeButton>
-              <Modal.Title>New Journal</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h5>Title</h5>
-              <input
-                className="journal-title"
-                type="text"
-                name=""
-                id=""
-                placeholder="Title of new journal"
-                style={{
-                  border: "1px solid gray",
-                  borderRadius: "5px",
-                  height: "40px",
-                }}
-                value={title}
-                onChange={handleTitleChange}
-              />
-              <div
-                className="title-count"
-                style={{
-                  float: "right",
-                  marginRight: "32%",
-                }}
-              >
-                {title.length}/30
-              </div>
-              <div
-                className="headers"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-around",
-                  marginTop: "50px",
-                  cursor: "pointer",
-                }}
-              >
-                <p
-                  className={activeTab === "Event" ? "active-tab" : ""}
-                  onClick={() => handleTabClick("Event")}
-                  style={{
-                    padding: "5px 30px 5px 40px",
-                    marginBottom: "10px",
-                  }}
-                >
-                  Event
-                </p>
-              </div>
-              <div>
-                {activeTab === "Event" && (
-                  <div>
-                    <div style={{ marginBottom: "10px" }}>
-                      <h5 style={{ marginBottom: "10px" }}>Description234</h5>
-                      <ReactQuill
-                        ref={quillRef}
-                        // value={desc}
-                        // onChange={(e) => setDesc(e.target.value)}
-                        modules={{
-                          toolbar: [
-                            [{ header: [1, 2, false] }],
-                            ["bold", "italic", "underline"],
-                            [{ color: [] }, { background: [] }],
-                            [{ align: [] }],
-                          ],
-                        }}
-                      />
-                    </div>
-                    <div style={{ marginBottom: "15px" }}>
-                      <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
-                      <div
-                        style={{
-                          height: "fit-content",
-                          width: "fit-content",
-                          padding: "5px",
-                          border: "1px gray solid",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          flexDirection: "column",
-                        }}
-                      >
-                        <img
-                          src={addpic}
-                          alt=""
-                          style={{ height: "33%", width: "33%" }}
-                        />
-                        <p style={{ marginBottom: "10px" }}>
-                          (upload png,svg,gif)
-                        </p>
-                        <button
-                          onClick={handleUploadClick}
-                          style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            gap: "10px",
-                            borderRadius: "5px",
-                            alignItems: "center",
-                            padding: "10px 5px 5px 10px",
-                            width: "100%",
-                            background:
-                              "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                            color: "white",
-                          }}
-                        >
-                          Upload <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                        </button>
-                        {/* create a hidden file input that is triggered when the upload button is clicked */}
-                        <input
-                          type="file"
-                          ref={fileInputRef}
-                          style={{ display: "none" }}
-                          onChange={handleFileSelect}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <h5>Date</h5>
-                      <DatePicker
-                        selected={selectedDate}
-                        onChange={(date) => setSelectedDate(date)}
-                        dateFormat="dd/MM/yyyy"
-                        placeholderText="Select Date Publish"
-                        className="my-datepicker"
-                      />
-                    </div>
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: "10px",
-                        marginTop: "10px",
-                      }}
-                    >
-                      <input type="checkbox" />
-                      <p style={{ marginBottom: "0px" }}>Add to favourites</p>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleModal}>
-                Close
-              </Button>
-              <Button
-                variant="primary"
-                type="submit"
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  gap: "10px",
-                }}
-              >
-                <FontAwesomeIcon icon={faCheck} />
-                Create Journal
-              </Button>
-            </Modal.Footer>
-          </form>
-        </Modal>
       </div>
     </div>
   );

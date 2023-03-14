@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-
+import { FaAngleRight } from 'react-icons/fa';
 
 
 const Pricing = () => {
@@ -161,7 +161,12 @@ const Pricing = () => {
               <li className='price_list'>Chat Support</li>
               <li className='price_list'>Email Support</li>
             </ul>
-            <button type="button" className="w-100 btn btn-lg text-white " style={{background:"linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 1px 2px rgba(16, 24, 40, 0.05)"}}>Get started</button>
+            <Link to="/signup"
+              className="btn btn-light mt-3 text-white px-5 py-2 w-100"
+              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
+            >
+              Get Started  <FaAngleRight size={20} />
+            </Link>
           </div>
         </div>
       </div>
@@ -178,7 +183,12 @@ const Pricing = () => {
               <li className='price_list'>5GB of Storage</li>
               <li className='price_list'>Priority chat and email help</li>
             </ul>
-            <button type="button" className="w-100 btn btn-lg text-white " style={{background:"linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 1px 2px rgba(16, 24, 40, 0.05)"}}>Get started</button>
+            <Link to="/signup"
+              className="btn btn-light mt-3 text-white px-5 py-2 w-100"
+              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
+            >
+              Get Started  <FaAngleRight size={20} />
+            </Link>
           </div>
         </div>
       </div>
@@ -199,7 +209,12 @@ const Pricing = () => {
               <li className='price_list'>10GB of Storage</li>
               <li className='price_list'>Priority chat and email help</li>
             </ul>
-            <button type="button" className="w-100 btn btn-lg text-white " style={{background:"linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 1px 2px rgba(16, 24, 40, 0.05)"}}>Get started</button>
+            <Link to="/signup"
+              className="btn btn-light mt-3 text-white px-5 py-2 w-100"
+              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
+            >
+              Get Started  <FaAngleRight size={20} />
+            </Link>
           </div>
         </div>
       </div>
@@ -217,7 +232,12 @@ const Pricing = () => {
               <li className='price_list'>Unlimited Storage of inidividual data</li>
               <li className='price_list'>24/7 customer support</li>
             </ul>
-            <button type="button" className="w-100 btn btn-lg text-white " style={{background:"linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 1px 2px rgba(16, 24, 40, 0.05)"}}>Get started</button>
+            <Link to="/signup"
+              className="btn btn-light mt-3 text-white px-5 py-2 w-100"
+              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
+            >
+              Get Started  <FaAngleRight size={20} />
+            </Link>
           </div>
         </div>
       </div>

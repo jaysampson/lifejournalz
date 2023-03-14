@@ -136,7 +136,7 @@ const LandingPage = () => {
                 
                 }}
                 data-bs-toggle="modal"
-                data-bs-target="#enroll">
+                data-bs-target="#hiworks">
                 Get Started
                 <FaAngleRight size={20} />
               </button>
@@ -170,7 +170,7 @@ const LandingPage = () => {
                Your journal together with your uploaded photo (optional) will be saved on the cloud and you can 
                 access it whenever on any device by login into your account.
               </p>
-              <Link to="#"
+              <Link to="/about"
                 className="btn btn-light mt-3 text-white px-5 py-2"
                 style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
               >
@@ -208,7 +208,7 @@ const LandingPage = () => {
             <p>
             Save all your special moments and memories on the go. 
             </p>
-            <Link to="#"
+            <Link to="/signup"
               className="btn btn-light mt-3 text-white px-5 py-2"
               style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}>
               Get Started  <FaAngleRight size={20} />
@@ -241,7 +241,7 @@ const LandingPage = () => {
             <p>
             We guarantee that your data is encrypted, fully secured and not shared with any third party.
             </p>
-            <Link to="#"
+            <Link to="/signup"
               className="btn btn-light mt-3 text-white px-5 py-2"
               style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
             >
@@ -257,7 +257,7 @@ const LandingPage = () => {
             With our robust cloud-based storage, you are guaranteed access to securely save 
             your special moments and keep your memories alive in your personal space. 
             </p>
-            <Link to="#"
+            <Link to="/signup"
               className="btn btn-light mt-3 text-white px-5 py-2"
               style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
             >

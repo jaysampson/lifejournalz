@@ -17,7 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import the styles
 import { useDispatch, useSelector } from "react-redux";
-import { getAllJournalsData } from "../../../redux/journalSlice/journalFirebaseApi";
+import { getAllJournalsData, getSingleJournalCollection } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
@@ -154,55 +154,71 @@ export const Home = (props) => {
                           filterUserJournal.map((item) => {
                             return (
                               <>
-                                <Link
+                                {/* <Link
                                   to={`/dashboard/${item.id}`}
                                   style={{
                                     textDecoration: "none"
-                                  }}>
-                                  <div className="books-con" key={item.id}>
-                                    <div
+                                  }}> */}
+                                <div className="books-con" key={item.id}>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      gap: "10px",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img
                                       style={{
-                                        display: "flex",
-                                        gap: "10px",
-                                        alignItems: "center",
+                                        borderRadius: "5px",
                                       }}
-                                    >
-                                      <img
-                                        style={{
-                                          borderRadius: "5px"
-                                        }}
-                                        src={
-                                          item.file
-                                            ? item.file
-                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                        }
-                                        alt=""
-                                        width="50"
-                                        height="50"
-                                      />
-                                      <p
-                                        style=
-                                        {{
-                                          display: "inline-block",
-                                          verticalAlign: "middle",
-                                          whiteSpace: "nowrap",
-                                        }}
-                                      >{item.title}</p>
-                                    </div>
-                                    <p>{item.text.replace(/<[^>]+>/g, "").slice(0, 30) + "..."}</p>
+                                      src={
+                                        item.file
+                                          ? item.file
+                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                      }
+                                      alt=""
+                                      width="50"
+                                      height="50"
+                                    />
                                     <p
                                       style={{
-                                        display: "flex",
-                                        alignItems: "center",
+                                        display: "inline-block",
+                                        verticalAlign: "middle",
+                                        whiteSpace: "nowrap",
                                       }}
                                     >
-                                      {/* {moment(item?.timeStamp).format(
-                                      "MMM Do"
-                                    )} */}
-                                      {item?.timeStamp}
+                                      {item.title}
                                     </p>
                                   </div>
-                                </Link>
+                                  <p>
+                                    {item.text
+                                      .replace(/<[^>]+>/g, "")
+                                      .slice(0, 30) + "..."}
+                                  </p>
+                                  <p
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    {/* {moment(item?.timeStamp).format(
+                                      "MMM Do"
+                                    )} */}
+                                    {item?.timeStamp}
+                                  </p>
+                                  <Link to={`/dashboard/${item.id}`}>
+                                    <Button
+                                      onClick={() =>
+                                        getSingleJournalCollection(
+                                          item.id,
+                                          dispatch
+                                        )
+                                      }
+                                    >
+                                      View
+                                    </Button>
+                                  </Link>
+                                </div>
                               </>
                             );
                           })}

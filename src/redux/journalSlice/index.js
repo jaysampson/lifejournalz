@@ -13,6 +13,11 @@ export const journalSlice = createSlice({
       getAllJournalLoading: false,
       getAllJournalError: null,
     },
+    getSingleJournal: {
+      getSingleJournalData: {},
+      getSingleJournalLoading: false,
+      getSingleJournalError: null,
+    },
   },
   reducers: {
     //created journal
@@ -41,6 +46,19 @@ export const journalSlice = createSlice({
       state.getAllJournal.getAllJournalError = action.payload;
       state.getAllJournal.getAllJournalLoading = false;
     },
+    //get sinlge journal
+    getSingleJournalStart: (state) => {
+      state.getSingleJournal.getSingleJournalLoading = true;
+    },
+    getSingleJournalSuccess: (state, action) => {
+      state.getSingleJournal.getSingleJournalLoading = false;
+      state.getSingleJournal.getSingleJournalData = action.payload;
+      state.getSingleJournal.getSingleJournalError = null;
+    },
+    getSingleJournalFail: (state, action) => {
+      state.getSingleJournal.getSingleJournalError = action.payload;
+      state.getSingleJournal.getSingleJournalLoading = false;
+    },
   },
 });
 
@@ -53,5 +71,10 @@ export const {
   getAllJournalStart,
   getAllJournalSuccess,
   getAllJournalFail,
+
+  //get single document
+  getSingleJournalStart,
+  getSingleJournalSuccess,
+  getSingleJournalFail,
 } = journalSlice.actions;
 export default journalSlice.reducer;

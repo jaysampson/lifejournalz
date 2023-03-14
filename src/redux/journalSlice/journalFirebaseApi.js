@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -22,6 +23,11 @@ import {
   getAllJournalStart,
   getAllJournalSuccess,
   getAllJournalFail,
+
+  //get single document
+  getSingleJournalStart,
+  getSingleJournalSuccess,
+  getSingleJournalFail,
 } from "./index";
 
 export const createJournal = async (
@@ -65,6 +71,20 @@ export const getAllJournalsData = async (dispatch) => {
       dispatch(getAllJournalFail(error))
     console.log(error);
   }
-
-  
 };
+
+export const getSingleJournalCollection = async ( id, dispatch)=>{
+  console.log(id, "0000")
+  dispatch(getSingleJournalStart())
+  const getSingleJournal =doc(db, "journalCol", id);
+  try {
+    const data = await getDoc(getSingleJournal);
+    const res = data.data()
+    dispatch(getSingleJournalSuccess(res));
+  } catch (error) {
+    dispatch(getAllJournalFail(error))
+    console.log(error)
+    
+  }
+
+}

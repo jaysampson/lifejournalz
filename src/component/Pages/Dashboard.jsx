@@ -536,7 +536,7 @@ const Dashboard = () => {
               placeholder="Search in categories"
               className="nav-search"
             />
-            <InputGroup className="input-search">
+            {/* <InputGroup className="input-search">
               <DropdownButton
                 variant="outline-secondary"
                 title={selectedOption}
@@ -565,7 +565,7 @@ const Dashboard = () => {
                 placeholder="Search in categories"
                 style={{ height: "25px" }}
               />
-            </InputGroup>
+            </InputGroup> */}
             <select className="cat" placeholder="All categories">
               <option value="">All Categories</option>
               <option value="">Personal</option>

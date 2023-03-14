@@ -47,11 +47,6 @@ const Terms = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  How it works
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/pricing" className="nav-link">
                   Pricing
                 </Link>

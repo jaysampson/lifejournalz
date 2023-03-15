@@ -50,7 +50,7 @@ export const Home = (props) => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  console.log(findUser, filterUserJournal, "3030")
+  console.log({findUser, filterUserJournal}, "3030")
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -165,57 +165,53 @@ export const Home = (props) => {
                                     )
                                   }
                                 > */}
-                                  <div className="books-con" key={item.id}>
-                                    <div
+                                <div className="books-con" key={item.id}>
+                                  <div
+                                    style={{
+                                      display: "flex",
+                                      gap: "10px",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    <img
                                       style={{
-                                        display: "flex",
-                                        gap: "10px",
-                                        alignItems: "center",
+                                        borderRadius: "5px",
                                       }}
-                                    >
-                                      <img
-                                        style={{
-                                          borderRadius: "5px",
-                                        }}
-                                        src={
-                                          item.file
-                                            ? item.file
-                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                        }
-                                        alt=""
-                                        width="50"
-                                        height="50"
-                                      />
-                                      <p
-                                        style={{
-                                          display: "inline-block",
-                                          verticalAlign: "middle",
-                                          whiteSpace: "nowrap",
-                                        }}
-                                      >
-                                        {item.title}
-                                      </p>
-                                    </div>
-                                    <p className="journal-text">
-                                      {item.text
-                                        .replace(/<[^>]+>/g, "")
-                                        .slice(0, 30) + "..."}
-                                    </p>
+                                      src={
+                                        item.file
+                                          ? item.file
+                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                      }
+                                      alt=""
+                                      width="50"
+                                      height="50"
+                                    />
                                     <p
-                                    className="journal-date"
                                       style={{
-                                        display: "flex",
-                                        alignItems: "center",
+                                        display: "inline-block",
+                                        verticalAlign: "middle",
+                                        whiteSpace: "nowrap",
                                       }}
                                     >
-                                      {/* {moment(item?.timeStamp).format(
-                                      "MMM Do"
-                                    )} */}
-                                      {item?.timeStamp}
+                                      {item.title}
                                     </p>
-                                    <Link to={`/dashboard/${item.id}`}>
+                                  </div>
+                                  <p className="journal-text">
+                                    {item.category}
+                                      
+                                  </p>
+                                  <p
+                                    className="journal-date"
+                                    style={{
+                                      display: "flex",
+                                      alignItems: "center",
+                                    }}
+                                  >
+                                    {item?.selectedDate}
+                                  </p>
+                                  <Link to={`/dashboard/${item.id}`}>
                                     <Button
-                                    style={{width:"80%"}}
+                                      style={{ width: "80px" }}
                                       onClick={() =>
                                         getSingleJournalCollection(
                                           item.id,
@@ -226,7 +222,18 @@ export const Home = (props) => {
                                       View
                                     </Button>
                                   </Link>
-                                  </div>
+                                  {/* <Button
+                                    style={{ width: "80px" }}
+                                    onClick={() =>
+                                      getSingleJournalCollection(
+                                        item.id,
+                                        dispatch
+                                      )
+                                    }
+                                  >
+                                  Delete
+                                  </Button> */}
+                                </div>
                               </>
                             );
                           })}

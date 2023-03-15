@@ -38,12 +38,7 @@ const Login = () => {
       return;
     }
   };
-  // const values = {
-  //   password: password,
-  //   email: email,
-  // };
-  // console.log(values);
-
+ 
   function togglePassword() {
     setPasswordType(!passwordType);
   }
@@ -56,24 +51,7 @@ const Login = () => {
     navigate("/dashboard");
   }
 
-  // function handleSignout(event) {
-  //   setUser({});
-  //   document.getElementById("signInDiv").hidden = false;
-  // }
-
-  // useEffect(() => {
-  //   /*global google*/
-  //   google.accounts.id.initialize({
-  //     client_id: process.env.REACT_APP_CLIENT_ID,
-  //     callback: handleCallbackResponse,
-  //   });
-
-  //   google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-  //     theme: "outline",
-  //     size: "large",
-  //   });
-  //   google.accounts.id.prompt();
-  // }, []);
+  
   return (
     <>
       <div className="sigin" style={{ backgroundImage: `url(${cloud})` }}>

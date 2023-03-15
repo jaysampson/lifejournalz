@@ -28,7 +28,7 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
     dispatch(authUserSuccess(res));
     window.location.reload();
   } catch (error) {
-    // dispatch(authUserFail(error));
+    dispatch(authUserFail(error));
     console.log(error);
   }
 };

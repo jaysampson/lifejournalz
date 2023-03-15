@@ -64,22 +64,16 @@ const LandingPage = () => {
                   Help
                 </Link>
                 <ul className="dropdown-menu">
-                  {/* <li>
+                  <li>
                     <Link to="/terms" className="dropdown-item">
                       Terms
                     </Link>
                   </li>
                   <li>
                     <Link to="/faq" className="dropdown-item">
-<<<<<<< HEAD
-                     Privacy
-                     </Link>
-                  </li> */}
-=======
                       Privacy
                     </Link>
                   </li>
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
                   <li>
                     <Link to="/contactus" className="dropdown-item">
                       Contact Us
@@ -117,13 +111,9 @@ const LandingPage = () => {
       <section
         className="bg-image d-flex text-dark p-5 p-lg-0 pt-lg-5 img-fluid align-items-center justify-content-start"
         style={{
-<<<<<<< HEAD
-          backgroundImage:"linear-gradient(90deg, #D9D9D9 15.25%, rgba(255, 162, 0, 0) 100%), url('/image/herobg.png')",
-=======
           backgroundImage:
             // "linear-gradient(94deg, rgba(237,209,209,0.9501925770308123) 5%, rgba(119,92,118,1) 50%);",
             "linear-gradient(90deg, #D9D9D9 15.25%, rgba(255, 162, 0, 0) 100%), url('/image/herobg.png')",
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
           height: "100vh",
           backgroundSize: "cover",
         }}
@@ -132,7 +122,7 @@ const LandingPage = () => {
           <div className="d-sm-flex align-items-center justify-content-between text-start">
             <div>
               <h6 className="hr-lines d-none d-md-block">
-               Memories, save them today!
+                Memories, save them today!
               </h6>
               <h3>
                 The most dependable and secure online backup services available
@@ -150,12 +140,8 @@ const LandingPage = () => {
                     "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
                 }}
                 data-bs-toggle="modal"
-<<<<<<< HEAD
-                data-bs-target="#hiworks">
-=======
                 data-bs-target="#enroll"
               >
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
                 Get Started
                 <FaAngleRight size={20} />
               </button>
@@ -180,17 +166,13 @@ const LandingPage = () => {
               <img src="/image/abou bk.png" className="img-fluid" alt="" />
             </div>
             <div className="col-md p-5">
-<<<<<<< HEAD
-              {/* <Link to="#"
-=======
               <Link
                 to="#"
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
                 className="btn btn-light mt-3 text-white"
                 style={{ backgroundColor: "#ecd4c6" }}
               >
                 About us
-              </Link> */}
+              </Link> 
               <h2 className="mt-4 fw-bold">What we do?</h2>
               <p className="mt-3">
                 Life Journalz allows you save all your special moments on the
@@ -200,12 +182,8 @@ const LandingPage = () => {
                 be saved on the cloud and you can access it whenever on any
                 device by login into your account.
               </p>
-<<<<<<< HEAD
-              <Link to="/about"
-=======
               <Link
                 to="#"
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
                 className="btn btn-light mt-3 text-white px-5 py-2"
                 style={{
                   background:
@@ -221,24 +199,6 @@ const LandingPage = () => {
         </div>
       </section>
       {/* <!-- about section end   --> */}
-<<<<<<< HEAD
-       <section id="features" className="" style={{backgroundColor: "#F5F5F5"}}>
-      <div className="container p-5">
-        <div id="hiworks" className="text-center">
-          <div id="hiworks_2" className="mt-3">
-            {/* <button
-              type="button"
-              className="btn btn btn-sm text-white"
-              style={{backgroundColor: "#ecd4c6",}}
-            >
-              How it works
-            </button> */}
-            <div className="mt-5">
-              <h2 className="text-start text-md-center">Why Life Journalz?</h2>
-              <p className="mt-4 text-start text-md-center">
-              You will be able to save unlimited written information together with the option of photo(s) - save,
-               download later and share with friends.
-=======
       <section
         id="features"
         className=""
@@ -409,205 +369,10 @@ const LandingPage = () => {
               <p className="">
                 Quickly get response from our Customer support via email at
                 hello@lifejournalz.com.{" "}
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
               </p>
             </div>
           </div>
         </div>
-<<<<<<< HEAD
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2>Save Your Special Events on The Cloud Storage</h2>
-            <p>
-            Save all your special moments and memories on the go. 
-            </p>
-            <Link to="/signup"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}>
-              Get Started  <FaAngleRight size={20} />
-            </Link>
-          </div>
-
-          <div id="works_image_1" className="d-none d-md-flex col-md col-xm-12 p-5">
-            <img src="/image/image 5.png" className="img-fluid" alt="" />
-            <img
-              id="cloud_1"
-              className="img-fluid"
-              src="/image/image 6.png"
-              alt=""
-            />
-          </div>
-        </div>
-
-        <div className="row align-items-center justify-content-between">
-          <div id="works_image1" className="col-md col-xm-12 p-5 d-none d-md-flex">
-            <img src="/image/image 8.png" className="img-fluid" alt="" />
-            <img
-              id="cloud1"
-              className="img-fluid"
-              src="/image/image 4.png"
-              alt=""
-            />
-          </div>
-          <div className="col-md p-5">
-            <h2>Protect your data with Cloud Security</h2>
-            <p>
-            We guarantee that your data is encrypted, fully secured and not shared with any third party.
-            </p>
-            <Link to="/signup"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
-            >
-              Get Started  <FaAngleRight size={20} />
-            </Link>
-          </div>
-        </div>
-
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2>All Solutions To your Storage Problems</h2>
-            <p>
-            With our robust cloud-based storage, you are guaranteed access to securely save 
-            your special moments and keep your memories alive in your personal space. 
-            </p>
-            <Link to="/signup"
-              className="btn btn-light mt-3 text-white px-5 py-2"
-              style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}}
-            >
-              Get Started  <FaAngleRight size={20} />
-            </Link>
-          </div>
-          <div id="works_image_2" className="col-md col-xm-12 p-5 d-none d-md-flex">
-            <img src="/image/image 1.png" className="img-fluid" alt="" />
-            <img
-              id="cloud_2"
-              className="img-fluid"
-              src="/image/image 7.png"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-    {/* <!-- how it works sec end --> */}
-
-
- {/* <!-- card sec --> */}
-    <section id="learn" className="text-sm-start col-xs-12 pt-5 pb-5" style={{backgroundColor: "#F9FAFB",}}>
-
-    <div className="container px-5 py-4">
-    <div className="row">
-      <div className="col-12 col-md-4">
-        <div className="h2 pb-3">
-        <FaPuzzlePiece size={30} />
-
-        </div>
-        <h5 className=" special_icons mt-3">Save, Secure and protect your special eventst</h5>
-            <p className="">All data is fully encrypted, therefore access to third parties is prohibited –
-             we do not share your personal data in any way whatsoever.</p>
-      </div>
-      <div className="col-12 col-md-4">
-        <div className="h2 pb-3">
-        <FaLock size={30} />
-        </div>
-        <h5 className=" special_icons mt-3">Secured & Safe Payments</h5>
-            <p className="">Expand your storage at any time using our secured payment gateway.</p>
-      </div>
-      <div className="col-12 col-md-4">
-        <div className="h2 pb-3">
-          <BsChatLeftFill size={30} />
-        </div>
-        <h5 className=" special_icons mt-3">24//7 Customer Support</h5>
-        <p className="">Quickly get response from our Customer support via email at hello@lifejournalz.com. </p>
-      </div>
-      
-    </div>
-  </div>
-  
-  {/* <!-- card sec ends --> */}
-      </section>
-
-
-    {/* <!-- Footer --> */}
-    <footer  className="text-start text-lg-start  text-muted">
-        <section className="">
-            <div className="container text-start text-md-start mt-5">
-                <div className="row mt-3">
-                    <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                        
-                        <p className="link mt-5">
-                        Access unlimited storage today! <br/> 
-                        Start writing, start journaling.
-                        </p>
-                    </div>
-
-                    <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 className="text-uppercase link_heading  mb-3">
-                            Company
-                        </h6>
-                        <p className="link">
-                          <Link to="#" className="text-reset">About</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Features</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Work</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Career</Link>
-                        </p>
-                    </div>
-
-                    <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                        <h6 className="text-uppercase link_heading mb-3 ">
-                            Help
-                        </h6>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Customer Support</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Subscription</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Terms and Conditions</Link>
-                        </p>
-                        <p className="link">
-                        <Link to="#" className="text-reset">Privacy Policy</Link>
-                        </p>
-                    </div>
-
-                    <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                        <h6 className="text-uppercase link_heading mb-4">Newsletter</h6>
-                        <div className="single-box">
-                            <div className="input-group mb-3">
-                                <input type="text" className="form-control w-25" placeholder="Enter your email address"
-                                    aria-label="Enter your Email ..." aria-describedby="basic-addon2"/>
-                                <div className="col-12">
-                        <Link to="#" className="btn btn-light w-100 mt-2 text-white px-5 py-2" 
-                style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}} >
-                          
-                        Sign Me Up..</Link>
-
-                                 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>  
-                <div className="text-start text-md-center p-4" style={{backgroundColor:"#F9FAFB", color:"#A38898"}} >
-            ©Copyright 2023
-            <Link to="#" className="text-reset fw-bold"> Allrights Reserved by LifeJournalz
-            </Link>
-        </div>  
-          </div>
-        </section>
-    </footer>
-
-
-
-
-=======
 
         {/* <!-- card sec ends --> */}
       </section>
@@ -813,7 +578,6 @@ const LandingPage = () => {
           </Link>
         </div>
       </footer>
->>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
     </>
   );
 };

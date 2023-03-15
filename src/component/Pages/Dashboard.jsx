@@ -45,6 +45,7 @@ import {
 } from "react-bootstrap";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import {
+  categoryJournalDoc,
   createJournal,
   getAllJournalsData,
   uploadImage,
@@ -232,6 +233,7 @@ const Dashboard = () => {
   const [isFavourites, setIsFavourites] = useState(false);
   const [file, setFile] = useState("");
   const [uploaded, setuploaded] = useState("");
+  const [categoryData, setCategoryData] = useState("");
   const [percentage, setPercentage] = useState(null);
   const [selectedItem, setSelectedItem] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -250,9 +252,14 @@ const Dashboard = () => {
       createJournalLoading,
       createJournalError,
     },
+    journalCategories: {
+      journalCategoriesData,
+      journalCategoriesLoading,
+      journalCategoriesError,
+    },
   } = useSelector((state) => state.journalInfo);
 
-
+// console.log(journalCategoriesData, "journalCategoriesData");
 
 
   const user = auth.currentUser;
@@ -267,6 +274,7 @@ const Dashboard = () => {
         isFavourites,
         file: uploaded,
         userid: user.uid,
+        category:categoryData
       },
       dispatch
     );
@@ -313,6 +321,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getAllJournalsData(dispatch);
+    categoryJournalDoc(dispatch)
   }, []);
 
   return (
@@ -394,7 +403,7 @@ const Dashboard = () => {
               placeholder="Search in categories"
               className="nav-search"
             /> */}
-            <InputGroup>
+            {/* <InputGroup>
               <DropdownButton
                 variant="outline-secondary"
                 title={selectedOption}
@@ -423,7 +432,7 @@ const Dashboard = () => {
                 placeholder="Search in categories"
                 style={{ height: "25px" }}
               />
-            </InputGroup>
+            </InputGroup> */}
             {/* <select className="cat" placeholder="All categories">
               <option value="">All Categories</option>
               <option value="">Personal</option>
@@ -703,13 +712,21 @@ const Dashboard = () => {
                                   borderRadius: "5px",
                                   marginBottom: "15px",
                                 }}
+                                onChange={(e) =>
+                                  setCategoryData(e.target.value)
+                                }
                               >
                                 <option value="allCategories">
-                                  All Categories
+                                  --Select A category--
                                 </option>
-                                <option value="Personal">Personal</option>
-                                <option value="Family">Family</option>
-                                <option value="Vacation">Vacation</option>
+                                {journalCategoriesData?.map((category) => (
+                                  <option
+                                    value={category.name}
+                                    key={category.id}
+                                  >
+                                    {category.name}
+                                  </option>
+                                ))}
                               </select>
                             </div>
                             <div>
@@ -764,8 +781,8 @@ const Dashboard = () => {
                         type="submit"
                         disabled={percentage !== null && percentage < 100}
                       >
-                        <FontAwesomeIcon icon={faCheck} />
-                        {createJournalLoading? "Loading.." :"Create Journal"}
+                        {/* <FontAwesomeIcon icon={faCheck} /> */}
+                        {createJournalLoading ? "Loading..." : "Create Journal"}
                       </Button>
                       {createJournalError && <h2>Something went wrong</h2>}
                     </Modal.Footer>

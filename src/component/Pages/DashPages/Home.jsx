@@ -50,7 +50,7 @@ export const Home = (props) => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  // console.log(findUser, filterUserJournal, "3030")
+  console.log({findUser, filterUserJournal}, "3030")
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -197,9 +197,8 @@ export const Home = (props) => {
                                     </p>
                                   </div>
                                   <p className="journal-text">
-                                    {item.text
-                                      .replace(/<[^>]+>/g, "")
-                                      .slice(0, 30) + "..."}
+                                    {item.category}
+                                      
                                   </p>
                                   <p
                                     className="journal-date"
@@ -208,10 +207,7 @@ export const Home = (props) => {
                                       alignItems: "center",
                                     }}
                                   >
-                                    {/* {moment(item?.timeStamp).format(
-                                      "MMM Do"
-                                    )} */}
-                                    {item?.timeStamp}
+                                    {item?.selectedDate}
                                   </p>
                                   <Link to={`/dashboard/${item.id}`}>
                                     <Button

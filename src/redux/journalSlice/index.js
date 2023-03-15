@@ -28,6 +28,11 @@ export const journalSlice = createSlice({
       updateJournalLoading: false,
       updateJournalError: null,
     },
+    journalCategories: {
+      journalCategoriesData: [],
+      journalCategoriesLoading: false,
+      journalCategoriesError: null,
+    },
   },
   reducers: {
     //created journal
@@ -95,6 +100,20 @@ export const journalSlice = createSlice({
       state.updateJournal.updateJournalError = action.payload;
       state.updateJournal.updateJournalLoading = false;
     },
+
+    // category journal
+    journalCategoriesStart: (state) => {
+      state.journalCategories.journalCategoriesLoading = true;
+    },
+    journalCategoriesSuccess: (state, action) => {
+      state.journalCategories.journalCategoriesLoading = false;
+      state.journalCategories.journalCategoriesData = action.payload;
+      state.journalCategories.journalCategoriesError = null;
+    },
+    journalCategoriesFail: (state, action) => {
+      state.journalCategories.journalCategoriesError = action.payload;
+      state.journalCategories.journalCategoriesLoading = false;
+    },
   },
 });
 
@@ -122,5 +141,9 @@ export const {
   updateJournalStart,
   updateJournalSuccess,
   updateJournalFail,
+  //category journal
+  journalCategoriesStart,
+  journalCategoriesSuccess,
+  journalCategoriesFail,
 } = journalSlice.actions;
 export default journalSlice.reducer;

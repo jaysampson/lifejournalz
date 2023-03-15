@@ -1,3 +1,4 @@
+import { async } from "@firebase/util";
 import {
   doc,
   serverTimestamp,
@@ -31,10 +32,14 @@ import {
   updateJournalStart,
   updateJournalSuccess,
   updateJournalFail,
+  //category journal
+  journalCategoriesStart,
+  journalCategoriesSuccess,
+  journalCategoriesFail,
 } from "./index";
 
 export const createJournal = async (
-  { text, title, selectedDate, isFavourites, file, userid },
+  { text, title, selectedDate, isFavourites, file, userid, category },
   dispatch
 ) => {
   dispatch(createJournalInfoStart());
@@ -42,11 +47,12 @@ export const createJournal = async (
     const docRef = await addDoc(collection(db, "journalCol"), {
       text,
       title,
-      selectedDate,
+      selectedDate: moment(selectedDate).format("MMM Do YY"),
       file,
       isFavourites,
       userid,
-      timeStamp: moment(serverTimestamp()).format("MMM Do YY"),
+      category,
+      timeStamp: serverTimestamp(),
     });
     console.log(docRef, "docRef");
     dispatch(createJournalInfoSuccess(docRef));
@@ -116,3 +122,23 @@ export const updateJournalDoc = async (id, dispatch) => {
     console.log(error);
   }
 };
+
+//category journal
+export const categoryJournalDoc = async (dispatch)=>{
+  dispatch(journalCategoriesStart());
+  const categoryJournalCol = collection(db, "categories");
+  try {
+     const data = await getDocs(categoryJournalCol);
+    const filterData = data.docs.map((doc) => ({
+      ...doc.data(),
+      id: doc.id,
+    }));
+    dispatch(journalCategoriesSuccess(filterData));
+    // console.log(filterData, "7777")
+  } catch (error) {
+    dispatch(journalCategoriesFail(error));
+    console.log(error)
+    
+  }
+
+}

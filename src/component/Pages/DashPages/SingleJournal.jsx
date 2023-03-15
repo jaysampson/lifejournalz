@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import "../../../styles/SingleJournal.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllJournalsData, getSingleJournalCollection } from '../../../redux/journalSlice/journalFirebaseApi';
 
@@ -35,6 +35,9 @@ const SingleJournal = () => {
     <div>
       <div className="singleJournal">
         <div className="singlejournal-con">
+          <Link to="/dashboard" className="backbutton">
+            <FontAwesomeIcon icon={faArrowLeft} className="back" />
+          </Link>
           <div className="header">
             <h2>{getSingleJournalData.title}</h2>
             {/* <span>item.text.replace/^+/g, "".slice(0, 30) + "...</span> */}
@@ -61,7 +64,6 @@ const SingleJournal = () => {
               </button>
             </div>
             <div className="journal-content" contenteditable="false">
-              <h2>post.title</h2>
               <span>post.text </span>
             </div>
           </div>

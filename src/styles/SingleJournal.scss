@@ -1,0 +1,88 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: 0px;
+}
+
+.singleJournal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .singlejournal-con {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-top: 50px;
+        gap: 50px;
+
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 10px;
+
+            h2 {
+                font-size: 40px;
+                color: rgb(58, 3, 58);
+            }
+
+            span {
+                color: gray;
+            }
+        }
+
+        .journal-con {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            // width: 100%;
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 5px;
+                border-radius: 5px;
+                background-color: rgba(221, 226, 228, 1);
+                position: relative;
+                left: 88%;
+                gap: 10px;
+            }
+
+            img {
+                width: 50%;
+                height: 50%;
+                border: 1px solid black;
+                border-radius: 5px;
+
+                @media screen and (max-width: 475px) {
+                    width: 80%;
+                }
+            }
+
+            .journal-content {
+                margin-top: 10px;
+                width: 80%;
+                height: 100%;
+                padding: 10px;
+                border-radius: 10px;
+                border: 1px sold purple;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+
+                span {
+                    color: gray;
+                }
+            }
+        }
+    }
+}

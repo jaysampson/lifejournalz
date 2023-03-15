@@ -2,7 +2,6 @@ import { useState, React } from 'react'
 import '../../styles/ResetPassword.scss'
 import Cancel from "../../Images/Cancel.png";
 import { Link } from 'react-router-dom';
-import brown from '../../brown.png';
 import cloud from '../../cloud.png';
 import Logo from '../../Images/Logo.png';
 

@@ -22,13 +22,13 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
   dispatch(authUserStart());
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
-    // localStorage.setItem("jwt", res.user.accessToken);
+    localStorage.setItem("jwt", res.user.accessToken);
 
     console.log(res, "userAuth");
-    // dispatch(authUserSuccess(res));
+    dispatch(authUserSuccess(res));
     window.location.reload();
   } catch (error) {
-    // dispatch(authUserFail(error));
+    dispatch(authUserFail(error));
     console.log(error);
   }
 };

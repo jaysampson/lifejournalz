@@ -244,9 +244,19 @@ const Dashboard = () => {
     setSelectedOption(option);
   };
 
-  const user = auth.currentUser;
+  const {
+      createJournal: {
+      createJournalData,
+      createJournalLoading,
+      createJournalError,
+    },
+  } = useSelector((state) => state.journalInfo);
 
-  console.log(user, "user");
+
+
+
+  const user = auth.currentUser;
+  // console.log(user, "user");
   const handleSubmit = (e) => {
     e.preventDefault();
     createJournal(
@@ -675,7 +685,7 @@ const Dashboard = () => {
                                     background:
                                       "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
                                     color: "white",
-                                    textAlign: "center"
+                                    textAlign: "center",
                                   }}
                                   type="file"
                                   onChange={(e) => setFile(e.target.files[0])}
@@ -691,9 +701,12 @@ const Dashboard = () => {
                                   height: "35px",
                                   border: "1px solid black",
                                   borderRadius: "5px",
-                                  marginBottom: "15px"
-                                }}>
-                                <option value="allCategories">All Categories</option>
+                                  marginBottom: "15px",
+                                }}
+                              >
+                                <option value="allCategories">
+                                  All Categories
+                                </option>
                                 <option value="Personal">Personal</option>
                                 <option value="Family">Family</option>
                                 <option value="Vacation">Vacation</option>
@@ -752,8 +765,9 @@ const Dashboard = () => {
                         disabled={percentage !== null && percentage < 100}
                       >
                         <FontAwesomeIcon icon={faCheck} />
-                        Create Journal
+                        {createJournalLoading? "Loading.." :"Create Journal"}
                       </Button>
+                      {createJournalError && <h2>Something went wrong</h2>}
                     </Modal.Footer>
                   </form>
                 </Modal>

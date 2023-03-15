@@ -18,6 +18,16 @@ export const journalSlice = createSlice({
       getSingleJournalLoading: false,
       getSingleJournalError: null,
     },
+    deleteJournal: {
+      deleteJournalData: {},
+      deleteJournalLoading: false,
+      deleteJournalError: null,
+    },
+    updateJournal: {
+      updateJournalData: {},
+      updateJournalLoading: false,
+      updateJournalError: null,
+    },
   },
   reducers: {
     //created journal
@@ -59,6 +69,32 @@ export const journalSlice = createSlice({
       state.getSingleJournal.getSingleJournalError = action.payload;
       state.getSingleJournal.getSingleJournalLoading = false;
     },
+    //delete journal
+    deleteJournalStart: (state) => {
+      state.deleteJournal.deleteJournalLoading = true;
+    },
+    deleteJournalSuccess: (state, action) => {
+      state.deleteJournal.deleteJournalLoading = false;
+      state.deleteJournal.deleteJournalData = action.payload;
+      state.deleteJournal.deleteJournalError = null;
+    },
+    deleteJournalFail: (state, action) => {
+      state.deleteJournal.deleteJournalError = action.payload;
+      state.deleteJournal.deleteJournalLoading = false;
+    },
+    //update journal
+    updateJournalStart: (state) => {
+      state.updateJournal.updateJournalLoading = true;
+    },
+    updateJournalSuccess: (state, action) => {
+      state.updateJournal.updateJournalLoading = false;
+      state.updateJournal.updateJournalData = action.payload;
+      state.updateJournal.updateJournalError = null;
+    },
+    updateJournalFail: (state, action) => {
+      state.updateJournal.updateJournalError = action.payload;
+      state.updateJournal.updateJournalLoading = false;
+    },
   },
 });
 
@@ -76,5 +112,15 @@ export const {
   getSingleJournalStart,
   getSingleJournalSuccess,
   getSingleJournalFail,
+
+  //delete journal
+  deleteJournalStart,
+  deleteJournalSuccess,
+  deleteJournalFail,
+
+  //update journal
+  updateJournalStart,
+  updateJournalSuccess,
+  updateJournalFail,
 } = journalSlice.actions;
 export default journalSlice.reducer;

@@ -4,7 +4,7 @@ import "../../../styles/SingleJournal.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllJournalsData, getSingleJournalCollection } from '../../../redux/journalSlice/journalFirebaseApi';
+import { deleteJournalDoc, getAllJournalsData, getSingleJournalCollection } from '../../../redux/journalSlice/journalFirebaseApi';
 
 
 const SingleJournal = () => {
@@ -43,9 +43,9 @@ const SingleJournal = () => {
                   .replace(/<[^>]+>/g, "")
                   .slice(0, 30) + "..."}
               </span> */}
+            {/* dangerouslySetInnerHTML{{ __html: getSingleJournalData?.text }} */}
           </div>
           <div className="journal-con">
-
             <img
               src={getSingleJournalData.file}
               alt={getSingleJournalData.title}
@@ -55,7 +55,7 @@ const SingleJournal = () => {
                 <FontAwesomeIcon icon={faPencil} />
                 <span>Edit Journal</span>
               </button>
-              <button>
+              <button onClick={() => deleteJournalDoc(id, dispatch)}>
                 <FontAwesomeIcon icon={faTrash} />
                 <span>Delete Journal</span>
               </button>

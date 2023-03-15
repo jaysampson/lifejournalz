@@ -16,12 +16,7 @@ import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 
 
 function App() {
-  //useSelector
-  // const userData = useSelector((state) => state.authUser);
-  // const dispatch = useDispatch();
-
-  // console.log(userData, "userdata")
-
+ 
   const auth = localStorage.getItem("jwt");
 
   const currentUser = auth;
@@ -53,7 +48,14 @@ function App() {
             </RequiredAuth>
           }
         />
-        <Route path="/dashboard/:id" element={<SingleJournal />} />
+        <Route
+          path="/dashboard/:id"
+          element={
+            <RequiredAuth>
+              <SingleJournal />
+            </RequiredAuth>
+          }
+        />
       </Routes>
     </div>
   );

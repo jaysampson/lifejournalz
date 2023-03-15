@@ -38,11 +38,9 @@ const SingleJournal = () => {
             <div className="header">
               <h2>{getSingleJournalData.title}</h2>
               {/* <span>item.text.replace/^+/g, "".slice(0, 30) + "...</span> */}
-              {/* <span>
-                {getSingleJournalData?.text
-                  .replace(/<[^>]+>/g, "")
-                  .slice(0, 30) + "..."}
-              </span> */}
+              <span>
+                {getSingleJournalData?.text}
+              </span>
             </div>
             <div className="journal-con">
               <button>

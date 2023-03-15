@@ -4,10 +4,11 @@ import "../../../styles/SingleJournal.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
 import { useDispatch, useSelector } from 'react-redux';
+import { getAllJournalsData, getSingleJournalCollection } from '../../../redux/journalSlice/journalFirebaseApi';
 
 
 const SingleJournal = () => {
-    const dipatch = useDispatch()
+    const dispatch = useDispatch()
     const { id } = useParams();
     console.log(id, "1111")
      const {
@@ -24,6 +25,11 @@ const SingleJournal = () => {
        getSingleJournalError, "singleJournal"
      );
 
+     useEffect(() => {
+       getSingleJournalCollection(id, dispatch);
+        getAllJournalsData(dispatch);
+     }, [id]);
+
 
     return (
       <div>
@@ -32,11 +38,11 @@ const SingleJournal = () => {
             <div className="header">
               <h2>{getSingleJournalData.title}</h2>
               {/* <span>item.text.replace/^+/g, "".slice(0, 30) + "...</span> */}
-              <span>
-                {getSingleJournalData.text
+              {/* <span>
+                {getSingleJournalData?.text
                   .replace(/<[^>]+>/g, "")
                   .slice(0, 30) + "..."}
-              </span>
+              </span> */}
             </div>
             <div className="journal-con">
               <button>

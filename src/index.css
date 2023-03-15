@@ -26,11 +26,18 @@ h3 {
     color: #2F002E;
 }
 
+<<<<<<< HEAD
+/* p {
+    color: green;
+} */
+h6{
+=======
 p {
     color: #775C76;
 }
 
 h6 {
+>>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
     color: #775C76;
 }
 
@@ -188,6 +195,10 @@ body::before {
     }
 }
 
+<<<<<<< HEAD
+
+
+=======
 /* .container_{
     position: relative;
     width: 60%;
@@ -338,6 +349,7 @@ body::before {
         font-size: 22px;
     }
 }
+>>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
 
 #learn {
     background-color: #FFFDF4;
@@ -410,6 +422,9 @@ footer {
     }
 }
 
+<<<<<<< HEAD
+/* .footer-link{
+=======
 @media (min-width: 768px) and (max-width: 991px) {
     .single-box {
         margin-bottom: 50px;
@@ -417,6 +432,7 @@ footer {
 }
 
 .footer-link {
+>>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095
     color: #AB988C;
     margin-left: 20px;
     text-decoration: none;
@@ -426,10 +442,111 @@ footer {
 .footer-link:hover {
     color: #1E130C;
     margin-left: 20px;
+} */
+
+.special_icons{
+    color: #6F0847;
+    font-weight: bold;
+}
+.text-reset{
+    text-decoration: none;  
+}
+
+ .link{
+    color: #7A4365;
+    font-size: 15px;
+    font-weight: 500;
+}
+ .link:hover{
+    color: #2F002E;
+    margin-left: 7px;
+}
+
+.link_heading{
+    color: #94A3B8;
+    font-weight: bold;
 }
 
 
+.bg-opacity{
+    position: relative;
+    background-color: #000;
+    height: 30rem;
+   
+}
 
+<<<<<<< HEAD
+.bg-opacity::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3;
+    background:url("/public/image/view\ life\ plan.jpg") no-repeat center center;
+    background-size: cover;
+}
+.bg-opacity_2{
+    position: relative;
+    background-color: #000;
+    height: 30rem;
+   
+}
+
+.bg-opacity_2::before{
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.2;
+    background:       url("/public/image/travel\ plan.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+.content{
+  /* position: relative; */
+  max-width: 90%;
+  height: 400px;
+  padding-top: 200px;
+  padding-left: 500px;
+
+  overflow: hidden;
+  
+}
+
+.container{
+    padding: 0 1em;
+    max-width: 60rem;
+    margin: 0 auto;
+    border: 2px 
+
+}
+
+.clear_price{
+    color: #280626;
+    font-weight: bold;
+    font-family: 'DM Sans';
+}
+
+.price_headers{
+    color: #6F0847;
+    font-family: 'DM Sans';
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.price_list{
+    color: #667085;
+    padding-top: 10px;
+}
+=======
 /* dashboard */
 .dashboard {
     display: flex;
@@ -458,3 +575,4 @@ footer {
     padding: 20px;
 }
 
+>>>>>>> 7aea23fb47ad695bc9c5acdbb590b35fa7f1a095

@@ -6,7 +6,7 @@ const ContactUs = () => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg text-dark py-3 fixed-top"
+        className="navbar navbar-expand-lg text-dark py-3"
         style={{ backgroundColor: "#FCFBFB" }}
       >
         <div className="container">
@@ -48,11 +48,6 @@ const ContactUs = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  How it works
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/pricing" className="nav-link">
                   Pricing
                 </Link>
@@ -68,7 +63,7 @@ const ContactUs = () => {
                   Help
                 </Link>
                 <ul className="dropdown-menu">
-                  <li>
+                  {/* <li>
                     <Link to="/terms" className="dropdown-item">
                       Terms
                     </Link>
@@ -77,7 +72,7 @@ const ContactUs = () => {
                     <Link to="/faq" className="dropdown-item">
                       Privacy
                     </Link>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to="/conactus" className="dropdown-item">
                       Contact Us
@@ -115,20 +110,22 @@ const ContactUs = () => {
 
 
       <section className=" p-5  text-center"
-        style={{ background: "linear-gradient(90deg, #9796F0 0%, #FBC7D4 100%)" }}>
-        <div class="px-4 py-5 my-5 text-center">
-          <h2 className="display-6 fw-bold">Have any enquires?</h2>
-          <h2>Let us assist you</h2>
+        style={{ background: "linear-gradient(90deg, #9796F0 0%, #FBC7D4 100%)", height:"20rem" }}>
+          <div className="container">
+        <div className="px-4 py-5 my-5 text-center align-items-center justify-content-center ">
+          <h2 className="display-6 fw-bold text-white">Have any enquires?</h2>
+          <h2 className="text-white">Let us assist you</h2>
           <div className="col-lg-6 mx-auto">
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center">
             </div>
           </div>
         </div>
+        </div>
       </section>
 
       {/* <!-- Forms start --> */}
       <section id="contact">
-        <div className="container-lg">
+        <div className="container">
           <div className="text-center pt-5">
             <p className="">Contact us</p>
             <h2>Get in touch</h2>
@@ -201,6 +198,7 @@ const ContactUs = () => {
       <div className="row justify-content-center">
         <div className="col-9">
         <h2 className="text-center mb-4">Frequently Asked Questions</h2>
+        <p className="text-center">All the information you require regarding the product and billing.</p>
       <div className="accordion accordion-flush" id="questions">
         <div className="accordion-item">
           <h2 className="accordion-header" id="flush-headingOne">
@@ -265,88 +263,81 @@ const ContactUs = () => {
     </div>
   </section>
 
-      {/* <!-- Footer --> */}
-      <footer className="text-center text-lg-start  text-muted">
-        <section className="">
-          <div className="container text-center text-md-start mt-5">
-            <div className="row mt-3">
-              <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <h6 className="text-uppercase fw-bold mb-4">
-                  <i className="fas fa-gem me-3 text-secondary"></i>LifeJournalz
-                </h6>
-                <p>
-                  Access unlimited storage today!
-                  Start writing, start journaling.
-                </p>
-              </div>
-
-              <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase text-muted  mb-4">
-                  Company
-                </h6>
-                <p>
-                  <Link to="#" className="text-reset">About</Link>
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Features</Link>
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Work</Link>
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Career</Link>
-                </p>
-              </div>
-
-              <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-                <h6 className="text-uppercase text-muted mb-4">
-                  Help
-                </h6>
-                <p>
-                  <Link to="#" className="text-reset">Customer Support</Link>
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Subscription</Link>
-
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Terms and Conditions</Link>
-
-                </p>
-                <p>
-                  <Link to="#" className="text-reset">Privacy Policy</Link>
-                </p>
-              </div>
-
-              <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-                <h6 className="text-uppercase text-muted mb-4">Newsletter</h6>
-                <div className="single-box">
-                  <div className="input-group mb-3">
-                    <input type="text" className="form-control" placeholder="Enter your email address"
-                      aria-label="Enter your Email ..." aria-describedby="basic-addon2" />
-                    <div className="col-12">
-                      <Link to="#" className="btn btn-light mt-2 text-white px-5 py-2"
-                        style={{ background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius: "4px" }} >
-
-                        Get Started</Link>
-
-
+       {/* <!-- Footer --> */}
+   <footer  className="text-start text-lg-start  text-muted" >
+        <section className="" style={{backgroundColor:"#F9FAFB"}}>
+            <div className="container text-start text-md-start mt-5">
+                <div className="row mt-3">
+                    <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        
+                        <p className="link mt-5">
+                        Access unlimited storage today! <br/> 
+                        Start writing, start journaling.
+                        </p>
                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+                    <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 className="text-uppercase link_heading  mb-3">
+                            Company
+                        </h6>
+                        <p className="link">
+                          <Link to="#" className="text-reset">About</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Features</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Work</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Career</Link>
+                        </p>
+                    </div>
+
+                    <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 className="text-uppercase link_heading mb-3 ">
+                            Help
+                        </h6>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Customer Support</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Subscription</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Terms and Conditions</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Privacy Policy</Link>
+                        </p>
+                    </div>
+
+                    <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 className="text-uppercase link_heading mb-4">Newsletter</h6>
+                        <div className="single-box">
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control w-25" placeholder="Enter your email address"
+                                    aria-label="Enter your Email ..." aria-describedby="basic-addon2"/>
+                                <div className="col-12">
+                        <Link to="#" className="btn btn-light w-100 mt-2 text-white px-5 py-2" 
+                style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}} >
+                          
+                        Sign Me Up..</Link>
+
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div className="text-start text-md-center p-4" style={{backgroundColor:"#F9FAFB", color:"#A38898"}} >
+            ©Copyright 2023
+            <Link to="#" className="text-reset fw-bold"> Allrights Reserved by LifeJournalz
+            </Link>
+        </div>  
           </div>
         </section>
-
-
-        <div className="text-center p-4" style={{ backgroundColor: "#F9FAFB", }} >
-          ©Copyright 2023
-          <Link to="#" className="text-reset fw-bold"> Allrights Reserved by LifeJournalz
-          </Link>
-        </div>
-
-      </footer>
+    </footer>
     </>
   )
 }

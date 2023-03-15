@@ -14,6 +14,7 @@ import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 
+
 function App() {
   //useSelector
   // const userData = useSelector((state) => state.authUser);
@@ -28,6 +29,8 @@ function App() {
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/signin" />;
   };
+
+  // console.log(currentUser, "currentUser");
 
   return (
     <div className="App">

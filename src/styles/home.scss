@@ -4,6 +4,14 @@
     box-sizing: 0px;
 }
 
+h1 {
+    span {
+        @media screen and (max-width:475px) {
+            display: none;
+        }
+    }
+}
+
 .contents {
     display: flex;
     justify-content: center;
@@ -250,5 +258,16 @@
             align-items: center;
             justify-content: center;
         }
+    }
+}
+
+.journal-text {
+    @media screen and (max-width:475px) {
+        display: none;
+    }
+}
+.journal-date {
+    @media screen and (max-width:475px) {
+        display: none;
     }
 }

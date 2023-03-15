@@ -107,7 +107,7 @@ export const Home = (props) => {
         <h1>Loading...</h1>
       ) : (
         <h1>
-          Hey {findUser?.displayName} - <span>Welcome to your dashboard</span>
+          Hey {findUser?.displayName} <span> - Welcome to your dashboard</span>
         </h1>
       )}
 
@@ -137,11 +137,10 @@ export const Home = (props) => {
                     {getAllJournalLoading ? (
                       <img
                         style={{
-                          width: "fit-content",
-                          height: "fit-content",
+                          width: "50%",
+                          height: "280px",
                           position: "relative",
-                          bottom: "33%",
-                          left: "15%"
+                          left:"20%"
                         }}
                         src={giph} alt="" />
                     ) : getAllJournalError ? (
@@ -158,56 +157,65 @@ export const Home = (props) => {
                                   to={`/dashboard/${item.id}`}
                                   style={{
                                     textDecoration: "none"
-                                  }}> */}
-                                <div className="books-con" key={item.id}>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      gap: "10px",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img
+                                  }}
+                                  onClick={() =>
+                                    getSingleJournalCollection(
+                                      item.id,
+                                      dispatch
+                                    )
+                                  }
+                                > */}
+                                  <div className="books-con" key={item.id}>
+                                    <div
                                       style={{
-                                        borderRadius: "5px",
-                                      }}
-                                      src={
-                                        item.file
-                                          ? item.file
-                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                      }
-                                      alt=""
-                                      width="50"
-                                      height="50"
-                                    />
-                                    <p
-                                      style={{
-                                        display: "inline-block",
-                                        verticalAlign: "middle",
-                                        whiteSpace: "nowrap",
+                                        display: "flex",
+                                        gap: "10px",
+                                        alignItems: "center",
                                       }}
                                     >
-                                      {item.title}
+                                      <img
+                                        style={{
+                                          borderRadius: "5px",
+                                        }}
+                                        src={
+                                          item.file
+                                            ? item.file
+                                            : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                        }
+                                        alt=""
+                                        width="50"
+                                        height="50"
+                                      />
+                                      <p
+                                        style={{
+                                          display: "inline-block",
+                                          verticalAlign: "middle",
+                                          whiteSpace: "nowrap",
+                                        }}
+                                      >
+                                        {item.title}
+                                      </p>
+                                    </div>
+                                    <p className="journal-text">
+                                      {item.text
+                                        .replace(/<[^>]+>/g, "")
+                                        .slice(0, 30) + "..."}
                                     </p>
-                                  </div>
-                                  <p>
-                                    {item.text
-                                      .replace(/<[^>]+>/g, "")
-                                      .slice(0, 30) + "..."}
-                                  </p>
-                                  <p
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    {/* {moment(item?.timeStamp).format(
+                                    <p
+                                    className="journal-date"
+                                      style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                      }}
+                                    >
+                                      {/* {moment(item?.timeStamp).format(
                                       "MMM Do"
                                     )} */}
-                                    {item?.timeStamp}
-                                  </p>
-                                  <Link to={`/dashboard/${item.id}`}>
+                                      {item?.timeStamp}
+                                    </p>
+                                    <Link to={`/dashboard/${item.id}`}>
                                     <Button
+                                    style={{width:"80%"}}
                                       onClick={() =>
                                         getSingleJournalCollection(
                                           item.id,
@@ -218,7 +226,7 @@ export const Home = (props) => {
                                       View
                                     </Button>
                                   </Link>
-                                </div>
+                                  </div>
                               </>
                             );
                           })}

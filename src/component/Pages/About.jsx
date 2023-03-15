@@ -5,8 +5,8 @@ const About = () => {
     return (
       <>
        <nav
-        className="navbar navbar-expand-lg text-dark py-3 fixed-top"
-        style={{ backgroundColor: "#fffdf4" }}
+        className="navbar navbar-expand-lg text-dark py-3"
+        style={{ backgroundColor: "#FCFBFB" }}
       >
         <div className="container">
           <Link to="*" id="nav_logo" className="navbar-brand">
@@ -40,14 +40,10 @@ const About = () => {
                   Home
                 </Link>
               </li>
+             
               <li className="nav-item">
                 <Link to="/about" className="nav-link">
                  About
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="#features" className="nav-link">
-                  How it works
                 </Link>
               </li>
               <li className="nav-item">
@@ -66,15 +62,16 @@ const About = () => {
                   Help
                 </Link>
                 <ul className="dropdown-menu">
-                  <li>
+                  {/* <li>
                     <Link to="/terms" className="dropdown-item">
                       Terms
                     </Link>
                   </li>
                   <li>
-                    <Link to="/privacy" className="dropdown-item">
-                     Privacy</Link>
-                  </li>
+                    <Link to="/faq" className="dropdown-item">
+                     Privacy
+                     </Link>
+                  </li> */}
                   <li>
                     <Link to="/contactus" className="dropdown-item">
                       Contact Us
@@ -84,7 +81,7 @@ const About = () => {
               </li>
             </ul>
 
-            <ul className="navbar-nav d-flex d-sm-flex  d-md-flex ms-auto px-3">
+            <ul className="navbar-nav d-flex d-sm-flex d-md-flex ms-auto px-3">
               <li className="nav-item px-2">
                 <Link to="/signin" className="nav-link">
                   Login
@@ -93,12 +90,11 @@ const About = () => {
               <li className="nav-item">
                 <Link
                   to="/signup"
-                  className="nav-link btn btn rounded px-4"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)",
-                    color: "white",
-                  }}
+                  className="nav-link btn btn text-white rounded px-4"
+                  style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+                   boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)",
+                    borderRadius:"4px"}}
+
                 >
                   Sign Up
                 </Link>
@@ -109,123 +105,191 @@ const About = () => {
       </nav> 
       {/* // <!-- navbar end  bg-dark text-white p-5 p-lg-0 pt-lg-5 text-center text-sm-start--> */}
 
-      <section id="learn" className="text-sm-start col-xs-12">
-        <div className="container p-5">
-          <div className="row align-items-center justify-content-between">
-            <div className="col-md">
-              <img src="/image/abou bk.png" className="img-fluid" alt="" />
-            </div>
-            <div className="col-md p-5">
-              <Link to="#"
-                className="btn btn-light mt-3"
-                style={{backgroundColor: "#ecd4c6"}}
-              >
-                About us
-              </Link>
-              <h2 className="mt-4 fw-bold">What we do?</h2>
-              <p className="mt-3">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <Link to="/signup"
-                className="btn btn-light mt-3 text-white px-5 py-2"
-                style={{background: "linear-gradient(90deg, #1e130c 0%, #9a8478 100%)"}}
-              >
-                Learn more <i className="bi bi-chevron-right"></i>
-              </Link>
+
+
+
+{/* hero section one */}
+<section
+        className="bg-opacity_2 d-flex text-white p-5 p-lg-0 pt-lg-5 align-items-center justify-content-center" >  
+        <div className="container">
+          <div className="d-sm-flex align-items-center justify-content-center ">
+            <div>
+              <h3 className='text-white'>We're LifeJournalz</h3>
+              <p className="lead mb-4">With our robust cloud-base storage, you are guaranteed acess to securely save your special moments and keep your memories alive in your
+            personal space. All data is fully encrypted, therefore access to third parties is prohibited - we do not share your personal data in anyway whatsoever</p>
             </div>
           </div>
         </div>
       </section>
-      {/* <!-- about section end   --> */}
+      {/* <!-- Hero section ends  --> */}
+      
 
-        {/* <!-- FAQ --> */}
-    <section
-      id="FAQ"
-      className="text-sm-start col-xs-12"
-      style={{backgroundColor: "#f4f1e9"}}
-    >
-      <div className="container p-5">
-        <div className="row align-items-center justify-content-between">
-          <div className="col-md p-5">
-            <h2 className="mt-4 fw-bold">Frequently Asked Questions</h2>
-            <p className="mt-3">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et d olore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-          <div className="col-md"></div>
-        </div>
-      </div>
-    </section>
-    
 
-    {/* <!-- footer --> */}
-    <footer className="position-relative text-start">
-      <div className="container">
-        <div className="row">
-          <div className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <div className="col-md-12 col-lg-6 mb-4 mb-md-0 text-center">
-              <img className="img-fluid" src="/image/logo.png" alt="" />
-              <Link to="#" className="navbar-brand" style={{color: "#1e130c"}}
-                >Life <span className="logo_text">Journalz</span>
-              </Link>
+{/* features */}
+      <section className="p-5" id="features">
+    <div className="container" style={{}} >
+      {/*  */}
+      <div  >
+      <div className="row text-center g-5"  >
+        <div className="col col-md-6 col-lg-4">
+          <div className="card shadow">
+            <div className="card-body text-start p-4" style={{position:"relative"}}>
+              <div className="" style= {{position:"absolute", top:"-20px", left:"-10px", width:"70px", height:"70px"}}>
+                <img  className="img-fluid" src="/image/111 1.png" alt="" />
+              </div>
+          
+              <h4 className="card-title mt-4 mb-0">Any Device, <br /> Anytime!</h4>
+              <p className="card-text mt-2 mb-3">
+               Whether you are using your Tablet, PC or Mobile phone, 
+               you canh have full access and enjoy the experience on the go
+              </p>
+             
             </div>
           </div>
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text-">Developer</h5>
-            <ul className="list-unstyled">
-              <li>
-                <Link to="#" className="text-reset">Documentation</Link>
-              </li>
-            </ul>
-          </div>
+        </div>
+        <div className="col col-md-6 col-lg-4">
+          <div className="card shadow ">
+            <div className="card-body text-start p-4"  style={{position:"relative"}} >
+              <div className=""  style= {{position:"absolute", top:"-20px", left:"-10px", width:"70px", height:"70px"}}>
+                <img  className="img-fluid" src="/image/icon2.png" alt="" />
+              </div>
 
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text-">Resources</h5>
-            <ul className="list-unstyled">
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">Lorem ipsum</Link></li>
-              <li><Link to="#" className="text-reset">FAQ</Link></li>
-            </ul>
-          </div>
-
-          <div id="footer_head" className="col-md-3 col-lg-3 mb-4 mb-md-0">
-            <h5 className="text">Company</h5>
-            <ul className="list-unstyled">
-              <li><Link to="#" className="text-reset">About</Link></li>
-              <li><Link to="#" className="text-reset">Privacy Policy</Link></li>
-              <li><Link to="#" className="text-reset">Terms and Conditions</Link></li>
-              <li><Link to="#" className="text-reset">Lorem Ipsum</Link></li>
-            </ul>
+              <h4 className="card-title mt-4 mb-0">Over a thousand <br /> users</h4>
+              <p className="card-text mt-2 mb-3">
+                Join thousands of users around the globe and start your journal today. 
+                Favourite your journal and share among your friends and family
+              </p>
+            </div>
           </div>
         </div>
-
-        <Link to="#" className="position-absolute bottom-0 end-0 p-5 footer-link">
-          <i className="bi bi-arrow-up-circle h1"></i>
-        </Link>
-      </div>
-      <div className="d-">
-        {/* <!-- <hr id="leg" className="" style="color: #ACADAE;  height: 3px; "> --> */}
-        <div>
-          <ul className="list-unstyled d-flex justify-content-center">
-            <p className="" style={{color: "#f4f1e9"}}>
-              &copy; 2023 | All Rights Reserved
-            </p>
-            <li><Link to="#" className="footer-link">Terms of Service</Link></li>
-            <li>
-              <Link to="#" className="footer-link">General Terms and Conditions</Link>
-            </li>
-            <li><Link to="#" className="footer-link">Privacy Policy</Link></li>
-            <li><Link to="#" className="footer-link">Cookie Policy</Link></li>
-          </ul>
+        <div className="col col-md-6 col-lg-4">
+          <div className="card shadow" >
+            <div className="card-body text-start p-4" style={{position:"relative"}}>
+              <div className=""  style= {{position:"absolute", top:"-20px", left:"-10px", width:"70px", height:"70px"}}>
+                <img className="img-fluid" src="/image/icon3.png" alt="" />
+              </div>
+              <h4 className="card-title mt-4 mb-0">Toggle on Dark <br /> mode</h4>
+              <p className="card-text mt-2 mb-3">
+               Choose your preferred mode, Whether you like to use dark mode and night or dark mode. Whatever your preference, easily toggle in between
+              </p>
+            </div>
+          </div>
+        </div>
+        {/* <!-- break --> */}
+        <div className="col col-md-6 col-lg-4">
+          <div className="card shadow" >
+            <div className="card-body text-start p-4 mt-3" style={{position:"relative"}} >
+              <div className=""  style= {{position:"absolute", top:"-20px", left:"-10px", width:"70px", height:"70px"}}>
+                <img className="img-fluid" src="/image/icon 4.png" alt="" />
+              </div>
+              <h4 className="card-title mt-4 mb-0">Search Journals</h4>
+              <p className="card-text mt-2 mb-3">
+               Life journal makes it easier for you to search your archives using dates or categories. Every journal is saved on a date you choose and whenever
+               you search for activities recorded on that date your records will be displayed without hassel
+              </p>
+             
+            </div>
+          </div>
+        </div>
+        <div className="col col-md-6 col-lg-4">
+          <div className="card shadow"  >
+            <div className="card-body text-start p-4 mt-3" style={{position:"relative"}}>
+              <div className="h"  style= {{position:"absolute", top:"-20px", left:"-10px", width:"70px", height:"70px"}}>
+                <img className="img-fluid" src="/image/icon 5African.png" alt="" />
+              </div>
+              <h4 className="card-title mt-4 mb-0">Share Journals</h4>
+              <p className="card-text mt-2 mb-3">
+               Easily Favourite your journal and share them  with your friends and families if you wish. You can share links to others who are also on life LifeJournalz for them to see
+              </p>
+            </div>
+          </div>
         </div>
       </div>
+      {/*  */}
+      </div>
+    </div>
+  </section>
+    
+
+      
+
+       
+    
+
+    {/* <!-- Footer --> */}
+    <footer  className="text-start text-lg-start  text-muted">
+        <section className="">
+            <div className="container text-start text-md-start mt-5">
+                <div className="row mt-3">
+                    <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        
+                        <p className="link mt-5">
+                        Access unlimited storage today! <br/> 
+                        Start writing, start journaling.
+                        </p>
+                    </div>
+
+                    <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 className="text-uppercase link_heading  mb-3">
+                            Company
+                        </h6>
+                        <p className="link">
+                          <Link to="#" className="text-reset">About</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Features</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Work</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Career</Link>
+                        </p>
+                    </div>
+
+                    <div className="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <h6 className="text-uppercase link_heading mb-3 ">
+                            Help
+                        </h6>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Customer Support</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Subscription</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Terms and Conditions</Link>
+                        </p>
+                        <p className="link">
+                        <Link to="#" className="text-reset">Privacy Policy</Link>
+                        </p>
+                    </div>
+
+                    <div className="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                        <h6 className="text-uppercase link_heading mb-4">Newsletter</h6>
+                        <div className="single-box">
+                            <div className="input-group mb-3">
+                                <input type="text" className="form-control w-25" placeholder="Enter your email address"
+                                    aria-label="Enter your Email ..." aria-describedby="basic-addon2"/>
+                                <div className="col-12">
+                        <Link to="#" className="btn btn-light w-100 mt-2 text-white px-5 py-2" 
+                style={{background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)", boxShadow:"0px 2.94px 40px rgba(40, 6, 38, 0.25)", borderRadius:"4px"}} >
+                          
+                        Sign Me Up..</Link>
+
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+                <div className="text-start text-md-center p-4" style={{backgroundColor:"#F9FAFB", color:"#A38898"}} >
+            ©Copyright 2023
+            <Link to="#" className="text-reset fw-bold"> Allrights Reserved by LifeJournalz
+            </Link>
+        </div>  
+          </div>
+        </section>
     </footer>
       </>
     

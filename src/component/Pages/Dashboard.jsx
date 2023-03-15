@@ -17,6 +17,7 @@ import {
   faCalendar,
   faXmark,
   faCheck,
+  faBell,
 } from "@fortawesome/free-solid-svg-icons";
 import plus from "../../Images/plus.png";
 import { useState } from "react";
@@ -338,7 +339,7 @@ const Dashboard = () => {
                 className="profile-con"
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
-                <div className="prof-pic"></div>
+                <div className="prof-pic">{/* <img src={} alt="" /> */}</div>
                 <div className="prof-det">
                   <span style={{ color: "black" }}>user.name</span>
                   <span style={{ color: "GrayText" }}>user.email</span>
@@ -350,7 +351,6 @@ const Dashboard = () => {
                 <img src={plus} alt="" /> <span>Create New Journal</span>
               </button>
             </Button>
-            
             <p>Menu</p>
             <Menu
               selectedItem={selectedItem}
@@ -379,12 +379,12 @@ const Dashboard = () => {
         )}
         <div className="dash-nav">
           <div className="search">
-            <input
+            {/* <input
               type="text"
-              placeholder="Search in categories 5677"
+              placeholder="Search in categories"
               className="nav-search"
-            />
-            {/* <InputGroup className="input-search">
+            /> */}
+            <InputGroup>
               <DropdownButton
                 variant="outline-secondary"
                 title={selectedOption}
@@ -413,19 +413,19 @@ const Dashboard = () => {
                 placeholder="Search in categories"
                 style={{ height: "25px" }}
               />
-            </InputGroup> */}
-            <select className="cat" placeholder="All categories">
+            </InputGroup>
+            {/* <select className="cat" placeholder="All categories">
               <option value="">All Categories</option>
               <option value="">Personal</option>
               <option value="">Family</option>
               <option value="">Category</option>
             </select>
-            {/* <button>Search</button> */}
+            <button>Search</button> */}
           </div>
 
           <div className="nav-images">
             <div className="notify">
-              {/* <img src={bell} alt="" /> */}
+              <FontAwesomeIcon icon={faBell} />
               <div className="count">7</div>
             </div>
             <div className="prof-pic">

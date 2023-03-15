@@ -49,11 +49,6 @@ const LandingPage = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/dashboard" className="nav-link">
-                  How it works
-                </Link>
-              </li>
-              <li className="nav-item">
                 <Link to="/pricing" className="nav-link">
                   Pricing
                 </Link>
@@ -127,7 +122,7 @@ const LandingPage = () => {
           <div className="d-sm-flex align-items-center justify-content-between text-start">
             <div>
               <h6 className="hr-lines d-none d-md-block">
-                Lorem ipsum dolor sit amet,
+                Memories, save them today!
               </h6>
               <h3>
                 The most dependable and secure online backup services available
@@ -177,7 +172,7 @@ const LandingPage = () => {
                 style={{ backgroundColor: "#ecd4c6" }}
               >
                 About us
-              </Link>
+              </Link> 
               <h2 className="mt-4 fw-bold">What we do?</h2>
               <p className="mt-3">
                 Life Journalz allows you save all your special moments on the

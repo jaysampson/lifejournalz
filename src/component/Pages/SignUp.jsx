@@ -49,7 +49,7 @@ const SignUp = () => {
     //   setErrorMessage("");
     //   navigate('/dashboard');
     // }
-    navigate('dashboard');
+    navigate('/signin');
   };
   // const values = {
   //   Apassword: Apassword,

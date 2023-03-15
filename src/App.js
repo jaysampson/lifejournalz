@@ -1,3 +1,15 @@
+// import SignIn from './component/Pages/SignIn';
+import './App.scss';
+// import SignUp from './component/Pages/SignUp';
+// import { Route, Routes } from "react-router-dom";
+// import ResetPassword from './component/Pages/ResetPassword';
+// import LandingPage from './component/Pages/LandingPage';
+// import Pricing from './component/Pages/Pricing';
+// import About from './component/Pages/About';
+// import Terms from './component/Pages/Terms';
+// import PrivacyPolicy from './component/PrivacyPolicy';
+// import Sidebar from './component/Pages/Sidebar';
+// import ContactUs from './component/Pages/ContactUs';
 import SignIn from "./component/Pages/SignIn";
 import "./App.scss";
 import SignUp from "./component/Pages/SignUp";

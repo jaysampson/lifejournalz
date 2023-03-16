@@ -7,7 +7,7 @@ import cloud from "../../cloud.png";
 import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import { registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
+import { loginWithGoogle, registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -28,36 +28,18 @@ const SignUp = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  console.log({
-    usersInfoData,
-    usersInfoIsLoading,
-    usersInfoError,
-    isLoggedIn,
-  }, "register");
+  // console.log({
+  //   usersInfoData,
+  //   usersInfoIsLoading,
+  //   usersInfoError,
+  //   isLoggedIn,
+  // }, "register");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser({ email, password, displayName }, dispatch);
-
-
-    // if (Apassword.length < 7 && Bpassword.length < 7) {
-    //   setErrorMessage("Password should have at least 7 characters");
-    // } else if (Apassword !== Bpassword) {
-    //   setErrorMessage("Passwords do not match");
-    // } else {
-    //   console.log(Apassword, Bpassword, email, name);
-    //   setErrorMessage("");
-    //   navigate('/dashboard');
-    // }
-    navigate('/signin');
   };
-  // const values = {
-  //   Apassword: Apassword,
-  //   Bpassword: Bpassword,
-  //   email: email,
-  //   name: name,
-  // };
-  // console.log(values);
+  
 
   const navigate = useNavigate();
 
@@ -153,15 +135,22 @@ const SignUp = () => {
                   <div className="error-message" style={{ color: 'red', display: 'block', marginTop: '-24px', marginBottom: '24px' }}>{errorMessage}</div>
                 )} */}
                 <div className="signup_button">
-                  <button onSubmit={handleSubmit}>Sign Up</button>
+                  <button onSubmit={handleSubmit}>
+                    {usersInfoIsLoading ? "Loading..." : "Sign Up"}
+                  </button>
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv"></div>
-                {
+                <div className="signup_button">
+                  <button onClick={() => loginWithGoogle(dispatch)}>
+                    Sign In With Google
+                  </button>
+                </div>
+                {/* {
                   Object.keys(user).length != 0 && navigate("/dashboard")
-                  // <button onClick={(e) => handleSignout(e)}>Signout</button>
+                  <button onClick={(e) => handleSignout(e)}>Signout</button>
                 }
-                {/* {user &&
+                {user &&
                   <div>
                     <img src={user.picture}></img>
                     <h3>{user.name}</h3>

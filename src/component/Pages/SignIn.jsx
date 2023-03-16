@@ -8,7 +8,7 @@ import cloud from "../../cloud.png";
 import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { auth } from "../../config/firebase";
-import { authUsersLogin } from "../../redux/authUserSlice/authUserFirebaseApi";
+import { authUsersLogin, loginWithGoogle } from "../../redux/authUserSlice/authUserFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
@@ -103,6 +103,12 @@ const Login = () => {
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv"></div>
+                <div className="signin_button">
+                  <button onClick={() => loginWithGoogle(dispatch)}>
+                    Sign In With Google
+                  </button>
+                </div>
+
                 {/* {Object.keys(user).length != 0 && navigate('/dashboard')} */}
                 <div className="options">
                   <div className="no_account">

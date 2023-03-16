@@ -51,7 +51,8 @@ export const Home = (props) => {
     (d) => d.userid === authUser?.uid
   );
   console.log(
-    { findUser, filterUserJournal, authUser, getUsersInfoData },
+    { findUser, filterUserJournal, getUsersInfoData },
+    // authUser.displayName,
     "3030"
   );
 
@@ -106,11 +107,12 @@ export const Home = (props) => {
 
   return (
     <div>
-      {!findUser ? (
+      {!authUser && !findUser ? (
         <h1>Loading...</h1>
       ) : (
         <h1>
-          Hey {findUser?.displayName} <span> - Welcome to your dashboard</span>
+          Hey {findUser?.displayName || authUser?.displayName}
+          <span> - Welcome to your dashboard</span>
         </h1>
       )}
 
@@ -143,9 +145,11 @@ export const Home = (props) => {
                           width: "50%",
                           height: "280px",
                           position: "relative",
-                          left:"20%"
+                          left: "20%",
                         }}
-                        src={giph} alt="" />
+                        src={giph}
+                        alt=""
+                      />
                     ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
                     ) : filterUserJournal.length <= 0 ? (
@@ -201,7 +205,6 @@ export const Home = (props) => {
                                   </div>
                                   <p className="journal-text">
                                     {item.category}
-                                      
                                   </p>
                                   <p
                                     className="journal-date"

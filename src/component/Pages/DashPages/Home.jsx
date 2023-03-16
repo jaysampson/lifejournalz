@@ -46,11 +46,14 @@ export const Home = (props) => {
   } = useSelector((state) => state.journalInfo);
 
   // find a user details
-  const findUser = getUsersInfoData?.find((user) => user.id === authUser?.uid);
+  const findUser = getUsersInfoData?.find((user) => user?.id === authUser?.uid);
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  console.log({findUser, filterUserJournal}, "3030")
+  console.log(
+    { findUser, filterUserJournal, authUser, getUsersInfoData },
+    "3030"
+  );
 
   const handleModal = () => {
     setShowModal(!showModal);

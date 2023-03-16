@@ -136,7 +136,7 @@ const Menu = ({
           setActiveComponent("Component3");
         }}
       />
-      <MenuItem
+      {/* <MenuItem
         icon={faArrowUpFromBracket}
         label="Shared"
         num="24"
@@ -164,7 +164,7 @@ const Menu = ({
           toggleMenu(5);
           setActiveComponent("Component6");
         }}
-      />
+      /> */}
       <MenuItem
         icon={faTag}
         label="Pricing"
@@ -398,12 +398,7 @@ const Dashboard = () => {
         )}
         <div className="dash-nav">
           <div className="search">
-            {/* <input
-              type="text"
-              placeholder="Search in categories"
-              className="nav-search"
-            /> */}
-            {/* <InputGroup>
+            <InputGroup className="input-group">
               <DropdownButton
                 variant="outline-secondary"
                 title={selectedOption}
@@ -432,14 +427,7 @@ const Dashboard = () => {
                 placeholder="Search in categories"
                 style={{ height: "25px" }}
               />
-            </InputGroup> */}
-            {/* <select className="cat" placeholder="All categories">
-              <option value="">All Categories</option>
-              <option value="">Personal</option>
-              <option value="">Family</option>
-              <option value="">Category</option>
-            </select>
-            <button>Search</button> */}
+            </InputGroup>
           </div>
 
           <div className="nav-images">
@@ -490,38 +478,44 @@ const Dashboard = () => {
                 </div>
 
                 <div
-                  className={selected === 3 ? "icon2" : "icon"}
+                  className="icon"
                   onClick={() => {
                     toggleMenu(3);
                     setActiveComponent("Component4");
                   }}
                 >
-                  <FontAwesomeIcon icon={faArrowUpFromBracket} />
-                  <span>Shared</span>
-                  <div className="num">24</div>
+                  <FontAwesomeIcon
+                    icon={faArrowUpFromBracket}
+                    style={{ color: "gray" }}
+                  />
+                  <span style={{ color: "gray" }}>Shared</span>
+                  {/* <div className="num">24</div> */}
                 </div>
 
                 <div
-                  className={selected === 4 ? "icon2" : "icon"}
+                  className="icon"
                   onClick={() => {
                     toggleMenu(4);
                     setActiveComponent("Component5");
                   }}
                 >
-                  <FontAwesomeIcon icon={faClock} />
-                  <span>Recently added</span>
-                  <div className="num-2">59</div>
+                  <FontAwesomeIcon icon={faClock} style={{ color: "gray" }} />
+                  <span style={{ color: "gray" }}>Recently added</span>
+                  {/* <div className="num-2">59</div> */}
                 </div>
 
                 <div
-                  className={selected === 5 ? "icon2" : "icon"}
+                  className="icon"
                   onClick={() => {
                     toggleMenu(5);
                     setActiveComponent("Component6");
                   }}
                 >
-                  <FontAwesomeIcon icon={faFolderMinus} />
-                  <span>Storage</span>
+                  <FontAwesomeIcon
+                    icon={faFolderMinus}
+                    style={{ color: "gray" }}
+                  />
+                  <span style={{ color: "gray" }}>Storage</span>
                 </div>
 
                 <div
@@ -533,7 +527,7 @@ const Dashboard = () => {
                 >
                   <FontAwesomeIcon icon={faTag} />
                   <span>Pricing</span>
-                  <div className="new">new</div>
+                  {/* <div className="new">new</div> */}
                 </div>
                 <div
                   className={selected === 7 ? "icon2" : "icon"}
@@ -817,9 +811,9 @@ const Dashboard = () => {
             {activeComponent === "Component1" ? <Home /> : null}
             {activeComponent === "Component2" ? <Categories /> : null}
             {activeComponent === "Component3" ? <Favourite /> : null}
-            {activeComponent === "Component4" ? <Shared /> : null}
+            {/* {activeComponent === "Component4" ? <Shared /> : null}
             {activeComponent === "Component5" ? <Recent /> : null}
-            {activeComponent === "Component6" ? <Storage /> : null}
+            {activeComponent === "Component6" ? <Storage /> : null} */}
             {activeComponent === "Component7" ? <Pricing /> : null}
             {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}

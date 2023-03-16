@@ -42,6 +42,8 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
     console.log(res, "userAuth");
     if (res) {
     dispatch(authUserSuccess(res));
+      window.location.href = "/dashboard";
+
     }
   } catch (error) {
     dispatch(authUserFail(error));
@@ -53,7 +55,7 @@ export const loginWithGoogle =  async (dispatch)=>{
   try {
     const res = await signInWithPopup(auth, googleProvider);
     localStorage.setItem("jwt", res.user.accessToken);
-    // console.log(res, "googleLogin");
+    console.log(res, "googleLogin");
     if(res){
     dispatch(signInWithGoogleSuccess(res));
       window.location.href = "/dashboard";

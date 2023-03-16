@@ -34,7 +34,10 @@ export const authUserSlice = createSlice({
     },
     //Login with Google
     signInWithGoogleSuccess: (state, action) => {
-      state.signInWithGoogle = action.payload;
+         state.usersInfo.usersInfoIsLoading = false;
+         state.usersInfo.usersInfoData = action.payload;
+         state.usersInfo.isLoggedIn = true;
+         state.usersInfo.usersInfoError = null;
     },
 
     //register

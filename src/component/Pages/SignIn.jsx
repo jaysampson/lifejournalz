@@ -27,18 +27,13 @@ const Login = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  console.log({usersInfoData,isLoggedIn}, "login");
+  console.log({ usersInfoData, isLoggedIn, usersInfoError }, "login");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     authUsersLogin({ email, password }, dispatch);
-    if (usersInfoData) {
-      navigate("/dashboard");
-    } else {
-      return;
-    }
   };
- 
+
   function togglePassword() {
     setPasswordType(!passwordType);
   }
@@ -51,7 +46,6 @@ const Login = () => {
     navigate("/dashboard");
   }
 
-  
   return (
     <>
       <div className="sigin" style={{ backgroundImage: `url(${cloud})` }}>

@@ -52,6 +52,7 @@ import {
 } from "../../redux/journalSlice/journalFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, storage } from "../../config/firebase";
+import { userLogout } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
   return (
@@ -806,10 +807,10 @@ const Dashboard = () => {
                   <FontAwesomeIcon icon={faGear} />
                   <span>Settings</span>
                 </div>
-                <div className="icon">
+                <button className="icon" onClick={()=>userLogout(dispatch)}>
                   <FontAwesomeIcon icon={faArrowRightFromBracket} />
-                  <span>Logout</span>
-                </div>
+                  Logout
+                </button>
               </div>
             </div>
           </div>

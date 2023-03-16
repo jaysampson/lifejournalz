@@ -27,12 +27,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 
 
-function App() {
+const  App = () => {
  
   const auth = localStorage.getItem("jwt");
-
   const currentUser = auth;
-
   const RequiredAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/signin" />;
   };

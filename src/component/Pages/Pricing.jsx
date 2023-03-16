@@ -1,7 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import { FaAngleRight } from 'react-icons/fa';
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { FaAngleRight } from "react-icons/fa";
 
 const Pricing = () => {
   return (

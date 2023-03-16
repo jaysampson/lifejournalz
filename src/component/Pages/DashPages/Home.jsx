@@ -17,13 +17,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import the styles
 import { useDispatch, useSelector } from "react-redux";
-import { getAllJournalsData, getSingleJournalCollection } from "../../../redux/journalSlice/journalFirebaseApi";
+import {
+  getAllJournalsData,
+  getSingleJournalCollection,
+} from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
 import { Link } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
-
 
 export const Home = (props) => {
   const dispatch = useDispatch();

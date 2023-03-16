@@ -1,128 +1,127 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: 0px;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
 }
 
 .singleJournal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .singlejournal-con {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: 30px;
+    gap: 10px;
 
-    .singlejournal-con {
+    .backbutton {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .back {
+        padding: 1.2%;
+        border-radius: 50%;
+        background-color: #61045f;
+        color: white;
+        margin-left: 5%;
+        @media screen and (max-width: 475px) {
+          padding: 3%;
+        }
+      }
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+
+      h2 {
+        font-size: 40px;
+        // color: #61045F;
+      }
+
+      span {
+        color: gray;
+      }
+    }
+
+    .journal-con {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 50%;
+        margin-top: 20px;
+        margin-bottom: 10px;
+
+        @media screen and (max-width: 475px) {
+          width: 100%;
+        }
+
+        button {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 8px 16px 8px 12px;
+          border-radius: 10px;
+          background-color: rgba(221, 226, 228, 1);
+          gap: 10px;
+        }
+      }
+
+      img {
+        width: 30%;
+        border: 1px solid black;
+        border-radius: 5px;
+
+        @media screen and (max-width: 475px) {
+          width: 80%;
+        }
+      }
+
+      .journal-content {
+        margin-top: 10px;
+        width: 70%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid #64748b;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 100%;
-        margin-top: 30px;
         gap: 10px;
+        margin-bottom: 50px;
 
-        .backbutton {
+        @media screen and (max-width: 475px) {
+          width: 98%;
+        }
+
+        span {
+          color: #280626;
+          text-align: center;
+
+          @media screen and (max-width: 475px) {
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-
-            .back {
-                padding: 1.2%;
-                border-radius: 50%;
-                background-color: #61045F;
-                color: white;
-                margin-left: 5%;
-                @media screen and (max-width: 475px) {
-                    padding: 3%;
-                }
-            }
+          }
         }
-
-        .header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 10px;
-
-            h2 {
-                font-size: 40px;
-                // color: #61045F;
-            }
-
-            span {
-                color: gray;
-            }
-        }
-
-        .journal-con {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            .buttons {
-                display: flex;
-                align-items: center;
-                justify-content: space-around;
-                width: 50%;
-                margin-top: 20px;
-                margin-bottom: 10px;
-
-                @media screen and (max-width: 475px) {
-                    width: 100%;
-                }
-
-                button {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    padding: 8px 16px 8px 12px;
-                    border-radius: 10px;
-                    background-color: rgba(221, 226, 228, 1);
-                    gap: 10px;
-                }
-            }
-
-
-            img {
-                width: 30%;
-                border: 1px solid black;
-                border-radius: 5px;
-
-                @media screen and (max-width: 475px) {
-                    width: 80%;
-                }
-            }
-
-            .journal-content {
-                margin-top: 10px;
-                width: 70%;
-                height: 100%;
-                padding: 10px;
-                border-radius: 10px;
-                border: 2px solid #64748b;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                margin-bottom: 50px;
-
-
-                @media screen and (max-width: 475px) {
-                    width: 98%;
-                }
-
-                span {
-                    color: #280626;
-                    text-align: center;
-
-                    @media screen and (max-width: 475px) {
-                        width: 100%;
-                    }
-                }
-            }
-        }
+      }
     }
+  }
 }

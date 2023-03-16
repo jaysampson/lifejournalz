@@ -1,5 +1,5 @@
 // import SignIn from './component/Pages/SignIn';
-import './App.scss';
+import "./App.scss";
 // import SignUp from './component/Pages/SignUp';
 // import { Route, Routes } from "react-router-dom";
 // import ResetPassword from './component/Pages/ResetPassword';
@@ -26,9 +26,7 @@ import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 
-
-const  App = () => {
- 
+const App = () => {
   const auth = localStorage.getItem("jwt");
   const currentUser = auth;
   const RequiredAuth = ({ children }) => {
@@ -69,6 +67,6 @@ const  App = () => {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

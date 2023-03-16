@@ -172,7 +172,7 @@ const LandingPage = () => {
                 style={{ backgroundColor: "#ecd4c6" }}
               >
                 About us
-              </Link> 
+              </Link>
               <h2 className="mt-4 fw-bold">What we do?</h2>
               <p className="mt-3">
                 Life Journalz allows you save all your special moments on the

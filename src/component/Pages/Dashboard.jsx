@@ -59,7 +59,7 @@ const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
     <div className={isSelected ? "icon2" : "icon"} onClick={onClick}>
       <FontAwesomeIcon icon={icon} />
       <span>{label}</span>
-      {num && (
+      {/* {num && (
         <span
           style={{
             height: "20px",
@@ -92,7 +92,7 @@ const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
         >
           {update}
         </span>
-      )}
+      )} */}
     </div>
   );
 };
@@ -248,7 +248,7 @@ const Dashboard = () => {
   };
 
   const {
-      createJournal: {
+    createJournal: {
       createJournalData,
       createJournalLoading,
       createJournalError,
@@ -260,8 +260,7 @@ const Dashboard = () => {
     },
   } = useSelector((state) => state.journalInfo);
 
-// console.log(journalCategoriesData, "journalCategoriesData");
-
+  // console.log(journalCategoriesData, "journalCategoriesData");
 
   const user = auth.currentUser;
   // console.log(user, "user");
@@ -275,7 +274,7 @@ const Dashboard = () => {
         isFavourites,
         file: uploaded,
         userid: user.uid,
-        category:categoryData
+        category: categoryData,
       },
       dispatch
     );
@@ -322,7 +321,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     getAllJournalsData(dispatch);
-    categoryJournalDoc(dispatch)
+    categoryJournalDoc(dispatch);
   }, []);
 
   return (
@@ -807,7 +806,7 @@ const Dashboard = () => {
                   <FontAwesomeIcon icon={faGear} />
                   <span>Settings</span>
                 </div>
-                <button className="icon" onClick={()=>userLogout(dispatch)}>
+                <button className="icon" onClick={() => userLogout(dispatch)}>
                   <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   Logout
                 </button>

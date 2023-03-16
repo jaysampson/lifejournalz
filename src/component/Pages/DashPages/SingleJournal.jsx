@@ -1,16 +1,23 @@
-import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import "../../../styles/SingleJournal.scss"
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import "../../../styles/SingleJournal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { deleteJournalDoc, getAllJournalsData, getSingleJournalCollection } from '../../../redux/journalSlice/journalFirebaseApi';
-
+import {
+  faArrowLeft,
+  faPencil,
+  faTrash,
+} from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  deleteJournalDoc,
+  getAllJournalsData,
+  getSingleJournalCollection,
+} from "../../../redux/journalSlice/journalFirebaseApi";
 
 const SingleJournal = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { id } = useParams();
-  console.log(id, "1111")
+  console.log(id, "1111");
   const {
     getSingleJournal: {
       getSingleJournalData,
@@ -22,14 +29,14 @@ const SingleJournal = () => {
   console.log(
     getSingleJournalData,
     getSingleJournalLoading,
-    getSingleJournalError, "singleJournal"
+    getSingleJournalError,
+    "singleJournal"
   );
 
   useEffect(() => {
     getSingleJournalCollection(id, dispatch);
     getAllJournalsData(dispatch);
   }, [id]);
-
 
   return (
     <div>
@@ -50,7 +57,11 @@ const SingleJournal = () => {
           </div>
           <div className="journal-con">
             <img
-              src={getSingleJournalData.file}
+              src={
+                getSingleJournalData.file
+                  ? getSingleJournalData.file
+                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+              }
               alt={getSingleJournalData.title}
             />
             <div className="buttons">
@@ -71,6 +82,6 @@ const SingleJournal = () => {
       </div>
     </div>
   );
-}
+};
 
-export default SingleJournal
+export default SingleJournal;

@@ -7,7 +7,7 @@ import cloud from "../../cloud.png";
 import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import { loginWithGoogle, registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
+import {  registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -141,11 +141,7 @@ const SignUp = () => {
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv"></div>
-                <div className="signup_button">
-                  <button onClick={() => loginWithGoogle(dispatch)}>
-                    Sign In With Google
-                  </button>
-                </div>
+                
                 {/* {
                   Object.keys(user).length != 0 && navigate("/dashboard")
                   <button onClick={(e) => handleSignout(e)}>Signout</button>

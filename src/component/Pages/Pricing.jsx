@@ -154,7 +154,7 @@ const Pricing = () => {
           <h1 className="my-0 fw-bold mt-3 mb-3">Free!</h1>
           <h6 className="price_headers">Free plan</h6>
           <p className='text-muted'>No billing</p>
-            <ul className="list-unstyled mt-3 mb-4 text-start ">
+            <ul className="list-unstyled mt-3 mb-4  ">
               <li className='price_list'>Access to few Basic features</li>
               <li className='price_list'>Limited Usage</li>
               <li className='price_list'>3GB of Storage</li>
@@ -176,7 +176,7 @@ const Pricing = () => {
           <h1 className="my-0 fw-bold mt-3 mb-3">NGN289/mo</h1>
           <h6 className="price_headers">Standard Plan</h6>
           <p className='text-muted'>Billed monthly</p>
-            <ul className="list-unstyled mt-3 mb-4 text-start price_list">
+            <ul className="list-unstyled mt-3 mb-4 price_list">
               <li className='price_list'>Access to all basic features</li>
               <li className='price_list'>Unlimited Usage</li>
               <li className='price_list'>24/7 customer support</li>
@@ -202,7 +202,7 @@ const Pricing = () => {
           <h1 className="my-0 fw-bold mt-3 mb-3">NGN549/mo</h1>
           <h6 className="price_headers">Economy Plan</h6>
           <p className='text-muted'>Billed monthly</p>
-            <ul className="list-unstyled mt-3 mb-4 text-start price_list">
+            <ul className="list-unstyled mt-3 mb-4  price_list">
               <li className='price_list'>Access to all basic features</li>
               <li className='price_list'>Unlimited Usage</li>
               <li className='price_list'>24/7 customer support</li>
@@ -225,7 +225,7 @@ const Pricing = () => {
           <h1 className="my-0 fw-bold mt-3 mb-3">NGN1320/mo</h1>
           <h6 className="price_headers">Premium Plan</h6>
           <p className='text-muted'>Billed monthly</p>
-            <ul className="list-unstyled mt-3 mb-4 text-start price_list">
+            <ul className="list-unstyled mt-3 mb-4 price_list">
               <li className='price_list'>Access to all Basic features</li>
               <li className='price_list'>Unlimited Usage</li>
               <li className='price_list'>Unlimited individual users</li>

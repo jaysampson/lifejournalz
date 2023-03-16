@@ -399,12 +399,12 @@ const Dashboard = () => {
         )}
         <div className="dash-nav">
           <div className="search">
-            {/* <input
+            <input
               type="text"
               placeholder="Search in categories"
               className="nav-search"
-            /> */}
-            {/* <InputGroup>
+            />
+            <InputGroup>
               <DropdownButton
                 variant="outline-secondary"
                 title={selectedOption}
@@ -433,14 +433,14 @@ const Dashboard = () => {
                 placeholder="Search in categories"
                 style={{ height: "25px" }}
               />
-            </InputGroup> */}
-            {/* <select className="cat" placeholder="All categories">
+            </InputGroup>
+            <select className="cat" placeholder="All categories">
               <option value="">All Categories</option>
               <option value="">Personal</option>
               <option value="">Family</option>
               <option value="">Category</option>
             </select>
-            <button>Search</button> */}
+            <button>Search</button>
           </div>
 
           <div className="nav-images">

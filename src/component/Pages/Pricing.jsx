@@ -116,7 +116,7 @@ const Pricing = () => {
         <div className="container">
           <div className="d-sm-flex align-items-center justify-content-center ">
             <div>
-              <h3 className='text-white'>
+              <h3 className=' dash_text'>
                 My Dashboard
               </h3>
             </div>
@@ -136,7 +136,7 @@ const Pricing = () => {
        <div className="card mb-5 shadow-lg rounded" style={{marginTop:"-140px",}}>
         <div className="card-body text-center p-4">
           <h6 className='mt-4 mb-2 price_headers'> Pricing</h6>
-          <h1 className="mb-4 clear_price"> Simple and clear pricing</h1>
+          <h2 className="mb-4 clear_price"> Simple and clear pricing</h2>
           <p className="mb-4 d-none d-lg-block text-muted"> Having universal access to LifeJournalz is important to us. </p>
         </div>
        </div>
@@ -249,8 +249,8 @@ const Pricing = () => {
   
 
    {/* <!-- Footer --> */}
-   <footer  className="text-start text-lg-start  text-muted" >
-        <section className="" style={{backgroundColor:"#F9FAFB"}}>
+   <footer  className="text-start text-lg-start  text-muted">
+        <section className="">
             <div className="container text-start text-md-start mt-5">
                 <div className="row mt-3">
                     <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -266,16 +266,16 @@ const Pricing = () => {
                             Company
                         </h6>
                         <p className="link">
-                          <Link to="#" className="text-reset">About</Link>
+                          <Link to="/about" target={"_blank"} className="text-reset">About</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Features</Link>
+                        <Link to="/about" target={"_blank"} className="text-reset">Features</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Work</Link>
+                        <Link to="/pricing" target={"_blank"} className="text-reset">Pricing</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Career</Link>
+                        <Link to="/about" target={"_blank"} className="text-reset">Career</Link>
                         </p>
                     </div>
 
@@ -284,16 +284,16 @@ const Pricing = () => {
                             Help
                         </h6>
                         <p className="link">
-                        <Link to="#" className="text-reset">Customer Support</Link>
+                        <Link to="/contactus" target={"_blank"} className="text-reset">Customer Support</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Subscription</Link>
+                        <Link to="/pricing" target={"_blank"} className="text-reset">Subscription</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Terms and Conditions</Link>
+                        <Link to="/terms" target={"_blank"} className="text-reset">Terms and Conditions</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Privacy Policy</Link>
+                        <Link to="/terms" target={"_blank"} className="text-reset">Privacy Policy</Link>
                         </p>
                     </div>
 

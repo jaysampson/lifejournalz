@@ -19,16 +19,29 @@ body {
 }
 
 h2 {
-    color: #2F002E;
+    color: #6F0847;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     font-weight: 550;
 }
 
 h3 {
     color: #2F002E;
 }
+.dash_text{
+    color: #cd7bca;
+    font-weight: bolder;
+}
 
-/* p {
-    color: green;
-} */
+h4{
+    color: #6F0847;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+p {
+   
+    font-family:Arial, Helvetica, sans-serif;
+}
 h6 {
     color: #775C76;
 }
@@ -261,17 +274,6 @@ footer {
     }
 }
 
-/* .footer-link{
-    color: #AB988C;
-    margin-left: 20px;
-    text-decoration: none;
-    font-size: 13px;
-}
-
-.footer-link:hover {
-    color: #1E130C;
-    margin-left: 20px;
-} */
 
 .special_icons{
     color: #6F0847;
@@ -353,20 +355,20 @@ footer {
     padding: 0 1em;
     max-width: 60rem;
     margin: 0 auto;
-    border: 2px solid red;
+    border: 2px;
 
 }
 
 .clear_price{
-    color: #280626;
-    font-weight: bold;
-    font-family: 'DM Sans';
+    color: #6F0847;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+     font-weight: 550;
 }
 
 .price_headers{
     color: #6F0847;
-    font-family: 'DM Sans';
-    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
     font-weight: bold;
 }
 
@@ -374,4 +376,10 @@ footer {
     color: #667085;
     padding-top: 10px;
     text-align: start;
+}
+
+.journal{
+    font-weight: bolder;
+    font-size: 50px;
+    color: white;
 }

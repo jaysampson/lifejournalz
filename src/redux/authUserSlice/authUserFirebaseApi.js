@@ -1,19 +1,35 @@
+import { async } from "@firebase/util";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signOut,
+  signInWithPopup,
 } from "firebase/auth";
-import { collection, doc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
-import { auth, db } from "../../config/firebase";
+import {
+  collection,
+  doc,
+  getDocs,
+  serverTimestamp,
+  setDoc,
+} from "firebase/firestore";
+import { auth, db, googleProvider } from "../../config/firebase";
 import {
   authUserStart,
   authUserSuccess,
   authUserFail,
+  //google login
+  signInWithGoogleSuccess,
+  //register
   registerUserStart,
   registerUserSuccess,
   registerUserFail,
   getUsersStart,
   getUsersSuccess,
   getUsersFail,
+  //sign out
+  userSignOutStart,
+  userSignOutSuccess,
+  userSignOutFail,
   //   getUserDetails,
 } from "./index";
 
@@ -23,17 +39,36 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
     localStorage.setItem("jwt", res.user.accessToken);
-
     console.log(res, "userAuth");
+    if (res) {
     dispatch(authUserSuccess(res));
-    window.location.reload();
+    }
   } catch (error) {
     dispatch(authUserFail(error));
     console.log(error);
   }
 };
 
-export const registerUser = async ({ email, password, displayName }, dispatch) => {
+export const loginWithGoogle =  async (dispatch)=>{
+  try {
+    const res = await signInWithPopup(auth, googleProvider);
+    localStorage.setItem("jwt", res.user.accessToken);
+    // console.log(res, "googleLogin");
+    if(res){
+    dispatch(signInWithGoogleSuccess(res));
+      window.location.href = "/dashboard";
+    }
+  } catch (error) {
+    console.log(error)
+    
+  }
+
+}
+
+export const registerUser = async (
+  { email, password, displayName },
+  dispatch
+) => {
   // console.log(email, password, displayName, "createuser");
   dispatch(registerUserStart());
   try {
@@ -43,19 +78,22 @@ export const registerUser = async ({ email, password, displayName }, dispatch) =
       password,
       displayName
     );
-    const res = await setDoc(doc(db, "users", result.user.uid), {
-      displayName,
-      timeStamp: serverTimestamp(),
-    });
-    // console.log(res, "register");
-    dispatch(registerUserSuccess(res));
-    window.location.reload();
+    // console.log(result, "0000");
+       await setDoc(doc(db, "users", result.user.uid), {
+        displayName,
+        email,
+        timeStamp: serverTimestamp(),
+      });
+    // console.log(result, "register");
+    if (result) {
+    dispatch(registerUserSuccess(result));
+      window.location.href = "/signin";
+    }
   } catch (error) {
     dispatch(registerUserFail(error));
     console.log(error);
   }
 };
-
 
 export const getAllUserInfo = async (dispatch) => {
   dispatch(getUsersStart());
@@ -68,9 +106,24 @@ export const getAllUserInfo = async (dispatch) => {
     }));
     // console.log(filterData, "filterData")
     dispatch(getUsersSuccess(filterData));
-
   } catch (error) {
     dispatch(getUsersFail(error));
+    console.log(error);
+  }
+};
+
+//sign out
+export const userLogout = async (dispatch) => {
+  dispatch(userSignOutStart());
+  try {
+    const res = await signOut(auth);
+    localStorage.removeItem("jwt");
+    // console.log(res, "logoutapi")
+
+    dispatch(userSignOutSuccess(res));
+    window.location.reload();
+  } catch (error) {
+    dispatch(userSignOutFail(error));
     console.log(error);
   }
 };

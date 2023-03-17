@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "../../styles/dash.scss";
-// import bell from "../../Images/bell.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowUpFromBracket,
@@ -55,10 +54,16 @@ import { auth, storage } from "../../config/firebase";
 import { userLogout } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
+  const isGrayLabel = (label) =>
+    ["Shared", "Recently added", "Storage"].includes(label);
+
   return (
     <div className={isSelected ? "icon2" : "icon"} onClick={onClick}>
-      <FontAwesomeIcon icon={icon} />
-      <span>{label}</span>
+      <FontAwesomeIcon
+        icon={icon}
+        style={isGrayLabel(label) ? { color: "gray" } : null}
+      />
+      <span style={isGrayLabel(label) ? { color: "gray" } : null}>{label}</span>
       {/* {num && (
         <span
           style={{
@@ -136,35 +141,35 @@ const Menu = ({
           setActiveComponent("Component3");
         }}
       />
-      {/* <MenuItem
+      <MenuItem
         icon={faArrowUpFromBracket}
         label="Shared"
         num="24"
         isSelected={selected === 3}
-        onClick={() => {
-          toggleMenu(3);
-          setActiveComponent("Component4");
-        }}
+        // onClick={() => {
+        //   toggleMenu(3);
+        //   setActiveComponent("Component4");
+        // }}
       />
       <MenuItem
         icon={faClock}
         label="Recently added"
         isSelected={selected === 4}
         num="59"
-        onClick={() => {
-          toggleMenu(4);
-          setActiveComponent("Component5");
-        }}
+        // onClick={() => {
+        //   toggleMenu(4);
+        //   setActiveComponent("Component5");
+        // }}
       />
       <MenuItem
         icon={faFolderMinus}
-        label=" Storage"
+        label="Storage"
         isSelected={selected === 5}
-        onClick={() => {
-          toggleMenu(5);
-          setActiveComponent("Component6");
-        }}
-      /> */}
+        // onClick={() => {
+        //   toggleMenu(5);
+        //   setActiveComponent("Component6");
+        // }}
+      />
       <MenuItem
         icon={faTag}
         label="Pricing"
@@ -479,10 +484,10 @@ const Dashboard = () => {
 
                 <div
                   className="icon"
-                  onClick={() => {
-                    toggleMenu(3);
-                    setActiveComponent("Component4");
-                  }}
+                  // onClick={() => {
+                  //   toggleMenu(3);
+                  //   setActiveComponent("Component4");
+                  // }}
                 >
                   <FontAwesomeIcon
                     icon={faArrowUpFromBracket}
@@ -494,10 +499,10 @@ const Dashboard = () => {
 
                 <div
                   className="icon"
-                  onClick={() => {
-                    toggleMenu(4);
-                    setActiveComponent("Component5");
-                  }}
+                  // onClick={() => {
+                  //   toggleMenu(4);
+                  //   setActiveComponent("Component5");
+                  // }}
                 >
                   <FontAwesomeIcon icon={faClock} style={{ color: "gray" }} />
                   <span style={{ color: "gray" }}>Recently added</span>
@@ -506,10 +511,10 @@ const Dashboard = () => {
 
                 <div
                   className="icon"
-                  onClick={() => {
-                    toggleMenu(5);
-                    setActiveComponent("Component6");
-                  }}
+                  // onClick={() => {
+                  //   toggleMenu(5);
+                  //   setActiveComponent("Component6");
+                  // }}
                 >
                   <FontAwesomeIcon
                     icon={faFolderMinus}

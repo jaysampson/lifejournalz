@@ -107,6 +107,24 @@ export const Home = (props) => {
   // create a reference to the Quill editor
   const quillRef = useRef(null);
 
+  const [sortOrder, setSortOrder] = useState("Alphabet");
+
+  const sortedJournals = [...filterUserJournal];
+
+  if (sortOrder === "Alphabet") {
+    sortedJournals.sort((a, b) => {
+      const titleA = a.title.toUpperCase();
+      const titleB = b.title.toUpperCase();
+      if (titleA < titleB) return -1;
+      if (titleA > titleB) return 1;
+      return 0;
+    });
+  } else if (sortOrder === "Recent") {
+    sortedJournals.sort(
+      (a, b) => new Date(b.selectedDate) - new Date(a.selectedDate)
+    );
+  }
+
   return (
     <div>
       {!authUser && !findUser ? (
@@ -131,120 +149,88 @@ export const Home = (props) => {
             <div className="journalz">
               <div className="journalz-main">
                 <div className="sort">
-                  <select className="select">
-                    <option value="" disabled selected hidden>
-                      Sort by
-                    </option>
+                  <select
+                    className="select"
+                    onChange={(e) => setSortOrder(e.target.value)}
+                  >
                     <option value="Alphabet">Alphabet</option>
                     <option value="Recent">Recent</option>
                   </select>
                 </div>
                 <div className="books">
                   <div className="books-list">
-                    {getAllJournalLoading ? (
-                      <img
-                        style={{
-                          width: "50%",
-                          height: "280px",
-                          position: "relative",
-                          left: "20%",
-                        }}
-                        src={giph}
-                        alt=""
-                      />
-                    ) : getAllJournalError ? (
+                    {getAllJournalLoading || getAllJournalError ? (
                       <h1>Something went wrong</h1>
-                    ) : filterUserJournal.length <= 0 ? (
+                    ) : sortedJournals.length === 0 ? (
                       <h1>You dont have any Journal, create one!</h1>
                     ) : (
                       <>
-                        {filterUserJournal.length > 0 &&
-                          filterUserJournal.map((item) => {
-                            return (
-                              <>
-                                {/* <Link
-                                  to={`/dashboard/${item.id}`}
+                        {sortedJournals.map((item) => {
+                          // render each journal here
+                          return (
+                            <div className="books-con" key={item.id}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  gap: "10px",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <img
+                                  style={{ borderRadius: "5px" }}
+                                  src={
+                                    item.file
+                                      ? item.file
+                                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                  }
+                                  alt=""
+                                  width="50"
+                                  height="50"
+                                />
+                                <p
                                   style={{
-                                    textDecoration: "none"
+                                    display: "inline-block",
+                                    verticalAlign: "middle",
+                                    whiteSpace: "nowrap",
                                   }}
+                                >
+                                  {item.title}
+                                </p>
+                              </div>
+                              <p className="journal-text">{item.category}</p>
+                              <p
+                                className="journal-date"
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                {item?.selectedDate}
+                              </p>
+                              <Link to={`/dashboard/${item.id}`}>
+                                <Button
+                                  style={{ width: "80px" }}
                                   onClick={() =>
                                     getSingleJournalCollection(
                                       item.id,
                                       dispatch
                                     )
                                   }
-                                > */}
-                                <div className="books-con" key={item.id}>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      gap: "10px",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img
-                                      style={{
-                                        borderRadius: "5px",
-                                      }}
-                                      src={
-                                        item.file
-                                          ? item.file
-                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                      }
-                                      alt=""
-                                      width="50"
-                                      height="50"
-                                    />
-                                    <p
-                                      style={{
-                                        display: "inline-block",
-                                        verticalAlign: "middle",
-                                        whiteSpace: "nowrap",
-                                      }}
-                                    >
-                                      {item.title}
-                                    </p>
-                                  </div>
-                                  <p className="journal-text">
-                                    {item.category}
-                                  </p>
-                                  <p
-                                    className="journal-date"
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    {item?.selectedDate}
-                                  </p>
-                                  <Link to={`/dashboard/${item.id}`}>
-                                    <Button
-                                      style={{ width: "80px" }}
-                                      onClick={() =>
-                                        getSingleJournalCollection(
-                                          item.id,
-                                          dispatch
-                                        )
-                                      }
-                                    >
-                                      View
-                                    </Button>
-                                  </Link>
-                                  {/* <Button
-                                    style={{ width: "80px" }}
-                                    onClick={() =>
-                                      getSingleJournalCollection(
-                                        item.id,
-                                        dispatch
-                                      )
-                                    }
-                                  >
-                                  Delete
-                                  </Button> */}
-                                </div>
-                              </>
-                            );
-                          })}
+                                >
+                                  View
+                                </Button>
+                              </Link>
+                              {/* <Button
+                            style={{ width: "80px" }}
+                            onClick={() =>
+                              getSingleJournalCollection(item.id, dispatch)
+                            }
+                          >
+                            Delete
+                          </Button> */}
+                            </div>
+                          );
+                        })}
                       </>
                     )}
                   </div>

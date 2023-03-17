@@ -384,7 +384,7 @@ const Dashboard = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <p
+            <div
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -396,9 +396,14 @@ const Dashboard = () => {
                 marginTop: "30px",
               }}
             >
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />{" "}
-              <span>Logout</span>
-            </p>
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+              <span
+                onClick={() => userLogout(dispatch)}
+                style={{ cursor: "pointer" }}
+              >
+                Logout
+              </span>
+            </div>
           </div>
         )}
         <div className="dash-nav">
@@ -805,7 +810,11 @@ const Dashboard = () => {
                   <FontAwesomeIcon icon={faGear} />
                   <span>Settings</span>
                 </div>
-                <button className="icon" onClick={() => userLogout(dispatch)}>
+                <button
+                  className="icon"
+                  style={{ backgroundColor: "white" }}
+                  onClick={() => userLogout(dispatch)}
+                >
                   <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   Logout
                 </button>

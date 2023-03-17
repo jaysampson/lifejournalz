@@ -159,7 +159,18 @@ export const Home = (props) => {
                 </div>
                 <div className="books">
                   <div className="books-list">
-                    {getAllJournalLoading || getAllJournalError ? (
+                    {getAllJournalLoading ? (
+                      <img
+                        style={{
+                          width: "50%",
+                          height: "280px",
+                          position: "relative",
+                          left: "20%",
+                        }}
+                        src={giph}
+                        alt=""
+                      />
+                    ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
                     ) : sortedJournals.length === 0 ? (
                       <h1>You dont have any Journal, create one!</h1>

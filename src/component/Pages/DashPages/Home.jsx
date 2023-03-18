@@ -120,9 +120,9 @@ export const Home = (props) => {
       return 0;
     });
   } else if (sortOrder === "Recent") {
-    sortedJournals.sort(
-      (a, b) => new Date(b.selectedDate) - new Date(a.selectedDate)
-    );
+    sortedJournals
+      .sort((a, b) => new Date(a.selectedDate) - new Date(b.selectedDate))
+      .reverse();
   }
 
   return (

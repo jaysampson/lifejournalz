@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "../../../styles/SingleJournal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -38,6 +38,8 @@ const SingleJournal = () => {
     getAllJournalsData(dispatch);
   }, [id]);
 
+  const navigate = useNavigate();
+
   return (
     <div>
       <div className="singleJournal">
@@ -69,7 +71,12 @@ const SingleJournal = () => {
                 <FontAwesomeIcon icon={faPencil} />
                 <span>Edit Journal</span>
               </button>
-              <button onClick={() => deleteJournalDoc(id, dispatch)}>
+              <button
+                onClick={() => {
+                  deleteJournalDoc(id, dispatch);
+                  navigate("/dashboard");
+                }}
+              >
                 <FontAwesomeIcon icon={faTrash} />
                 <span>Delete Journal</span>
               </button>

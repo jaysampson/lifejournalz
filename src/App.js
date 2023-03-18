@@ -20,7 +20,7 @@ import Pricing from "./component/Pages/Pricing";
 import About from "./component/Pages/About";
 import Terms from "./component/Pages/Terms";
 import PrivacyPolicy from "./component/PrivacyPolicy";
-import Sidebar from "./component/Pages/Sidebar";
+// import Sidebar from "./component/Pages/Sidebar";
 import ContactUs from "./component/Pages/ContactUs";
 import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ const App = () => {
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/contactus" element={<ContactUs />} />
-        <Route path="/sidebar" element={<Sidebar />} />
+        {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset" element={<ResetPassword />} />

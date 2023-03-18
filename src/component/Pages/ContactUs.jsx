@@ -263,9 +263,9 @@ const ContactUs = () => {
     </div>
   </section>
 
-       {/* <!-- Footer --> */}
-   <footer  className="text-start text-lg-start  text-muted" >
-        <section className="" style={{backgroundColor:"#F9FAFB"}}>
+    {/* <!-- Footer --> */}
+    <footer  className="text-start text-lg-start  text-muted">
+        <section className="">
             <div className="container text-start text-md-start mt-5">
                 <div className="row mt-3">
                     <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
@@ -281,16 +281,16 @@ const ContactUs = () => {
                             Company
                         </h6>
                         <p className="link">
-                          <Link to="#" className="text-reset">About</Link>
+                          <Link to="/about" target={"_blank"} className="text-reset">About</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Features</Link>
+                        <Link to="/about" target={"_blank"} className="text-reset">Features</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Work</Link>
+                        <Link to="/pricing" target={"_blank"} className="text-reset">Pricing</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Career</Link>
+                        <Link to="/about" target={"_blank"} className="text-reset">Career</Link>
                         </p>
                     </div>
 
@@ -299,16 +299,16 @@ const ContactUs = () => {
                             Help
                         </h6>
                         <p className="link">
-                        <Link to="#" className="text-reset">Customer Support</Link>
+                        <Link to="/contactus" target={"_blank"} className="text-reset">Customer Support</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Subscription</Link>
+                        <Link to="/pricing" target={"_blank"} className="text-reset">Subscription</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Terms and Conditions</Link>
+                        <Link to="/terms" target={"_blank"} className="text-reset">Terms and Conditions</Link>
                         </p>
                         <p className="link">
-                        <Link to="#" className="text-reset">Privacy Policy</Link>
+                        <Link to="/terms" target={"_blank"} className="text-reset">Privacy Policy</Link>
                         </p>
                     </div>
 

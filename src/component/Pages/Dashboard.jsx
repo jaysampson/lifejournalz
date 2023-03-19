@@ -438,7 +438,7 @@ const Dashboard = () => {
                 style={{ height: "25px" }}
               />
             </InputGroup>
-          
+
             <select className="cat" placeholder="All categories">
               <option value="">All Categories</option>
               <option value="">Personal</option>
@@ -461,7 +461,7 @@ const Dashboard = () => {
         <div className="dash-container">
           <div className="side-bar">
             <div className="sidebar-contents">
-              <div className="content">
+              <div className="side-content">
                 <div
                   className={selected === 0 ? "icon2" : "icon"}
                   onClick={() => {

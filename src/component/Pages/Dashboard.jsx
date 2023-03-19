@@ -438,14 +438,6 @@ const Dashboard = () => {
                 style={{ height: "25px" }}
               />
             </InputGroup>
-
-            <select className="cat" placeholder="All categories">
-              <option value="">All Categories</option>
-              <option value="">Personal</option>
-              <option value="">Family</option>
-              <option value="">Category</option>
-            </select>
-            <button>Search</button>
           </div>
 
           <div className="nav-images">

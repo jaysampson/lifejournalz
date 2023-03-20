@@ -31,6 +31,12 @@ import { Link } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import Modal from "react-modal";
 import SingleJournal from "./SingleJournal";
+import {
+  InputGroup,
+  FormControl,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 
 export const Home = (props) => {
   const dispatch = useDispatch();
@@ -39,7 +45,7 @@ export const Home = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("Event");
   const [selectedDate, setSelectedDate] = useState(null);
-  const [search, setSearch] = useState("")
+  const [search, setSearch] = useState("");
 
   const {
     getUsersInfo: { getUsersInfoData },
@@ -75,23 +81,23 @@ export const Home = (props) => {
     "3030"
   );
 
-    const handleChange = (e) => {
-      setSearch(e.target.value);
-    };
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+  };
 
-    //search
-    const searchJournal = filterUserJournal?.filter((item) => {
-      return (
-        item?.title.toLowerCase().includes(search.toLowerCase()) ||
-        item?.text.toLowerCase().includes(search.toLowerCase()) ||
-        item?.category.toLowerCase().includes(search.toLowerCase())
-      );
-    });
+  //search
+  const searchJournal = filterUserJournal?.filter((item) => {
+    return (
+      item?.title.toLowerCase().includes(search.toLowerCase()) ||
+      item?.text.toLowerCase().includes(search.toLowerCase()) ||
+      item?.category.toLowerCase().includes(search.toLowerCase())
+    );
+  });
 
-    // const searchCategory = (value)=>{
-    //   setSearch
-    //   const filterData2 = searchJournal.filter((c) => c.category === value);
-    // }
+  // const searchCategory = (value)=>{
+  //   setSearch
+  //   const filterData2 = searchJournal.filter((c) => c.category === value);
+  // }
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -147,7 +153,6 @@ export const Home = (props) => {
   // const sortedJournals = [...filterUserJournal];
   const sortedJournals = [...searchJournal];
 
-
   if (sortOrder === "Alphabet") {
     sortedJournals.sort((a, b) => {
       const titleA = a.title.toUpperCase();
@@ -181,28 +186,61 @@ export const Home = (props) => {
     setEShowModal(false);
   };
 
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const handleCategorySelect = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <div>
-      <div>
-        <input
-          className="searchInput"
-          type="search"
-          placeholder="search"
-          value={search}
-          onChange={handleChange}
-        />
-
-        <select>
-          <option value="allCategories">--Select A category--</option>
-          {journalCategoriesData.map((category) => (
-            <>
-              <option value={category.name} key={category.id}>
-                {category.name}
-              </option>
-            </>
-          ))}
-        </select>
+      <div className="home-nav">
+        <div className="search">
+          <InputGroup className="input-group">
+            <DropdownButton
+              variant="outline-secondary"
+              title={selectedCategory ? selectedCategory : "Categories"}
+              id="input-group-dropdown-1"
+            >
+              <Dropdown.Item onClick={() => handleCategorySelect("Categories")}>
+                Categories
+              </Dropdown.Item>
+              {journalCategoriesData.map((category) => (
+                <Dropdown.Item
+                  value={category.name}
+                  key={category.id}
+                  onClick={() => handleCategorySelect(category.name)}
+                >
+                  {category.name}
+                </Dropdown.Item>
+              ))}
+            </DropdownButton>
+            <FormControl
+              placeholder="Search in categories"
+              style={{ height: "30px" }}
+              value={search}
+              onChange={handleChange}
+            />
+          </InputGroup>
+        </div>
       </div>
+      {/* <input
+        className="searchInput"
+        type="search"
+        placeholder="search"
+        value={search}
+        onChange={handleChange}
+      /> */}
+      {/* <select>
+        <option value="allCategories">--Select A category--</option>
+        {journalCategoriesData.map((category) => (
+          <>
+            <option value={category.name} key={category.id}>
+              {category.name}
+            </option>
+          </>
+        ))}
+      </select> */}
 
       {!authUser && !findUser ? (
         <h1>Loading...</h1>

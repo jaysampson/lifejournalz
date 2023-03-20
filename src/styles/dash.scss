@@ -18,7 +18,7 @@
 
   @media screen and (max-width: 766px) {
     display: block;
-    height: 2.8rem;
+    // height: 2.8rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -26,8 +26,10 @@
     background-color: #fff;
     position: sticky;
     top: 0px;
-    z-index: 1;
+    z-index: 30;
     padding: 0.3rem;
+    border-bottom: 1px solid gray;
+    padding: 10px;
 
     .hamburger {
       display: block;
@@ -402,7 +404,7 @@
   }
 
   .dash-contents::-webkit-scrollbar {
-      display: none;
+    display: none;
   }
 
   .dash-contents {

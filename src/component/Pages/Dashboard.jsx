@@ -406,7 +406,7 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        <div className="dash-nav">
+        {/* <div className="dash-nav">
           <div className="search">
             <InputGroup className="input-group">
               <DropdownButton
@@ -446,10 +446,10 @@ const Dashboard = () => {
               <div className="count">7</div>
             </div>
             <div className="prof-pic">
-              {/* <img src={user.picture}></img> */}
+              <img src={user.picture}></img>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="dash-container">
           <div className="side-bar">
             <div className="sidebar-contents">

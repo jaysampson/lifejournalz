@@ -401,9 +401,9 @@
     }
   }
 
-  // .dash-contents::-webkit-scrollbar {
-  //     display: none;
-  // }
+  .dash-contents::-webkit-scrollbar {
+      display: none;
+  }
 
   .dash-contents {
     background-color: #fafafb;

@@ -7,9 +7,12 @@ import {
   faArrowUpFromBracket,
   faCheck,
   faEllipsisV,
+  faEllipsisVertical,
+  faPencil,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import bookicon from "../../../Images/bookicon.png";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import addpic from "../../../Images/addpic.png";
 import DatePicker from "react-datepicker";
@@ -26,6 +29,8 @@ import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi
 import { auth } from "../../../config/firebase";
 import { Link } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
+import Modal from "react-modal";
+import SingleJournal from "./SingleJournal";
 
 export const Home = (props) => {
   const dispatch = useDispatch();
@@ -107,6 +112,43 @@ export const Home = (props) => {
   // create a reference to the Quill editor
   const quillRef = useRef(null);
 
+  const [sortOrder, setSortOrder] = useState("Alphabet");
+
+  const sortedJournals = [...filterUserJournal];
+
+  if (sortOrder === "Alphabet") {
+    sortedJournals.sort((a, b) => {
+      const titleA = a.title.toUpperCase();
+      const titleB = b.title.toUpperCase();
+      if (titleA < titleB) return -1;
+      if (titleA > titleB) return 1;
+      return 0;
+    });
+  } else if (sortOrder === "Recent") {
+    sortedJournals
+      .sort((a, b) => new Date(a.selectedDate) - new Date(b.selectedDate))
+      .reverse();
+  }
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const [currentJournalId, setCurrentJournalId] = useState(null);
+
+  const [showEModal, setEShowModal] = useState(false);
+
+  const handleEllipsisClick = (journalId) => {
+    setCurrentJournalId(journalId);
+    setEShowModal(true);
+  };
+
+  const handleECloseModal = () => {
+    setEShowModal(false);
+  };
+
   return (
     <div>
       {!authUser && !findUser ? (
@@ -131,10 +173,10 @@ export const Home = (props) => {
             <div className="journalz">
               <div className="journalz-main">
                 <div className="sort">
-                  <select className="select">
-                    <option value="" disabled selected hidden>
-                      Sort by
-                    </option>
+                  <select
+                    className="select"
+                    onChange={(e) => setSortOrder(e.target.value)}
+                  >
                     <option value="Alphabet">Alphabet</option>
                     <option value="Recent">Recent</option>
                   </select>
@@ -154,97 +196,125 @@ export const Home = (props) => {
                       />
                     ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
-                    ) : filterUserJournal.length <= 0 ? (
+                    ) : sortedJournals.length === 0 ? (
                       <h1>You dont have any Journal, create one!</h1>
                     ) : (
                       <>
-                        {filterUserJournal.length > 0 &&
-                          filterUserJournal.map((item) => {
-                            return (
-                              <>
-                                {/* <Link
-                                  to={`/dashboard/${item.id}`}
+                        {sortedJournals.map((item) => {
+                          // render each journal here
+                          return (
+                            <div className="books-con" key={item.id}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  gap: "10px",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <img
+                                  style={{ borderRadius: "5px" }}
+                                  src={
+                                    item.file
+                                      ? item.file
+                                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                                  }
+                                  alt=""
+                                  width="50"
+                                  height="50"
+                                />
+                                <p
                                   style={{
-                                    textDecoration: "none"
+                                    display: "inline-block",
+                                    verticalAlign: "middle",
+                                    whiteSpace: "nowrap",
                                   }}
-                                  onClick={() =>
+                                >
+                                  {item.title}
+                                </p>
+                              </div>
+                              <p className="journal-text">{item.category}</p>
+                              <p
+                                className="journal-date"
+                                style={{
+                                  display: "flex",
+                                  alignItems: "center",
+                                }}
+                              >
+                                {item?.selectedDate}
+                              </p>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                }}
+                              >
+                                <Button
+                                  style={{ width: "80px" }}
+                                  onClick={() => {
+                                    setIsModalOpen(true);
                                     getSingleJournalCollection(
                                       item.id,
                                       dispatch
-                                    )
-                                  }
-                                > */}
-                                <div className="books-con" key={item.id}>
-                                  <div
-                                    style={{
-                                      display: "flex",
-                                      gap: "10px",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    <img
+                                    );
+                                  }}
+                                >
+                                  View
+                                </Button>
+                                <div
+                                  style={{
+                                    position: "relative",
+                                    display: "inline-block",
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faEllipsisVertical}
+                                    style={{ color: "gray", cursor: "pointer" }}
+                                    onClick={handleEllipsisClick}
+                                  />
+                                  {showEModal && (
+                                    <div
                                       style={{
+                                        position: "absolute",
+                                        top: "30px",
+                                        right: "0px",
+                                        backgroundColor: "white",
+                                        padding: "5px",
+                                        boxShadow: "0 0 10px rgba(0,0,0,0.3)",
                                         borderRadius: "5px",
                                       }}
-                                      src={
-                                        item.file
-                                          ? item.file
-                                          : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                      }
-                                      alt=""
-                                      width="50"
-                                      height="50"
-                                    />
-                                    <p
-                                      style={{
-                                        display: "inline-block",
-                                        verticalAlign: "middle",
-                                        whiteSpace: "nowrap",
-                                      }}
                                     >
-                                      {item.title}
-                                    </p>
-                                  </div>
-                                  <p className="journal-text">
-                                    {item.category}
-                                  </p>
-                                  <p
-                                    className="journal-date"
-                                    style={{
-                                      display: "flex",
-                                      alignItems: "center",
-                                    }}
-                                  >
-                                    {item?.selectedDate}
-                                  </p>
-                                  <Link to={`/dashboard/${item.id}`}>
-                                    <Button
-                                      style={{ width: "80px" }}
-                                      onClick={() =>
-                                        getSingleJournalCollection(
-                                          item.id,
-                                          dispatch
-                                        )
-                                      }
-                                    >
-                                      View
-                                    </Button>
-                                  </Link>
-                                  {/* <Button
-                                    style={{ width: "80px" }}
-                                    onClick={() =>
-                                      getSingleJournalCollection(
-                                        item.id,
-                                        dispatch
-                                      )
-                                    }
-                                  >
-                                  Delete
-                                  </Button> */}
+                                      <button
+                                        style={{
+                                          backgroundColor: "gray",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          gap: "10px",
+                                        }}
+                                      >
+                                        <FontAwesomeIcon icon={faPencil} />
+                                        <span>Edit</span>
+                                      </button>
+                                      <button
+                                        style={{
+                                          backgroundColor: "gray",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          gap: "10px",
+                                        }}
+                                      >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                        <span>Delete</span>
+                                      </button>
+                                    </div>
+                                  )}
                                 </div>
-                              </>
-                            );
-                          })}
+                              </div>
+                            </div>
+                          );
+                        })}
                       </>
                     )}
                   </div>
@@ -253,6 +323,9 @@ export const Home = (props) => {
             </div>
           </div>
         </div>
+        <Modal isOpen={isModalOpen}>
+          <SingleJournal onCloseModal={handleCloseModal} />
+        </Modal>
       </div>
     </div>
   );

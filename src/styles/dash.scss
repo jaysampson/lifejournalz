@@ -228,6 +228,10 @@
       border: 1px gray dashed;
     }
   }
+  @media screen and (max-width: 766px) {
+    position: sticky;
+    top: 45px;
+  }
 }
 
 .dash-container {
@@ -270,11 +274,11 @@
     .sidebar-contents {
       width: 11rem;
 
-      .content:hover {
+      .side-content:hover {
         cursor: pointer;
       }
 
-      .content {
+      .side-content {
         margin-top: 1.2rem;
 
         .icon {
@@ -511,7 +515,7 @@
     bottom: 10px;
     width: 100%;
 
-    .content {
+    .down-content {
       display: flex;
       align-items: center;
       justify-content: space-around;

@@ -98,10 +98,10 @@ export const Pricing = () => {
                       <img src={Check} alt="" />
                       24/7 Customer support
                     </li>
-                    <h4 id="money" className="">
+                    <h5 id="money" className="">
                       NGN289.00/mo
-                    </h4>
-                    <button style={{ marginBottom: "-20px" }}>
+                    </h5>
+                    <button style={{ marginBottom: "0px" }}>
                       <Link to="#" className="Getlink">
                         Get Started
                         <i className="bi bi-chevron-right"></i>
@@ -142,9 +142,9 @@ export const Pricing = () => {
                       <img src={Check} alt="" />
                       24/7 Customer support
                     </li>
-                    <h4 id="money" className="">
+                    <h5 id="money" className="">
                       NGN549.00/mo
-                    </h4>
+                    </h5>
                     <button>
                       <Link to="#" className="Getlink">
                         Get Started
@@ -180,9 +180,9 @@ export const Pricing = () => {
                       <img src={Check} alt="" />
                       24/7 Customer support
                     </li>
-                    <h4 id="money" className="">
+                    <h5 id="money" className="">
                       NGN1320.00/mo
-                    </h4>
+                    </h5>
                     <button>
                       <Link to="#" className="Getlink">
                         Get Started

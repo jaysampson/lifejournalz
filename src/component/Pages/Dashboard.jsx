@@ -384,7 +384,7 @@ const Dashboard = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <p
+            <div
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -396,9 +396,14 @@ const Dashboard = () => {
                 marginTop: "30px",
               }}
             >
-              <FontAwesomeIcon icon={faArrowRightFromBracket} />{" "}
-              <span>Logout</span>
-            </p>
+              <FontAwesomeIcon icon={faArrowRightFromBracket} />
+              <span
+                onClick={() => userLogout(dispatch)}
+                style={{ cursor: "pointer" }}
+              >
+                Logout
+              </span>
+            </div>
           </div>
         )}
         <div className="dash-nav">
@@ -448,8 +453,7 @@ const Dashboard = () => {
         <div className="dash-container">
           <div className="side-bar">
             <div className="sidebar-contents">
-              {/* //! need to work on the css content */}
-              <div className="content">
+              <div className="side-content">
                 <div
                   className={selected === 0 ? "icon2" : "icon"}
                   onClick={() => {
@@ -806,7 +810,11 @@ const Dashboard = () => {
                   <FontAwesomeIcon icon={faGear} />
                   <span>Settings</span>
                 </div>
-                <button className="icon" onClick={() => userLogout(dispatch)}>
+                <button
+                  className="icon"
+                  style={{ backgroundColor: "white" }}
+                  onClick={() => userLogout(dispatch)}
+                >
                   <FontAwesomeIcon icon={faArrowRightFromBracket} />
                   Logout
                 </button>
@@ -827,7 +835,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="downbar-contents">
-          <div className="content">
+          <div className="down-content">
             <div
               className={selected === 2 ? "icon2-d" : "icon-d"}
               onClick={() => {

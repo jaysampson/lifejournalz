@@ -835,7 +835,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className="downbar-contents">
-          <div className="content">
+          <div className="down-content">
             <div
               className={selected === 2 ? "icon2-d" : "icon-d"}
               onClick={() => {

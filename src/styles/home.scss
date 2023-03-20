@@ -160,6 +160,7 @@ h1 {
               padding: 10px 5px 10px 5px;
               border-bottom: 1px solid #61045f;
               border-top: 1px solid #61045f;
+              gap: 10px;
 
               p {
                 margin-bottom: 0rem !important;
@@ -254,7 +255,7 @@ h1 {
 }
 
 .journal-text {
-  @media screen and (max-width: 475px) {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 }

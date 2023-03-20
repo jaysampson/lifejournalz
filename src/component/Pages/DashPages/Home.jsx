@@ -7,9 +7,12 @@ import {
   faArrowUpFromBracket,
   faCheck,
   faEllipsisV,
+  faEllipsisVertical,
+  faPencil,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import bookicon from "../../../Images/bookicon.png";
-import { Button, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import addpic from "../../../Images/addpic.png";
 import DatePicker from "react-datepicker";
@@ -26,6 +29,8 @@ import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi
 import { auth } from "../../../config/firebase";
 import { Link } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
+import Modal from "react-modal";
+import SingleJournal from "./SingleJournal";
 
 export const Home = (props) => {
   const dispatch = useDispatch();
@@ -125,6 +130,25 @@ export const Home = (props) => {
       .reverse();
   }
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const [currentJournalId, setCurrentJournalId] = useState(null);
+
+  const [showEModal, setEShowModal] = useState(false);
+
+  const handleEllipsisClick = (journalId) => {
+    setCurrentJournalId(journalId);
+    setEShowModal(true);
+  };
+
+  const handleECloseModal = () => {
+    setEShowModal(false);
+  };
+
   return (
     <div>
       {!authUser && !findUser ? (
@@ -218,27 +242,76 @@ export const Home = (props) => {
                               >
                                 {item?.selectedDate}
                               </p>
-                              <Link to={`/dashboard/${item.id}`}>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-between",
+                                  alignItems: "center",
+                                }}
+                              >
                                 <Button
                                   style={{ width: "80px" }}
-                                  onClick={() =>
+                                  onClick={() => {
+                                    setIsModalOpen(true);
                                     getSingleJournalCollection(
                                       item.id,
                                       dispatch
-                                    )
-                                  }
+                                    );
+                                  }}
                                 >
                                   View
                                 </Button>
-                              </Link>
-                              {/* <Button
-                            style={{ width: "80px" }}
-                            onClick={() =>
-                              getSingleJournalCollection(item.id, dispatch)
-                            }
-                          >
-                            Delete
-                          </Button> */}
+                                <div
+                                  style={{
+                                    position: "relative",
+                                    display: "inline-block",
+                                  }}
+                                >
+                                  <FontAwesomeIcon
+                                    icon={faEllipsisVertical}
+                                    style={{ color: "gray", cursor: "pointer" }}
+                                    onClick={handleEllipsisClick}
+                                  />
+                                  {showEModal && (
+                                    <div
+                                      style={{
+                                        position: "absolute",
+                                        top: "30px",
+                                        right: "0px",
+                                        backgroundColor: "white",
+                                        padding: "5px",
+                                        boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+                                        borderRadius: "5px",
+                                      }}
+                                    >
+                                      <button
+                                        style={{
+                                          backgroundColor: "gray",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          gap: "10px",
+                                        }}
+                                      >
+                                        <FontAwesomeIcon icon={faPencil} />
+                                        <span>Edit</span>
+                                      </button>
+                                      <button
+                                        style={{
+                                          backgroundColor: "gray",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          gap: "10px",
+                                        }}
+                                      >
+                                        <FontAwesomeIcon icon={faTrash} />
+                                        <span>Delete</span>
+                                      </button>
+                                    </div>
+                                  )}
+                                </div>
+                              </div>
                             </div>
                           );
                         })}
@@ -250,6 +323,9 @@ export const Home = (props) => {
             </div>
           </div>
         </div>
+        <Modal isOpen={isModalOpen}>
+          <SingleJournal onCloseModal={handleCloseModal} />
+        </Modal>
       </div>
     </div>
   );

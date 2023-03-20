@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   signInWithPopup,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import {
   collection,
@@ -41,9 +42,8 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
     localStorage.setItem("jwt", res.user.accessToken);
     console.log(res, "userAuth");
     if (res) {
-    dispatch(authUserSuccess(res));
+      dispatch(authUserSuccess(res));
       window.location.href = "/dashboard";
-
     }
   } catch (error) {
     dispatch(authUserFail(error));
@@ -51,21 +51,19 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
   }
 };
 
-export const loginWithGoogle =  async (dispatch)=>{
+export const loginWithGoogle = async (dispatch) => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     localStorage.setItem("jwt", res.user.accessToken);
     console.log(res, "googleLogin");
-    if(res){
-    dispatch(signInWithGoogleSuccess(res));
+    if (res) {
+      dispatch(signInWithGoogleSuccess(res));
       window.location.href = "/dashboard";
     }
   } catch (error) {
-    console.log(error)
-    
+    console.log(error);
   }
-
-}
+};
 
 export const registerUser = async (
   { email, password, displayName },
@@ -81,14 +79,14 @@ export const registerUser = async (
       displayName
     );
     // console.log(result, "0000");
-       await setDoc(doc(db, "users", result.user.uid), {
-        displayName,
-        email,
-        timeStamp: serverTimestamp(),
-      });
+    await setDoc(doc(db, "users", result.user.uid), {
+      displayName,
+      email,
+      timeStamp: serverTimestamp(),
+    });
     // console.log(result, "register");
     if (result) {
-    dispatch(registerUserSuccess(result));
+      dispatch(registerUserSuccess(result));
       window.location.href = "/signin";
     }
   } catch (error) {
@@ -129,3 +127,15 @@ export const userLogout = async (dispatch) => {
     console.log(error);
   }
 };
+
+//password reset
+
+// export const passwordReset =  async (email, dispatch) => {
+//   try {
+//     await sendPasswordResetEmail(auth, email);
+
+//   } catch (error) {
+    
+//   }
+   
+// };

@@ -433,14 +433,6 @@ const Dashboard = () => {
                 style={{ height: "25px" }}
               />
             </InputGroup>
-          
-            <select className="cat" placeholder="All categories">
-              <option value="">All Categories</option>
-              <option value="">Personal</option>
-              <option value="">Family</option>
-              <option value="">Category</option>
-            </select>
-            <button>Search</button>
           </div>
 
           <div className="nav-images">
@@ -456,6 +448,7 @@ const Dashboard = () => {
         <div className="dash-container">
           <div className="side-bar">
             <div className="sidebar-contents">
+              {/* //! need to work on the css content */}
               <div className="content">
                 <div
                   className={selected === 0 ? "icon2" : "icon"}
@@ -492,37 +485,37 @@ const Dashboard = () => {
 
                 <div
                   className="icon"
-                  // onClick={() => {
-                  //   toggleMenu(3);
-                  //   setActiveComponent("Component4");
-                  // }}
+                  onClick={() => {
+                    toggleMenu(3);
+                    setActiveComponent("Component4");
+                  }}
                 >
                   <FontAwesomeIcon
                     icon={faArrowUpFromBracket}
                     style={{ color: "gray" }}
                   />
                   <span style={{ color: "gray" }}>Shared</span>
-                  {/* <div className="num">24</div> */}
+                  <div className="num">24</div>
                 </div>
 
                 <div
                   className="icon"
-                  // onClick={() => {
-                  //   toggleMenu(4);
-                  //   setActiveComponent("Component5");
-                  // }}
+                  onClick={() => {
+                    toggleMenu(4);
+                    setActiveComponent("Component5");
+                  }}
                 >
                   <FontAwesomeIcon icon={faClock} style={{ color: "gray" }} />
                   <span style={{ color: "gray" }}>Recently added</span>
-                  {/* <div className="num-2">59</div> */}
+                  <div className="num-2">59</div>
                 </div>
 
                 <div
                   className="icon"
-                  // onClick={() => {
-                  //   toggleMenu(5);
-                  //   setActiveComponent("Component6");
-                  // }}
+                  onClick={() => {
+                    toggleMenu(5);
+                    setActiveComponent("Component6");
+                  }}
                 >
                   <FontAwesomeIcon
                     icon={faFolderMinus}
@@ -540,7 +533,7 @@ const Dashboard = () => {
                 >
                   <FontAwesomeIcon icon={faTag} />
                   <span>Pricing</span>
-                  {/* <div className="new">new</div> */}
+                  <div className="new">new</div>
                 </div>
                 <div
                   className={selected === 7 ? "icon2" : "icon"}

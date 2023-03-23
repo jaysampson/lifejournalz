@@ -8,6 +8,7 @@ import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import {  registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
+import { toast, ToastContainer } from "react-toastify";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -28,12 +29,12 @@ const SignUp = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  // console.log({
-  //   usersInfoData,
-  //   usersInfoIsLoading,
-  //   usersInfoError,
-  //   isLoggedIn,
-  // }, "register");
+  console.log({
+    usersInfoData,
+    // usersInfoIsLoading,
+    usersInfoError,
+    isLoggedIn,
+  }, "register");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,21 +59,9 @@ const SignUp = () => {
     navigate("/signin");
   }
 
-  // useEffect(() => {
-  //   /*global google*/
-  //   google.accounts.id.initialize({
-  //     client_id: process.env.REACT_APP_CLIENT_ID,
-  //     callback: handleCallbackResponse
-  //   });
 
-  //   google.accounts.id.renderButton(
-  //     document.getElementById("signInDiv"),
-  //     { theme: "outline", size: "large" }
-  //   );
-  //   google.accounts.id.prompt();
-  // }, []);
-  // if we have no user : signin button
-  // if we have a user: show the logout button
+
+  
   return (
     <>
       <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>
@@ -92,6 +81,7 @@ const SignUp = () => {
                 </Link>
               </div>
               <form action="" method="POST" onSubmit={handleSubmit}>
+                <ToastContainer />
                 <p>
                   <label htmlFor="name">Name</label>
                 </p>
@@ -141,7 +131,7 @@ const SignUp = () => {
                 </div>
                 <img src={Or} alt="Or" />
                 <div id="signInDiv"></div>
-                
+
                 {/* {
                   Object.keys(user).length != 0 && navigate("/dashboard")
                   <button onClick={(e) => handleSignout(e)}>Signout</button>

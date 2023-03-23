@@ -51,7 +51,7 @@ import {
 } from "../../redux/journalSlice/journalFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, storage } from "../../config/firebase";
-import { userLogout } from "../../redux/authUserSlice/authUserFirebaseApi";
+import { getAllUserInfo, userLogout } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
   const isGrayLabel = (label) =>
@@ -195,6 +195,7 @@ const Menu = ({
 
 const Dashboard = () => {
   const dispatch = useDispatch();
+  const user = auth.currentUser;
 
   const [selected, setSelected] = useState(0);
   const toggleMenu = (index) => {
@@ -253,6 +254,10 @@ const Dashboard = () => {
   };
 
   const {
+    getUsersInfo: { getUsersInfoData },
+  } = useSelector((state) => state.authUser);
+
+  const {
     createJournal: {
       createJournalData,
       createJournalLoading,
@@ -265,9 +270,10 @@ const Dashboard = () => {
     },
   } = useSelector((state) => state.journalInfo);
 
-  // console.log(journalCategoriesData, "journalCategoriesData");
+  // find a user details
+  const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
 
-  const user = auth.currentUser;
+
   // console.log(user, "user");
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -327,6 +333,8 @@ const Dashboard = () => {
   useEffect(() => {
     getAllJournalsData(dispatch);
     categoryJournalDoc(dispatch);
+    getAllUserInfo(dispatch);
+
   }, []);
 
   return (
@@ -365,8 +373,18 @@ const Dashboard = () => {
               >
                 <div className="prof-pic">{/* <img src={} alt="" /> */}</div>
                 <div className="prof-det">
-                  <span style={{ color: "black" }}>user.name</span>
-                  <span style={{ color: "GrayText" }}>user.email</span>
+                  {!user && !findUser ? (
+                    <h1>Loading...</h1>
+                  ) : (
+                    <>
+                      {" "}
+                      <span style={{ color: "black" }}>
+                        Hey {findUser?.displayName || user?.displayName}
+                      </span>
+                      <span style={{ color: "GrayText" }}>{findUser?.email || user.email  }</span>
+                    </>
+                  )}
+                
                 </div>
               </div>
             </div>

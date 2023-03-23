@@ -1,9 +1,10 @@
-import { async } from "@firebase/util";
+import { toast } from "react-toastify";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   signInWithPopup,
+  getRedirectResult,
   sendPasswordResetEmail,
 } from "firebase/auth";
 import {
@@ -84,8 +85,10 @@ export const registerUser = async (
       email,
       timeStamp: serverTimestamp(),
     });
-    // console.log(result, "register");
+    console.log(result, "register");
+    //  toast.success("SUCCESSFULL");
     if (result) {
+      alert("SUCCESSFULL...!! PLEASE LOGIN");
       dispatch(registerUserSuccess(result));
       window.location.href = "/signin";
     }

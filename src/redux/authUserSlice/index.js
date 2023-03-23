@@ -94,6 +94,7 @@ export const {
   registerUserStart,
   registerUserSuccess,
   registerUserFail,
+  //get users
   getUsersStart,
   getUsersSuccess,
   getUsersFail,

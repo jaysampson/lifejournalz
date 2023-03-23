@@ -324,7 +324,7 @@ export const Home = (props) => {
                                 </p>
                               </div>
                               <p className="journal-text">{item.category}</p>
-                              <p
+                              {/* <p
                                 className="journal-date"
                                 style={{
                                   display: "flex",
@@ -332,7 +332,7 @@ export const Home = (props) => {
                                 }}
                               >
                                 {item?.selectedDate}
-                              </p>
+                              </p> */}
                               <div
                                 style={{
                                   display: "flex",

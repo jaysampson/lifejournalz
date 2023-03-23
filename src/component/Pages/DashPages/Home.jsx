@@ -180,6 +180,7 @@ export const Home = (props) => {
   const handleEllipsisClick = (journalId) => {
     setCurrentJournalId(journalId);
     setEShowModal(true);
+    console.log(journalId, "Hello world");
   };
 
   const handleECloseModal = () => {
@@ -361,46 +362,48 @@ export const Home = (props) => {
                                   <FontAwesomeIcon
                                     icon={faEllipsisVertical}
                                     style={{ color: "gray", cursor: "pointer" }}
-                                    onClick={handleEllipsisClick}
+                                    onClick={() => handleEllipsisClick(item.id)}
                                   />
-                                  {showEModal && (
-                                    <div
-                                      style={{
-                                        position: "absolute",
-                                        top: "30px",
-                                        right: "0px",
-                                        backgroundColor: "white",
-                                        padding: "5px",
-                                        boxShadow: "0 0 10px rgba(0,0,0,0.3)",
-                                        borderRadius: "5px",
-                                      }}
-                                    >
-                                      <button
+                                  {showEModal &&
+                                    currentJournalId === item.id && (
+                                      <div
+                                        onClick={() => setEShowModal(false)}
                                         style={{
-                                          backgroundColor: "gray",
-                                          display: "flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          gap: "10px",
+                                          position: "absolute",
+                                          top: "30px",
+                                          right: "0px",
+                                          backgroundColor: "white",
+                                          padding: "5px",
+                                          boxShadow: "0 0 10px rgba(0,0,0,0.3)",
+                                          borderRadius: "5px",
                                         }}
                                       >
-                                        <FontAwesomeIcon icon={faPencil} />
-                                        <span>Edit</span>
-                                      </button>
-                                      <button
-                                        style={{
-                                          backgroundColor: "gray",
-                                          display: "flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          gap: "10px",
-                                        }}
-                                      >
-                                        <FontAwesomeIcon icon={faTrash} />
-                                        <span>Delete</span>
-                                      </button>
-                                    </div>
-                                  )}
+                                        <button
+                                          style={{
+                                            backgroundColor: "gray",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            gap: "10px",
+                                          }}
+                                        >
+                                          <FontAwesomeIcon icon={faPencil} />
+                                          <span>Edit</span>
+                                        </button>
+                                        <button
+                                          style={{
+                                            backgroundColor: "gray",
+                                            display: "flex",
+                                            alignItems: "center",
+                                            justifyContent: "center",
+                                            gap: "10px",
+                                          }}
+                                        >
+                                          <FontAwesomeIcon icon={faTrash} />
+                                          <span>Delete</span>
+                                        </button>
+                                      </div>
+                                    )}
                                 </div>
                               </div>
                             </div>

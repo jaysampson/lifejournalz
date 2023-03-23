@@ -7,8 +7,7 @@ import cloud from "../../cloud.png";
 import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import {  registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
-import { toast, ToastContainer } from "react-toastify";
+import { registerUser } from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const SignUp = () => {
   const dispatch = useDispatch();
@@ -39,8 +38,8 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     registerUser({ email, password, displayName }, dispatch);
+    navigate("/signin");
   };
-  
 
   const navigate = useNavigate();
 

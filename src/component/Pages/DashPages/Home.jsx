@@ -193,6 +193,22 @@ export const Home = (props) => {
     setSelectedCategory(category);
   };
 
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (modalRef.current && !modalRef.current.contains(event.target)) {
+        setEShowModal(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [modalRef]);
+
   return (
     <div>
       <div className="home-nav">
@@ -225,23 +241,6 @@ export const Home = (props) => {
           </InputGroup>
         </div>
       </div>
-      {/* <input
-        className="searchInput"
-        type="search"
-        placeholder="search"
-        value={search}
-        onChange={handleChange}
-      /> */}
-      {/* <select>
-        <option value="allCategories">--Select A category--</option>
-        {journalCategoriesData.map((category) => (
-          <>
-            <option value={category.name} key={category.id}>
-              {category.name}
-            </option>
-          </>
-        ))}
-      </select> */}
 
       {!authUser && !findUser ? (
         <h1>Loading...</h1>
@@ -321,7 +320,9 @@ export const Home = (props) => {
                                     whiteSpace: "nowrap",
                                   }}
                                 >
-                                  {item.title}
+                                  {item.title.length > 10
+                                    ? item.title.slice(0, 10) + "..."
+                                    : item.title}
                                 </p>
                               </div>
                               <p className="journal-text">{item.category}</p>
@@ -367,41 +368,75 @@ export const Home = (props) => {
                                   {showEModal &&
                                     currentJournalId === item.id && (
                                       <div
-                                        onClick={() => setEShowModal(false)}
+                                        ref={modalRef}
                                         style={{
                                           position: "absolute",
-                                          top: "30px",
-                                          right: "0px",
-                                          backgroundColor: "white",
-                                          padding: "5px",
+                                          top: "-40px",
+                                          right: "10px",
+                                          background: "white",
+                                          padding: "15px",
                                           boxShadow: "0 0 10px rgba(0,0,0,0.3)",
                                           borderRadius: "5px",
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          flexDirection: "column",
+                                          width: "fit-content",
+                                          gap: "10px",
                                         }}
                                       >
-                                        <button
+                                        <div
                                           style={{
-                                            backgroundColor: "gray",
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
                                             gap: "10px",
+                                            width: "150px",
+                                            background: "gray",
+                                            borderRadius: "5px",
+                                            padding: "5px",
                                           }}
                                         >
-                                          <FontAwesomeIcon icon={faPencil} />
-                                          <span>Edit</span>
-                                        </button>
-                                        <button
+                                          <div
+                                            style={{
+                                              display: "flex",
+                                              alignItems: "center",
+                                              justifyContent: "center",
+                                              gap: "10px",
+                                              width: "100%",
+                                              cursor: "pointer",
+                                            }}
+                                          >
+                                            <FontAwesomeIcon icon={faPencil} />
+                                            <span>Edit</span>
+                                          </div>
+                                        </div>
+                                        <div
                                           style={{
-                                            backgroundColor: "gray",
                                             display: "flex",
                                             alignItems: "center",
                                             justifyContent: "center",
                                             gap: "10px",
+                                            width: "150px",
+                                            background: "gray",
+                                            borderRadius: "5px",
+                                            padding: "5px",
                                           }}
                                         >
-                                          <FontAwesomeIcon icon={faTrash} />
-                                          <span>Delete</span>
-                                        </button>
+                                          <div
+                                            style={{
+                                              display: "flex",
+                                              alignItems: "center",
+                                              justifyContent: "center",
+                                              gap: "10px",
+                                              width: "100%",
+                                              cursor: "pointer",
+                                            }}
+                                          >
+                                            <FontAwesomeIcon icon={faTrash} />
+                                            <span>Delete</span>
+                                          </div>
+                                        </div>
                                       </div>
                                     )}
                                 </div>

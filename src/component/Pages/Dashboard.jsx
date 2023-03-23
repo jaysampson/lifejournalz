@@ -643,8 +643,7 @@ const Dashboard = () => {
                               </h5>
                               <div
                                 style={{
-                                  height: "fit-content",
-                                  width: "fit-content",
+                                  width: "100%",
                                   padding: "5px",
                                   border: "1px gray solid",
                                   display: "flex",
@@ -660,46 +659,13 @@ const Dashboard = () => {
                                       : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
                                   }
                                   alt=""
-                                  style={{ height: "33%", width: "33%" }}
+                                  style={{ width: "50%" }}
                                 />
                                 <p style={{ marginBottom: "10px" }}>
                                   (upload png,svg,gif)
                                 </p>
-                                {/* <div
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    position: "relative",
-                                    gap: "10px",
-                                    borderRadius: "5px",
-                                    alignItems: "center",
-                                    padding: "5px 0px 5px 0px",
-                                    width: "90%",
-                                    background:
-                                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                                    color: "white",
-                                  }}
-                                >
-                                  Upload
-                                  <FontAwesomeIcon
-                                    icon={faArrowUpFromBracket}
-                                  />
-                                </div> */}
                                 <input
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    position: "relative",
-                                    gap: "10px",
-                                    borderRadius: "5px",
-                                    alignItems: "center",
-                                    padding: "5px 0px 5px 0px",
-                                    width: "fit-content",
-                                    background:
-                                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                                    color: "white",
-                                    textAlign: "center",
-                                  }}
+                                  className="modal-input"
                                   type="file"
                                   onChange={(e) => setFile(e.target.files[0])}
                                 />

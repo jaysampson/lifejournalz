@@ -80,7 +80,6 @@ const SignUp = () => {
                 </Link>
               </div>
               <form action="" method="POST" onSubmit={handleSubmit}>
-                <ToastContainer />
                 <p>
                   <label htmlFor="name">Name</label>
                 </p>

@@ -27,12 +27,12 @@ const SingleJournal = (props) => {
     },
   } = useSelector((state) => state.journalInfo);
 
-  console.log(
-    getSingleJournalData,
-    getSingleJournalLoading,
-    getSingleJournalError,
-    "singleJournal"
-  );
+  // console.log(
+  //   getSingleJournalData,
+  //   getSingleJournalLoading,
+  //   getSingleJournalError,
+  //   "singleJournal"
+  // );
 
   useEffect(() => {
     getSingleJournalCollection(id, dispatch);
@@ -49,7 +49,7 @@ const SingleJournal = (props) => {
         </Link>
         <div className="header">
           <h2>{getSingleJournalData.title}</h2>
-          {/* <span>item.text.replace/^+/g, "".slice(0, 30) + "...</span> */}
+          {/* <span>item.text.replace/^+//g, "".slice(0, 30) + "...</span> */}
           {/* <span>
                 {getSingleJournalData?.text
                   .replace(/<[^>]+>/g, "")
@@ -83,18 +83,7 @@ const SingleJournal = (props) => {
           </div> */}
           <div className="journal-content" contenteditable="false">
             <span>
-              post.text Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Nostrum deserunt quisquam tempora obcaecati. Dignissimos sapiente
-              ea minus veniam error, eum corrupti eligendi neque natus ad cumque
-              beatae sit doloribus illum odio obcaecati porro voluptatibus ab
-              veritatis. Beatae, reprehenderit nobis repellendus provident
-              sapiente ipsum facere! Tenetur quo velit laudantium beatae quos
-              repudiandae recusandae ipsum voluptatum numquam maiores laboriosam
-              veniam repellat consectetur, ratione quisquam iste at magnam animi
-              ut necessitatibus accusantium unde! Tempore earum omnis placeat,
-              magni laborum animi, quia nostrum culpa facere sed sit veritatis
-              ex maiores! Obcaecati iste dolores exercitationem mollitia quasi,
-              est consectetur vel, molestias ex culpa excepturi itaque.
+             {getSingleJournalData?.text?.replace(/<[^>]+>/g, "")}
             </span>
           </div>
         </div>

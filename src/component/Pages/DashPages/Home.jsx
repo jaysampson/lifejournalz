@@ -21,13 +21,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import the styles
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteJournalDoc,
   getAllJournalsData,
   getSingleJournalCollection,
 } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import Modal from "react-modal";
 import SingleJournal from "./SingleJournal";
@@ -39,6 +40,7 @@ import {
 } from "react-bootstrap";
 
 export const Home = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
 
@@ -61,6 +63,11 @@ export const Home = (props) => {
       journalCategoriesData,
       journalCategoriesLoading,
       journalCategoriesError,
+    },
+    getSingleJournal: {
+      getSingleJournalData,
+      getSingleJournalLoading,
+      getSingleJournalError,
     },
   } = useSelector((state) => state.journalInfo);
 
@@ -180,7 +187,7 @@ export const Home = (props) => {
   const handleEllipsisClick = (journalId) => {
     setCurrentJournalId(journalId);
     setEShowModal(true);
-    console.log(journalId, "Hello world");
+    // console.log(journalId, "Hello world");
   };
 
   const handleECloseModal = () => {
@@ -325,7 +332,7 @@ export const Home = (props) => {
                                 </p>
                               </div>
                               <p className="journal-text">{item.category}</p>
-                              {/* <p
+                              <p
                                 className="journal-date"
                                 style={{
                                   display: "flex",
@@ -333,7 +340,7 @@ export const Home = (props) => {
                                 }}
                               >
                                 {item?.selectedDate}
-                              </p> */}
+                              </p>
                               <div
                                 style={{
                                   display: "flex",
@@ -398,9 +405,19 @@ export const Home = (props) => {
                                             justifyContent: "center",
                                             gap: "10px",
                                           }}
+                                          onClick={() =>{
+                                            deleteJournalDoc(item.id, dispatch);
+                                            navigate("/dashboard")
+                                          }}
+                                          
                                         >
                                           <FontAwesomeIcon icon={faTrash} />
-                                          <span>Delete</span>
+                                          {}
+                                          <span>
+                                            {getSingleJournalLoading
+                                              ? "Loading..."
+                                              : "Delete"}
+                                          </span>
                                         </button>
                                       </div>
                                     )}

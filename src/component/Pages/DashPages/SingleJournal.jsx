@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../../styles/SingleJournal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeft,
-  faPencil,
-  faTrash,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteJournalDoc,
@@ -38,8 +33,6 @@ const SingleJournal = (props) => {
     getSingleJournalCollection(id, dispatch);
     getAllJournalsData(dispatch);
   }, [id]);
-
-  const navigate = useNavigate();
 
   return (
     <div className="singleJournal">
@@ -82,20 +75,7 @@ const SingleJournal = (props) => {
             </button>
           </div> */}
           <div className="journal-content" contenteditable="false">
-            <span>
-              post.text Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Nostrum deserunt quisquam tempora obcaecati. Dignissimos sapiente
-              ea minus veniam error, eum corrupti eligendi neque natus ad cumque
-              beatae sit doloribus illum odio obcaecati porro voluptatibus ab
-              veritatis. Beatae, reprehenderit nobis repellendus provident
-              sapiente ipsum facere! Tenetur quo velit laudantium beatae quos
-              repudiandae recusandae ipsum voluptatum numquam maiores laboriosam
-              veniam repellat consectetur, ratione quisquam iste at magnam animi
-              ut necessitatibus accusantium unde! Tempore earum omnis placeat,
-              magni laborum animi, quia nostrum culpa facere sed sit veritatis
-              ex maiores! Obcaecati iste dolores exercitationem mollitia quasi,
-              est consectetur vel, molestias ex culpa excepturi itaque.
-            </span>
+            <span>post.text</span>
           </div>
         </div>
       </div>

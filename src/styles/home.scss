@@ -259,9 +259,10 @@ h1 {
     gap: 10px;
     width: 60%;
 
-    @media screen and (max-width: 766px) {
-      width: 70%;
+    @media screen and (max-width: 475px) {
+      width: 95%;
       margin-left: 0%;
+      justify-content: flex-start;
     }
     .input-group {
       display: flex;

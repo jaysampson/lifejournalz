@@ -534,3 +534,19 @@
     }
   }
 }
+.modal-input {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  gap: 10px;
+  border-radius: 5px;
+  align-items: center;
+  padding: 5px 0px 5px 0px;
+  background: linear-gradient(90deg, #aa076b 0%, #61045f 100%);
+  color: white;
+  text-align: center;
+  @media screen and (max-width: 580px) {
+    width: 98%;
+  }
+}

@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../../../styles/SingleJournal.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowLeft,
-  faPencil,
-  faTrash,
-  faXmark,
-} from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteJournalDoc,
@@ -38,8 +33,6 @@ const SingleJournal = (props) => {
     getSingleJournalCollection(id, dispatch);
     getAllJournalsData(dispatch);
   }, [id]);
-
-  const navigate = useNavigate();
 
   return (
     <div className="singleJournal">
@@ -82,9 +75,11 @@ const SingleJournal = (props) => {
             </button>
           </div> */}
           <div className="journal-content" contenteditable="false">
+
             <span>
              {getSingleJournalData?.text?.replace(/<[^>]+>/g, "")}
             </span>
+
           </div>
         </div>
       </div>

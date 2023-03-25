@@ -1,4 +1,3 @@
-import { async } from "@firebase/util";
 import {
   doc,
   serverTimestamp,
@@ -9,6 +8,7 @@ import {
   getDocs,
   deleteDoc,
   updateDoc,
+  Timestamp,
 } from "firebase/firestore";
 import moment from "moment";
 import { db,  } from "../../config/firebase";
@@ -100,9 +100,10 @@ export const deleteJournalDoc = async (id, dispatch) => {
   const deleteJournalCol = doc(db, "journalCol", id);
   try {
     const res = await deleteDoc(deleteJournalCol);
-    const result = res.data();
-    console.log(result,"delete")
-    dispatch(deleteJournalSuccess(result));
+    // const result = res;
+    console.log(res, "delete");
+    dispatch(deleteJournalSuccess(res));
+    window.location.reload();
   } catch (error) {
     dispatch(deleteJournalFail(error))
     console.log(error);

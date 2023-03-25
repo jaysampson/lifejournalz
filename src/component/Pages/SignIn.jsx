@@ -27,7 +27,7 @@ const Login = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  console.log({ usersInfoData, isLoggedIn, usersInfoError }, "login");
+  // console.log({ usersInfoData, isLoggedIn, usersInfoError }, "login");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,6 +64,8 @@ const Login = () => {
                   <img src={Cancel} alt="X" />
                 </Link>
               </div>
+              <h1>{usersInfoError && <h6>Something went wrong...</h6>}</h1>
+
               <form action="" method="POST" onSubmit={handleSubmit}>
                 <p>
                   <label htmlFor="email">Email</label>

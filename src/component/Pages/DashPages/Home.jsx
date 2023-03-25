@@ -21,13 +21,14 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css"; // import the styles
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteJournalDoc,
   getAllJournalsData,
   getSingleJournalCollection,
 } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth } from "../../../config/firebase";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import Modal from "react-modal";
 import SingleJournal from "./SingleJournal";
@@ -39,13 +40,13 @@ import {
 } from "react-bootstrap";
 
 export const Home = (props) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
 
-  const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("Event");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("")
+  const[showModal,setShowModal] = useState(false)
 
   const {
     getUsersInfo: { getUsersInfoData },
@@ -61,6 +62,16 @@ export const Home = (props) => {
       journalCategoriesData,
       journalCategoriesLoading,
       journalCategoriesError,
+    },
+    getSingleJournal: {
+      getSingleJournalData,
+      getSingleJournalLoading,
+      getSingleJournalError,
+    },
+    deleteJournal: {
+      deleteJournalData,
+      deleteJournalLoading,
+      deleteJournalError,
     },
   } = useSelector((state) => state.journalInfo);
 
@@ -180,7 +191,7 @@ export const Home = (props) => {
   const handleEllipsisClick = (journalId) => {
     setCurrentJournalId(journalId);
     setEShowModal(true);
-    console.log(journalId, "Hello world");
+    // console.log(journalId, "Hello world");
   };
 
   const handleECloseModal = () => {
@@ -214,7 +225,7 @@ export const Home = (props) => {
       <div className="home-nav">
         <div className="search">
           <InputGroup className="input-group">
-            <DropdownButton
+            {/* <DropdownButton
               variant="outline-secondary"
               title={selectedCategory ? selectedCategory : "Categories"}
               id="input-group-dropdown-1"
@@ -231,7 +242,7 @@ export const Home = (props) => {
                   {category.name}
                 </Dropdown.Item>
               ))}
-            </DropdownButton>
+            </DropdownButton> */}
             <FormControl
               placeholder="Search in categories"
               style={{ height: "30px" }}
@@ -288,7 +299,7 @@ export const Home = (props) => {
                     ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
                     ) : sortedJournals.length === 0 ? (
-                      <h1>You dont have any Journal, create one!</h1>
+                      <h1>You don't have any Journal, create one!</h1>
                     ) : (
                       <>
                         {sortedJournals.map((item) => {
@@ -352,7 +363,7 @@ export const Home = (props) => {
                                     );
                                   }}
                                 >
-                                  View
+                                  {getSingleJournalLoading? "Loading" :"View"}
                                 </Button>
                                 <div
                                   style={{
@@ -411,7 +422,7 @@ export const Home = (props) => {
                                             <span>Edit</span>
                                           </div>
                                         </div>
-                                        <div
+                                        <button
                                           style={{
                                             display: "flex",
                                             alignItems: "center",
@@ -422,21 +433,19 @@ export const Home = (props) => {
                                             borderRadius: "5px",
                                             padding: "5px",
                                           }}
+                                          onClick={() => {
+                                            deleteJournalDoc(item.id, dispatch);
+                                            navigate("/dashboard")
+                                          }}
                                         >
-                                          <div
-                                            style={{
-                                              display: "flex",
-                                              alignItems: "center",
-                                              justifyContent: "center",
-                                              gap: "10px",
-                                              width: "100%",
-                                              cursor: "pointer",
-                                            }}
-                                          >
-                                            <FontAwesomeIcon icon={faTrash} />
-                                            <span>Delete</span>
-                                          </div>
-                                        </div>
+                                          <FontAwesomeIcon icon={faTrash} />
+
+                                          <span>
+                                            {deleteJournalLoading
+                                              ? "Loading..."
+                                              : "Delete"}
+                                          </span>
+                                        </button>
                                       </div>
                                     )}
                                 </div>

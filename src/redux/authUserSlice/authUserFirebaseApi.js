@@ -1,10 +1,12 @@
-import { async } from "@firebase/util";
+import { toast } from "react-toastify";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
   signInWithPopup,
+  getRedirectResult,
   sendPasswordResetEmail,
+  signInWithRedirect,
 } from "firebase/auth";
 import {
   collection,
@@ -53,12 +55,12 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
 
 export const loginWithGoogle = async (dispatch) => {
   try {
-    const res = await signInWithPopup(auth, googleProvider);
+    const res = await signInWithRedirect(auth, googleProvider);
     localStorage.setItem("jwt", res.user.accessToken);
     console.log(res, "googleLogin");
     if (res) {
       dispatch(signInWithGoogleSuccess(res));
-      window.location.href = "/dashboard";
+      // window.location.href = "/dashboard";
     }
   } catch (error) {
     console.log(error);
@@ -84,8 +86,10 @@ export const registerUser = async (
       email,
       timeStamp: serverTimestamp(),
     });
-    // console.log(result, "register");
+    console.log(result, "register");
+    //  toast.success("SUCCESSFULL");
     if (result) {
+      alert("SUCCESSFULL...!! PLEASE LOGIN");
       dispatch(registerUserSuccess(result));
       window.location.href = "/signin";
     }

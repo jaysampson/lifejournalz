@@ -22,12 +22,12 @@ const SingleJournal = (props) => {
     },
   } = useSelector((state) => state.journalInfo);
 
-  console.log(
-    getSingleJournalData,
-    getSingleJournalLoading,
-    getSingleJournalError,
-    "singleJournal"
-  );
+  // console.log(
+  //   getSingleJournalData,
+  //   getSingleJournalLoading,
+  //   getSingleJournalError,
+  //   "singleJournal"
+  // );
 
   useEffect(() => {
     getSingleJournalCollection(id, dispatch);
@@ -42,7 +42,7 @@ const SingleJournal = (props) => {
         </Link>
         <div className="header">
           <h2>{getSingleJournalData.title}</h2>
-          {/* <span>item.text.replace/^+/g, "".slice(0, 30) + "...</span> */}
+          {/* <span>item.text.replace/^+//g, "".slice(0, 30) + "...</span> */}
           {/* <span>
                 {getSingleJournalData?.text
                   .replace(/<[^>]+>/g, "")
@@ -75,7 +75,9 @@ const SingleJournal = (props) => {
             </button>
           </div> */}
           <div className="journal-content" contenteditable="false">
-            <span>post.text</span>
+            <span>
+             {getSingleJournalData?.text?.replace(/<[^>]+>/g, "")}
+            </span>
           </div>
         </div>
       </div>

@@ -28,12 +28,12 @@ const SignUp = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  // console.log({
-  //   usersInfoData,
-  //   usersInfoIsLoading,
-  //   usersInfoError,
-  //   isLoggedIn,
-  // }, "register");
+  console.log({
+    usersInfoData,
+    // usersInfoIsLoading,
+    usersInfoError,
+    isLoggedIn,
+  }, "register");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,21 +58,9 @@ const SignUp = () => {
     navigate("/signin");
   }
 
-  // useEffect(() => {
-  //   /*global google*/
-  //   google.accounts.id.initialize({
-  //     client_id: process.env.REACT_APP_CLIENT_ID,
-  //     callback: handleCallbackResponse
-  //   });
 
-  //   google.accounts.id.renderButton(
-  //     document.getElementById("signInDiv"),
-  //     { theme: "outline", size: "large" }
-  //   );
-  //   google.accounts.id.prompt();
-  // }, []);
-  // if we have no user : signin button
-  // if we have a user: show the logout button
+
+  
   return (
     <>
       <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>

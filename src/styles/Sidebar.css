@@ -1,0 +1,12 @@
+/* nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
+    min-height: 100vh;
+    background-color: aliceblue;
+    padding: 2rem 1rem 1rem 1rem;
+    transition: transform 1s;
+} */

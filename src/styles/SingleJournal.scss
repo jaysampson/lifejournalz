@@ -1,0 +1,102 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
+}
+
+.singleJournal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  .singlejournal-con {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 30px;
+    gap: 10px;
+
+    .backbutton {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .back {
+        padding: 1.8% 2% 1.8% 2%;
+        border-radius: 50%;
+        background-color: #61045f;
+        color: white;
+        margin-left: 5%;
+        @media screen and (max-width: 768px) {
+          padding: 3% 3.6% 3% 3.6%;
+        }
+      }
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+
+      h2 {
+        font-size: 40px;
+      }
+
+      span {
+        color: gray;
+      }
+    }
+
+    .journal-con {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 50px;
+      width: 100%;
+
+      img {
+        width: 30%;
+        border: 1px solid black;
+        border-radius: 5px;
+
+        @media (max-width: 768px) {
+          width: 90%;
+        }
+      }
+
+      .journal-content {
+        margin-top: 10px;
+        width: 70%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: 2px solid #64748b;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 50px;
+
+        @media screen and (max-width: 766px) {
+          width: 100% !important;
+        }
+
+        span {
+          color: #280626;
+          text-align: center;
+          font-family: "Bellota", cursive;
+          width: 100%;
+        }
+      }
+    }
+  }
+}

@@ -44,10 +44,7 @@ export const Home = (props) => {
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
 
-  const [showModal, setShowModal] = useState(false);
   const [activeTab, setActiveTab] = useState("Event");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [search, setSearch] = useState("");
 
   const {
     getUsersInfo: { getUsersInfoData },

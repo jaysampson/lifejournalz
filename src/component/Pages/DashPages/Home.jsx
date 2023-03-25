@@ -45,6 +45,8 @@ export const Home = (props) => {
   const authUser = auth.currentUser;
 
   const [activeTab, setActiveTab] = useState("Event");
+  const [search, setSearch] = useState("")
+  const[showModal,setShowModal] = useState(false)
 
   const {
     getUsersInfo: { getUsersInfoData },
@@ -297,7 +299,7 @@ export const Home = (props) => {
                     ) : getAllJournalError ? (
                       <h1>Something went wrong</h1>
                     ) : sortedJournals.length === 0 ? (
-                      <h1>You dont have any Journal, create one!</h1>
+                      <h1>You don't have any Journal, create one!</h1>
                     ) : (
                       <>
                         {sortedJournals.map((item) => {
@@ -433,6 +435,7 @@ export const Home = (props) => {
                                           }}
                                           onClick={() => {
                                             deleteJournalDoc(item.id, dispatch);
+                                            navigate("/dashboard")
                                           }}
                                         >
                                           <FontAwesomeIcon icon={faTrash} />

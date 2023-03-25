@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   getRedirectResult,
   sendPasswordResetEmail,
+  signInWithRedirect,
 } from "firebase/auth";
 import {
   collection,
@@ -54,12 +55,12 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
 
 export const loginWithGoogle = async (dispatch) => {
   try {
-    const res = await signInWithPopup(auth, googleProvider);
+    const res = await signInWithRedirect(auth, googleProvider);
     localStorage.setItem("jwt", res.user.accessToken);
     console.log(res, "googleLogin");
     if (res) {
       dispatch(signInWithGoogleSuccess(res));
-      window.location.href = "/dashboard";
+      // window.location.href = "/dashboard";
     }
   } catch (error) {
     console.log(error);

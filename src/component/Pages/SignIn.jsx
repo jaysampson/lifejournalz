@@ -27,7 +27,7 @@ const Login = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  console.log({ usersInfoData, isLoggedIn, usersInfoError }, "login");
+  // console.log({ usersInfoData, isLoggedIn, usersInfoError }, "login");
 
   const handleSubmit = (e) => {
     e.preventDefault();

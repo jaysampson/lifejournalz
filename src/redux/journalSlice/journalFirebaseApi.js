@@ -100,10 +100,10 @@ export const deleteJournalDoc = async (id, dispatch) => {
   const deleteJournalCol = doc(db, "journalCol", id);
   try {
     const res = await deleteDoc(deleteJournalCol);
-    const result = res.data();
-    // console.log(result,"delete")
+    // const result = res;
+    console.log(res, "delete");
+    dispatch(deleteJournalSuccess(res));
     window.location.reload();
-    dispatch(deleteJournalSuccess(result));
   } catch (error) {
     dispatch(deleteJournalFail(error))
     console.log(error);

@@ -1,4 +1,5 @@
-import { toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
@@ -139,7 +140,7 @@ export const userLogout = async (dispatch) => {
 //     await sendPasswordResetEmail(auth, email);
 
 //   } catch (error) {
-    
+
 //   }
-   
+
 // };

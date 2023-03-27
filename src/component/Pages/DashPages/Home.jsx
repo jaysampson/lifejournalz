@@ -441,6 +441,7 @@ export const Home = (props) => {
                 gap: "10px",
               }}
               type="submit"
+              disabled
               // disabled={percentage !== null && percentage < 100}
             >
               {/* <FontAwesomeIcon icon={faCheck} /> */}

@@ -47,7 +47,7 @@ export const createJournal = async (
     const docRef = await addDoc(collection(db, "journalCol"), {
       text,
       title,
-      selectedDate: moment(selectedDate).format("MMM Do YY"),
+      selectedDate,
       file,
       isFavourites,
       userid,

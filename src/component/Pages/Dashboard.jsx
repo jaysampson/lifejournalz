@@ -192,7 +192,6 @@ const Menu = ({
     </div>
   );
 };
-
 const Dashboard = () => {
   const dispatch = useDispatch();
   const user = auth.currentUser;
@@ -273,6 +272,8 @@ const Dashboard = () => {
 
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
+
+console.log(selectedDate, "selectedDate");
 
 
   // console.log(user, "user");
@@ -382,10 +383,11 @@ const Dashboard = () => {
                       <span style={{ color: "black" }}>
                         Hey {findUser?.displayName || user?.displayName}
                       </span>
-                      <span style={{ color: "GrayText" }}>{findUser?.email || user.email  }</span>
+                      <span style={{ color: "GrayText" }}>
+                        {findUser?.email || user.email}
+                      </span>
                     </>
                   )}
-                
                 </div>
               </div>
             </div>

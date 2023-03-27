@@ -1,0 +1,54 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
+}
+
+.cat-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.cat-content {
+  width: 90%;
+  margin-top: 30px;
+}
+.cat-content h2 {
+  text-align: center;
+  margin-bottom: 0px;
+}
+.cat-content p {
+  text-align: center;
+  margin-bottom: 0px;
+}
+.cat-content .cat-journalz {
+  margin-top: 20px;
+  height: 400px;
+  border-radius: 10px;
+  border: 2px rgb(85, 0, 85) solid;
+  overflow: auto;
+}
+.cat-content .cat-journalz select {
+  border: 1px black solid;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.cat-content .cat-journalz .cat-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cat-content .cat-journalz .cat-main .catj-con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95%;
+}
+.cat-content .cat-journalz .cat-main .catj-con p {
+  color: gray;
+  margin-top: 15%;
+}/*# sourceMappingURL=categories.css.map */

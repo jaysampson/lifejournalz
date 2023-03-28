@@ -1,6 +1,5 @@
 import React from "react";
 import "../../../styles/favourite.scss";
-git;
 import hat from "../../../Images/Hat.png";
 
 export const Favourite = () => {

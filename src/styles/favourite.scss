@@ -1,54 +1,91 @@
 * {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: 0px;
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
 }
 
 .favourite {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .fav-con {
-    width: 90%;
-    margin-top: 30px;
+  width: 90%;
+  margin-top: 30px;
 
-    h2 {
-        text-align: center;
-        margin-bottom: 0px;
+  h2 {
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+  p {
+    text-align: center;
+    margin-bottom: 0px;
+  }
+
+  .fav-main {
+    margin-top: 20px;
+    height: 400px;
+    border-radius: 10px;
+    border: 2px rgb(85, 0, 85) solid;
+    overflow: scroll;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 475px) {
+      border: none;
+      padding: 0px;
     }
 
-    p {
-        text-align: center;
-        margin-bottom: 0px;
+    .fav-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
     }
 
-    .fav-main {
-        margin-top: 20px;
-        height: 400px;
-        border-radius: 10px;
-        border: 2px rgb(85, 0, 85) solid;
-        overflow: auto;
-
-        .fav-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .fav-journalz {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 95%;
-
-                p {
-                    color: gray;
-                    margin-top: 15%;
-                }
-            }
+    .fav-journalz {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      margin-top: 300px;
+      @media screen and (max-width: 475px) {
+        margin-top: 120px;
+      }
+      .one-by-one {
+        width: 30%;
+        @media screen and (max-width: 475px) {
+          width: 80%;
         }
+        .image-con {
+          width: 100%;
+          border-radius: 10px 10px 0px 0px;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+        }
+        .text-con {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          border-radius: 0px 0px 10px 10px;
+          padding-left: 10px;
+          border: 1px solid gray;
+          p {
+            color: #6f0847;
+            font-size: 20px;
+          }
+        }
+      }
     }
+  }
 }

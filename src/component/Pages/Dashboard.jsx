@@ -51,7 +51,10 @@ import {
 } from "../../redux/journalSlice/journalFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 import { auth, storage } from "../../config/firebase";
-import { getAllUserInfo, userLogout } from "../../redux/authUserSlice/authUserFirebaseApi";
+import {
+  getAllUserInfo,
+  userLogout,
+} from "../../redux/authUserSlice/authUserFirebaseApi";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
   const isGrayLabel = (label) =>
@@ -267,14 +270,12 @@ const Dashboard = () => {
       journalCategoriesLoading,
       journalCategoriesError,
     },
-     
   } = useSelector((state) => state.journalInfo);
 
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
 
-console.log(selectedDate, "selectedDate");
-
+  console.log(selectedDate, "selectedDate");
 
   // console.log(user, "user");
   const handleSubmit = (e) => {
@@ -336,7 +337,6 @@ console.log(selectedDate, "selectedDate");
     getAllJournalsData(dispatch);
     categoryJournalDoc(dispatch);
     getAllUserInfo(dispatch);
-
   }, []);
 
   return (

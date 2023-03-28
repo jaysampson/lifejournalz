@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../styles/favourite.scss";
-// import add from "../../../Images/Our story.jpg";
+git;
 import hat from "../../../Images/Hat.png";
 
 export const Favourite = () => {

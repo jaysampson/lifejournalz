@@ -24,6 +24,7 @@ import {
   deleteJournalDoc,
   getAllJournalsData,
   getSingleJournalCollection,
+  updateJournalDoc,
 } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
@@ -47,8 +48,9 @@ export const Home = (props) => {
   const [text, setText] = useState("");
   const [form, setForm] = useState({});
   const [editId,setEditedId] = useState("")
+  const [uploaded, setuploaded] = useState("");
   const [file, setFile] = useState("")
-  const [isFovourites, setIsFavourites] = useState(false)
+  const [isFavourites, setIsFavourites] = useState(false);
   const [categoryData,setCategoryData] = useState("")
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeTab, setActiveTab] = useState("Event");
@@ -136,39 +138,54 @@ export const Home = (props) => {
     }
   };
 
-  const onInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  // useEffect(() => {
-  //   if (getSingleJournalData) {
-  //     setForm((prev) => {
-  //       return {
-  //         ...prev,
-  //         title: getSingleJournalData?.title,
-  //       };
-  //     });
-  //   }
-  // }, []);
-
+  // const onInputChange = (e) => {
+  //   setForm({ ...form, [e.target.name]: e.target.value });
+  // };
+   
   const onEditClick = (id) => {
     filterUserJournal.forEach((item) => {
       if (item.id === id) {
-        setForm({
-          title: item.title,
-          text: item.text,
-          file: item.file,
-          category: item.category,
-          isFavourites: item.isFavourites,
-          selectedDate: item.selectedDate,
+        setForm(prev =>{
+          return {
+            ...prev,
+            title: item.title,
+            text: item.text,
+            file: item.file,
+            category: item.category,
+            isFavourites: item.isFavourites,
+            selectedDate: item.selectedDate,
+          };
         });
       }
     });
     setEditedId(id);
-    // setFiles([]);
-    // setView({ add: false, edit: true });
+    
   };
 
-  console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
+  const onSubmitEditJournal = (e)=>{
+    e.preventDefault();
+
+    console.log({
+      text,
+      title,
+      selectedDate,
+      isFavourites,
+      file: uploaded,
+      userid: authUser.uid,
+      category: categoryData,
+    });
+    updateJournalDoc({
+      text,
+      title,
+      selectedDate,
+      isFavourites,
+      file: uploaded,
+      userid: authUser.uid,
+      category: categoryData,
+    }, editId, dispatch);
+  }
+
+  // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
 
   useEffect(() => {
     // fetchData();
@@ -273,7 +290,7 @@ export const Home = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Update Journal</Modal.Title>
         </Modal.Header>
-        <form>
+        <form onSubmit={onSubmitEditJournal}>
           <Modal.Body>
             <h5>Title</h5>
             <input
@@ -288,7 +305,8 @@ export const Home = (props) => {
                 height: "40px",
               }}
               value={form.title}
-              onChange={(e) => onInputChange(e)}
+              // onChange={handleTitleChange}
+              onChange={(e) => setForm({ ...form, title: e.target.value })}
             />
             {/* <div
               className="title-count"
@@ -324,7 +342,7 @@ export const Home = (props) => {
                     <h5 style={{ marginBottom: "10px" }}>Description</h5>
                     <ReactQuill
                       // value={text}
-                      value={form.text}
+                      value={text ? text : form.text}
                       onChange={setText}
                       modules={{
                         toolbar: [
@@ -393,12 +411,10 @@ export const Home = (props) => {
                   <div>
                     <h5>Date</h5>
                     <DatePicker
-                      selected={selectedDate || new Date(form.selectedDate?.seconds * 1000)}
-                      // selected={
-                      //   selectedDate
-                      //     ? selectedDate
-                      //     : new Date(form.selectedDate?.seconds * 1000)
-                      // }
+                      selected={
+                        selectedDate ||
+                        new Date(form.selectedDate?.seconds * 1000)
+                      }
                       onChange={(date) => setSelectedDate(date)}
                       dateFormat="dd/MM/yyyy"
                       placeholderText="Select Date Publish"
@@ -441,7 +457,6 @@ export const Home = (props) => {
                 gap: "10px",
               }}
               type="submit"
-              disabled
               // disabled={percentage !== null && percentage < 100}
             >
               {/* <FontAwesomeIcon icon={faCheck} /> */}

@@ -14,6 +14,7 @@ import {
 import bookicon from "../../../Images/bookicon.png";
 import { Button, Modal } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
+// import Modal from "react-modal";
 import addpic from "../../../Images/addpic.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -31,7 +32,7 @@ import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi
 import { auth } from "../../../config/firebase";
 import { Link, useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
-// import Modal from "react-modal";
+import ReactModal from "react-modal";
 import SingleJournal from "./SingleJournal";
 import {
   InputGroup,
@@ -101,7 +102,7 @@ export const Home = (props) => {
     // authUser.displayName,
     "3030"
   );
-  const newDate2 = new Date(findUser?.timeStamp?.seconds * 1000)
+  const newDate2 = new Date(findUser?.timeStamp?.seconds * 1000);
   console.log(moment(newDate2).format("MMMM DD YYYY"), "timeStamp");
   // console.log(filterUserJournal?.category, "timeStamp2");
 
@@ -491,7 +492,7 @@ export const Home = (props) => {
               ))}
             </DropdownButton> */}
             <FormControl
-              placeholder="Search in categories"
+              placeholder="Search title, categories, and dates"
               style={{ height: "30px" }}
               value={search}
               onChange={handleChange}
@@ -593,7 +594,7 @@ export const Home = (props) => {
                               >
                                 {moment(
                                   new Date(item?.selectedDate?.seconds * 1000)
-                                ).format("MMMM DD YY")}
+                                ).format("MMMM Do YYYY")}
                               </p>
                               <div
                                 style={{
@@ -657,7 +658,7 @@ export const Home = (props) => {
                                             padding: "5px",
                                           }}
                                         >
-                                          <button
+                                          <div
                                             style={{
                                               display: "flex",
                                               alignItems: "center",
@@ -677,9 +678,9 @@ export const Home = (props) => {
                                           >
                                             <FontAwesomeIcon icon={faPencil} />
                                             <span>Edit</span>
-                                          </button>
+                                          </div>
                                         </div>
-                                        <button
+                                        <div
                                           style={{
                                             display: "flex",
                                             alignItems: "center",
@@ -699,10 +700,10 @@ export const Home = (props) => {
 
                                           <span>
                                             {deleteJournalLoading
-                                              ? "Loading..."
+                                              ? "Deleting..."
                                               : "Delete"}
                                           </span>
-                                        </button>
+                                        </div>
                                       </div>
                                     )}
                                 </div>
@@ -718,12 +719,9 @@ export const Home = (props) => {
             </div>
           </div>
         </div>
-        <Modal
-          show={isModalOpen}
-          // isOpen={isModalOpen}
-        >
+        <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />
-        </Modal>
+        </ReactModal>
       </div>
     </div>
   );

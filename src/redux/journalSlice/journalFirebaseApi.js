@@ -82,13 +82,14 @@ export const getAllJournalsData = async (dispatch) => {
 };
 
 export const getSingleJournalCollection = async (id, dispatch) => {
-  // console.log(id, "0000")
+  console.log(id, "0000")
   dispatch(getSingleJournalStart());
   const getSingleJournal = doc(db, "journalCol", id);
   try {
     const data = await getDoc(getSingleJournal);
     const res = data.data();
     dispatch(getSingleJournalSuccess(res));
+    console.log(res, "resApi")
   } catch (error) {
     dispatch(getSingleJournalFail(error));
     console.log(error);
@@ -116,29 +117,34 @@ export const updateJournalDoc = async (
   id,
   dispatch
 ) => {
-  // console.log({
-  //   text,
-  //   title,
-  //   selectedDate,
-  //   isFavourites,
-  //   file,
-  //   userid,
-  //   category,
-  // }, id, "updateId");
+  console.log({
+    text,
+    title,
+    selectedDate,
+    isFavourites,
+    file,
+    userid,
+    category,
+  }, id, "updateId");
   dispatch(updateJournalStart());
   const updateJournalCol = doc(db, "journalCol", id);
   try {
-    const res = await updateDoc(updateJournalCol, {
-      text,
-      title,
-      selectedDate,
-      isFavourites,
-      file,
-      userid,
-      category,
-    });
+    const res = await updateDoc(
+      updateJournalCol,
+      {
+        text,
+        title,
+        selectedDate,
+        isFavourites,
+        file,
+        userid,
+        category,
+      },
+      { merge: true }
+    );
     // const result = res.data();
     dispatch(updateJournalSuccess(res));
+    window.location.reload();
     console.log(res, "update-result")
   } catch (error) {
     dispatch(updateJournalFail(error));

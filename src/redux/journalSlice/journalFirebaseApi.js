@@ -11,7 +11,7 @@ import {
   Timestamp,
 } from "firebase/firestore";
 import moment from "moment";
-import { db,  } from "../../config/firebase";
+import { db } from "../../config/firebase";
 import {
   createJournalInfoStart,
   createJournalInfoSuccess,
@@ -82,13 +82,14 @@ export const getAllJournalsData = async (dispatch) => {
 };
 
 export const getSingleJournalCollection = async (id, dispatch) => {
-  // console.log(id, "0000")
+  console.log(id, "0000")
   dispatch(getSingleJournalStart());
   const getSingleJournal = doc(db, "journalCol", id);
   try {
     const data = await getDoc(getSingleJournal);
     const res = data.data();
     dispatch(getSingleJournalSuccess(res));
+    console.log(res, "resApi")
   } catch (error) {
     dispatch(getSingleJournalFail(error));
     console.log(error);
@@ -105,19 +106,46 @@ export const deleteJournalDoc = async (id, dispatch) => {
     dispatch(deleteJournalSuccess(res));
     window.location.reload();
   } catch (error) {
-    dispatch(deleteJournalFail(error))
+    dispatch(deleteJournalFail(error));
     console.log(error);
   }
 };
 
 //update journal
-export const updateJournalDoc = async (id, dispatch) => {
+export const updateJournalDoc = async (
+  { text, title, selectedDate, isFavourites, file, userid, category },
+  id,
+  dispatch
+) => {
+  console.log({
+    text,
+    title,
+    selectedDate,
+    isFavourites,
+    file,
+    userid,
+    category,
+  }, id, "updateId");
   dispatch(updateJournalStart());
   const updateJournalCol = doc(db, "journalCol", id);
   try {
-    const res = await updateDoc(updateJournalCol);
-    const result = res.data();
-    dispatch(updateJournalSuccess(result));
+    const res = await updateDoc(
+      updateJournalCol,
+      {
+        text,
+        title,
+        selectedDate,
+        isFavourites,
+        file,
+        userid,
+        category,
+      },
+      { merge: true }
+    );
+    // const result = res.data();
+    dispatch(updateJournalSuccess(res));
+    window.location.reload();
+    console.log(res, "update-result")
   } catch (error) {
     dispatch(updateJournalFail(error));
     console.log(error);
@@ -125,11 +153,11 @@ export const updateJournalDoc = async (id, dispatch) => {
 };
 
 //category journal
-export const categoryJournalDoc = async (dispatch)=>{
+export const categoryJournalDoc = async (dispatch) => {
   dispatch(journalCategoriesStart());
   const categoryJournalCol = collection(db, "categories");
   try {
-     const data = await getDocs(categoryJournalCol);
+    const data = await getDocs(categoryJournalCol);
     const filterData = data.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
@@ -138,8 +166,6 @@ export const categoryJournalDoc = async (dispatch)=>{
     // console.log(filterData, "7777")
   } catch (error) {
     dispatch(journalCategoriesFail(error));
-    console.log(error)
-    
+    console.log(error);
   }
-
-}
+};

@@ -25,10 +25,12 @@ import {
   deleteJournalDoc,
   getAllJournalsData,
   getSingleJournalCollection,
+  updateJournalDoc,
 } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
-import { auth } from "../../../config/firebase";
+import { auth, storage } from "../../../config/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { Link, useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import ReactModal from "react-modal";
@@ -48,10 +50,12 @@ export const Home = (props) => {
   const [text, setText] = useState("");
   const [form, setForm] = useState({});
   const [editId, setEditedId] = useState("");
+  const [uploaded, setuploaded] = useState("");
   const [file, setFile] = useState("");
-  const [isFovourites, setIsFavourites] = useState(false);
+  const [isFavourites, setIsFavourites] = useState(false);
   const [categoryData, setCategoryData] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [percentage, setPercentage] = useState(null);
   const [activeTab, setActiveTab] = useState("Event");
   const [search, setSearch] = useState("");
   const [showModal, setShowModal] = useState(false);
@@ -81,6 +85,11 @@ export const Home = (props) => {
       deleteJournalLoading,
       deleteJournalError,
     },
+    updateJournal: {
+      updateJournalData,
+      updateJournalLoading,
+      updateJournalError,
+    },
   } = useSelector((state) => state.journalInfo);
 
   // find a user details
@@ -88,39 +97,34 @@ export const Home = (props) => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  console.log(
-    {
-      findUser,
-      filterUserJournal,
-      getUsersInfoData,
-      getAllJournalError,
-      authUser,
-      getSingleJournalData,
-    },
-    // authUser.displayName,
-    "3030"
-  );
-  const newDate2 = new Date(findUser?.timeStamp?.seconds * 1000);
-  console.log(moment(newDate2).format("MMMM DD YYYY"), "timeStamp");
-  // console.log(filterUserJournal?.category, "timeStamp2");
+  // console.log(
+  //   {
+  //     findUser,
+  //     filterUserJournal,
+  //     getUsersInfoData,
+  //     getAllJournalError,
+  //     authUser,
+  //     getSingleJournalData,
+  //   },
+  //   // authUser.displayName,
+  //   "3030"
+  // );
+  
 
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-
   //search
   const searchJournal = filterUserJournal?.filter((item) => {
+
     return (
       item?.title.toLowerCase().includes(search.toLowerCase()) ||
       item?.text.toLowerCase().includes(search.toLowerCase()) ||
-      item?.category.toLowerCase().includes(search.toLowerCase())
+      item?.category.toLowerCase().includes(search.toLowerCase()) 
     );
   });
 
-  // const searchCategory = (value)=>{
-  //   setSearch
-  //   const filterData2 = searchJournal.filter((c) => c.category === value);
-  // }
+  
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -137,42 +141,96 @@ export const Home = (props) => {
     }
   };
 
-  const onInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  // useEffect(() => {
-  //   if (getSingleJournalData) {
-  //     setForm((prev) => {
-  //       return {
-  //         ...prev,
-  //         title: getSingleJournalData?.title,
-  //       };
-  //     });
-  //   }
-  // }, []);
-
+ 
   const onEditClick = (id) => {
     filterUserJournal.forEach((item) => {
       if (item.id === id) {
-        setForm({
-          title: item.title,
-          text: item.text,
-          file: item.file,
-          category: item.category,
-          isFavourites: item.isFavourites,
-          selectedDate: item.selectedDate,
+        setForm(prev =>{
+          return {
+            ...prev,
+            title: item.title,
+            text: item.text,
+            file: item.file,
+            category: item.category,
+            isFavourites: item.isFavourites,
+            selectedDate: item.selectedDate,
+          };
         });
       }
     });
     setEditedId(id);
-    // setFiles([]);
-    // setView({ add: false, edit: true });
+
   };
 
-  console.log(new Date(form.selectedDate?.seconds * 1000), "formName");
+  const onSubmitEditJournal = (e) => {
+    e.preventDefault();
+
+    // console.log({
+    //   text,
+    //   title,
+    //   selectedDate,
+    //   isFavourites,
+    //   file: uploaded,
+    //   userid: authUser.uid,
+    //   category: categoryData,
+    // });
+    updateJournalDoc(
+      {
+        text: text || form.text,
+        title: form.title,
+        selectedDate: form.selectedDate,
+        isFavourites: form.isFavourites,
+        file: form.file || uploaded,
+        userid: authUser.uid,
+        category: categoryData || form.category,
+      },
+      editId,
+      dispatch
+    );
+  };
+
+  // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
+
+   useEffect(() => {
+     const uploadImage = () => {
+       const name = new Date().getTime() + file.name;
+       const storageRef = ref(storage, name);
+
+       const uploadTask = uploadBytesResumable(storageRef, file);
+       uploadTask.on(
+         "state_changed",
+         (snapshot) => {
+           const progress =
+             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           console.log("Upload is " + progress + "% done");
+           setPercentage(progress);
+           switch (snapshot.state) {
+             case "paused":
+               console.log("Upload is paused");
+               break;
+             case "running":
+               console.log("Upload is running");
+               break;
+             default:
+               break;
+           }
+         },
+         (error) => {
+           // Handle unsuccessful uploads
+         },
+         () => {
+           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+             console.log("File available at", downloadURL);
+             // setFile(downloadURL);
+             setuploaded(downloadURL);
+           });
+         }
+       );
+     };
+     file && uploadImage();
+   }, [file]);
 
   useEffect(() => {
-    // fetchData();
     getAllJournalsData(dispatch);
     getAllUserInfo(dispatch);
   }, []);
@@ -274,187 +332,183 @@ export const Home = (props) => {
         <Modal.Header closeButton>
           <Modal.Title>Update Journal</Modal.Title>
         </Modal.Header>
-        <form>
-          <Modal.Body>
-            <h5>Title</h5>
-            <input
-              className="journal-title"
-              type="text"
-              name=""
-              id=""
-              placeholder="Title of new journal"
-              style={{
-                border: "1px solid gray",
-                borderRadius: "5px",
-                height: "40px",
-              }}
-              value={form.title}
-              onChange={(e) => onInputChange(e)}
-            />
-            {/* <div
+        {getSingleJournalLoading && <h3>Loading...</h3>}
+        {!getSingleJournalLoading && (
+          <form onSubmit={onSubmitEditJournal}>
+            <Modal.Body>
+              <h5>Title</h5>
+              <input
+                className="journal-title"
+                type="text"
+                name=""
+                id=""
+                placeholder="Title of new journal"
+                style={{
+                  border: "1px solid gray",
+                  borderRadius: "5px",
+                  height: "40px",
+                }}
+                value={form.title}
+                // onChange={handleTitleChange}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+              />
+              {/* <div
               className="title-count"
               style={{ float: "right", marginRight: "32%" }}
             >
               {title.length}/20
             </div> */}
-            <div
-              className="headers"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-around",
-                marginTop: "50px",
-                cursor: "pointer",
-              }}
-            >
-              <p
-                className={activeTab === "Event" ? "active-tab" : ""}
-                onClick={() => handleTabClick("Event")}
+              <div
+                className="headers"
                 style={{
-                  padding: "5px 30px 5px 40px",
-                  marginBottom: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  marginTop: "50px",
+                  cursor: "pointer",
                 }}
               >
-                Event
-              </p>
-            </div>
-            <div>
-              {activeTab === "Event" && (
-                <div>
-                  <div style={{ marginBottom: "10px" }}>
-                    <h5 style={{ marginBottom: "10px" }}>Description</h5>
-                    <ReactQuill
-                      // value={text}
-                      value={form.text}
-                      onChange={setText}
-                      modules={{
-                        toolbar: [
-                          [{ header: [1, 2, false] }],
-                          ["bold", "italic", "underline"],
-                          [{ color: [] }, { background: [] }],
-                          [{ align: [] }],
-                        ],
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginBottom: "15px" }}>
-                    <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
-                    <div
-                      style={{
-                        width: "100%",
-                        padding: "5px",
-                        border: "1px gray solid",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <img
-                        src={
-                          file
-                            ? URL.createObjectURL(file)
-                            : form.file ||
-                              "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                        }
-                        alt=""
-                        style={{ width: "50%" }}
-                      />
-                      <p style={{ marginBottom: "10px" }}>
-                        (upload png,svg,gif)
-                      </p>
-                      <input
-                        className="modal-input"
-                        type="file"
-                        onChange={(e) => setFile(e.target.files[0])}
+                <p
+                  className={activeTab === "Event" ? "active-tab" : ""}
+                  onClick={() => handleTabClick("Event")}
+                  style={{
+                    padding: "5px 30px 5px 40px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Event
+                </p>
+              </div>
+              <div>
+                {activeTab === "Event" && (
+                  <div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <h5 style={{ marginBottom: "10px" }}>Description</h5>
+                      <ReactQuill
+                        // value={text}
+                        value={text || form.text}
+                        onChange={setText}
+                        modules={{
+                          toolbar: [
+                            [{ header: [1, 2, false] }],
+                            ["bold", "italic", "underline"],
+                            [{ color: [] }, { background: [] }],
+                            [{ align: [] }],
+                          ],
+                        }}
                       />
                     </div>
-                  </div>
-                  <div>
-                    <h5>Choose Category</h5>
-                    <select
-                      placeholder="Choose Category"
+                    <div style={{ marginBottom: "15px" }}>
+                      <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
+                      <div
+                        style={{
+                          width: "100%",
+                          padding: "5px",
+                          border: "1px gray solid",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <img
+                          src={
+                            file
+                              ? URL.createObjectURL(file)
+                              : form.file ||
+                                "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                          }
+                          alt=""
+                          style={{ width: "50%" }}
+                        />
+                        <p style={{ marginBottom: "10px" }}>
+                          (upload png,svg,gif)
+                        </p>
+                        <input
+                          className="modal-input"
+                          type="file"
+                          onChange={(e) => setFile(e.target.files[0])}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h5>Choose Category</h5>
+                      <select
+                        placeholder="Choose Category"
+                        style={{
+                          width: "100%",
+                          height: "35px",
+                          border: "1px solid black",
+                          borderRadius: "5px",
+                          marginBottom: "15px",
+                        }}
+                        onChange={(e) => setCategoryData(e.target.value)}
+                      >
+                        <option value={form.category}>{form.category}</option>
+                        {journalCategoriesData?.map((category) => (
+                          <option value={category.name} key={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <h5>Date</h5>
+                      <DatePicker
+                        selected={
+                          selectedDate ||
+                          new Date(form.selectedDate?.seconds * 1000)
+                        }
+                        onChange={(date) => setSelectedDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Select Date Publish"
+                        className="my-datepicker"
+                      />
+                    </div>
+                    <div
                       style={{
-                        width: "100%",
-                        height: "35px",
-                        border: "1px solid black",
-                        borderRadius: "5px",
-                        marginBottom: "15px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        marginTop: "10px",
                       }}
-                      onChange={(e) => setCategoryData(e.target.value)}
                     >
-                      <option value={form.category}>{form.category}</option>
-                      {journalCategoriesData?.map((category) => (
-                        <option value={category.name} key={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
+                      <input
+                        type="checkbox"
+                        // checked={}
+                        value={form.isFavourites}
+                        onChange={(e) => setIsFavourites(e.target.checked)}
+                      />
+                      <p style={{ marginBottom: "0px" }}>Add to favourites</p>
+                    </div>
                   </div>
-                  <div>
-                    <h5>Date</h5>
-                    <DatePicker
-                      selected={
-                        selectedDate ||
-                        new Date(form.selectedDate?.seconds * 1000)
-                      }
-                      // selected={
-                      //   selectedDate
-                      //     ? selectedDate
-                      //     : new Date(form.selectedDate?.seconds * 1000)
-                      // }
-                      onChange={(date) => setSelectedDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                      placeholderText="Select Date Publish"
-                      className="my-datepicker"
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <input
-                      type="checkbox"
-                      // checked={}
-                      value={form.isFavourites}
-                      onChange={(e) => setIsFavourites(e.target.checked)}
-                    />
-                    <p style={{ marginBottom: "0px" }}>Add to favourites</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModal}>
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              // variant={
-              //   percentage !== null && percentage < 100 ? "#000" : "primary"
-              // }
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-              }}
-              type="submit"
-              disabled
-              // disabled={percentage !== null && percentage < 100}
-            >
-              {/* <FontAwesomeIcon icon={faCheck} /> */}
-              {/* {createJournalLoading ? "Loading..." : "Create Journal"} */}
-              update Journal
-            </Button>
-            {/* {createJournalError && <h2>Something went wrong</h2>} */}
-          </Modal.Footer>
-        </form>
+                )}
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleModal}>
+                Close
+              </Button>
+              <Button
+                // variant="primary"
+                variant={
+                  percentage !== null && percentage < 100 ? "#000" : "primary"
+                }
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+                type="submit"
+                disabled={percentage !== null && percentage < 100}
+              >
+               
+                {updateJournalLoading? "Loading...":"update Journal"}
+              </Button>
+            </Modal.Footer>
+          </form>
+        )}
       </Modal>
 
       {/* end of model */}
@@ -665,7 +719,11 @@ export const Home = (props) => {
                                             }}
                                           >
                                             <FontAwesomeIcon icon={faPencil} />
-                                            <span>Edit</span>
+                                            <span>
+                                              {getSingleJournalLoading
+                                                ? "Loading"
+                                                : "Edit"}
+                                            </span>
                                           </div>
                                         </div>
                                         <div
@@ -688,7 +746,7 @@ export const Home = (props) => {
 
                                           <span>
                                             {deleteJournalLoading
-                                              ? "Deleting..."
+                                              ? "Loading..."
                                               : "Delete"}
                                           </span>
                                         </div>

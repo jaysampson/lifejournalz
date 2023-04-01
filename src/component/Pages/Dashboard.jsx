@@ -275,7 +275,6 @@ const Dashboard = () => {
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
 
-  console.log(selectedDate, "selectedDate");
 
   // console.log(user, "user");
   const handleSubmit = (e) => {

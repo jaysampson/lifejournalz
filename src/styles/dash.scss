@@ -239,7 +239,7 @@
 .dash-container {
   display: flex;
   justify-content: center;
-  height: 93.5vh;
+  height: 100vh;
 
   @media screen and (max-width: 766px) {
     height: 100% !important;
@@ -262,7 +262,7 @@
 
   .side-bar {
     background-color: white;
-    height: 93.5vh;
+    height: 100vh;
     width: 15rem;
     border-right: 1px rgb(214, 210, 210) solid;
     display: flex;
@@ -409,7 +409,7 @@
 
   .dash-contents {
     background-color: #fafafb;
-    height: 93.5vh;
+    height: 100vh;
     width: 100%;
     overflow: auto;
     overflow-x: hidden;

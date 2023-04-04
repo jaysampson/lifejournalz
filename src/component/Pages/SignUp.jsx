@@ -127,8 +127,8 @@ const SignUp = () => {
                     {usersInfoIsLoading ? "Loading..." : "Sign Up"}
                   </button>
                 </div>
-                <img src={Or} alt="Or" />
-                <div id="signInDiv"></div>
+                {/* <img src={Or} alt="Or" />
+                <div id="signInDiv"></div> */}
 
                 {/* {
                   Object.keys(user).length != 0 && navigate("/dashboard")

@@ -42,13 +42,6 @@ const SingleJournal = (props) => {
         </Link>
         <div className="header">
           <h2>{getSingleJournalData.title}</h2>
-          {/* <span>item.text.replace/^+//g, "".slice(0, 30) + "...</span> */}
-          {/* <span>
-                {getSingleJournalData?.text
-                  .replace(/<[^>]+>/g, "")
-                  .slice(0, 30) + "..."}
-              </span> */}
-          {/* dangerouslySetInnerHTML{{ __html: getSingleJournalData?.text }} */}
         </div>
         <div className="journal-con">
           <img
@@ -59,21 +52,6 @@ const SingleJournal = (props) => {
             }
             alt={getSingleJournalData.title}
           />
-          {/* <div className="buttons">
-            <button>
-              <FontAwesomeIcon icon={faPencil} />
-              <span>Edit Journal</span>
-            </button>
-            <button
-              onClick={() => {
-                deleteJournalDoc(id, dispatch);
-                navigate("/dashboard");
-              }}
-            >
-              <FontAwesomeIcon icon={faTrash} />
-              <span>Delete Journal</span>
-            </button>
-          </div> */}
           <div className="journal-content" contenteditable="false">
             <span>
              {getSingleJournalData?.text?.replace(/<[^>]+>/g, "")}

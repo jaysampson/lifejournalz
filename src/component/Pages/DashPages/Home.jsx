@@ -12,7 +12,7 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import bookicon from "../../../Images/bookicon.png";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Alert } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 // import Modal from "react-modal";
 import addpic from "../../../Images/addpic.png";
@@ -46,7 +46,8 @@ export const Home = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
   const [text, setText] = useState("");
   const [form, setForm] = useState({});
   const [editId, setEditedId] = useState("");
@@ -97,34 +98,18 @@ export const Home = (props) => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  // console.log(
-  //   {
-  //     findUser,
-  //     filterUserJournal,
-  //     getUsersInfoData,
-  //     getAllJournalError,
-  //     authUser,
-  //     getSingleJournalData,
-  //   },
-  //   // authUser.displayName,
-  //   "3030"
-  // );
-  
 
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
   //search
   const searchJournal = filterUserJournal?.filter((item) => {
-
     return (
       item?.title.toLowerCase().includes(search.toLowerCase()) ||
       item?.text.toLowerCase().includes(search.toLowerCase()) ||
-      item?.category.toLowerCase().includes(search.toLowerCase()) 
+      item?.category.toLowerCase().includes(search.toLowerCase())
     );
   });
-
-  
 
   const handleModal = () => {
     setShowModal(!showModal);
@@ -141,11 +126,10 @@ export const Home = (props) => {
     }
   };
 
- 
   const onEditClick = (id) => {
     filterUserJournal.forEach((item) => {
       if (item.id === id) {
-        setForm(prev =>{
+        setForm((prev) => {
           return {
             ...prev,
             title: item.title,
@@ -159,7 +143,6 @@ export const Home = (props) => {
       }
     });
     setEditedId(id);
-
   };
 
   const onSubmitEditJournal = (e) => {
@@ -191,44 +174,44 @@ export const Home = (props) => {
 
   // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
 
-   useEffect(() => {
-     const uploadImage = () => {
-       const name = new Date().getTime() + file.name;
-       const storageRef = ref(storage, name);
+  useEffect(() => {
+    const uploadImage = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, name);
 
-       const uploadTask = uploadBytesResumable(storageRef, file);
-       uploadTask.on(
-         "state_changed",
-         (snapshot) => {
-           const progress =
-             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-           console.log("Upload is " + progress + "% done");
-           setPercentage(progress);
-           switch (snapshot.state) {
-             case "paused":
-               console.log("Upload is paused");
-               break;
-             case "running":
-               console.log("Upload is running");
-               break;
-             default:
-               break;
-           }
-         },
-         (error) => {
-           // Handle unsuccessful uploads
-         },
-         () => {
-           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-             console.log("File available at", downloadURL);
-             // setFile(downloadURL);
-             setuploaded(downloadURL);
-           });
-         }
-       );
-     };
-     file && uploadImage();
-   }, [file]);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setPercentage(progress);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            // setFile(downloadURL);
+            setuploaded(downloadURL);
+          });
+        }
+      );
+    };
+    file && uploadImage();
+  }, [file]);
 
   useEffect(() => {
     getAllJournalsData(dispatch);
@@ -308,6 +291,13 @@ export const Home = (props) => {
     setSelectedCategory(category);
   };
 
+  //open Delete model
+  const openDeleteModal = (id) => {
+    setShowAlert(true);
+    setDeleteId(id);
+  };
+
+
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -326,8 +316,36 @@ export const Home = (props) => {
 
   return (
     <div>
-      {/* Start of model */}
+      {/* show delete alert */}
+      <Modal
+        size="sm"
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            Are sure you want to delete?
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            Close
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteJournalDoc(deleteId, dispatch);
+              navigate("/dashboard");
+            }}
+          >
+            {deleteJournalLoading ? "Loading..." : "Delete"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* end show delete alert */}
 
+      {/* Start of model */}
       <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
         <Modal.Header closeButton>
           <Modal.Title>Update Journal</Modal.Title>
@@ -503,15 +521,14 @@ export const Home = (props) => {
                 type="submit"
                 disabled={percentage !== null && percentage < 100}
               >
-               
-                {updateJournalLoading? "Loading...":"update Journal"}
+                {updateJournalLoading ? "Loading..." : "update Journal"}
               </Button>
             </Modal.Footer>
           </form>
         )}
       </Modal>
-
       {/* end of model */}
+
       <div className="home-nav">
         <div className="search">
           <InputGroup className="input-group">
@@ -534,7 +551,7 @@ export const Home = (props) => {
               ))}
             </DropdownButton> */}
             <FormControl
-              placeholder="Search title, categories, and dates"
+              placeholder="Search title and categories"
               style={{ height: "30px" }}
               value={search}
               onChange={handleChange}
@@ -738,17 +755,12 @@ export const Home = (props) => {
                                             padding: "5px",
                                           }}
                                           onClick={() => {
-                                            deleteJournalDoc(item.id, dispatch);
-                                            navigate("/dashboard");
+                                            openDeleteModal(item.id);
                                           }}
                                         >
                                           <FontAwesomeIcon icon={faTrash} />
 
-                                          <span>
-                                            {deleteJournalLoading
-                                              ? "Loading..."
-                                              : "Delete"}
-                                          </span>
+                                          <span>Delete</span>
                                         </div>
                                       </div>
                                     )}
@@ -764,6 +776,7 @@ export const Home = (props) => {
               </div>
             </div>
           </div>
+          {/* <h1>Hellooooo</h1> */}
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />

@@ -794,6 +794,7 @@ export const Home = (props) => {
           > */}
           <Button
             onClick={handleModal}
+            className="new"
             style={{
               display: "flex",
               alignItems: "center",

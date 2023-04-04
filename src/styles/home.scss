@@ -280,3 +280,10 @@ h1 {
     }
   }
 }
+
+.new {
+  display: none !important;
+  @media screen and (max-width: 768px) {
+    display: block !important;
+  }
+}

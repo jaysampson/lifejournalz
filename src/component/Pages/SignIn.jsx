@@ -64,7 +64,52 @@ const Login = () => {
                   <img src={Cancel} alt="X" />
                 </Link>
               </div>
-              <h1>{usersInfoError && <h6>Something went wrong...</h6>}</h1>
+              <div>
+                <>
+                  {usersInfoError ===
+                    "Firebase: Error (auth/internal-error)." && (
+                    <div
+                      style={{
+                        height: "50",
+                        padding: 10,
+                        backgroundColor: "#fe8484",
+                      }}
+                    >
+                      <h6
+                        style={{
+                          color: "white",
+                          padding: 5,
+                          textAlign: "center",
+                        }}
+                      >
+                        Please check your connection
+                      </h6>
+                    </div>
+                  )}
+                  {usersInfoError ===
+                    "Firebase: Error (auth/user-not-found)." ||
+                    usersInfoError ===
+                      ("Firebase: Error (auth/wrong-password)." && (
+                        <div
+                          style={{
+                            height: "50",
+                            padding: 10,
+                            backgroundColor: "#fe8484",
+                          }}
+                        >
+                          <h6
+                            style={{
+                              color: "white",
+                              padding: 5,
+                              textAlign: "center",
+                            }}
+                          >
+                            Wrong Credentials
+                          </h6>
+                        </div>
+                      ))}
+                </>
+              </div>
 
               <form action="" method="POST" onSubmit={handleSubmit}>
                 <p>
@@ -103,13 +148,13 @@ const Login = () => {
                     Sign In
                   </button>
                 </div>
-                <img src={Or} alt="Or" />
-                <div id="signInDiv"></div>
-                <div className="signin_button">
+                {/* <img src={Or} alt="Or" /> */}
+                {/* <div id="signInDiv"></div> */}
+                {/* <div className="signin_button">
                   <button onClick={() => loginWithGoogle(dispatch)}>
                     Sign In With Google
                   </button>
-                </div>
+                </div> */}
 
                 {/* {Object.keys(user).length != 0 && navigate('/dashboard')} */}
                 <div className="options">

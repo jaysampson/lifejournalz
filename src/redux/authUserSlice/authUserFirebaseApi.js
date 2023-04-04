@@ -47,7 +47,7 @@ export const authUsersLogin = async ({ email, password }, dispatch) => {
       window.location.href = "/dashboard";
     }
   } catch (error) {
-    dispatch(authUserFail(error));
+    dispatch(authUserFail(error.message));
     console.log(error);
   }
 };

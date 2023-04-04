@@ -9,6 +9,7 @@ import {
   faEllipsisV,
   faEllipsisVertical,
   faPencil,
+  faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import bookicon from "../../../Images/bookicon.png";
@@ -41,6 +42,7 @@ import {
   DropdownButton,
   Dropdown,
 } from "react-bootstrap";
+import ModalDh from "./ModalDh";
 
 export const Home = (props) => {
   const navigate = useNavigate();
@@ -59,7 +61,7 @@ export const Home = (props) => {
   const [percentage, setPercentage] = useState(null);
   const [activeTab, setActiveTab] = useState("Event");
   const [search, setSearch] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showUModal, setShowUModal] = useState(false);
 
   const {
     getUsersInfo: { getUsersInfoData },
@@ -111,8 +113,8 @@ export const Home = (props) => {
     );
   });
 
-  const handleModal = () => {
-    setShowModal(!showModal);
+  const handleUModal = () => {
+    setShowUModal(!showUModal);
   };
 
   const handleTabClick = (tabName) => {
@@ -297,7 +299,6 @@ export const Home = (props) => {
     setDeleteId(id);
   };
 
-
   const modalRef = useRef(null);
 
   useEffect(() => {
@@ -313,6 +314,12 @@ export const Home = (props) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [modalRef]);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
 
   return (
     <div>
@@ -346,7 +353,7 @@ export const Home = (props) => {
       {/* end show delete alert */}
 
       {/* Start of model */}
-      <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
+      <Modal show={showUModal} onHide={handleUModal} backdrop={"static"}>
         <Modal.Header closeButton>
           <Modal.Title>Update Journal</Modal.Title>
         </Modal.Header>
@@ -504,7 +511,7 @@ export const Home = (props) => {
               </div>
             </Modal.Body>
             <Modal.Footer>
-              <Button variant="secondary" onClick={handleModal}>
+              <Button variant="secondary" onClick={handleUModal}>
                 Close
               </Button>
               <Button
@@ -727,7 +734,7 @@ export const Home = (props) => {
                                               cursor: "pointer",
                                             }}
                                             onClick={() => {
-                                              handleModal();
+                                              handleUModal();
                                               // getSingleJournalCollection(
                                               //   item.id,
                                               //   dispatch
@@ -777,6 +784,31 @@ export const Home = (props) => {
             </div>
           </div>
           {/* <h1>Hellooooo</h1> */}
+          {/* <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "flex-end",
+              width: "!00%",
+            }}
+          > */}
+          <Button
+            onClick={handleModal}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "cente",
+              height: "40px",
+              gap: "10px",
+              background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+              width: "150px",
+            }}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span style={{ marginBottom: "0px" }}>New Journal</span>
+          </Button>
+          <ModalDh showModal={showModal} handleModal={handleModal} />
+          {/* </div> */}
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />

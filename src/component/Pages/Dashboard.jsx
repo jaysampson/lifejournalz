@@ -30,11 +30,7 @@ import { Storage } from "./DashPages/Storage";
 import { DTerms } from "./DashPages/DTerms";
 import { Calender } from "./DashPages/Calender";
 import { Setting } from "./DashPages/Setting";
-import { Button, Modal } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import { Button } from "react-bootstrap";
 import addpic from "../../Images/addpic.png";
 import {
   InputGroup,
@@ -55,6 +51,7 @@ import {
   getAllUserInfo,
   userLogout,
 } from "../../redux/authUserSlice/authUserFirebaseApi";
+import ModalDh from "./DashPages/ModalDh";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
   const isGrayLabel = (label) =>
@@ -225,28 +222,9 @@ const Dashboard = () => {
   const handleModal = () => {
     setShowModal(!showModal);
   };
-  const handleTabClick = (tabName) => {
-    setActiveTab(tabName);
-  };
 
-  const [title, setTitle] = useState("");
-  const handleTitleChange = (event) => {
-    if (event.target.value.length <= 20) {
-      setTitle(event.target.value);
-    }
-  };
-
-  const [activeTab, setActiveTab] = useState("Event");
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [text, setText] = useState("");
-  const [isFavourites, setIsFavourites] = useState(false);
-  const [file, setFile] = useState("");
-  const [uploaded, setuploaded] = useState("");
-  const [categoryData, setCategoryData] = useState("");
-  const [percentage, setPercentage] = useState(null);
   const [selectedItem, setSelectedItem] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [error, setError] = useState("");
 
   const [activeComponent, setActiveComponent] = useState("Component1");
 
@@ -260,81 +238,8 @@ const Dashboard = () => {
     getUsersInfo: { getUsersInfoData },
   } = useSelector((state) => state.authUser);
 
-  const {
-    createJournal: {
-      createJournalData,
-      createJournalLoading,
-      createJournalError,
-    },
-    journalCategories: {
-      journalCategoriesData,
-      journalCategoriesLoading,
-      journalCategoriesError,
-    },
-  } = useSelector((state) => state.journalInfo);
-
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title || !text || !file || !categoryData) {
-      return setError("All fields are required");
-    }  else{
-      createJournal(
-        {
-          text,
-          title,
-          selectedDate,
-          isFavourites,
-          file: uploaded,
-          userid: user.uid,
-          category: categoryData,
-        },
-        dispatch
-      );
-    }
-    
-  };
-
-  useEffect(() => {
-    const uploadImage = () => {
-      const name = new Date().getTime() + file.name;
-      const storageRef = ref(storage, name);
-
-      const uploadTask = uploadBytesResumable(storageRef, file);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          const progress =
-            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
-          setPercentage(progress);
-          switch (snapshot.state) {
-            case "paused":
-              console.log("Upload is paused");
-              break;
-            case "running":
-              console.log("Upload is running");
-              break;
-            default:
-              break;
-          }
-        },
-        (error) => {
-          // Handle unsuccessful uploads
-        },
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            // setFile(downloadURL);
-            setuploaded(downloadURL);
-          });
-        }
-      );
-    };
-    file && uploadImage();
-  }, [file]);
 
   useEffect(() => {
     getAllJournalsData(dispatch);
@@ -382,7 +287,6 @@ const Dashboard = () => {
                     <h1>Loading...</h1>
                   ) : (
                     <>
-                    
                       <span style={{ color: "black" }}>
                         Hey {findUser?.displayName || user?.displayName}
                       </span>
@@ -430,50 +334,6 @@ const Dashboard = () => {
             </div>
           </div>
         )}
-        {/* <div className="dash-nav">
-          <div className="search">
-            <InputGroup className="input-group">
-              <DropdownButton
-                variant="outline-secondary"
-                title={selectedOption}
-                id="input-group-dropdown-1"
-              >
-                <Dropdown.Item
-                  active={selectedOption === "Categories"}
-                  onClick={() => handleOptionSelect("Categories")}
-                >
-                  Categories
-                </Dropdown.Item>
-                <Dropdown.Item
-                  active={selectedOption === "Personal"}
-                  onClick={() => handleOptionSelect("Personal")}
-                >
-                  Personal
-                </Dropdown.Item>
-                <Dropdown.Item
-                  active={selectedOption === "Family"}
-                  onClick={() => handleOptionSelect("Family")}
-                >
-                  Family
-                </Dropdown.Item>
-              </DropdownButton>
-              <FormControl
-                placeholder="Search in categories"
-                style={{ height: "25px" }}
-              />
-            </InputGroup>
-          </div>
-
-          <div className="nav-images">
-            <div className="notify">
-              <FontAwesomeIcon icon={faBell} />
-              <div className="count">7</div>
-            </div>
-            <div className="prof-pic">
-              <img src={user.picture}></img>
-            </div>
-          </div>
-        </div> */}
         <div className="dash-container">
           <div className="side-bar">
             <div className="sidebar-contents">
@@ -589,214 +449,7 @@ const Dashboard = () => {
                     Create New Journal
                   </span>
                 </Button>
-                <Modal
-                  show={showModal}
-                  onHide={handleModal}
-                  backdrop={"static"}
-                >
-                  <Modal.Header closeButton>
-                    <Modal.Title>New Journal</Modal.Title>
-                  </Modal.Header>
-                  <div>
-                    {error && (
-                      <p
-                        style={{
-                          color: "white",
-                          textAlign: "center",
-                          marginTop: 10,
-                          backgroundColor: "#fe8484",
-                          padding:  5,
-                        }}
-                      >
-                        {error}
-                      </p>
-                    )}
-                  </div>
-                  <form onSubmit={handleSubmit}>
-                    <Modal.Body>
-                      <h5>Title</h5>
-                      <input
-                        className="journal-title"
-                        type="text"
-                        name=""
-                        id=""
-                        placeholder="Title of new journal"
-                        style={{
-                          border: "1px solid gray",
-                          borderRadius: "5px",
-                          height: "40px",
-                        }}
-                        value={title}
-                        onChange={handleTitleChange}
-                      />
-                      <div
-                        className="title-count"
-                        style={{ float: "right", marginRight: "32%" }}
-                      >
-                        {title.length}/20
-                      </div>
-                      <div
-                        className="headers"
-                        style={{
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-around",
-                          marginTop: "50px",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <p
-                          className={activeTab === "Event" ? "active-tab" : ""}
-                          onClick={() => handleTabClick("Event")}
-                          style={{
-                            padding: "5px 30px 5px 40px",
-                            marginBottom: "10px",
-                          }}
-                        >
-                          Event
-                        </p>
-                      </div>
-                      <div>
-                        {activeTab === "Event" && (
-                          <div>
-                            <div style={{ marginBottom: "10px" }}>
-                              <h5 style={{ marginBottom: "10px" }}>
-                                Description
-                              </h5>
-                              <ReactQuill
-                                value={text}
-                                onChange={setText}
-                                modules={{
-                                  toolbar: [
-                                    [{ header: [1, 2, false] }],
-                                    ["bold", "italic", "underline"],
-                                    [{ color: [] }, { background: [] }],
-                                    [{ align: [] }],
-                                  ],
-                                }}
-                              />
-                            </div>
-                            <div style={{ marginBottom: "15px" }}>
-                              <h5 style={{ marginBottom: "10px" }}>
-                                Add a Photo
-                              </h5>
-                              <div
-                                style={{
-                                  width: "100%",
-                                  padding: "5px",
-                                  border: "1px gray solid",
-                                  display: "flex",
-                                  justifyContent: "center",
-                                  alignItems: "center",
-                                  flexDirection: "column",
-                                }}
-                              >
-                                <img
-                                  src={
-                                    file
-                                      ? URL.createObjectURL(file)
-                                      : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                                  }
-                                  alt=""
-                                  style={{ width: "50%" }}
-                                />
-                                <p style={{ marginBottom: "10px" }}>
-                                  (upload png,svg,gif)
-                                </p>
-                                <input
-                                  className="modal-input"
-                                  type="file"
-                                  onChange={(e) => setFile(e.target.files[0])}
-                                />
-                              </div>
-                            </div>
-                            <div>
-                              <h5>Choose Category</h5>
-                              <select
-                                placeholder="Choose Category"
-                                style={{
-                                  width: "100%",
-                                  height: "35px",
-                                  border: "1px solid black",
-                                  borderRadius: "5px",
-                                  marginBottom: "15px",
-                                }}
-                                onChange={(e) =>
-                                  setCategoryData(e.target.value)
-                                }
-                              >
-                                <option value="allCategories">
-                                  --Select A category--
-                                </option>
-                                {journalCategoriesData?.map((category) => (
-                                  <option
-                                    value={category.name}
-                                    key={category.id}
-                                  >
-                                    {category.name}
-                                  </option>
-                                ))}
-                              </select>
-                            </div>
-                            <div>
-                              <h5>Date</h5>
-                              <DatePicker
-                                selected={selectedDate}
-                                onChange={(date) => setSelectedDate(date)}
-                                dateFormat="dd/MM/yyyy"
-                                placeholderText="Select Date Publish"
-                                className="my-datepicker"
-                              />
-                            </div>
-                            <div
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px",
-                                marginTop: "10px",
-                              }}
-                            >
-                              <input
-                                type="checkbox"
-                                checked={isFavourites}
-                                onChange={(e) =>
-                                  setIsFavourites(e.target.checked)
-                                }
-                              />
-                              <p style={{ marginBottom: "0px" }}>
-                                Add to favourites
-                              </p>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </Modal.Body>
-                    <Modal.Footer>
-                      <Button variant="secondary" onClick={handleModal}>
-                        Close
-                      </Button>
-                      <Button
-                        variant={
-                          percentage !== null && percentage < 100
-                            ? "#000"
-                            : "primary"
-                        }
-                        style={{
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          gap: "10px",
-                        }}
-                        type="submit"
-                        disabled={percentage !== null && percentage < 100}
-                      >
-                        {/* <FontAwesomeIcon icon={faCheck} /> */}
-                        {createJournalLoading ? "Loading..." : "Create Journal"}
-                      </Button>
-                      {createJournalError && <h2>Something went wrong</h2>}
-                    </Modal.Footer>
-                  </form>
-                </Modal>
+                <ModalDh showModal={showModal} handleModal={handleModal} />
               </div>
               <div className="premium">
                 <div className="premium-content">

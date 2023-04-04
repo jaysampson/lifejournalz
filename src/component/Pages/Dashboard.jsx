@@ -246,7 +246,6 @@ const Dashboard = () => {
   const [percentage, setPercentage] = useState(null);
   const [selectedItem, setSelectedItem] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [error, setError] = useState("");
 
   const [activeComponent, setActiveComponent] = useState("Component1");
 
@@ -276,25 +275,23 @@ const Dashboard = () => {
   // find a user details
   const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
 
+  console.log(selectedDate, "selectedDate");
+
+  // console.log(user, "user");
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!title || !text || !file || !categoryData) {
-      return setError("All fields are required");
-    }  else{
-      createJournal(
-        {
-          text,
-          title,
-          selectedDate,
-          isFavourites,
-          file: uploaded,
-          userid: user.uid,
-          category: categoryData,
-        },
-        dispatch
-      );
-    }
-    
+    createJournal(
+      {
+        text,
+        title,
+        selectedDate,
+        isFavourites,
+        file: uploaded,
+        userid: user.uid,
+        category: categoryData,
+      },
+      dispatch
+    );
   };
 
   useEffect(() => {
@@ -382,7 +379,7 @@ const Dashboard = () => {
                     <h1>Loading...</h1>
                   ) : (
                     <>
-                    
+                      {" "}
                       <span style={{ color: "black" }}>
                         Hey {findUser?.displayName || user?.displayName}
                       </span>
@@ -597,21 +594,6 @@ const Dashboard = () => {
                   <Modal.Header closeButton>
                     <Modal.Title>New Journal</Modal.Title>
                   </Modal.Header>
-                  <div>
-                    {error && (
-                      <p
-                        style={{
-                          color: "white",
-                          textAlign: "center",
-                          marginTop: 10,
-                          backgroundColor: "#fe8484",
-                          padding:  5,
-                        }}
-                      >
-                        {error}
-                      </p>
-                    )}
-                  </div>
                   <form onSubmit={handleSubmit}>
                     <Modal.Body>
                       <h5>Title</h5>

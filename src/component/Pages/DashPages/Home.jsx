@@ -367,7 +367,7 @@ export const Home = (props) => {
                 type="text"
                 name=""
                 id=""
-                placeholder="Title of new journal"
+                placeholder="Title of new memory"
                 style={{
                   border: "1px solid gray",
                   borderRadius: "5px",
@@ -579,7 +579,7 @@ export const Home = (props) => {
       <div className="contents">
         <div className="all">
           <div className="all-title">
-            <h2>All Journals</h2>
+            <h2>All Memories</h2>
             <button>
               <img src={save} alt="" />
               <span>save to files</span>
@@ -806,7 +806,7 @@ export const Home = (props) => {
             }}
           >
             <FontAwesomeIcon icon={faPlus} />
-            <span style={{ marginBottom: "0px" }}>New Journal</span>
+            <span style={{ marginBottom: "0px" }}>New Memory</span>
           </Button>
           <ModalDh showModal={showModal} handleModal={handleModal} />
           {/* </div> */}

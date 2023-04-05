@@ -300,7 +300,7 @@ const Dashboard = () => {
             </div>
             <Button onClick={handleModal}>
               <button>
-                <img src={plus} alt="" /> <span>Create New Journal</span>
+                <img src={plus} alt="" /> <span>Create New Memory</span>
               </button>
             </Button>
             <p>Menu</p>
@@ -446,7 +446,7 @@ const Dashboard = () => {
                 >
                   <img src={plus} alt="" />
                   <span style={{ marginBottom: "0px" }}>
-                    Create New Journal
+                    Create New Memory
                   </span>
                 </Button>
                 <ModalDh showModal={showModal} handleModal={handleModal} />

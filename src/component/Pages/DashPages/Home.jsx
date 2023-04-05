@@ -783,7 +783,6 @@ export const Home = (props) => {
               </div>
             </div>
           </div>
-          {/* <h1>Hellooooo</h1> */}
           {/* <div
             style={{
               display: "flex",

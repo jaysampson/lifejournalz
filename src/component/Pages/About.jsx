@@ -120,13 +120,13 @@ const About = () => {
 
       {/* hero section one */}
       <section
-        className="bg-opacity_2 d-flex text-white p-5 p-lg-0 pt-lg-5 align-items-center justify-content-center" >
+        className="bg-opacity_2 d-flex text-white p5 p-lg- pt-lg-5 align-items-center justify-content-center" >
         <div className="container">
-          <div className="d-sm-flex align-items-center justify-content-center ">
+          <div className=" pt-5 px-3 d-sm-flex align-items-center justify-content-center ">
             <div>
               <h3 className="text-center journal">We're LifeJournalz</h3>
               <p className="lead mb-4">With our robust cloud-base storage, you are guaranteed access to securely save your special moments and keep your memories alive in your
-                personal space. All data is fully encrypted, therefore access to third parties is prohibited - we do not share your personal data in anyway whatsoever</p>
+                personal space. All data is fully encrypted.</p>
             </div>
           </div>
         </div>
@@ -152,7 +152,7 @@ const About = () => {
                     <h4 className="card-title mt-5 mb-0">Any Device, <br /> Anytime!</h4>
                     <p className="card-text mt-2 mb-3">
                       Whether you are using your Tablet, PC or Mobile phone,
-                      you canh have full access and enjoy the experience on the go
+                      you can have full access and enjoy the experience on the go
                     </p>
 
                   </div>
@@ -228,7 +228,7 @@ const About = () => {
       <section className="p-5 d-flex d-md-none" id="features">
         <div className="container" style={{}} >
           {/*  */}
-          <div className="card p-5 mb-5 shadow-lg rounded" style={{ marginTop: "-140px", }} >
+          <div className="card p-5 mb-5 shadow-lg rounded" style={{ marginTop: "-100px", }} >
             <div className="row text-center g-5 "  >
               <div className="col col-md-6 col-lg-4">
                 {/* <div className="card"> */}
@@ -240,7 +240,7 @@ const About = () => {
                   <h4 className="card-title mt-5 mb-0">Any Device, <br /> Anytime!</h4>
                   <p className="card-text mt-2 mb-3">
                     Whether you are using your Tablet, PC or Mobile phone,
-                    you canh have full access and enjoy the experience on the go
+                    you can have full access and enjoy the experience on the go
                   </p>
 
                 </div>

@@ -182,6 +182,7 @@ const ModalDh = ({ showModal, handleModal }) => {
                     <div style={{ marginBottom: "10px" }}>
                       <h5 style={{ marginBottom: "10px" }}>Description</h5>
                       <ReactQuill
+                        placeholder=" Write your memory here"
                         value={text}
                         onChange={setText}
                         modules={{

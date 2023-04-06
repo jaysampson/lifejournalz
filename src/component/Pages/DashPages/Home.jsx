@@ -9,8 +9,6 @@ import {
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import { Button, Modal } from "react-bootstrap";
-import bookicon from "../../../Images/bookicon.png";
-import { Button, Modal } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -21,11 +19,13 @@ import {
   deleteJournalDoc,
   getAllJournalsData,
   getSingleJournalCollection,
+  updateJournalDoc,
 } from "../../../redux/journalSlice/journalFirebaseApi";
 import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
-import { auth } from "../../../config/firebase";
-import { Link, useNavigate } from "react-router-dom";
+import { auth, storage } from "../../../config/firebase";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import ReactModal from "react-modal";
 import SingleJournal from "./SingleJournal";
@@ -36,14 +36,17 @@ export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
-
+  const [showAlert, setShowAlert] = useState(false);
+  const [deleteId, setDeleteId] = useState("");
   const [text, setText] = useState("");
   const [form, setForm] = useState({});
   const [editId, setEditedId] = useState("");
+  const [uploaded, setuploaded] = useState("");
   const [file, setFile] = useState("");
-  const [isFovourites, setIsFavourites] = useState(false);
+  const [isFavourites, setIsFavourites] = useState(false);
   const [categoryData, setCategoryData] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const [percentage, setPercentage] = useState(null);
   const [activeTab, setActiveTab] = useState("Event");
   const [search, setSearch] = useState("");
   const [showUModal, setShowUModal] = useState(false);
@@ -73,6 +76,11 @@ export const Home = () => {
       deleteJournalLoading,
       deleteJournalError,
     },
+    updateJournal: {
+      updateJournalData,
+      updateJournalLoading,
+      updateJournalError,
+    },
   } = useSelector((state) => state.journalInfo);
 
   // find a user details
@@ -80,26 +88,10 @@ export const Home = () => {
   const filterUserJournal = getAllJournalData.filter(
     (d) => d.userid === authUser?.uid
   );
-  console.log(
-    {
-      findUser,
-      filterUserJournal,
-      getUsersInfoData,
-      getAllJournalError,
-      authUser,
-      getSingleJournalData,
-    },
-    // authUser.displayName,
-    "3030"
-  );
-  const newDate2 = new Date(findUser?.timeStamp?.seconds * 1000);
-  console.log(moment(newDate2).format("MMMM DD YYYY"), "timeStamp");
-  // console.log(filterUserJournal?.category, "timeStamp2");
 
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
-
   //search
   const searchJournal = filterUserJournal?.filter((item) => {
     return (
@@ -108,16 +100,6 @@ export const Home = () => {
       item?.category.toLowerCase().includes(search.toLowerCase())
     );
   });
-
-  // const searchCategory = (value)=>{
-  //   setSearch
-  //   const filterData2 = searchJournal.filter((c) => c.category === value);
-  // }
-
-  // const searchCategory = (value)=>{
-  //   setSearch
-  //   const filterData2 = searchJournal.filter((c) => c.category === value);
-  // }
 
   const handleUModal = () => {
     setShowUModal(!showUModal);
@@ -134,36 +116,23 @@ export const Home = () => {
     }
   };
 
-  const onInputChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  // useEffect(() => {
-  //   if (getSingleJournalData) {
-  //     setForm((prev) => {
-  //       return {
-  //         ...prev,
-  //         title: getSingleJournalData?.title,
-  //       };
-  //     });
-  //   }
-  // }, []);
-
   const onEditClick = (id) => {
     filterUserJournal.forEach((item) => {
       if (item.id === id) {
-        setForm({
-          title: item.title,
-          text: item.text,
-          file: item.file,
-          category: item.category,
-          isFavourites: item.isFavourites,
-          selectedDate: item.selectedDate,
+        setForm((prev) => {
+          return {
+            ...prev,
+            title: item.title,
+            text: item.text,
+            file: item.file,
+            category: item.category,
+            isFavourites: item.isFavourites,
+            selectedDate: item.selectedDate,
+          };
         });
       }
     });
     setEditedId(id);
-    // setFiles([]);
-    // setView({ add: false, edit: true });
   };
 
   const onSubmitEditJournal = (e) => {
@@ -196,7 +165,45 @@ export const Home = () => {
   // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
 
   useEffect(() => {
-    // fetchData();
+    const uploadImage = () => {
+      const name = new Date().getTime() + file.name;
+      const storageRef = ref(storage, name);
+
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          console.log("Upload is " + progress + "% done");
+          setPercentage(progress);
+          switch (snapshot.state) {
+            case "paused":
+              console.log("Upload is paused");
+              break;
+            case "running":
+              console.log("Upload is running");
+              break;
+            default:
+              break;
+          }
+        },
+        (error) => {
+          // Handle unsuccessful uploads
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            // setFile(downloadURL);
+            setuploaded(downloadURL);
+          });
+        }
+      );
+    };
+    file && uploadImage();
+  }, [file]);
+
+  useEffect(() => {
     getAllJournalsData(dispatch);
     getAllUserInfo(dispatch);
   }, []);
@@ -478,14 +485,13 @@ export const Home = () => {
           </form>
         )}
       </Modal>
-
       {/* end of model */}
 
       <div className="home-nav">
         <div className="search">
           <InputGroup className="input-group">
             <FormControl
-              placeholder="Search title, categories, and dates"
+              placeholder="Search title and categories"
               style={{ height: "30px" }}
               value={search}
               onChange={handleChange}
@@ -666,7 +672,11 @@ export const Home = () => {
                                             }}
                                           >
                                             <FontAwesomeIcon icon={faPencil} />
-                                            <span>Edit</span>
+                                            <span>
+                                              {getSingleJournalLoading
+                                                ? "Loading"
+                                                : "Edit"}
+                                            </span>
                                           </div>
                                         </div>
                                         <div
@@ -682,17 +692,12 @@ export const Home = () => {
                                             cursor: "pointer",
                                           }}
                                           onClick={() => {
-                                            deleteJournalDoc(item.id, dispatch);
-                                            navigate("/dashboard");
+                                            openDeleteModal(item.id);
                                           }}
                                         >
                                           <FontAwesomeIcon icon={faTrash} />
 
-                                          <span>
-                                            {deleteJournalLoading
-                                              ? "Deleting..."
-                                              : "Delete"}
-                                          </span>
+                                          <span>Delete</span>
                                         </div>
                                       </div>
                                     )}

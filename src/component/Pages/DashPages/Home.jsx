@@ -1,25 +1,21 @@
 import React from "react";
 import save from "../../../Images/save.png";
-import add from "../../../Images/add.png";
 import "../../../styles/home.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowUpFromBracket,
-  faCheck,
-  faEllipsisV,
   faEllipsisVertical,
   faPencil,
+  faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
+import { Button, Modal } from "react-bootstrap";
 import bookicon from "../../../Images/bookicon.png";
 import { Button, Modal } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
-// import Modal from "react-modal";
-import addpic from "../../../Images/addpic.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // import the styles
+import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteJournalDoc,
@@ -33,14 +29,10 @@ import { Link, useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import ReactModal from "react-modal";
 import SingleJournal from "./SingleJournal";
-import {
-  InputGroup,
-  FormControl,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
+import ModalDh from "./ModalDh";
 
-export const Home = (props) => {
+export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
@@ -54,7 +46,7 @@ export const Home = (props) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [activeTab, setActiveTab] = useState("Event");
   const [search, setSearch] = useState("");
-  const [showModal, setShowModal] = useState(false);
+  const [showUModal, setShowUModal] = useState(false);
 
   const {
     getUsersInfo: { getUsersInfoData },
@@ -169,41 +161,40 @@ export const Home = (props) => {
     // setView({ add: false, edit: true });
   };
 
-  console.log(new Date(form.selectedDate?.seconds * 1000), "formName");
+  const onSubmitEditJournal = (e) => {
+    e.preventDefault();
+
+    // console.log({
+    //   text,
+    //   title,
+    //   selectedDate,
+    //   isFavourites,
+    //   file: uploaded,
+    //   userid: authUser.uid,
+    //   category: categoryData,
+    // });
+    updateJournalDoc(
+      {
+        text: text || form.text,
+        title: form.title,
+        selectedDate: form.selectedDate,
+        isFavourites: form.isFavourites,
+        file: form.file || uploaded,
+        userid: authUser.uid,
+        category: categoryData || form.category,
+      },
+      editId,
+      dispatch
+    );
+  };
+
+  // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
 
   useEffect(() => {
     // fetchData();
     getAllJournalsData(dispatch);
     getAllUserInfo(dispatch);
   }, []);
-
-  // create a reference to the file input
-  const fileInputRef = useRef(null);
-
-  // function to handle when the upload button is clicked
-  const handleUploadClick = () => {
-    // open the file input
-    fileInputRef.current.click();
-  };
-
-  // function to handle when a file is selected
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = (e) => {
-      const quill = quillRef.current.getEditor();
-
-      // insert the image into the Quill editor using the insertEmbed method
-      quill.insertEmbed(quill.getSelection().index, "image", e.target.result);
-    };
-  };
-
-  // create a reference to the Quill editor
-  const quillRef = useRef(null);
 
   const [sortOrder, setSortOrder] = useState("Alphabet");
 
@@ -237,17 +228,12 @@ export const Home = (props) => {
   const handleEllipsisClick = (journalId) => {
     setCurrentJournalId(journalId);
     setEShowModal(true);
-    // console.log(journalId, "Hello world");
   };
 
-  const handleECloseModal = () => {
-    setEShowModal(false);
-  };
-
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
+  //open Delete model
+  const openDeleteModal = (id) => {
+    setShowAlert(true);
+    setDeleteId(id);
   };
 
   const modalRef = useRef(null);
@@ -266,219 +252,232 @@ export const Home = (props) => {
     };
   }, [modalRef]);
 
+  const [showModal, setShowModal] = useState(false);
+
+  const handleModal = () => {
+    setShowModal(!showModal);
+  };
+
   return (
     <div>
-      {/* Start of model */}
+      {/* show delete alert */}
+      <Modal
+        size="sm"
+        show={showAlert}
+        onHide={() => setShowAlert(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton />
+        <Modal.Title
+          id="example-modal-sizes-title-sm"
+          style={{ textAlign: "center" }}
+        >
+          Are sure you want to delete this memory☹️?
+        </Modal.Title>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowAlert(false)}>
+            Close
+          </Button>
+          <Button
+            variant="danger"
+            onClick={() => {
+              deleteJournalDoc(deleteId, dispatch);
+              navigate("/dashboard");
+            }}
+          >
+            {deleteJournalLoading ? "Loading..." : "Delete"}
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* end show delete alert */}
 
-      <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
+      {/* Start of model */}
+      <Modal show={showUModal} onHide={handleUModal} backdrop={"static"}>
         <Modal.Header closeButton>
           <Modal.Title>Update Journal</Modal.Title>
         </Modal.Header>
-        <form>
-          <Modal.Body>
-            <h5>Title</h5>
-            <input
-              className="journal-title"
-              type="text"
-              name=""
-              id=""
-              placeholder="Title of new journal"
-              style={{
-                border: "1px solid gray",
-                borderRadius: "5px",
-                height: "40px",
-              }}
-              value={form.title}
-              onChange={(e) => onInputChange(e)}
-            />
-            {/* <div
-              className="title-count"
-              style={{ float: "right", marginRight: "32%" }}
-            >
-              {title.length}/20
-            </div> */}
-            <div
-              className="headers"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-around",
-                marginTop: "50px",
-                cursor: "pointer",
-              }}
-            >
-              <p
-                className={activeTab === "Event" ? "active-tab" : ""}
-                onClick={() => handleTabClick("Event")}
+        {getSingleJournalLoading && <h3>Loading...</h3>}
+        {!getSingleJournalLoading && (
+          <form onSubmit={onSubmitEditJournal}>
+            <Modal.Body>
+              <h5>Title</h5>
+              <input
+                className="journal-title"
+                type="text"
+                name=""
+                id=""
+                placeholder="Title of new memory"
                 style={{
-                  padding: "5px 30px 5px 40px",
-                  marginBottom: "10px",
+                  border: "1px solid gray",
+                  borderRadius: "5px",
+                  height: "40px",
+                }}
+                value={form.title}
+                // onChange={handleTitleChange}
+                onChange={(e) => setForm({ ...form, title: e.target.value })}
+              />
+              <div
+                className="title-count"
+                style={{ float: "right", marginRight: "32%" }}
+              >
+                {title.length}/20
+              </div>
+              <div
+                className="headers"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                  marginTop: "50px",
+                  cursor: "pointer",
                 }}
               >
-                Event
-              </p>
-            </div>
-            <div>
-              {activeTab === "Event" && (
-                <div>
-                  <div style={{ marginBottom: "10px" }}>
-                    <h5 style={{ marginBottom: "10px" }}>Description</h5>
-                    <ReactQuill
-                      // value={text}
-                      value={form.text}
-                      onChange={setText}
-                      modules={{
-                        toolbar: [
-                          [{ header: [1, 2, false] }],
-                          ["bold", "italic", "underline"],
-                          [{ color: [] }, { background: [] }],
-                          [{ align: [] }],
-                        ],
-                      }}
-                    />
-                  </div>
-                  <div style={{ marginBottom: "15px" }}>
-                    <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
-                    <div
-                      style={{
-                        width: "100%",
-                        padding: "5px",
-                        border: "1px gray solid",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        flexDirection: "column",
-                      }}
-                    >
-                      <img
-                        src={
-                          file
-                            ? URL.createObjectURL(file)
-                            : form.file ||
-                              "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                        }
-                        alt=""
-                        style={{ width: "50%" }}
-                      />
-                      <p style={{ marginBottom: "10px" }}>
-                        (upload png,svg,gif)
-                      </p>
-                      <input
-                        className="modal-input"
-                        type="file"
-                        onChange={(e) => setFile(e.target.files[0])}
+                <p
+                  className={activeTab === "Event" ? "active-tab" : ""}
+                  onClick={() => handleTabClick("Event")}
+                  style={{
+                    padding: "5px 30px 5px 40px",
+                    marginBottom: "10px",
+                  }}
+                >
+                  Event
+                </p>
+              </div>
+              <div>
+                {activeTab === "Event" && (
+                  <div>
+                    <div style={{ marginBottom: "10px" }}>
+                      <h5 style={{ marginBottom: "10px" }}>Description</h5>
+                      <ReactQuill
+                        // value={text}
+                        value={text || form.text}
+                        onChange={setText}
+                        modules={{
+                          toolbar: [
+                            [{ header: [1, 2, false] }],
+                            ["bold", "italic", "underline"],
+                            [{ color: [] }, { background: [] }],
+                            [{ align: [] }],
+                          ],
+                        }}
                       />
                     </div>
-                  </div>
-                  <div>
-                    <h5>Choose Category</h5>
-                    <select
-                      placeholder="Choose Category"
+                    <div style={{ marginBottom: "15px" }}>
+                      <h5 style={{ marginBottom: "10px" }}>Add a Photo</h5>
+                      <div
+                        style={{
+                          width: "100%",
+                          padding: "5px",
+                          border: "1px gray solid",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          flexDirection: "column",
+                        }}
+                      >
+                        <img
+                          src={
+                            file
+                              ? URL.createObjectURL(file)
+                              : form.file ||
+                                "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                          }
+                          alt=""
+                          style={{ width: "50%" }}
+                        />
+                        <p style={{ marginBottom: "10px" }}>
+                          (upload png,svg,gif)
+                        </p>
+                        <input
+                          className="modal-input"
+                          type="file"
+                          onChange={(e) => setFile(e.target.files[0])}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h5>Choose Category</h5>
+                      <select
+                        placeholder="Choose Category"
+                        style={{
+                          width: "100%",
+                          height: "35px",
+                          border: "1px solid black",
+                          borderRadius: "5px",
+                          marginBottom: "15px",
+                        }}
+                        onChange={(e) => setCategoryData(e.target.value)}
+                      >
+                        <option value={form.category}>{form.category}</option>
+                        {journalCategoriesData?.map((category) => (
+                          <option value={category.name} key={category.id}>
+                            {category.name}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    <div>
+                      <h5>Date</h5>
+                      <DatePicker
+                        selected={
+                          selectedDate ||
+                          new Date(form.selectedDate?.seconds * 1000)
+                        }
+                        onChange={(date) => setSelectedDate(date)}
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="Select Date Publish"
+                        className="my-datepicker"
+                      />
+                    </div>
+                    <div
                       style={{
-                        width: "100%",
-                        height: "35px",
-                        border: "1px solid black",
-                        borderRadius: "5px",
-                        marginBottom: "15px",
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        marginTop: "10px",
                       }}
-                      onChange={(e) => setCategoryData(e.target.value)}
                     >
-                      <option value={form.category}>{form.category}</option>
-                      {journalCategoriesData?.map((category) => (
-                        <option value={category.name} key={category.id}>
-                          {category.name}
-                        </option>
-                      ))}
-                    </select>
+                      <input
+                        type="checkbox"
+                        // checked={}
+                        value={form.isFavourites}
+                        onChange={(e) => setIsFavourites(e.target.checked)}
+                      />
+                      <p style={{ marginBottom: "0px" }}>Add to favourites</p>
+                    </div>
                   </div>
-                  <div>
-                    <h5>Date</h5>
-                    <DatePicker
-                      selected={
-                        selectedDate ||
-                        new Date(form.selectedDate?.seconds * 1000)
-                      }
-                      // selected={
-                      //   selectedDate
-                      //     ? selectedDate
-                      //     : new Date(form.selectedDate?.seconds * 1000)
-                      // }
-                      onChange={(date) => setSelectedDate(date)}
-                      dateFormat="dd/MM/yyyy"
-                      placeholderText="Select Date Publish"
-                      className="my-datepicker"
-                    />
-                  </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "10px",
-                      marginTop: "10px",
-                    }}
-                  >
-                    <input
-                      type="checkbox"
-                      // checked={}
-                      value={form.isFavourites}
-                      onChange={(e) => setIsFavourites(e.target.checked)}
-                    />
-                    <p style={{ marginBottom: "0px" }}>Add to favourites</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleModal}>
-              Close
-            </Button>
-            <Button
-              variant="primary"
-              // variant={
-              //   percentage !== null && percentage < 100 ? "#000" : "primary"
-              // }
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                gap: "10px",
-              }}
-              type="submit"
-              disabled
-              // disabled={percentage !== null && percentage < 100}
-            >
-              {/* <FontAwesomeIcon icon={faCheck} /> */}
-              {/* {createJournalLoading ? "Loading..." : "Create Journal"} */}
-              update Journal
-            </Button>
-            {/* {createJournalError && <h2>Something went wrong</h2>} */}
-          </Modal.Footer>
-        </form>
+                )}
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={handleUModal}>
+                Close
+              </Button>
+              <Button
+                // variant="primary"
+                variant={
+                  percentage !== null && percentage < 100 ? "#000" : "primary"
+                }
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "10px",
+                }}
+                type="submit"
+                disabled={percentage !== null && percentage < 100}
+              >
+                {updateJournalLoading ? "Loading..." : "update Journal"}
+              </Button>
+            </Modal.Footer>
+          </form>
+        )}
       </Modal>
-
       {/* end of model */}
+
       <div className="home-nav">
         <div className="search">
           <InputGroup className="input-group">
-            {/* <DropdownButton
-              variant="outline-secondary"
-              title={selectedCategory ? selectedCategory : "Categories"}
-              id="input-group-dropdown-1"
-            >
-              <Dropdown.Item onClick={() => handleCategorySelect("Categories")}>
-                Categories
-              </Dropdown.Item>
-              {journalCategoriesData.map((category) => (
-                <Dropdown.Item
-                  value={category.name}
-                  key={category.id}
-                  onClick={() => handleCategorySelect(category.name)}
-                >
-                  {category.name}
-                </Dropdown.Item>
-              ))}
-            </DropdownButton> */}
             <FormControl
               placeholder="Search title, categories, and dates"
               style={{ height: "30px" }}
@@ -501,7 +500,7 @@ export const Home = (props) => {
       <div className="contents">
         <div className="all">
           <div className="all-title">
-            <h2>All Journals</h2>
+            <h2>All Memories</h2>
             <button>
               <img src={save} alt="" />
               <span>save to files</span>
@@ -656,11 +655,7 @@ export const Home = (props) => {
                                               cursor: "pointer",
                                             }}
                                             onClick={() => {
-                                              handleModal();
-                                              // getSingleJournalCollection(
-                                              //   item.id,
-                                              //   dispatch
-                                              // );
+                                              handleUModal();
                                               onEditClick(item.id);
                                             }}
                                           >
@@ -678,6 +673,7 @@ export const Home = (props) => {
                                             background: "gray",
                                             borderRadius: "5px",
                                             padding: "5px",
+                                            cursor: "pointer",
                                           }}
                                           onClick={() => {
                                             deleteJournalDoc(item.id, dispatch);
@@ -706,6 +702,24 @@ export const Home = (props) => {
               </div>
             </div>
           </div>
+          <Button
+            onClick={handleModal}
+            className="new"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "cente",
+              height: "40px",
+              gap: "10px",
+              background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+              width: "150px",
+            }}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+            <span style={{ marginBottom: "0px" }}>New Memory</span>
+          </Button>
+          <ModalDh showModal={showModal} handleModal={handleModal} />
+          {/* </div> */}
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />

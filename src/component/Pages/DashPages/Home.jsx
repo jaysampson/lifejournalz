@@ -330,11 +330,13 @@ export const Home = (props) => {
         onHide={() => setShowAlert(false)}
         aria-labelledby="example-modal-sizes-title-sm"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Are sure you want to delete?
-          </Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton></Modal.Header>
+        <Modal.Title
+          id="example-modal-sizes-title-sm"
+          style={{ textAlign: "center" }}
+        >
+          Are sure you want to delete this memory☹️?
+        </Modal.Title>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowAlert(false)}>
             Close

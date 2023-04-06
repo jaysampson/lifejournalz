@@ -115,7 +115,7 @@ const ModalDh = ({ showModal, handleModal }) => {
       <div>
         <Modal show={showModal} onHide={handleModal} backdrop={"static"}>
           <Modal.Header closeButton>
-            <Modal.Title>New Journal</Modal.Title>
+            <Modal.Title>New Memory</Modal.Title>
           </Modal.Header>
           <div>
             {error && (
@@ -140,7 +140,7 @@ const ModalDh = ({ showModal, handleModal }) => {
                 type="text"
                 name=""
                 id=""
-                placeholder="Title of new journal"
+                placeholder="Title of new memory"
                 style={{
                   border: "1px solid gray",
                   borderRadius: "5px",

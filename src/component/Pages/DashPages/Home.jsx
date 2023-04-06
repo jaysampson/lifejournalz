@@ -713,19 +713,7 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <Button
-            onClick={handleModal}
-            className="new"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "cente",
-              height: "40px",
-              gap: "10px",
-              background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-              width: "150px",
-            }}
-          >
+          <Button onClick={handleModal} className="new">
             <FontAwesomeIcon icon={faPlus} />
             <span style={{ marginBottom: "0px" }}>New Memory</span>
           </Button>

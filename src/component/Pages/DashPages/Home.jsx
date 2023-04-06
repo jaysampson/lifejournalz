@@ -114,8 +114,13 @@ export const Home = () => {
   //   const filterData2 = searchJournal.filter((c) => c.category === value);
   // }
 
-  const handleModal = () => {
-    setShowModal(!showModal);
+  // const searchCategory = (value)=>{
+  //   setSearch
+  //   const filterData2 = searchJournal.filter((c) => c.category === value);
+  // }
+
+  const handleUModal = () => {
+    setShowUModal(!showUModal);
   };
 
   const handleTabClick = (tabName) => {
@@ -473,6 +478,7 @@ export const Home = () => {
           </form>
         )}
       </Modal>
+
       {/* end of model */}
 
       <div className="home-nav">

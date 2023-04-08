@@ -135,6 +135,7 @@ const Dashboard = () => {
                     <h1>Loading...</h1>
                   ) : (
                     <>
+                      {" "}
                       <span style={{ color: "black" }}>
                         Hey {findUser?.displayName || user?.displayName}
                       </span>
@@ -279,7 +280,7 @@ const Dashboard = () => {
                   }}
                 >
                   <FontAwesomeIcon icon={faBriefcase} />
-                  <span>Terms of Service</span>
+                  <span>Privacy Policy</span>
                 </div>
                 <Button
                   onClick={handleModal}
@@ -293,9 +294,7 @@ const Dashboard = () => {
                   }}
                 >
                   <img src={plus} alt="" />
-                  <span style={{ marginBottom: "0px" }}>
-                    Create New Memory
-                  </span>
+                  <span style={{ marginBottom: "0px" }}>Create New Memory</span>
                 </Button>
                 <ModalDh showModal={showModal} handleModal={handleModal} />
               </div>

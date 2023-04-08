@@ -25,6 +25,7 @@ import ContactUs from "./component/Pages/ContactUs";
 import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import SingleJournal from "./component/Pages/DashPages/SingleJournal";
+import LearnMore from "./component/Pages/LearnMore";
 
 const App = () => {
   const auth = localStorage.getItem("jwt");
@@ -49,6 +50,7 @@ const App = () => {
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset" element={<ResetPassword />} />
+        <Route path="/learn" element={<LearnMore />} />
         <Route
           path="/dashboard"
           element={

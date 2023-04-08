@@ -9,15 +9,19 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Check from "../../../Images/Checkicon.png";
 import "../../../styles/Pricing.scss";
+import { Modal, Button } from "react-bootstrap";
+import { useState } from "react";
 
 export const Pricing = () => {
+  const [showModal, setShowModal] = useState();
+  const handleModal = () => {
+    setShowModal(true);
+  };
+
   return (
     <div className="pric-page">
       <section className="pric">
         <h2>Pricing</h2>
-        <div>
-          <h4>The cost of our LifeJournalz subscriptions</h4>
-        </div>
       </section>
       <section>
         <div className="pricing-are">
@@ -53,12 +57,6 @@ export const Pricing = () => {
                       <img src={Check} alt="" />
                       Limited usage (All features <br /> not fully supported).
                     </p>
-                    <button>
-                      <Link to="#" className="Getlink">
-                        Get Started
-                        <i className="bi bi-chevron-right"></i>
-                      </Link>
-                    </button>
                   </ul>
                 </div>
               </div>
@@ -102,7 +100,13 @@ export const Pricing = () => {
                       NGN289.00/mo
                     </h5>
                     <button style={{ marginBottom: "0px" }}>
-                      <Link to="#" className="Getlink">
+                      <Link
+                        to="#"
+                        className="Getlink"
+                        onClick={() => {
+                          handleModal();
+                        }}
+                      >
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>
@@ -146,7 +150,13 @@ export const Pricing = () => {
                       NGN549.00/mo
                     </h5>
                     <button>
-                      <Link to="#" className="Getlink">
+                      <Link
+                        to="#"
+                        className="Getlink"
+                        onClick={() => {
+                          handleModal();
+                        }}
+                      >
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>
@@ -184,7 +194,13 @@ export const Pricing = () => {
                       NGN1320.00/mo
                     </h5>
                     <button>
-                      <Link to="#" className="Getlink">
+                      <Link
+                        to="#"
+                        className="Getlink"
+                        onClick={() => {
+                          handleModal();
+                        }}
+                      >
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>
@@ -196,6 +212,26 @@ export const Pricing = () => {
           </div>
         </div>
       </section>
+      <Modal
+        size="sm"
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton />
+
+        <Modal.Title
+          id="example-modal-sizes-title-sm"
+          style={{ textAlign: "center" }}
+        >
+          Life Journalz is completely free for now 🎉
+        </Modal.Title>
+        <Modal.Footer>
+          <Button variant="primary" onClick={() => setShowModal(false)}>
+            Okay
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

@@ -280,7 +280,7 @@ const Dashboard = () => {
                   }}
                 >
                   <FontAwesomeIcon icon={faBriefcase} />
-                  <span>Terms of Service</span>
+                  <span>Privacy Policy</span>
                 </div>
                 <Button
                   onClick={handleModal}

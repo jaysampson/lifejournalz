@@ -718,7 +718,6 @@ export const Home = () => {
             <span style={{ marginBottom: "0px" }}>New Memory</span>
           </Button>
           <ModalDh showModal={showModal} handleModal={handleModal} />
-          {/* </div> */}
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />

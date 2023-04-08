@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FaAngleRight, FaPuzzlePiece, FaLock } from "react-icons/fa";
 import { BsChatLeftFill } from "react-icons/bs";
+import "../../styles/button.scss";
 
 const LandingPage = () => {
   return (
@@ -117,8 +118,11 @@ const LandingPage = () => {
         }}
       >
         <div className="container">
-          <div className="d-sm-flex align-items-center justify-content-between text-start">
-            <div>
+          <div
+            className="d-sm-flex align-items-center justify-content-between text-start"
+            style={{ width: "100%" }}
+          >
+            <div className="herotxt-c">
               <h6 className="hr-lines d-none d-md-block">
                 Memories, save them today!
               </h6>
@@ -127,34 +131,59 @@ const LandingPage = () => {
                 today!
               </h3>
               <p>
-                Life Journal is a cloud-based service for management and sharing
-                files collaborating in shared work spaces, and storing data for
-                businesses of all sizes
+                Life Journalz allows you save all your special moments on the go
+                with full encryption.
               </p>
-
-              <Link
-                to="/signup"
-                className="btn btn-light mt-1 text-white px-5 py-2"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                  boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)",
-                  borderRadius: "4px",
-                }}
-              >
-                Get Started <FaAngleRight size={20} />
-              </Link>
+              <p style={{ marginTop: "-15px" }}>
+                Start saving all your memories in one place!
+              </p>
+              <div className="buttons">
+                <Link
+                  to="/signup"
+                  className="btn btn-light mt-1 text-white"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+                    boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)",
+                    borderRadius: "4px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    gap: "5px",
+                    width: "fit-content",
+                    padding: "7px",
+                  }}
+                >
+                  <span>Login / SignUp</span>
+                  <FaAngleRight size={20} />
+                </Link>
+                <Link
+                  to="/learn"
+                  className="btn btn-light mt-1 text-white"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
+                    boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)",
+                    borderRadius: "4px",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    display: "flex",
+                    gap: "5px",
+                    width: "fit-content",
+                    padding: "7px",
+                  }}
+                >
+                  <span>Learn More</span>
+                  <FaAngleRight size={20} />
+                </Link>
+              </div>
             </div>
-            <img
-              className="img-fluid w-50 d-none d-sm-block"
-              src="/image/Books hero.png"
-              alt=""
-            />
+            <img className="hero-img" src="/image/Books hero.png" alt="" />
           </div>
         </div>
       </section>
       {/* <!-- Hero section ends  --> */}
-      <section
+      {/* <section
         id="learn"
         className="text-sm-start col-xs-12"
         style={{ backgroundColor: "#F5F5F5" }}
@@ -165,12 +194,12 @@ const LandingPage = () => {
               <img src="/image/abou bk.png" className="img-fluid" alt="" />
             </div>
             <div className="col-md p-5">
-              {/* <Link to="#"
+              <Link to="#"
                 className="btn btn-light mt-3 text-white"
                 style={{ backgroundColor: "#ecd4c6" }}
               >
                 About us
-              </Link> */}
+              </Link>
               <h2 className="mt-4 fw-bold">What we do?</h2>
               <p className="mt-3">
                 Life Journalz allows you save all your special moments on the
@@ -195,9 +224,9 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- about section end   --> */}
-      <section
+      {/* <section
         id="features"
         className=""
         style={{ backgroundColor: "#F5F5F5" }}
@@ -318,16 +347,16 @@ const LandingPage = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* <!-- how it works sec end --> */}
 
       {/* <!-- card sec --> */}
-      <section
+      {/* <section
         id="learn"
         className="text-sm-start col-xs-12 pt-5 pb-5"
         style={{ backgroundColor: "#F9FAFB" }}
-      >
-        <div className="container px-5 py-4">
+      > */}
+      {/* <div className="container px-5 py-4">
           <div className="row">
             <div className="col-12 col-md-4">
               <div className="h2 pb-3">
@@ -363,20 +392,20 @@ const LandingPage = () => {
               </p>
             </div>
           </div>
-        </div>
-        {/* <!-- card sec ends --> */}
-      </section>
+        </div> */}
+      {/* <!-- card sec ends --> */}
+      {/* </section> */}
 
       {/* <!-- Footer --> */}
       <footer className="text-start text-lg-start  text-muted">
-        <section className="">
+        <section style={{ marginTop: "-70px" }}>
           <div className="container text-start text-md-start mt-5">
             <div className="row mt-3">
               <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <p className="link mt-5">
+                <span>
                   Access unlimited storage today! <br />
-                  Start writing, start journaling.
-                </p>
+                  Start writing, start saving.
+                </span>
               </div>
 
               <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
@@ -389,11 +418,6 @@ const LandingPage = () => {
                 <p className="link">
                   <Link to="/about" target={"_blank"} className="text-reset">
                     Features
-                  </Link>
-                </p>
-                <p className="link">
-                  <Link to="/pricing" target={"_blank"} className="text-reset">
-                    Pricing
                   </Link>
                 </p>
                 <p className="link">
@@ -415,8 +439,8 @@ const LandingPage = () => {
                   </Link>
                 </p>
                 <p className="link">
-                  <Link to="/pricing" target={"_blank"} className="text-reset">
-                    Subscription
+                  <Link to="/pricing" className="text-reset">
+                    Pricing
                   </Link>
                 </p>
                 <p className="link">
@@ -461,14 +485,14 @@ const LandingPage = () => {
               </div>
             </div>
             <div
-              className="text-start text-md-center p-4"
-              style={{ backgroundColor: "#F9FAFB", color: "#A38898" }}
+              className="text-md-center"
+              style={{
+                backgroundColor: "#F9FAFB",
+                color: "#A38898",
+                textAlign: "center",
+              }}
             >
-              ©Copyright 2023
-              <Link to="#" className="text-reset fw-bold">
-                {" "}
-                Allrights Reserved by LifeJournalz
-              </Link>
+              ©Copyright 2023 | Life Journalz
             </div>
           </div>
         </section>

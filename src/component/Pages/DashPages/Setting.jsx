@@ -10,6 +10,7 @@ import {
   faStar,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 export const Setting = () => {
   return (
@@ -17,12 +18,15 @@ export const Setting = () => {
       <div className="setting-con">
         <div className="setting-body">
           <h4>Settings</h4>
-          <div className="setting-content">
-            <main>
-              <h5>Premium Membership</h5>
-              <span>Upgrade for more features</span>
-            </main>
-          </div>
+          <Link to="/pricing" style={{ textDecoration: "none" }}>
+            <div className="setting-content">
+              <main>
+                <h5>Premium Membership</h5>
+                <span>Upgrade for more features</span>
+              </main>
+            </div>
+          </Link>
+
           <div className="setting-sub1">
             <div className="setting-subcon">
               <h5>Account</h5>

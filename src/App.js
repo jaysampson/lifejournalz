@@ -43,6 +43,7 @@ const App = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/pricing" element={<Pricing />} />
         <Route path="/contactus" element={<ContactUs />} />
         {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         <Route path="/signin" element={<SignIn />} />

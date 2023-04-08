@@ -1,0 +1,37 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: 0px;
+}
+
+.buttons {
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  display: flex;
+  gap: 15px;
+  @media screen and (max-width: 718px) {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+
+.herotxt-c {
+  @media screen and (max-width: 575px) {
+    text-align: center;
+  }
+}
+
+.hero-img {
+  width: 50%;
+  @media screen and (max-width: 575px) {
+    margin-top: 15px;
+    width: 100%;
+  }
+}
+
+.learn-align {
+  @media screen and (max-width: 575px) {
+    text-align: center;
+  }
+}

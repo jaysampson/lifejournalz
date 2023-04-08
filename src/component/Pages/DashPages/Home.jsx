@@ -1,26 +1,19 @@
 import React from "react";
 import save from "../../../Images/save.png";
-import add from "../../../Images/add.png";
 import "../../../styles/home.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faArrowUpFromBracket,
-  faCheck,
-  faEllipsisV,
   faEllipsisVertical,
   faPencil,
   faPlus,
   faTrash,
 } from "@fortawesome/free-solid-svg-icons";
-import bookicon from "../../../Images/bookicon.png";
-import { Button, Modal, Alert } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import { useState, useEffect, useRef } from "react";
-// import Modal from "react-modal";
-import addpic from "../../../Images/addpic.png";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // import the styles
+import "react-quill/dist/quill.snow.css";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deleteJournalDoc,
@@ -32,19 +25,14 @@ import moment from "moment/moment";
 import { getAllUserInfo } from "../../../redux/authUserSlice/authUserFirebaseApi";
 import { auth, storage } from "../../../config/firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import giph from "../../../Images/giphy.gif";
 import ReactModal from "react-modal";
 import SingleJournal from "./SingleJournal";
-import {
-  InputGroup,
-  FormControl,
-  DropdownButton,
-  Dropdown,
-} from "react-bootstrap";
+import { InputGroup, FormControl } from "react-bootstrap";
 import ModalDh from "./ModalDh";
 
-export const Home = (props) => {
+export const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = auth.currentUser;
@@ -220,34 +208,6 @@ export const Home = (props) => {
     getAllUserInfo(dispatch);
   }, []);
 
-  // create a reference to the file input
-  const fileInputRef = useRef(null);
-
-  // function to handle when the upload button is clicked
-  const handleUploadClick = () => {
-    // open the file input
-    fileInputRef.current.click();
-  };
-
-  // function to handle when a file is selected
-  const handleFileSelect = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-
-    reader.onload = (e) => {
-      const quill = quillRef.current.getEditor();
-
-      // insert the image into the Quill editor using the insertEmbed method
-      quill.insertEmbed(quill.getSelection().index, "image", e.target.result);
-    };
-  };
-
-  // create a reference to the Quill editor
-  const quillRef = useRef(null);
-
   const [sortOrder, setSortOrder] = useState("Alphabet");
 
   // const sortedJournals = [...filterUserJournal];
@@ -280,17 +240,6 @@ export const Home = (props) => {
   const handleEllipsisClick = (journalId) => {
     setCurrentJournalId(journalId);
     setEShowModal(true);
-    // console.log(journalId, "Hello world");
-  };
-
-  const handleECloseModal = () => {
-    setEShowModal(false);
-  };
-
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-  const handleCategorySelect = (category) => {
-    setSelectedCategory(category);
   };
 
   //open Delete model
@@ -330,11 +279,13 @@ export const Home = (props) => {
         onHide={() => setShowAlert(false)}
         aria-labelledby="example-modal-sizes-title-sm"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Are sure you want to delete?
-          </Modal.Title>
-        </Modal.Header>
+        <Modal.Header closeButton />
+        <Modal.Title
+          id="example-modal-sizes-title-sm"
+          style={{ textAlign: "center" }}
+        >
+          Are sure you want to delete this memory☹️?
+        </Modal.Title>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShowAlert(false)}>
             Close
@@ -377,12 +328,12 @@ export const Home = (props) => {
                 // onChange={handleTitleChange}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
               />
-              {/* <div
-              className="title-count"
-              style={{ float: "right", marginRight: "32%" }}
-            >
-              {title.length}/20
-            </div> */}
+              <div
+                className="title-count"
+                style={{ float: "right", marginRight: "32%" }}
+              >
+                {title.length}/20
+              </div>
               <div
                 className="headers"
                 style={{
@@ -539,24 +490,6 @@ export const Home = (props) => {
       <div className="home-nav">
         <div className="search">
           <InputGroup className="input-group">
-            {/* <DropdownButton
-              variant="outline-secondary"
-              title={selectedCategory ? selectedCategory : "Categories"}
-              id="input-group-dropdown-1"
-            >
-              <Dropdown.Item onClick={() => handleCategorySelect("Categories")}>
-                Categories
-              </Dropdown.Item>
-              {journalCategoriesData.map((category) => (
-                <Dropdown.Item
-                  value={category.name}
-                  key={category.id}
-                  onClick={() => handleCategorySelect(category.name)}
-                >
-                  {category.name}
-                </Dropdown.Item>
-              ))}
-            </DropdownButton> */}
             <FormControl
               placeholder="Search title and categories"
               style={{ height: "30px" }}
@@ -735,10 +668,6 @@ export const Home = (props) => {
                                             }}
                                             onClick={() => {
                                               handleUModal();
-                                              // getSingleJournalCollection(
-                                              //   item.id,
-                                              //   dispatch
-                                              // );
                                               onEditClick(item.id);
                                             }}
                                           >
@@ -760,6 +689,7 @@ export const Home = (props) => {
                                             background: "gray",
                                             borderRadius: "5px",
                                             padding: "5px",
+                                            cursor: "pointer",
                                           }}
                                           onClick={() => {
                                             openDeleteModal(item.id);
@@ -783,32 +713,11 @@ export const Home = (props) => {
               </div>
             </div>
           </div>
-          {/* <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "flex-end",
-              width: "!00%",
-            }}
-          > */}
-          <Button
-            onClick={handleModal}
-            className="new"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "cente",
-              height: "40px",
-              gap: "10px",
-              background: "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-              width: "150px",
-            }}
-          >
+          <Button onClick={handleModal} className="new">
             <FontAwesomeIcon icon={faPlus} />
             <span style={{ marginBottom: "0px" }}>New Memory</span>
           </Button>
           <ModalDh showModal={showModal} handleModal={handleModal} />
-          {/* </div> */}
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>
           <SingleJournal onCloseModal={handleCloseModal} />

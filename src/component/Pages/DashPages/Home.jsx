@@ -578,8 +578,8 @@ export const Home = () => {
                                     whiteSpace: "nowrap",
                                   }}
                                 >
-                                  {item.title.length > 10
-                                    ? item.title.slice(0, 10) + "..."
+                                  {item.title.length > 8
+                                    ? item.title.slice(0, 8) + "..."
                                     : item.title}
                                 </p>
                               </div>

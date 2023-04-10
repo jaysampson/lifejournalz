@@ -20,7 +20,7 @@ import plus from "../../Images/plus.png";
 import { useState } from "react";
 import { Home } from "./DashPages/Home";
 import { Categories } from "./DashPages/Categories";
-import { Pricing } from "./DashPages/Pricing";
+import { Price } from "./DashPages/Price";
 import { Favourite } from "./DashPages/Favourite";
 import { Shared } from "./DashPages/Shared";
 import { Recent } from "./DashPages/Recent";
@@ -99,7 +99,7 @@ const Dashboard = () => {
     <div>
       <>
         <div className="nav-images-M">
-          <div className="prof-pic">{/* <img src={user.picture}></img> */}</div>
+          <div className="prof-pic"></div>
           <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <svg viewBox="0 0 70 27" width="40">
               <rect width="40" height="6"></rect>
@@ -110,32 +110,20 @@ const Dashboard = () => {
         </div>
         {isMenuOpen && (
           <div className="burg-con">
-            <FontAwesomeIcon
-              icon={faXmark}
-              size={"2x"}
-              style={{
-                marginLeft: "90%",
-                marginBottom: "40px",
-                position: "sticky",
-                top: "0px",
-                zIndex: "6",
-              }}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="canc"
-            />
             <div className="profile">
               <p>Profile</p>
               <div
                 className="profile-con"
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
-                <div className="prof-pic">{/* <img src={} alt="" /> */}</div>
+                <div className="prof-pic">
+                  <img src="" alt="" />
+                </div>
                 <div className="prof-det">
                   {!user && !findUser ? (
                     <h1>Loading...</h1>
                   ) : (
                     <>
-                      {" "}
                       <span style={{ color: "black" }}>
                         Hey {findUser?.displayName || user?.displayName}
                       </span>
@@ -170,7 +158,7 @@ const Dashboard = () => {
                 color: "black",
                 gap: "4px",
                 marginBottom: "30px",
-                marginTop: "30px",
+                marginTop: "20px",
               }}
             >
               <FontAwesomeIcon icon={faArrowRightFromBracket} />
@@ -280,7 +268,7 @@ const Dashboard = () => {
                   }}
                 >
                   <FontAwesomeIcon icon={faBriefcase} />
-                  <span>Privacy Policy</span>
+                  <span>Terms of Service</span>
                 </div>
                 <Button
                   onClick={handleModal}
@@ -333,7 +321,7 @@ const Dashboard = () => {
             {/* {activeComponent === "Component4" ? <Shared /> : null}
             {activeComponent === "Component5" ? <Recent /> : null}
             {activeComponent === "Component6" ? <Storage /> : null} */}
-            {activeComponent === "Component7" ? <Pricing /> : null}
+            {activeComponent === "Component7" ? <Price /> : null}
             {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}
             {activeComponent === "Component10" ? <Setting /> : null}

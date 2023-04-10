@@ -65,9 +65,11 @@ const Menu = ({
   setActiveComponent,
   selected,
   setSelected,
+  closeMenu,
 }) => {
   const toggleMenu = (index) => {
     setSelected(index);
+    closeMenu();
   };
   return (
     <div>

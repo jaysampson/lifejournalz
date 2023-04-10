@@ -15,6 +15,7 @@ import {
   faHeart,
   faCalendar,
   faXmark,
+  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import plus from "../../Images/plus.png";
 import { useState } from "react";
@@ -95,12 +96,20 @@ const Dashboard = () => {
     getAllUserInfo(dispatch);
   }, []);
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <div>
       <>
         <div className="nav-images-M">
           <div className="prof-pic"></div>
-          <div className="hamburger" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <div
+            className="hamburger"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            style={{ cursor: "pointer" }}
+          >
             <svg viewBox="0 0 70 27" width="40">
               <rect width="40" height="6"></rect>
               <rect y="10" width="40" height="6"></rect>
@@ -111,7 +120,18 @@ const Dashboard = () => {
         {isMenuOpen && (
           <div className="burg-con">
             <div className="profile">
-              <p>Profile</p>
+              <div className="update-prof">
+                <p>Profile</p>
+                <button
+                  onClick={() => {
+                    setActiveComponent("Component10");
+                    toggleMenu(10);
+                    closeMenu();
+                  }}
+                >
+                  update
+                </button>
+              </div>
               <div
                 className="profile-con"
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
@@ -135,7 +155,12 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <Button onClick={handleModal}>
+            <Button
+              onClick={() => {
+                handleModal();
+                closeMenu();
+              }}
+            >
               <button>
                 <img src={plus} alt="" /> <span>Create New Memory</span>
               </button>
@@ -148,6 +173,7 @@ const Dashboard = () => {
               setActiveComponent={setActiveComponent}
               selected={selected}
               setSelected={setSelected}
+              closeMenu={closeMenu}
             />
             <div
               style={{
@@ -300,8 +326,8 @@ const Dashboard = () => {
                     toggleMenu(10);
                   }}
                 >
-                  <FontAwesomeIcon icon={faGear} />
-                  <span>Settings</span>
+                  <FontAwesomeIcon icon={faUserCircle} />
+                  <span>Profile</span>
                 </div>
                 <button
                   className="icon"
@@ -335,6 +361,7 @@ const Dashboard = () => {
                 toggleMenu(2);
                 setActiveComponent("Component3");
               }}
+              style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon icon={faHeart} size={"2x"} />
             </div>
@@ -345,6 +372,7 @@ const Dashboard = () => {
                 toggleMenu(1);
                 setActiveComponent("Component2");
               }}
+              style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon icon={faList} size={"2x"} />
             </div>
@@ -355,6 +383,7 @@ const Dashboard = () => {
                 toggleMenu(0);
                 setActiveComponent("Component1");
               }}
+              style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon icon={faHouse} size={"2x"} />
             </div>
@@ -365,6 +394,7 @@ const Dashboard = () => {
                 toggleMenu(9);
                 setActiveComponent("Component9");
               }}
+              style={{ cursor: "pointer" }}
             >
               <FontAwesomeIcon icon={faCalendar} size={"2x"} />
             </div>
@@ -375,8 +405,9 @@ const Dashboard = () => {
                 toggleMenu(10);
                 setActiveComponent("Component10");
               }}
+              style={{ cursor: "pointer" }}
             >
-              <FontAwesomeIcon icon={faGear} size={"2x"} />
+              <FontAwesomeIcon icon={faUserCircle} size={"2x"} />
             </div>
           </div>
         </div>

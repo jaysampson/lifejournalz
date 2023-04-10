@@ -26,6 +26,7 @@ import Dashboard from "./component/Pages/Dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import SingleJournal from "./component/Pages/DashPages/SingleJournal";
 import LearnMore from "./component/Pages/LearnMore";
+import { Pricee } from "./component/Pages/DashPages/Pricee";
 
 const App = () => {
   const auth = localStorage.getItem("jwt");
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/price" element={<Pricee />} />
         <Route path="/contactus" element={<ContactUs />} />
         {/* <Route path="/sidebar" element={<Sidebar />} /> */}
         <Route path="/signin" element={<SignIn />} />

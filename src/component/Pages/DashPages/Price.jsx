@@ -12,7 +12,7 @@ import "../../../styles/Pricing.scss";
 import { Modal, Button } from "react-bootstrap";
 import { useState } from "react";
 
-export const Pricing = () => {
+export const Price = () => {
   const [showModal, setShowModal] = useState();
   const handleModal = () => {
     setShowModal(true);
@@ -99,14 +99,13 @@ export const Pricing = () => {
                     <h5 id="money" className="">
                       NGN289.00/mo
                     </h5>
-                    <button style={{ marginBottom: "0px" }}>
-                      <Link
-                        to="#"
-                        className="Getlink"
-                        onClick={() => {
-                          handleModal();
-                        }}
-                      >
+                    <button
+                      style={{ marginBottom: "0px" }}
+                      onClick={() => {
+                        handleModal();
+                      }}
+                    >
+                      <Link to="#" className="Getlink">
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>
@@ -149,14 +148,12 @@ export const Pricing = () => {
                     <h5 id="money" className="">
                       NGN549.00/mo
                     </h5>
-                    <button>
-                      <Link
-                        to="#"
-                        className="Getlink"
-                        onClick={() => {
-                          handleModal();
-                        }}
-                      >
+                    <button
+                      onClick={() => {
+                        handleModal();
+                      }}
+                    >
+                      <Link to="#" className="Getlink">
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>
@@ -193,14 +190,13 @@ export const Pricing = () => {
                     <h5 id="money" className="">
                       NGN1320.00/mo
                     </h5>
-                    <button>
-                      <Link
-                        to="#"
-                        className="Getlink"
-                        onClick={() => {
-                          handleModal();
-                        }}
-                      >
+                    <button
+                      onClick={() => {
+                        handleModal();
+                      }}
+                    >
+                      {" "}
+                      <Link to="#" className="Getlink">
                         Get Started
                         <i className="bi bi-chevron-right"></i>
                       </Link>

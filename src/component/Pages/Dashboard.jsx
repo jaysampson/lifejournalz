@@ -16,6 +16,7 @@ import {
   faCalendar,
   faXmark,
   faUserCircle,
+  faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import plus from "../../Images/plus.png";
 import { useState } from "react";
@@ -46,6 +47,8 @@ import {
 } from "../../redux/authUserSlice/authUserFirebaseApi";
 import ModalDh from "./DashPages/ModalDh";
 import Menu from "./Menu";
+import { RateReview } from "./DashPages/RateReview";
+import { Help } from "./DashPages/Help";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -322,6 +325,26 @@ const Dashboard = () => {
                 <div
                   className="icon"
                   onClick={() => {
+                    setActiveComponent("Component12");
+                    toggleMenu(11);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faQuestionCircle} />
+                  <span>Help</span>
+                </div>
+                <div
+                  className="icon"
+                  onClick={() => {
+                    setActiveComponent("Component11");
+                    toggleMenu(12);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faStar} />
+                  <span>Rate and Review</span>
+                </div>
+                <div
+                  className="icon"
+                  onClick={() => {
                     setActiveComponent("Component10");
                     toggleMenu(10);
                   }}
@@ -351,6 +374,8 @@ const Dashboard = () => {
             {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}
             {activeComponent === "Component10" ? <Setting /> : null}
+            {activeComponent === "Component11" ? <RateReview /> : null}
+            {activeComponent === "Component12" ? <Help /> : null}
           </div>
         </div>
         <div className="downbar-contents">

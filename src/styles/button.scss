@@ -12,7 +12,23 @@
   gap: 15px;
   @media screen and (max-width: 718px) {
     flex-direction: column;
+    gap: 10px;
+  }
+  .landing-btn {
+    background: linear-gradient(90deg, #aa076b 0%, #61045f 100%);
+    box-shadow: 0px 2.94px 40px rgba(40, 6, 38, 0.25);
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
     gap: 5px;
+    width: fit-content;
+    padding: 7px;
+    text-decoration: none;
+    color: white;
+    @media screen and (max-width: 575px) {
+      padding: 15px 12px 15px 12px;
+    }
   }
 }
 

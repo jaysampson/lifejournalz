@@ -138,41 +138,11 @@ const LandingPage = () => {
                 Start saving all your memories in one place!
               </p>
               <div className="buttons">
-                <Link
-                  to="/signup"
-                  className="btn btn-light mt-1 text-white"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                    boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)",
-                    borderRadius: "4px",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                    gap: "5px",
-                    width: "fit-content",
-                    padding: "7px",
-                  }}
-                >
+                <Link to="/signup" className="landing-btn">
                   <span>Login / SignUp</span>
                   <FaAngleRight size={20} />
                 </Link>
-                <Link
-                  to="/learn"
-                  className="btn btn-light mt-1 text-white"
-                  style={{
-                    background:
-                      "linear-gradient(90deg, #AA076B 0%, #61045F 100%)",
-                    boxShadow: "0px 2.94px 40px rgba(40, 6, 38, 0.25)",
-                    borderRadius: "4px",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    display: "flex",
-                    gap: "5px",
-                    width: "fit-content",
-                    padding: "7px",
-                  }}
-                >
+                <Link to="/learn" className="landing-btn">
                   <span>Learn More</span>
                   <FaAngleRight size={20} />
                 </Link>

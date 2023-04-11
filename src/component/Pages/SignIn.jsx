@@ -8,7 +8,10 @@ import cloud from "../../cloud.png";
 import Logo from "../../Images/Logo.png";
 import jwt_decode from "jwt-decode";
 import { auth } from "../../config/firebase";
-import { authUsersLogin, loginWithGoogle } from "../../redux/authUserSlice/authUserFirebaseApi";
+import {
+  authUsersLogin,
+  loginWithGoogle,
+} from "../../redux/authUserSlice/authUserFirebaseApi";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
@@ -118,7 +121,7 @@ const Login = () => {
                 <input
                   type="email"
                   required
-                  placeholder="example@gmail.com"
+                  placeholder=" example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -128,7 +131,7 @@ const Login = () => {
                 <input
                   type={passwordType ? "text" : "password"}
                   required
-                  placeholder="********"
+                  placeholder=" ********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
@@ -160,7 +163,7 @@ const Login = () => {
                 <div className="options">
                   <div className="no_account">
                     <p>
-                      Don't have an account?{" "}
+                      Don't have an account?
                       <Link to="/signup" className="link">
                         <span>Sign Up</span>
                       </Link>

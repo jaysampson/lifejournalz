@@ -29,7 +29,7 @@ import { Recent } from "./DashPages/Recent";
 import { Storage } from "./DashPages/Storage";
 import { DTerms } from "./DashPages/DTerms";
 import { Calender } from "./DashPages/Calender";
-import { Setting } from "./DashPages/Setting";
+import { Setting } from "./DashPages/Profile";
 import { Button } from "react-bootstrap";
 import addpic from "../../Images/addpic.png";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -54,7 +54,6 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   // const user = auth.currentUser;
   const authUser = auth.currentUser;
-
 
   const [selected, setSelected] = useState(0);
   const toggleMenu = (index) => {
@@ -88,18 +87,16 @@ const Dashboard = () => {
 
   const [activeComponent, setActiveComponent] = useState("Component1");
 
-    const {
-      getUsersInfo: { getUsersInfoData },
-    } = useSelector((state) => state.authUser);
-
+  const {
+    getUsersInfo: { getUsersInfoData },
+  } = useSelector((state) => state.authUser);
 
   // find a user details
   // const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
 
   const findUser = getUsersInfoData?.find((user) => user?.id === authUser?.uid);
 
-
-  console.log(findUser,getUsersInfoData, "99999")
+  console.log(findUser, getUsersInfoData, "99999");
 
   useEffect(() => {
     getAllJournalsData(dispatch);

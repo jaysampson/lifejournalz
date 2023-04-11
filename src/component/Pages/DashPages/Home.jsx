@@ -162,7 +162,6 @@ export const Home = () => {
     );
   };
 
-  // console.log(new Date(form.selectedDate?.seconds* 1000), "formName");
 
   useEffect(() => {
     const uploadImage = () => {

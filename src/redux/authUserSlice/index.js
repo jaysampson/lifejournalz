@@ -12,8 +12,13 @@ export const authUserSlice = createSlice({
 
     getUsersInfo: {
       getUsersInfoData: [],
-      getUsersInfoLoading: false,
+      getUsersInfoIsLoading: false,
       getUsersInfoError: null,
+    },
+    updateUserInfo: {
+      updateUserInfoData: {},
+      updateUserInfoLoading: false,
+      updateUserInfoError: null,
     },
     signInWithGoogle: "",
   },
@@ -34,10 +39,10 @@ export const authUserSlice = createSlice({
     },
     //Login with Google
     signInWithGoogleSuccess: (state, action) => {
-         state.usersInfo.usersInfoIsLoading = false;
-         state.usersInfo.usersInfoData = action.payload;
-         state.usersInfo.isLoggedIn = true;
-         state.usersInfo.usersInfoError = null;
+      state.usersInfo.usersInfoIsLoading = false;
+      state.usersInfo.usersInfoData = action.payload;
+      state.usersInfo.isLoggedIn = true;
+      state.usersInfo.usersInfoError = null;
     },
 
     //register
@@ -67,6 +72,20 @@ export const authUserSlice = createSlice({
       state.getUsersInfo.getUsersInfoError = action.payload;
       state.getUsersInfo.getUsersInfoIsLoading = false;
     },
+    //update user
+    updateUserInfoStart: (state) => {
+      state.updateUserInfo.updateUserInfoLoading = true;
+    },
+    updateUserInfoSuccess: (state, action) => {
+      state.updateUserInfo.updateUserInfoLoading = false;
+      state.updateUserInfo.updateUserInfoData = action.payload;
+      state.updateUserInfo.updateUserInfoError = null;
+    },
+    updateUserInfoFail: (state, action) => {
+      state.updateUserInfo.updateUserInfoError = action.payload;
+      state.updateUserInfo.updateUserInfoLoading = false;
+    },
+
     //Sign out
     userSignOutStart: (state) => {
       state.usersInfo.usersInfoIsLoading = true;
@@ -98,6 +117,10 @@ export const {
   getUsersStart,
   getUsersSuccess,
   getUsersFail,
+  //update user
+updateUserInfoStart,
+ updateUserInfoSuccess,
+updateUserInfoFail,
   //sign out
   userSignOutStart,
   userSignOutSuccess,

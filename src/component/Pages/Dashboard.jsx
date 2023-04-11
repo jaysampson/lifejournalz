@@ -16,6 +16,7 @@ import {
   faCalendar,
   faXmark,
   faUserCircle,
+  faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import plus from "../../Images/plus.png";
 import { useState } from "react";
@@ -28,7 +29,7 @@ import { Recent } from "./DashPages/Recent";
 import { Storage } from "./DashPages/Storage";
 import { DTerms } from "./DashPages/DTerms";
 import { Calender } from "./DashPages/Calender";
-import { Setting } from "./DashPages/Setting";
+import { Setting } from "./DashPages/Profile";
 import { Button } from "react-bootstrap";
 import addpic from "../../Images/addpic.png";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
@@ -46,10 +47,13 @@ import {
 } from "../../redux/authUserSlice/authUserFirebaseApi";
 import ModalDh from "./DashPages/ModalDh";
 import Menu from "./Menu";
+import { RateReview } from "./DashPages/RateReview";
+import { Help } from "./DashPages/Help";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const user = auth.currentUser;
+  // const user = auth.currentUser;
+  const authUser = auth.currentUser;
 
   const [selected, setSelected] = useState(0);
   const toggleMenu = (index) => {
@@ -88,7 +92,11 @@ const Dashboard = () => {
   } = useSelector((state) => state.authUser);
 
   // find a user details
-  const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
+  // const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
+
+  const findUser = getUsersInfoData?.find((user) => user?.id === authUser?.uid);
+
+  console.log(findUser, getUsersInfoData, "99999");
 
   useEffect(() => {
     getAllJournalsData(dispatch);
@@ -137,18 +145,27 @@ const Dashboard = () => {
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
                 <div className="prof-pic">
-                  <img src="" alt="" />
+                  {/* <img src={findUser?.file} alt="" /> */}
+                  {/* <img
+                    src={
+                      findUser
+                        ? URL.createObjectURL(findUser.file)
+                        : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                    }
+                    alt=""
+                    style={{ width: "50%" }}
+                  /> */}
                 </div>
                 <div className="prof-det">
-                  {!user && !findUser ? (
+                  {!authUser && !findUser ? (
                     <h1>Loading...</h1>
                   ) : (
                     <>
                       <span style={{ color: "black" }}>
-                        Hey {findUser?.displayName || user?.displayName}
+                        Hey {findUser?.displayName || authUser?.displayName}
                       </span>
                       <span style={{ color: "GrayText" }}>
-                        {findUser?.email || user.email}
+                        {findUser?.email || authUser.email}
                       </span>
                     </>
                   )}
@@ -322,6 +339,26 @@ const Dashboard = () => {
                 <div
                   className="icon"
                   onClick={() => {
+                    setActiveComponent("Component12");
+                    toggleMenu(11);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faQuestionCircle} />
+                  <span>Help</span>
+                </div>
+                <div
+                  className="icon"
+                  onClick={() => {
+                    setActiveComponent("Component11");
+                    toggleMenu(12);
+                  }}
+                >
+                  <FontAwesomeIcon icon={faStar} />
+                  <span>Rate and Review</span>
+                </div>
+                <div
+                  className="icon"
+                  onClick={() => {
                     setActiveComponent("Component10");
                     toggleMenu(10);
                   }}
@@ -351,6 +388,8 @@ const Dashboard = () => {
             {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}
             {activeComponent === "Component10" ? <Setting /> : null}
+            {activeComponent === "Component11" ? <RateReview /> : null}
+            {activeComponent === "Component12" ? <Help /> : null}
           </div>
         </div>
         <div className="downbar-contents">

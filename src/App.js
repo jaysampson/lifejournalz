@@ -31,7 +31,7 @@ import { Pricee } from "./component/Pages/DashPages/Pricee";
 const App = () => {
   const auth = localStorage.getItem("jwt");
   const currentUser = auth;
-  const RequiredAuth = ({ children }) => {
+  const RequiredAuth = ({children }) => {
     return currentUser ? children : <Navigate to="/signin" />;
   };
 

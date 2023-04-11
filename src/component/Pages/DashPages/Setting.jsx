@@ -205,24 +205,24 @@ export const Setting = () => {
     }
   }, []);
 
-//   console.log(form.email, "email");
-   const onSubmitUpdateUser = (e) => {
-     e.preventDefault();
+  //   console.log(form.email, "email");
+  const onSubmitUpdateUser = (e) => {
+    e.preventDefault();
 
     //  console.log(form.email, form.name, form.phoneNumber, form.address,form.file || uploaded, authUser.uid, "44444")
-  
-     updateUserDoc(
-       {
-         email: form.email,
-         name: form.name,
-         phoneNumber: form.phoneNumber,
+
+    updateUserDoc(
+      {
+        email: form.email,
+        name: form.name,
+        phoneNumber: form.phoneNumber,
         address: form.address,
-         file: form.file || uploaded,
-       },
-        authUser.uid,
-       dispatch
-     );
-   };
+        file: form.file || uploaded,
+      },
+      authUser.uid,
+      dispatch
+    );
+  };
   useEffect(() => {
     const uploadImage = () => {
       const name = new Date().getTime() + file.name;
@@ -285,9 +285,10 @@ export const Setting = () => {
                 style={{ width: "50%" }}
               />
             </div>
+
             <input
               // className="modal-input"
-              style={{ width: 105 }}
+              style={{ width: "110px" }}
               type="file"
               onChange={(e) => setFile(e.target.files[0])}
             />

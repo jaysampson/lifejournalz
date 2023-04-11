@@ -49,7 +49,9 @@ import Menu from "./Menu";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
-  const user = auth.currentUser;
+  // const user = auth.currentUser;
+  const authUser = auth.currentUser;
+
 
   const [selected, setSelected] = useState(0);
   const toggleMenu = (index) => {
@@ -83,12 +85,18 @@ const Dashboard = () => {
 
   const [activeComponent, setActiveComponent] = useState("Component1");
 
-  const {
-    getUsersInfo: { getUsersInfoData },
-  } = useSelector((state) => state.authUser);
+    const {
+      getUsersInfo: { getUsersInfoData },
+    } = useSelector((state) => state.authUser);
+
 
   // find a user details
-  const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
+  // const findUser = getUsersInfoData?.find((user) => user?.id === user?.uid);
+
+  const findUser = getUsersInfoData?.find((user) => user?.id === authUser?.uid);
+
+
+  console.log(findUser,getUsersInfoData, "99999")
 
   useEffect(() => {
     getAllJournalsData(dispatch);
@@ -137,18 +145,27 @@ const Dashboard = () => {
                 style={{ display: "flex", alignItems: "center", gap: "8px" }}
               >
                 <div className="prof-pic">
-                  <img src="" alt="" />
+                  {/* <img src={findUser?.file} alt="" /> */}
+                  {/* <img
+                    src={
+                      findUser
+                        ? URL.createObjectURL(findUser.file)
+                        : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                    }
+                    alt=""
+                    style={{ width: "50%" }}
+                  /> */}
                 </div>
                 <div className="prof-det">
-                  {!user && !findUser ? (
+                  {!authUser && !findUser ? (
                     <h1>Loading...</h1>
                   ) : (
                     <>
                       <span style={{ color: "black" }}>
-                        Hey {findUser?.displayName || user?.displayName}
+                        Hey {findUser?.displayName || authUser?.displayName}
                       </span>
                       <span style={{ color: "GrayText" }}>
-                        {findUser?.email || user.email}
+                        {findUser?.email || authUser.email}
                       </span>
                     </>
                   )}

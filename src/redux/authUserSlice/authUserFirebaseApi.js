@@ -13,6 +13,7 @@ import {
   getDocs,
   serverTimestamp,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { auth, db, googleProvider } from "../../config/firebase";
 import {
@@ -25,9 +26,14 @@ import {
   registerUserStart,
   registerUserSuccess,
   registerUserFail,
+  //get user
   getUsersStart,
   getUsersSuccess,
   getUsersFail,
+  //update user
+  updateUserInfoStart,
+  updateUserInfoSuccess,
+  updateUserInfoFail,
   //sign out
   userSignOutStart,
   userSignOutSuccess,
@@ -36,7 +42,7 @@ import {
 } from "./index";
 
 export const authUsersLogin = async ({ email, password }, dispatch) => {
-  console.log(email, password, "api");
+  // console.log(email, password, "api");
   dispatch(authUserStart());
   try {
     const res = await signInWithEmailAndPassword(auth, email, password);
@@ -85,7 +91,7 @@ export const registerUser = async (
       email,
       timeStamp: serverTimestamp(),
     });
-    console.log(result, "register");
+    // console.log(result, "register");
     //  toast.success("SUCCESSFULL");
     if (result) {
       alert("SUCCESSFULL...!! PLEASE LOGIN");
@@ -111,6 +117,49 @@ export const getAllUserInfo = async (dispatch) => {
     dispatch(getUsersSuccess(filterData));
   } catch (error) {
     dispatch(getUsersFail(error));
+    console.log(error);
+  }
+};
+
+//update user
+export const updateUserDoc = async (
+  { email, name, phoneNumber, address, file,},
+  id,
+  dispatch
+) => {
+  // console.log(
+  //   {
+  //     text,
+  //     title,
+  //     selectedDate,
+  //     isFavourites,
+  //     file,
+  //     userid,
+  //     category,
+  //   },
+  //   id,
+  //   "updateId"
+  // );
+  dispatch(updateUserInfoStart());
+  const updateUserCol = doc(db, "users", id);
+  try {
+    const res = await updateDoc(
+      updateUserCol,
+      {
+        email,
+        name,
+        phoneNumber,
+        address,
+        file,
+       
+      },
+      { merge: true }
+    );
+    dispatch(updateUserInfoSuccess(res));
+    window.location.reload();
+    console.log(res, "update-result");
+  } catch (error) {
+    dispatch(updateUserInfoFail(error));
     console.log(error);
   }
 };

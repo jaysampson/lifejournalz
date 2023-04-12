@@ -162,7 +162,6 @@ export const Home = () => {
     );
   };
 
-
   useEffect(() => {
     const uploadImage = () => {
       const name = new Date().getTime() + file.name;
@@ -504,7 +503,7 @@ export const Home = () => {
       ) : (
         <h1>
           Hey {findUser?.displayName || authUser?.displayName}
-          <span> - Welcome to your dashboard</span>
+          <span className="welcome"> - Welcome to your dashboard</span>
         </h1>
       )}
 

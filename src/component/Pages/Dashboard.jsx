@@ -17,6 +17,7 @@ import {
   faXmark,
   faUserCircle,
   faQuestionCircle,
+  faComments,
 } from "@fortawesome/free-solid-svg-icons";
 import plus from "../../Images/plus.png";
 import { useState } from "react";
@@ -47,8 +48,8 @@ import {
 } from "../../redux/authUserSlice/authUserFirebaseApi";
 import ModalDh from "./DashPages/ModalDh";
 import Menu from "./Menu";
-import { RateReview } from "./DashPages/RateReview";
 import { Help } from "./DashPages/Help";
+import { Feedback } from "./DashPages/Feedback";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
@@ -74,6 +75,10 @@ const Dashboard = () => {
       setActiveComponent("Component7");
     } else if (index === 7) {
       setActiveComponent("Component8");
+    } else if (index === 8) {
+      setActiveComponent("Component12");
+    } else if (index === 9) {
+      setActiveComponent("Component11");
     }
   };
   const [showModal, setShowModal] = useState(false);
@@ -353,8 +358,8 @@ const Dashboard = () => {
                     toggleMenu(12);
                   }}
                 >
-                  <FontAwesomeIcon icon={faStar} />
-                  <span>Rate and Review</span>
+                  <FontAwesomeIcon icon={faComments} />
+                  <span>Feedback</span>
                 </div>
                 <div
                   className="icon"
@@ -388,7 +393,7 @@ const Dashboard = () => {
             {activeComponent === "Component8" ? <DTerms /> : null}
             {activeComponent === "Component9" ? <Calender /> : null}
             {activeComponent === "Component10" ? <Setting /> : null}
-            {activeComponent === "Component11" ? <RateReview /> : null}
+            {activeComponent === "Component11" ? <Feedback /> : null}
             {activeComponent === "Component12" ? <Help /> : null}
           </div>
         </div>

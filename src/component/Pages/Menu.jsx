@@ -9,6 +9,8 @@ import {
   faStar,
   faTag,
   faList,
+  faComments,
+  faQuestionCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
 const MenuItem = ({ icon, label, isSelected, onClick, num, update }) => {
@@ -147,6 +149,24 @@ const Menu = ({
           onClick={() => {
             toggleMenu(7);
             setActiveComponent("Component8");
+          }}
+        />
+        <MenuItem
+          icon={faQuestionCircle}
+          label="Help"
+          isSelected={selected === 8}
+          onClick={() => {
+            toggleMenu(8);
+            setActiveComponent("Component12");
+          }}
+        />
+        <MenuItem
+          icon={faComments}
+          label="Feedback"
+          isSelected={selected === 9}
+          onClick={() => {
+            toggleMenu(9);
+            setActiveComponent("Component11");
           }}
         />
       </div>

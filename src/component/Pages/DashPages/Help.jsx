@@ -1,18 +1,10 @@
 import React from "react";
+import "../../../styles/help.scss";
 
 export const Help = () => {
   return (
     <div>
-      <div
-        className="help"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100vh",
-        }}
-      >
+      <div className="help">
         <h1>
           Contact Us at&nbsp;
           <a href="mailto:hello@lifejournalz.com">hello@lifejournalz.com</a>

@@ -499,12 +499,12 @@ export const Home = () => {
       </div>
 
       {!authUser && !findUser ? (
-        <h1>Loading...</h1>
+        <h3>Loading...</h3>
       ) : (
-        <h1>
+        <h3>
           Hey {findUser?.displayName || authUser?.displayName}
           <span className="welcome"> - Welcome to your dashboard</span>
-        </h1>
+        </h3>
       )}
 
       <div className="contents">
@@ -520,6 +520,10 @@ export const Home = () => {
             <div className="journalz">
               <div className="journalz-main">
                 <div className="sort">
+                  <Button onClick={handleModal} className="new">
+                    <FontAwesomeIcon icon={faPlus} />
+                    <span style={{ marginBottom: "0px" }}>New Mem</span>
+                  </Button>
                   <select
                     className="select"
                     onChange={(e) => setSortOrder(e.target.value)}
@@ -711,10 +715,6 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <Button onClick={handleModal} className="new">
-            <FontAwesomeIcon icon={faPlus} />
-            <span style={{ marginBottom: "0px" }}>New Memory</span>
-          </Button>
           <ModalDh showModal={showModal} handleModal={handleModal} />
         </div>
         <ReactModal show={isModalOpen} isOpen={isModalOpen}>

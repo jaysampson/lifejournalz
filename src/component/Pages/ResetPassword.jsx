@@ -1,11 +1,9 @@
-import { useState, React } from 'react'
-import '../../styles/ResetPassword.scss'
+import { useState, React } from "react";
+import "../../styles/ResetPassword.scss";
 import Cancel from "../../Images/Cancel.png";
-import { Link } from 'react-router-dom';
-import cloud from '../../cloud.png';
-import Logo from '../../Images/Logo.png';
-
-
+import { Link } from "react-router-dom";
+import cloud from "../../cloud.png";
+import Logo from "../../Images/Logo.png";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
@@ -24,12 +22,16 @@ const ResetPassword = () => {
           <div className="container">
             <div className="logo">
               <img src={Logo} alt="" />
-              <p>Life<span>Journalz</span></p>
+              <p>
+                Life<span>Journalz</span>
+              </p>
             </div>
             <div className="reset_con">
               <div className="reset_content">
                 <div className="title">
-                  <Link to='/signin' className='link'><img src={Cancel} alt="X" /></Link>
+                  <Link to="/signin" className="link">
+                    <img src={Cancel} alt="X" />
+                  </Link>
                 </div>
                 <div className="text_title">
                   <p>Reset your password</p>
@@ -37,8 +39,9 @@ const ResetPassword = () => {
                 <div className="form_info">
                   <p>Please enter email address to reset your password</p>
                 </div>
-                <form action="" method='POST' onSubmit={handleSubmit}>
-                  <input placeholder='example@gmail.com'
+                <form action="" method="POST" onSubmit={handleSubmit}>
+                  <input
+                    placeholder=" example@gmail.com"
                     type={"text"}
                     required
                     value={email}
@@ -55,7 +58,7 @@ const ResetPassword = () => {
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default ResetPassword
+export default ResetPassword;

@@ -251,12 +251,12 @@ const ModalDh = ({ showModal, handleModal }) => {
                       </select>
                     </div>
                     <div>
-                      <h5>Date</h5>
+                      <h5>Select Date</h5>
                       <DatePicker
                         selected={selectedDate}
                         onChange={(date) => setSelectedDate(date)}
                         dateFormat="dd/MM/yyyy"
-                        placeholderText="Select Date Publish"
+                        placeholderText=" Select Day/Month/Year"
                         className="my-datepicker"
                       />
                     </div>

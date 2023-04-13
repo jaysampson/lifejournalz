@@ -4,8 +4,24 @@
   box-sizing: 0px;
 }
 
-h1 {
+h3 {
+  color: black;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  font-weight: 600;
+  gap: 5px;
+  margin-bottom: 10px;
+  @media screen and (max-width: 475px) {
+    padding: 0px 0px 0px 5px;
+  }
   span {
+    color: gray;
+    font-size: 14px;
+    font-weight: 400;
     @media screen and (max-width: 475px) {
       display: none;
     }
@@ -17,7 +33,6 @@ h1 {
   justify-content: center;
   align-items: center;
   margin-left: 1.9rem;
-  margin-top: 1.3rem;
   background-color: #fff;
   border-radius: 20px;
   border: 1px rgb(214, 210, 210) solid;
@@ -86,7 +101,7 @@ h1 {
     }
 
     .journalz {
-      height: 20rem;
+      height: 23rem;
       width: 100%;
       background-color: #fff;
       border-radius: inherit;
@@ -98,17 +113,28 @@ h1 {
         width: 100%;
 
         .sort {
-          font-size: 12px;
-          float: right;
-          margin-top: 0px;
-          margin-right: 20px;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+          padding: 0px 20px 0px 0px;
+          width: 100%;
+          margin-bottom: 10px;
 
+          @media screen and (max-width: 768px) {
+            padding: 0px 10px 0px 10px;
+            justify-content: space-between;
+          }
           .select {
             border: 1px gray solid;
             height: 1.8rem;
-            margin-bottom: 6px;
-            width: 5.6rem;
+            width: fit-content;
             border-radius: 5px;
+            outline: 1px black solid;
+            margin-bottom: 13px;
+            padding: 0px 0px 0px 5px;
+            @media screen and (max-width: 768px) {
+              margin-bottom: 0px;
+            }
           }
         }
 
@@ -279,9 +305,9 @@ h1 {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    height: 40px;
+    padding: 3px 15px 3px 15px !important;
     background: linear-gradient(90deg, #aa076b 0%, #61045f 100%);
-    width: 150px !important;
+    width: fit-content !important;
     gap: 10px;
   }
 }

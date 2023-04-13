@@ -2,7 +2,6 @@
   margin: 0px;
   padding: 0px;
   box-sizing: 0px;
-  font-family: "DM Sans", sans-serif;
 }
 
 button:hover {
@@ -18,7 +17,7 @@ button:hover {
   height: 100%;
   background-size: cover;
   background-position: center;
-  padding: 35px;
+  padding: 15px;
   @media screen and (max-width: 575px) {
     padding: 0px;
   }
@@ -66,7 +65,7 @@ button:hover {
 .sigup_con {
   background: #fffdf4;
   border-radius: 20px;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +81,7 @@ button:hover {
 
   .signup_content {
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     @media screen and (max-width: 425px) {
       padding: 0px;
     }
@@ -101,6 +100,7 @@ button:hover {
     }
 
     form {
+      margin-top: 20px;
       p {
         display: flex;
         justify-content: flex-start;
@@ -125,8 +125,9 @@ button:hover {
         flex-grow: 0;
         font-weight: 500;
         font-size: 14px;
-        color: #838586;
+        color: black;
         margin-bottom: 24px;
+        letter-spacing: 1.2px;
       }
 
       .signup_button {

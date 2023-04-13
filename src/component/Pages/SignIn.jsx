@@ -138,13 +138,10 @@ const Login = () => {
                 <div className="check_box">
                   <input
                     type="checkbox"
-                    name="checkbox"
+                    className="input"
                     onClick={togglePassword}
-                    id="checkbox"
                   />
-                  <label for="checkbox" className="checkbox">
-                    Show Password
-                  </label>
+                  <div>Show Password</div>
                 </div>
                 <div className="signin_button">
                   <button disabled={usersInfoIsLoading} type="submit">

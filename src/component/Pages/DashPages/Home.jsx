@@ -499,23 +499,16 @@ export const Home = () => {
       </div>
 
       {!authUser && !findUser ? (
-        <h3>Loading...</h3>
+        <h4>Loading...</h4>
       ) : (
-        <h3>
+        <h4>
           Hey {findUser?.displayName || authUser?.displayName}
           <span className="welcome"> - Welcome to your dashboard</span>
-        </h3>
+        </h4>
       )}
 
       <div className="contents">
         <div className="all">
-          <div className="all-title">
-            <h2>All Memories</h2>
-            <button>
-              <img src={save} alt="" />
-              <span>save to files</span>
-            </button>
-          </div>
           <div className="journalz-border-wrap">
             <div className="journalz">
               <div className="journalz-main">

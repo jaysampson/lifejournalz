@@ -28,12 +28,15 @@ const SignUp = () => {
     },
   } = useSelector((state) => state.authUser);
 
-  console.log({
-    usersInfoData,
-    // usersInfoIsLoading,
-    usersInfoError,
-    isLoggedIn,
-  }, "register");
+  console.log(
+    {
+      usersInfoData,
+      // usersInfoIsLoading,
+      usersInfoError,
+      isLoggedIn,
+    },
+    "register"
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,9 +61,6 @@ const SignUp = () => {
     navigate("/signin");
   }
 
-
-
-  
   return (
     <>
       <div className="signup" style={{ backgroundImage: `url(${cloud})` }}>
@@ -86,7 +86,7 @@ const SignUp = () => {
                 <input
                   type="text"
                   required
-                  placeholder="Peter Gray"
+                  placeholder=" 👤 Peter Gray"
                   value={displayName}
                   onChange={(e) => setdisplayName(e.target.value)}
                 />
@@ -96,7 +96,7 @@ const SignUp = () => {
                 <input
                   type="email"
                   required
-                  placeholder="example@gmail.com"
+                  placeholder=" @ example@gmail.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -106,10 +106,17 @@ const SignUp = () => {
                 <input
                   type="password"
                   required
-                  placeholder="********"
+                  placeholder=" 🔒 ********"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <div className="terms">
+                  <input type="checkbox" required />
+                  <p>
+                    I agree to the&nbsp;
+                    <Link to="/terms"> Terms and Conditions</Link>
+                  </p>
+                </div>
                 {/* <p>
                   <label htmlFor="password">Confirm Password</label>
                 </p>

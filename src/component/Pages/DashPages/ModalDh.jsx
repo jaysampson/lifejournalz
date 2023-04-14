@@ -241,7 +241,7 @@ const ModalDh = ({ showModal, handleModal }) => {
                         onChange={(e) => setCategoryData(e.target.value)}
                       >
                         <option value="allCategories">
-                          --Select A category--
+                          --Select A Category--
                         </option>
                         {journalCategoriesData?.map((category) => (
                           <option value={category.name} key={category.id}>

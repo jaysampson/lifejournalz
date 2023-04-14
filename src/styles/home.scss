@@ -4,7 +4,7 @@
   box-sizing: 0px;
 }
 
-h3 {
+h4 {
   color: black;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: flex;
@@ -16,7 +16,8 @@ h3 {
   gap: 5px;
   margin-bottom: 10px;
   @media screen and (max-width: 475px) {
-    padding: 0px 0px 0px 5px;
+    padding: 0px 0px 0px 15px;
+    font-size: 16px;
   }
   span {
     color: gray;
@@ -50,31 +51,14 @@ h3 {
 
     .all-title {
       display: flex;
-      justify-content: center;
+      justify-content: flex-start;
       align-items: center;
       justify-content: space-between;
       margin-left: 1.2rem;
       margin-right: 1.2rem;
       gap: 10px;
-
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        width: fit-content;
-        position: relative;
-        top: 0.3rem;
-        margin-top: 0px !important;
-        height: 2.2rem;
-        border: 1px rgb(214, 210, 210) solid;
-        background: white;
-        color: black;
-        padding: 0px 3px 0px 3px;
-
-        span {
-          font-weight: 700;
-          font-size: 11px;
-        }
+      h2 {
+        padding: 5px;
       }
     }
 
@@ -123,6 +107,7 @@ h3 {
           @media screen and (max-width: 768px) {
             padding: 0px 10px 0px 10px;
             justify-content: space-between;
+            direction: rtl;
           }
           .select {
             border: 1px gray solid;
@@ -309,5 +294,7 @@ h3 {
     background: linear-gradient(90deg, #aa076b 0%, #61045f 100%);
     width: fit-content !important;
     gap: 10px;
+    height: 40px !important;
+    direction: ltr;
   }
 }

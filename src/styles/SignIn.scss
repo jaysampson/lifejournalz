@@ -2,6 +2,7 @@
   margin: 0px;
   padding: 0px;
   box-sizing: 0px;
+  outline: none;
 }
 
 button:hover {
@@ -101,6 +102,10 @@ button:hover {
 
     form {
       margin-top: 30px;
+      @media screen and (max-width: 575px) {
+        margin-left: 20px;
+        margin-right: 20px;
+      }
       p {
         display: flex;
         justify-content: flex-start;
@@ -128,6 +133,9 @@ button:hover {
         color: black;
         margin-bottom: 24px;
         letter-spacing: 1.2px;
+        @media screen and (max-width: 575px) {
+          height: 42px;
+        }
       }
 
       .check_box {
